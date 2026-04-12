@@ -1,0 +1,14 @@
+<LoginScreen>:
+    MDBoxLayout:
+        orientation: "vertical"
+        MDTopAppBar:
+            title: "Login"
+        MDLabel:
+            text: "Login Screen"
+            halign: "center"
+        MDRaisedButton:
+            text: "Go to Collect"
+            on_release: root.manager.current = "collect"
+        MDRaisedButton:
+            text: "Go to Sync"
+            on_release: root.manager.current = "sync"

@@ -1,0 +1,17 @@
+__pycache__/
+*.pyc
+*.pyo
+*.so
+.Python
+*.DS_Store
+.buildozer/
+bin/
+*.apk
+*.log
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+*.db
+*.sqlite

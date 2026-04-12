@@ -1,0 +1,9 @@
+<CollectScreen>:
+    MDBoxLayout:
+        orientation: "vertical"
+        MDTopAppBar:
+            title: "Data Collection"
+            left_action_items: [["arrow-left", lambda x: setattr(root.manager, 'current', 'login')]]
+        MDLabel:
+            text: "Collection Screen"
+            halign: "center"
