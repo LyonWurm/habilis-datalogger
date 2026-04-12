@@ -21,7 +21,6 @@ jobs:
     - name: Install system dependencies
       run: |
         sudo apt update
-        # Removed libtinfo5 as it's not available, added unzip
         sudo apt install -y git zip unzip openjdk-17-jdk autoconf libtool pkg-config 
 zlib1g-dev libncurses5-dev libncursesw5-dev cmake libffi-dev libssl-dev
 
@@ -30,51 +29,34 @@ zlib1g-dev libncurses5-dev libncursesw5-dev cmake libffi-dev libssl-dev
         pip install --upgrade pip
         pip install cython buildozer
 
-    # --- This is the new section that explicitly installs the Android SDK tools ---
     - name: Install Android SDK Command-line Tools
       run: |
-        # Create a directory for the SDK
         mkdir -p android-sdk/cmdline-tools
         cd android-sdk/cmdline-tools
-        
-        # Download the command line tools for Linux (x86_64)
         wget 
 https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip
         unzip commandlinetools-linux-11076708_latest.zip
         mv cmdline-tools latest
         cd ../..
-        
-        # Set environment variables for this and future steps
         echo "ANDROID_SDK_ROOT=$PWD/android-sdk" >> $GITHUB_ENV
         echo "$PWD/android-sdk/cmdline-tools/latest/bin" >> $GITHUB_PATH
 
     - name: Install Android Build-Tools and accept licenses
       run: |
-        # Accept all Android SDK licenses automatically
         yes | $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager --licenses
-        
-        # Install the necessary platform tools and build-tools (v30.0.3 is known to work 
-well)
         $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager "platform-tools" 
 "platforms;android-33" "build-tools;30.0.3"
 
     - name: Verify aidl is accessible
       run: |
-        # Add the specific build-tools folder to the PATH for this step
         echo "$ANDROID_SDK_ROOT/build-tools/30.0.3" >> $GITHUB_PATH
-        
-        # Check if aidl is now found
         which aidl
         aidl --version
-    # -------------------------------------------------------------------------
 
     - name: Build APK with Buildozer
       run: |
-        # These environment variables help Buildozer find the SDK we just set up
         echo "JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64" >> $GITHUB_ENV
         echo "ANDROID_HOME=$ANDROID_SDK_ROOT" >> $GITHUB_ENV
-        
-        # Build the APK
         buildozer android debug
 
     - name: Upload APK
