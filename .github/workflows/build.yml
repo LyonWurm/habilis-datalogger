@@ -1,66 +1,14 @@
 cat > .github/workflows/build.yml << 'EOF'
 name: Build APK
 
-on:
-  push:
-    branches: [ main, master ]
-  workflow_dispatch:
+on: [push]
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout code
+    - name: Checkout
       uses: actions/checkout@v4
-
-    - name: Set up Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.11'
-
-    - name: Install system dependencies
-      run: sudo apt update && sudo apt install -y git zip unzip openjdk-17-jdk autoconf 
-libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev cmake libffi-dev libssl-dev
-
-    - name: Install Python dependencies
-      run: pip install --upgrade pip cython buildozer
-
-    - name: Install Android SDK
-      run: |
-        mkdir -p android-sdk/cmdline-tools
-        cd android-sdk/cmdline-tools
-        wget 
-https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip
-        unzip commandlinetools-linux-11076708_latest.zip
-        mv cmdline-tools latest
-        cd ../..
-        echo "ANDROID_SDK_ROOT=$PWD/android-sdk" >> $GITHUB_ENV
-        echo "$PWD/android-sdk/cmdline-tools/latest/bin" >> $GITHUB_PATH
-
-    - name: Accept SDK licenses
-      run: yes | $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager --licenses
-
-    - name: Install build tools
-      run: $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager "platform-tools" 
-"platforms;android-33" "build-tools;30.0.3"
-
-    - name: Verify aidl
-      run: |
-        echo "$ANDROID_SDK_ROOT/build-tools/30.0.3" >> $GITHUB_PATH
-        which aidl
-        aidl --version
-
-    - name: Build APK
-      run: |
-        echo "JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64" >> $GITHUB_ENV
-        echo "ANDROID_HOME=$ANDROID_SDK_ROOT" >> $GITHUB_ENV
-        buildozer android debug
-
-    - name: Upload APK
-      uses: actions/upload-artifact@v4
-      with:
-        name: habilisdatalogger
-        path: bin/*.apk
-        retention-days: 30
+    - name: Test
+      run: echo "Hello World"
 EOF
