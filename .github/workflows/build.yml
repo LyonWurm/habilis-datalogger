@@ -1,14 +1,11 @@
-cat > .github/workflows/build.yml << 'EOF'
 name: Build APK
-
-on: [push]
+on: push
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout
-      uses: actions/checkout@v4
-    - name: Test
-      run: echo "Hello World"
-EOF
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Test
+        run: echo "Hello World"
