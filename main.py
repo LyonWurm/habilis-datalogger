@@ -12,7 +12,6 @@ from pathlib import Path
 from kivy.lang import Builder
 
 import os
-sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from login_screen import KV as login_kv
 from collect_screen import KV as collect_kv

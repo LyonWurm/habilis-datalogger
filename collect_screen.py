@@ -2397,49 +2397,32 @@ class CollectScreen(MDScreen):
 
     def take_photo(self):
         """Open camera and capture photo"""
-        from datetime import datetime
-
         if not CAMERA_AVAILABLE or camera is None:
-            # Mock photo for testing
-            self.create_mock_photo_for_testing()
+            self.show_message("Camera not available on this device")
             return
 
-        # Generate unique filename
         timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
         filename = f"photo_{timestamp}.jpg"
-
-        # Create photos directory
         photos_dir = Path.home() / "field_data" / "photos"
         photos_dir.mkdir(parents=True, exist_ok=True)
-
         filepath = photos_dir / filename
 
         try:
-            camera.take_picture(filename=str(filepath), on_complete=self.on_photo_captured)
+            camera.take_picture(
+                filename=str(filepath),
+                on_complete=self.on_photo_captured
+            )
         except Exception as e:
-            print(f"Camera error: {e}")
-            self.create_mock_photo_for_testing()
+            self.show_message(f"Camera error: {str(e)}")
 
-    def create_mock_photo_for_testing(self):
-        """Create a mock photo for testing without camera"""
-        from PIL import Image
-        import random
-        from datetime import datetime
-
-        photos_dir = Path.home() / "field_data" / "photos"
-        photos_dir.mkdir(parents=True, exist_ok=True)
-
-        timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
-        filename = f"mock_photo_{timestamp}.jpg"
-        filepath = photos_dir / filename
-
-        # Create a simple colored image
-        img = Image.new('RGB', (640, 480),
-                        color=(random.randint(0, 255), random.randint(0, 255), random.randint(0, 255)))
-        img.save(filepath)
-
-        self.photos.append(filename)
-        self.show_message(f"Mock photo captured! ({len(self.photos)} total)")
+    def on_photo_captured(self, filepath):
+        """Called by plyer camera when photo is taken"""
+        if filepath and Path(filepath).exists():
+            filename = Path(filepath).name
+            self.photos.append(filename)
+            self.show_message(f"Photo captured ({len(self.photos)} total)")
+        else:
+            self.show_message("Photo capture failed")
 
     def save_observation(self):
         """Save current observation"""
