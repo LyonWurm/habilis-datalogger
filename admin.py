@@ -21,22 +21,48 @@ import hashlib
 import secrets
 import string
 from datetime import datetime
-from kivymd.uix.spinner import MDSpinner  # If you use it
-
 try:
-    from fpdf import FPDF
-    PDF_AVAILABLE = True
+    from reportlab.lib.enums import TA_CENTER, TA_LEFT, TA_RIGHT
+    from kivymd.uix.spinner import MDSpinner  # If you use it
+    from reportlab.lib import colors
+    from reportlab.lib.pagesizes import letter
+    from reportlab.lib.units import inch
+    from reportlab.graphics.barcode import createBarcodeDrawing
+    from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph, Spacer, PageBreak
+    from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+    from reportlab.lib.enums import TA_CENTER
+    from reportlab.graphics.barcode import code128
+    from reportlab.graphics.shapes import Drawing
+    from reportlab.graphics import renderPDF
+    from reportlab.pdfgen import canvas as pdf_canvas
+    REPORTLAB_AVAILABLE = True
 except ImportError:
-    PDF_AVAILABLE = False
+    REPORTLAB_AVAILABLE = False
 
-# Simple "database" for now - will be replaced with actual DB
-ADMINS_FILE = Path.home() / "field_data" / "admins.json"
-SEASONS_FILE = Path.home() / "field_data" / "seasons.json"
+def get_data_dir():
+    from pathlib import Path
+    try:
+        from android import activity
+        data_dir = Path(activity.getCacheDir()).parent / "files" / "field_data"
+    except ImportError:
+        data_dir = Path.home() / "field_data"
+    data_dir.mkdir(parents=True, exist_ok=True)
+    return data_dir
+
+_data_dir = get_data_dir()
+
+ADMINS_FILE = _data_dir / "admins.json"
+SEASONS_FILE = _data_dir / "seasons.json"
+PROJECTS_FILE = _data_dir / "projects.json"
+USERS_FILE = _data_dir / "users.json"
+TAGS_FILE = _data_dir / "tags.json"
+TAG_BATCHES_FILE = _data_dir / "tag_batches.json"
 
 
 def hash_password(password):
     """Simple password hashing"""
     return hashlib.sha256(password.encode()).hexdigest()
+
 
 def load_admins():
     if ADMINS_FILE.exists():
@@ -44,12 +70,13 @@ def load_admins():
             return json.load(f)
     return {}
 
+
 def save_admins(admins):
     ADMINS_FILE.parent.mkdir(exist_ok=True)
     with open(ADMINS_FILE, 'w') as f:
         json.dump(admins, f, indent=2)
 
-SEASONS_FILE = Path.home() / "field_data" / "seasons.json"
+
 
 
 def load_seasons():
@@ -58,6 +85,7 @@ def load_seasons():
             return json.load(f)
     return {}
 
+
 def save_seasons(seasons):
     SEASONS_FILE.parent.mkdir(exist_ok=True)
     with open(SEASONS_FILE, 'w') as f:
@@ -65,27 +93,27 @@ def save_seasons(seasons):
 
 
 def get_most_recent_season():
-        """Get the most recent active season (by year)"""
-        seasons = load_seasons()
-        active_seasons = []
+    """Get the most recent active season (by year)"""
+    seasons = load_seasons()
+    active_seasons = []
 
-        for season_id, data in seasons.items():
-            if data.get('status') == 'active':
-                try:
-                    year = int(data.get('year', season_id))
-                    active_seasons.append((year, season_id, data.get('organization', 'KFFS')))
-                except:
-                    pass
+    for season_id, data in seasons.items():
+        if data.get('status') == 'active':
+            try:
+                year = int(data.get('year', season_id))
+                active_seasons.append((year, season_id, data.get('organization', 'KFFS')))
+            except:
+                pass
 
-        if not active_seasons:
-            return None
+    if not active_seasons:
+        return None
 
-        # Sort by year descending and get the most recent
-        active_seasons.sort(reverse=True)
-        return active_seasons[0]
+    # Sort by year descending and get the most recent
+    active_seasons.sort(reverse=True)
+    return active_seasons[0]
 
 
-PROJECTS_FILE = Path.home() / "field_data" / "projects.json"
+
 
 def load_projects():
     if PROJECTS_FILE.exists():
@@ -93,22 +121,22 @@ def load_projects():
             return json.load(f)
     return {}
 
+
 def save_projects(projects):
     PROJECTS_FILE.parent.mkdir(exist_ok=True)
     with open(PROJECTS_FILE, 'w') as f:
         json.dump(projects, f, indent=2)
 
+
 def load_members():
-    """Load members from database - placeholder until member system is built"""
-    # This is a temporary function - replace with actual member loading later
-    members_file = Path.home() / "field_data" / "members.json"
+    """Load members from database"""
+    members_file = _data_dir / "members.json"
     if members_file.exists():
         with open(members_file) as f:
             return json.load(f)
     return {}
 
-# User database functions
-USERS_FILE = Path.home() / "field_data" / "users.json"
+
 
 def load_users():
     """Load users from database"""
@@ -117,14 +145,15 @@ def load_users():
             return json.load(f)
     return {}
 
+
 def save_users(users):
     """Save users to database"""
     USERS_FILE.parent.mkdir(exist_ok=True)
     with open(USERS_FILE, 'w') as f:
         json.dump(users, f, indent=2)
 
-# Add these functions near your other load/save functions
-TAGS_FILE = Path.home() / "field_data" / "tags.json"
+
+
 
 def load_tags():
     """Load tags from database"""
@@ -133,13 +162,15 @@ def load_tags():
             return json.load(f)
     return {}
 
+
 def save_tags(tags):
     """Save tags to database"""
     TAGS_FILE.parent.mkdir(exist_ok=True)
     with open(TAGS_FILE, 'w') as f:
         json.dump(tags, f, indent=2)
 
-TAG_BATCHES_FILE = Path.home() / "field_data" / "tag_batches.json"
+
+
 
 def load_tag_batches():
     """Load tag batches from database"""
@@ -148,11 +179,13 @@ def load_tag_batches():
             return json.load(f)
     return {}
 
+
 def save_tag_batches(batches):
     """Save tag batches to database"""
     TAG_BATCHES_FILE.parent.mkdir(exist_ok=True)
     with open(TAG_BATCHES_FILE, 'w') as f:
         json.dump(batches, f, indent=2)
+
 
 # Initialize with superadmin if no admins exist
 def init_superadmin():
@@ -166,8 +199,8 @@ def init_superadmin():
         }
         save_admins(admins)
 
-init_superadmin()
 
+init_superadmin()
 
 KV = '''
 <AdminLoginScreen>:
@@ -230,7 +263,7 @@ KV = '''
             elevation: 4
             left_action_items: [["menu", lambda x: root.open_admin_menu()]]
             right_action_items: [["logout", lambda x: root.logout()]] 
-            
+
         MDBoxLayout:
             orientation: "vertical"
             padding: "16dp"
@@ -278,44 +311,44 @@ KV = '''
                         text: "View All Users"
                         on_release: root.view_all_users()
 
-                
+
 <SeasonManagementScreen>:
     MDBoxLayout:
         orientation: "vertical"
-        
+
         MDTopAppBar:
             title: "Manage Seasons"
             elevation: 4
             left_action_items: [["arrow-left", lambda x: root.go_back()]]
             right_action_items: [["plus", lambda x: root.show_add_season_dialog()]]
-        
+
         ScrollView:
             MDList:
                 id: season_list  # ← This MUST be here
                 spacing: "10dp"
                 padding: "10dp"
-                
+
 <ProjectManagementScreen>:
     MDBoxLayout:
         orientation: "vertical"
-        
+
         MDTopAppBar:
             title: "Manage Projects"
             elevation: 4
             left_action_items: [["arrow-left", lambda x: root.go_back()]]
             right_action_items: [["plus", lambda x: root.show_add_project_dialog()], ["calendar", lambda x: root.show_season_switch_dialog()]]
-        
+
         MDBoxLayout:
             size_hint_y: None
             height: "15dp"
-            
+
         MDLabel:
             id: season_label
             size_hint_y: None
             height: "45dp"
             padding: "10dp"
             theme_text_color: "Secondary"
-        
+
         ScrollView:
             MDList:
                 id: project_list
@@ -325,104 +358,104 @@ KV = '''
 <UserManagementScreen>:
     MDBoxLayout:
         orientation: "vertical"
-        
+
         MDTopAppBar:
             title: "Manage Users"
             elevation: 4
             left_action_items: [["arrow-left", lambda x: root.go_back()]]
             right_action_items: [["plus", lambda x: root.show_add_user_dialog()]]
-        
+
         MDBoxLayout:
             size_hint_y: None
             height: "80dp"
             padding: "16dp"
             spacing: "8dp"
-            
+
             MDTextField:
                 id: search_field
                 hint_text: "Search users..."
                 mode: "rectangle"
                 on_text: root.filter_list(self.text)
-        
+
         ScrollView:
             MDList:
                 id: user_list
                 spacing: "10dp"
                 padding: "10dp"
-                
+
 <AllProjectsScreen>:
     MDBoxLayout:
         orientation: "vertical"
-        
+
         MDTopAppBar:
             title: "All Projects"
             elevation: 4
             left_action_items: [["arrow-left", lambda x: root.go_back()]]
             right_action_items: [["refresh", lambda x: root.refresh_list()]]
-        
+
         MDBoxLayout:
             size_hint_y: None
             height: "75dp"
             padding: "16dp"
             spacing: "8dp"
-            
+
             MDTextField:
                 id: search_field
                 hint_text: "Search projects..."
                 mode: "rectangle"
                 on_text: root.filter_list(self.text)
-            
+
             MDFlatButton:
                 icon: "filter"
                 on_release: root.show_filter_options()
-        
+
         ScrollView:
             MDList:
                 id: project_list
                 spacing: "10dp"
                 padding: "10dp"
-                
+
 <AllUsersScreen>:
     MDBoxLayout:
         orientation: "vertical"
-        
+
         MDTopAppBar:
             title: "All Users"
             elevation: 4
             left_action_items: [["arrow-left", lambda x: root.go_back()]]
             right_action_items: [["refresh", lambda x: root.refresh_list()]]
-        
+
         MDBoxLayout:
             size_hint_y: None
             height: "75dp"
             padding: "16dp"
             spacing: "8dp"
-            
+
             MDTextField:
                 id: search_field
                 hint_text: "Search users..."
                 mode: "rectangle"
                 on_text: root.filter_list(self.text)
-            
+
             MDFlatButton:
                 icon: "filter"
                 on_release: root.show_filter_options()
-        
+
         ScrollView:
             MDList:
                 id: user_list
                 spacing: "10dp"
                 padding: "10dp"
-                
+
 <BagTagManagementScreen>:
     MDBoxLayout:
         orientation: "vertical"
-        
+
         MDTopAppBar:
             title: "Bag Tag Manager"
             elevation: 4
             left_action_items: [["arrow-left", lambda x: root.go_back()]]
-        
+
         ScrollView:
             MDBoxLayout:
                 id: main_layout
@@ -437,6 +470,19 @@ KV = '''
 class AdminLoginScreen(MDScreen):
     def go_back(self):
         self.manager.current = "login"
+
+    def get_data_dir(self):
+        """Get app-private storage directory (no permissions needed)"""
+        try:
+            from android import activity
+            ANDROID_AVAILABLE = True
+        except ImportError:
+            ANDROID_AVAILABLE = False
+
+        from pathlib import Path
+        data_dir = Path(activity.getCacheDir()).parent / "files" / "field_data"
+        data_dir.mkdir(parents=True, exist_ok=True)
+        return data_dir
 
     def do_admin_login(self):
         username = self.ids.username_field.text.strip()
@@ -472,6 +518,7 @@ class AdminLoginScreen(MDScreen):
             buttons=[MDRaisedButton(text="OK", on_release=lambda x: dialog.dismiss())]
         )
         dialog.open()
+
 
 class AdminDashboardScreen(MDScreen):
     def __init__(self, **kwargs):
@@ -638,8 +685,8 @@ class AdminDashboardScreen(MDScreen):
             app.theme_cls.theme_style = "Light"
 
         # Save preference
-        prefs_file = Path.home() / "field_data" / "preferences.json"
-        prefs_file.parent.mkdir(exist_ok=True)
+        data_dir = self.get_data_dir()
+        prefs_file = data_dir / "preferences.json"
 
         if prefs_file.exists():
             with open(prefs_file) as f:
@@ -660,7 +707,6 @@ class AdminDashboardScreen(MDScreen):
                         if isinstance(subchild, MDLabel) and subchild.text in ["ON", "OFF"]:
                             subchild.text = current_theme
                             break
-
 
     def show_season_management(self):
         self.manager.current = "season_management"
@@ -684,6 +730,7 @@ class AdminDashboardScreen(MDScreen):
         app.current_admin = None
         self.manager.current = "admin_login"
 
+
 class ResetPasswordContent(MDScreen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -706,6 +753,7 @@ MDBoxLayout:
         mode: "rectangle"
         password: True
 '''))
+
 
 """  def open_role_menu(self):
         # Only show superadmin option if current user is superadmin
@@ -2293,7 +2341,6 @@ class ProjectManagementScreen(MDScreen):
             self.refresh_list()
             self.show_message("Project deleted")
 
-
     def show_reassign_dialog(self, project_id):
         """Show dialog to reassign project leader"""
         projects = load_projects()
@@ -2457,7 +2504,6 @@ class UserManagementScreen(MDScreen):
 
         for user_id, data in users.items():
             self.add_user_to_list(user_id, data)
-
 
     def add_user_to_list(self, user_id, data):
         """Add a single user item to the list UI"""
@@ -4198,153 +4244,297 @@ class BagTagManagementScreen(MDScreen):
         print(f"Updated master database at {json_path}")
 
     def generate_pdf(self, batch_id, tags):
-        if not PDF_AVAILABLE:
-            self.show_message("PDF generation not available")
+        if not REPORTLAB_AVAILABLE:
+            self.show_message("PDF generation not available on this device")
             return
+
+        """Generate PDF with tags (two-column layout)"""
+        from reportlab.lib.pagesizes import letter
+        from reportlab.lib.units import inch
+        from reportlab.lib import colors
+        from reportlab.graphics import renderPDF
+        from reportlab.graphics.barcode import createBarcodeDrawing
+        from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph, Spacer, PageBreak
+        from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+        from reportlab.lib.enums import TA_CENTER, TA_LEFT
+        from pathlib import Path
 
         if not tags:
             self.show_message("No tags to generate")
             return
 
+        print("=== Starting PDF Generation ===")
+
+        # Get project info
         projects = load_projects()
         project = projects.get(self.current_project_id, {})
         project_name = project.get('name', 'Unnamed Project')
         project_leader_username = project.get('leader', '')
+        project_leader_name = project.get('leader_name', 'Unknown')
 
+        # Get season info
+        seasons = load_seasons()
+        season_id = project.get('season_id', '')
+        season_data = seasons.get(season_id, {})
+        year = season_data.get('year', 'YYYY')  # Define year here
+
+        # Get the leader's last name from admin data
+        admins = load_admins()
+        leader_data = admins.get(project_leader_username, {})
+        leader_last = leader_data.get('last_name', '')  # Define leader_last here
+
+        # If last name not found in admin, try parsing from leader_name
+        if not leader_last:
+            # Parse from "username (role)" format
+            leader_clean = project_leader_name.split('(')[0].strip()
+            leader_last = leader_clean.split()[-1] if leader_clean.split() else leader_clean
+
+        # Now use these in your tag content
+        project_line = f"{leader_last} - {year} - {project_name}"
+
+        # Get season info
         seasons = load_seasons()
         season_id = project.get('season_id', '')
         season_data = seasons.get(season_id, {})
         year = season_data.get('year', 'YYYY')
 
-        admins = load_admins()
-        leader_data = admins.get(project_leader_username, {})
-        leader_last = leader_data.get('last_name', '')
-        if not leader_last:
-            leader_clean = project.get('leader_name', '').split('(')[0].strip()
-            leader_last = leader_clean.split()[-1] if leader_clean.split() else leader_clean
-
-        project_line = f"{leader_last} - {year} - {project_name}"
+        # Get custom fields from config
         custom_fields = self.tag_config.get('custom_fields', [])
-        field_labels = [f.get('label', '') for f in custom_fields[:5]]
-        while len(field_labels) < 5:
-            field_labels.append('')
 
-        project_num = int(self.current_project_id)
-
+        # Save to Desktop
         desktop = Path.home() / "Desktop"
         bagtags_dir = desktop / "BagTags"
         bagtags_dir.mkdir(exist_ok=True)
+
         filename = f"bag_tags_{self.current_project_id}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.pdf"
         filepath = bagtags_dir / filename
+        print(f"Saving to: {filepath}")
 
-        # Page setup: letter, 3 columns x 6 rows = 18 tags/page
-        pdf = FPDF(orientation='P', unit='mm', format='Letter')
-        pdf.set_margins(6, 6, 6)
-        pdf.set_auto_page_break(auto=False)
+        # Page dimensions
+        page_width = 8.5 * inch
+        page_height = 11 * inch
+        margin = 0.25 * inch
 
-        # Tag dimensions
-        page_w = 215.9  # letter width mm
-        page_h = 279.4  # letter height mm
-        margin = 6
-        cols = 3
-        rows = 6
-        tag_w = (page_w - 2 * margin) / cols  # ~68mm
-        tag_h = (page_h - 2 * margin) / rows  # ~44mm
-        tags_per_page = cols * rows
+        tag_width = (page_width - (2 * margin)) / 3
+        tag_height = (page_height - (2 * margin)) / 6
 
-        for page_start in range(0, len(tags), tags_per_page):
-            pdf.add_page()
+        # Create PDF
+        doc = SimpleDocTemplate(
+            str(filepath),
+            pagesize=letter,
+            leftMargin=margin,
+            rightMargin=margin,
+            topMargin=margin,
+            bottomMargin=margin
+        )
+
+        story = []
+        styles = getSampleStyleSheet()
+
+        # Custom styles
+        header_style = ParagraphStyle(
+            'HeaderStyle',
+            parent=styles['Normal'],
+            fontSize=9,
+            alignment=TA_CENTER,
+            spaceAfter=2,
+            fontName='Helvetica-Bold'
+        )
+
+        subheader_style = ParagraphStyle(
+            'SubheaderStyle',
+            parent=styles['Normal'],
+            fontSize=8,
+            alignment=TA_CENTER,
+            spaceAfter=4,
+            fontName='Helvetica'
+        )
+
+        field_id_style_small = ParagraphStyle(
+            'FieldIDStyleSmall',
+            parent=styles['Normal'],
+            fontSize=10,
+            alignment=TA_CENTER,
+            fontName='Helvetica-Bold'
+        )
+
+        field_label_style = ParagraphStyle(
+            'FieldLabelStyle',
+            parent=styles['Normal'],
+            fontSize=7,
+            alignment=TA_LEFT,
+            fontName='Helvetica'
+        )
+
+        barcode_style = ParagraphStyle(
+            'BarcodeStyle',
+            parent=styles['Normal'],
+            fontSize=8,
+            alignment=TA_CENTER,
+            spaceAfter=4,
+            fontName='Courier'
+        )
+
+        tags_per_page = 18
+        total_tags = len(tags)
+        project_num = int(self.current_project_id)
+
+        # Prepare custom fields for display (max 5)
+        field_labels = [f.get('label', '') for f in custom_fields[:5]]
+        # Pad to 5 fields
+        while len(field_labels) < 5:
+            field_labels.append('')
+
+        for page_start in range(0, total_tags, tags_per_page):
             page_tags = tags[page_start:page_start + tags_per_page]
 
+            # Create grid
+            grid_data = []
+            row = []
+
             for i, tag in enumerate(page_tags):
-                col = i % cols
-                row = i // cols
-                x = margin + col * tag_w
-                y = margin + row * tag_h
+                # Build tag content
+                content = []
 
-                # Outer border
-                pdf.set_draw_color(180, 180, 180)
-                pdf.rect(x, y, tag_w, tag_h)
+                # Header
+                content.append(Paragraph("Koobi Fora Research and Training Program", header_style))
+                content.append(Spacer(1, 2))
 
-                # --- Header ---
-                pdf.set_xy(x + 1, y + 1)
-                pdf.set_font('Helvetica', 'B', 6)
-                pdf.cell(tag_w - 2, 3.5,
-                         'Koobi Fora Research and Training Program',
-                         ln=True, align='C')
+                # Subheader
+                project_line = f"{leader_last} - {year} - {project_name}"
+                content.append(Paragraph(project_line, subheader_style))
+                content.append(Spacer(1, 4))
 
-                pdf.set_xy(x + 1, y + 4.5)
-                pdf.set_font('Helvetica', '', 5.5)
-                pdf.cell(tag_w - 2, 3, project_line, ln=True, align='C')
+                # Two-column grid for fields
+                field_table_data = []
 
-                # --- Field grid ---
-                # Date + custom field 1
-                fy = y + 9
-                half = (tag_w - 2) / 2
-                pdf.set_font('Helvetica', '', 5.5)
+                # Row 1: Date | Custom Field 1
+                row1 = [
+                    Paragraph("Date: __________", field_label_style),
+                    Paragraph(f"{field_labels[0]}: __________" if field_labels[0] else "", field_label_style)
+                ]
+                field_table_data.append(row1)
 
-                pdf.set_xy(x + 1, fy)
-                pdf.cell(half, 3.5, 'Date: __________')
-                pdf.set_xy(x + 1 + half, fy)
-                lbl1 = f"{field_labels[0]}: __________" if field_labels[0] else ''
-                pdf.cell(half, 3.5, lbl1)
+                # Row 2: Custom Field 2 | Custom Field 3
+                row2 = [
+                    Paragraph(f"{field_labels[1]}: __________" if field_labels[1] else "", field_label_style),
+                    Paragraph(f"{field_labels[2]}: __________" if field_labels[2] else "", field_label_style)
+                ]
+                field_table_data.append(row2)
 
-                # Custom fields 2 & 3
-                fy += 4
-                pdf.set_xy(x + 1, fy)
-                lbl2 = f"{field_labels[1]}: __________" if field_labels[1] else ''
-                pdf.cell(half, 3.5, lbl2)
-                pdf.set_xy(x + 1 + half, fy)
-                lbl3 = f"{field_labels[2]}: __________" if field_labels[2] else ''
-                pdf.cell(half, 3.5, lbl3)
+                # Row 3: Custom Field 4 | Custom Field 5
+                row3 = [
+                    Paragraph(f"{field_labels[3]}: __________" if field_labels[3] else "", field_label_style),
+                    Paragraph(f"{field_labels[4]}: __________" if field_labels[4] else "", field_label_style)
+                ]
+                field_table_data.append(row3)
 
-                # Custom fields 4 & 5
-                fy += 4
-                pdf.set_xy(x + 1, fy)
-                lbl4 = f"{field_labels[3]}: __________" if field_labels[3] else ''
-                pdf.cell(half, 3.5, lbl4)
-                pdf.set_xy(x + 1 + half, fy)
-                lbl5 = f"{field_labels[4]}: __________" if field_labels[4] else ''
-                pdf.cell(half, 3.5, lbl5)
+                # Create the field table
+                field_table = Table(field_table_data, colWidths=[tag_width / 2 - 10, tag_width / 2 - 10])
+                field_table.setStyle(TableStyle([
+                    ('ALIGN', (0, 0), (-1, -1), 'LEFT'),
+                    ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
+                    ('LEFTPADDING', (0, 0), (-1, -1), 2),
+                    ('RIGHTPADDING', (0, 0), (-1, -1), 2),
+                    ('TOPPADDING', (0, 0), (-1, -1), 0),
+                    ('BOTTOMPADDING', (0, 0), (-1, -1), 0),
+                    ('FONTNAME', (0, 0), (-1, -1), 'Helvetica'),
+                    ('FONTSIZE', (0, 0), (-1, -1), 7),
+                ]))
 
-                # --- Barcode as Code128 text representation ---
-                # fpdf2 has built-in barcode support
-                fy += 5.5
-                barcode_val = tag['barcode']
-                pdf.set_xy(x + 1, fy)
-                try:
-                    # fpdf2 >= 2.5 has interleaved2of5 and code39
-                    # For Code128 use the barcode module
-                    from fpdf.enums import TextMode
-                    pdf.set_font('Courier', '', 5)
-                    # Draw barcode as narrow/wide bars via built-in
-                    pdf.code39(barcode_val[:15],  # code39 max practical length
-                               x=x + 3,
-                               y=fy,
-                               w=tag_w - 6,
-                               h=6)
-                    fy += 7
-                except Exception:
-                    # Fallback: just print barcode string in courier
-                    pdf.set_font('Courier', 'B', 6)
-                    pdf.cell(tag_w - 2, 4, barcode_val, align='C')
-                    fy += 5
+                content.append(field_table)
+                content.append(Spacer(1, 4))
 
-                # --- Bottom row: Note + Field ID ---
+                # Bottom section: Note (left) and Barcode/Field ID (center)
+                left_cell = Paragraph("Note: ___________", field_label_style)
+
+                # Center content: Barcode image (no text)
+                center_content = []
+
+                barcode_value = tag['barcode']
+                barcode_drawing = createBarcodeDrawing(
+                    'Code128',
+                    value=barcode_value,
+                    barHeight=0.25 * inch,  # Reduced from 0.3
+                    barWidth=0.009 * inch,  # Reduced from 0.02
+                    humanReadable=False
+                )
+
+                # Add the barcode drawing directly to content
+                content.append(barcode_drawing)
+                content.append(Spacer(1, 2))
+
+                # Field ID
                 field_id_display = f"{project_num:02d}{tag['sequential']:03d}"
-                pdf.set_xy(x + 1, fy)
-                pdf.set_font('Helvetica', '', 5.5)
-                pdf.cell(half, 3.5, 'Note: ___________')
-                pdf.set_xy(x + 1 + half, fy)
-                pdf.set_font('Helvetica', 'B', 7)
-                pdf.cell(half, 3.5, field_id_display, align='R')
+                field_id_style_small = ParagraphStyle(
+                    'FieldIDStyleSmall',
+                    parent=styles['Normal'],
+                    fontSize=10,
+                    alignment=TA_RIGHT,  # Right-aligned for the bottom row
+                    fontName='Helvetica-Bold'
+                )
+                center_content.append(Paragraph(field_id_display, field_id_style_small))
 
-        pdf.output(str(filepath))
+                # After the field table, add barcode (centered)
+                barcode_text = tag['barcode']
+                formatted_barcode = barcode_text[:8] + " " + barcode_text[8:]
+                content.append(Spacer(1, 4))
 
+                # Bottom row: Note (left) and Field ID (right)
+                bottom_row = Table([[Paragraph("Note: ___________", field_label_style),
+                                     Paragraph(field_id_display, field_id_style_small)]],
+                                   colWidths=[tag_width / 2, tag_width / 2])
+                bottom_row.setStyle(TableStyle([
+                    ('ALIGN', (0, 0), (0, 0), 'LEFT'),
+                    ('ALIGN', (1, 0), (1, 0), 'RIGHT'),
+                    ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
+                    ('LEFTPADDING', (0, 0), (-1, -1), 5),
+                    ('RIGHTPADDING', (0, 0), (-1, -1), 5),
+                ]))
+
+                content.append(bottom_row)
+
+                row.append(content)
+
+                if (i + 1) % 3 == 0:
+                    grid_data.append(row)
+                    row = []
+
+            if row:
+                while len(row) < 3:
+                    row.append(Paragraph("", styles['Normal']))
+                grid_data.append(row)
+
+            # Create table
+            table = Table(grid_data, colWidths=tag_width, rowHeights=tag_height)
+            table.setStyle(TableStyle([
+                ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
+                ('VALIGN', (0, 0), (-1, -1), 'TOP'),
+                ('BOX', (0, 0), (-1, -1), 0.5, colors.grey),
+                ('INNERGRID', (0, 0), (-1, -1), 1.5, colors.lightgrey),
+                ('LEFTPADDING', (0, 0), (-1, -1), 3),
+                ('RIGHTPADDING', (0, 0), (-1, -1), 3),
+                ('TOPPADDING', (0, 0), (-1, -1), 3),
+                ('BOTTOMPADDING', (0, 0), (-1, -1), 3),
+            ]))
+
+            story.append(table)
+
+            if page_start + tags_per_page < total_tags:
+                story.append(PageBreak())
+
+        # Build PDF
+        print("Building PDF...")
+        doc.build(story)
+        print("PDF built successfully")
+
+        # Check if file exists and open
         if filepath.exists():
+            print(f"File created: {filepath}")
             self.open_pdf(str(filepath))
-            self.show_message(f"PDF saved to:\n{filepath}")
+            self.show_message(f"PDF saved to: {filepath}")
         else:
+            print(f"ERROR: File not created")
             self.show_message("PDF generation failed")
 
     def open_pdf(self, filepath):
@@ -4363,7 +4553,6 @@ class BagTagManagementScreen(MDScreen):
         except Exception as e:
             print(f"Could not open PDF: {e}")
             self.show_message(f"PDF saved to: {filepath}")
-
 
     def go_back(self):
         """Return to project management"""

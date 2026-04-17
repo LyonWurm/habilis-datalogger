@@ -101,8 +101,8 @@ class LoginScreen(MDScreen):
                 self.theme_switch.active = False
 
         # Save preference
-        prefs_file = Path.home() / "field_data" / "preferences.json"
-        prefs_file.parent.mkdir(exist_ok=True)
+        data_dir = self.get_data_dir()
+        prefs_file = data_dir / "preferences.json"
 
         if prefs_file.exists():
             with open(prefs_file) as f:
@@ -113,6 +113,20 @@ class LoginScreen(MDScreen):
         prefs['theme_style'] = app.theme_cls.theme_style
         with open(prefs_file, 'w') as f:
             json.dump(prefs, f, indent=2)
+
+    def get_data_dir(self):
+        """Get app-private storage directory (no permissions needed)"""
+        from pathlib import Path
+
+        try:
+            from android import activity
+            data_dir = Path(activity.getCacheDir()).parent / "files" / "field_data"
+        except ImportError:
+            # Running on desktop
+            data_dir = Path.home() / "field_data"
+
+        data_dir.mkdir(parents=True, exist_ok=True)
+        return data_dir
 
     def open_menu(self):
         """Open dropdown menu from top-left icon"""
@@ -242,8 +256,9 @@ class LoginScreen(MDScreen):
                             break
 
         # Save preference
-        prefs_file = Path.home() / "field_data" / "preferences.json"
-        prefs_file.parent.mkdir(exist_ok=True)
+        data_dir = self.get_data_dir()
+        prefs_file = data_dir / "preferences.json"
+        # No need for mkdir() here because get_data_dir() already creates the directory
 
         if prefs_file.exists():
             with open(prefs_file) as f:
@@ -348,9 +363,9 @@ class LoginScreen(MDScreen):
         """Complete the login process"""
         from kivymd.app import MDApp
 
-        # Save session
-        cred_file = Path.home() / "field_data" / "credentials.json"
-        cred_file.parent.mkdir(exist_ok=True)
+        data_dir = self.get_data_dir()
+        cred_file = data_dir / "credentials.json"
+        # No need for mkdir() here because get_data_dir() already creates the directory
         with open(cred_file, 'w') as f:
             json.dump({
                 'season': season_id,
