@@ -430,7 +430,7 @@ class CollectScreen(MDScreen, RuntimePermissionScreen):  # Add RuntimePermission
 
         data_dir.mkdir(parents=True, exist_ok=True)
         return data_dir
-    
+
     def test_sync_to_server(self):
         """Test sending data to the base station server"""
         import requests
