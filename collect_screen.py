@@ -418,23 +418,19 @@ class CollectScreen(MDScreen, RuntimePermissionScreen):  # Add RuntimePermission
         """Permissions denied, show error"""
         self.show_message("Camera and GPS permissions are required for data collection")
 
-
-
-    def on_enter(self):
-        """Called when screen is shown"""
-        self.update_gps()
-        self.load_saved_observations()
-
     def get_data_dir(self):
+        """Get app storage directory - WORKS ON ANDROID"""
         from pathlib import Path
-        try:
-            from android import activity
-            data_dir = Path(activity.getFilesDir()) / "field_data"
-        except ImportError:
+        import sys
+
+        if hasattr(sys, 'getandroidapilevel'):
+            data_dir = Path('/data/data/org.kffs.habilisdatalogger/files/field_data')
+        else:
             data_dir = Path.home() / "field_data"
+
         data_dir.mkdir(parents=True, exist_ok=True)
         return data_dir
-    
+
     def test_sync_to_server(self):
         """Test sending data to the base station server"""
         import requests
