@@ -466,18 +466,6 @@ class AdminLoginScreen(MDScreen):
     def go_back(self):
         self.manager.current = "login"
 
-    def get_data_dir(self):
-        """Get app-private storage directory (no permissions needed)"""
-        try:
-            from android import activity
-            ANDROID_AVAILABLE = True
-        except ImportError:
-            ANDROID_AVAILABLE = False
-
-        from pathlib import Path
-        data_dir = Path(activity.getCacheDir()).parent / "files" / "field_data"
-        data_dir.mkdir(parents=True, exist_ok=True)
-        return data_dir
 
     def do_admin_login(self):
         username = self.ids.username_field.text.strip()
