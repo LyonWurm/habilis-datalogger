@@ -39,11 +39,13 @@ try:
 except ImportError:
     REPORTLAB_AVAILABLE = False
 
+
 def get_data_dir():
     from pathlib import Path
     try:
         from android import activity
-        data_dir = Path(activity.getCacheDir()).parent / "files" / "field_data"
+        # Use getFilesDir() for permanent storage
+        data_dir = Path(activity.getFilesDir()) / "field_data"
     except ImportError:
         data_dir = Path.home() / "field_data"
     data_dir.mkdir(parents=True, exist_ok=True)

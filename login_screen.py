@@ -115,16 +115,12 @@ class LoginScreen(MDScreen):
             json.dump(prefs, f, indent=2)
 
     def get_data_dir(self):
-        """Get app-private storage directory (no permissions needed)"""
         from pathlib import Path
-
         try:
             from android import activity
-            data_dir = Path(activity.getCacheDir()).parent / "files" / "field_data"
+            data_dir = Path(activity.getFilesDir()) / "field_data"
         except ImportError:
-            # Running on desktop
             data_dir = Path.home() / "field_data"
-
         data_dir.mkdir(parents=True, exist_ok=True)
         return data_dir
 
