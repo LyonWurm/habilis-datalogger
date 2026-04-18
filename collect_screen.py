@@ -419,18 +419,11 @@ class CollectScreen(MDScreen, RuntimePermissionScreen):  # Add RuntimePermission
         self.show_message("Camera and GPS permissions are required for data collection")
 
     def get_data_dir(self):
-        """Get app storage directory - WORKS ON ANDROID"""
         from pathlib import Path
-        import sys
-
-        if hasattr(sys, 'getandroidapilevel'):
-            data_dir = Path('/data/data/org.kffs.habilisdatalogger/files/field_data')
-        else:
-            data_dir = Path.home() / "field_data"
-
+        data_dir = Path('field_data')
         data_dir.mkdir(parents=True, exist_ok=True)
         return data_dir
-
+    
     def test_sync_to_server(self):
         """Test sending data to the base station server"""
         import requests
