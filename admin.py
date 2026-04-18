@@ -41,24 +41,27 @@ except ImportError:
 
 
 def get_data_dir():
+    """Get app storage directory - simplest and works everywhere"""
     from pathlib import Path
-    try:
-        from android import activity
-        # Use getFilesDir() for permanent storage
-        data_dir = Path(activity.getFilesDir()) / "field_data"
-    except ImportError:
+
+    # Use a directory relative to where the app is running
+    # On Android, this will be in the app's private storage
+    data_dir = Path('./field_data')
+
+    # On desktop, use home directory
+    import sys
+    if sys.platform.startswith('linux') and not 'ANDROID_DATA' in __import__('os').environ:
         data_dir = Path.home() / "field_data"
+
     data_dir.mkdir(parents=True, exist_ok=True)
     return data_dir
 
-_data_dir = get_data_dir()
-
-ADMINS_FILE = _data_dir / "admins.json"
-SEASONS_FILE = _data_dir / "seasons.json"
-PROJECTS_FILE = _data_dir / "projects.json"
-USERS_FILE = _data_dir / "users.json"
-TAGS_FILE = _data_dir / "tags.json"
-TAG_BATCHES_FILE = _data_dir / "tag_batches.json"
+ADMINS_FILE = get_data_dir() / "admins.json"
+SEASONS_FILE = get_data_dir() / "seasons.json"
+PROJECTS_FILE = get_data_dir() / "projects.json"
+USERS_FILE = get_data_dir() / "users.json"
+TAGS_FILE = get_data_dir() / "tags.json"
+TAG_BATCHES_FILE = get_data_dir() / "tag_batches.json"
 
 
 def hash_password(password):
@@ -132,13 +135,11 @@ def save_projects(projects):
 
 def load_members():
     """Load members from database"""
-    members_file = _data_dir / "members.json"
+    members_file = get_data_dir() / "members.json"
     if members_file.exists():
         with open(members_file) as f:
             return json.load(f)
     return {}
-
-
 
 def load_users():
     """Load users from database"""

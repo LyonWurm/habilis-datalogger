@@ -420,21 +420,23 @@ class CollectScreen(MDScreen, RuntimePermissionScreen):  # Add RuntimePermission
 
 
 
-    def on_enter(self):
-        """Called when screen is shown"""
-        self.update_gps()
-        self.load_saved_observations()
 
     def get_data_dir(self):
+        """Get app storage directory - simplest and works everywhere"""
         from pathlib import Path
-        try:
-            from android import activity
-            data_dir = Path(activity.getFilesDir()) / "field_data"
-        except ImportError:
+
+        # Use a directory relative to where the app is running
+        # On Android, this will be in the app's private storage
+        data_dir = Path('./field_data')
+
+        # On desktop, use home directory
+        import sys
+        if sys.platform.startswith('linux') and not 'ANDROID_DATA' in __import__('os').environ:
             data_dir = Path.home() / "field_data"
+
         data_dir.mkdir(parents=True, exist_ok=True)
         return data_dir
-    
+
     def test_sync_to_server(self):
         """Test sending data to the base station server"""
         import requests
