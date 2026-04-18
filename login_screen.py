@@ -115,16 +115,13 @@ class LoginScreen(MDScreen):
             json.dump(prefs, f, indent=2)
 
     def get_data_dir(self):
-        """Get app storage directory - simplest and works everywhere"""
+        """Get app storage directory - WORKS ON ANDROID"""
         from pathlib import Path
-
-        # Use a directory relative to where the app is running
-        # On Android, this will be in the app's private storage
-        data_dir = Path('./field_data')
-
-        # On desktop, use home directory
         import sys
-        if sys.platform.startswith('linux') and not 'ANDROID_DATA' in __import__('os').environ:
+
+        if hasattr(sys, 'getandroidapilevel'):
+            data_dir = Path('/data/data/org.kffs.habilisdatalogger/files/field_data')
+        else:
             data_dir = Path.home() / "field_data"
 
         data_dir.mkdir(parents=True, exist_ok=True)

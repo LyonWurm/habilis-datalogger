@@ -41,27 +41,28 @@ except ImportError:
 
 
 def get_data_dir():
-    """Get app storage directory - simplest and works everywhere"""
+    """Get app storage directory - WORKS ON ANDROID"""
     from pathlib import Path
-
-    # Use a directory relative to where the app is running
-    # On Android, this will be in the app's private storage
-    data_dir = Path('./field_data')
-
-    # On desktop, use home directory
     import sys
-    if sys.platform.startswith('linux') and not 'ANDROID_DATA' in __import__('os').environ:
+
+    if hasattr(sys, 'getandroidapilevel'):
+        data_dir = Path('/data/data/org.kffs.habilisdatalogger/files/field_data')
+    else:
         data_dir = Path.home() / "field_data"
 
     data_dir.mkdir(parents=True, exist_ok=True)
     return data_dir
 
-ADMINS_FILE = get_data_dir() / "admins.json"
-SEASONS_FILE = get_data_dir() / "seasons.json"
-PROJECTS_FILE = get_data_dir() / "projects.json"
-USERS_FILE = get_data_dir() / "users.json"
-TAGS_FILE = get_data_dir() / "tags.json"
-TAG_BATCHES_FILE = get_data_dir() / "tag_batches.json"
+# Call the function
+data_dir = get_data_dir()
+
+# Define file paths
+ADMINS_FILE = data_dir / "admins.json"
+SEASONS_FILE = data_dir / "seasons.json"
+PROJECTS_FILE = data_dir / "projects.json"
+USERS_FILE = data_dir / "users.json"
+TAGS_FILE = data_dir / "tags.json"
+TAG_BATCHES_FILE = data_dir / "tag_batches.json"
 
 
 def hash_password(password):
