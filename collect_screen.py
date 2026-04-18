@@ -16,6 +16,15 @@ import json
 from datetime import datetime
 from kivy.uix.widget import Widget
 
+try:
+    from permissions import RuntimePermissionScreen, ANDROID_AVAILABLE
+except ImportError:
+    ANDROID_AVAILABLE = False
+    class RuntimePermissionScreen:
+        def check_and_request_permissions(self, on_granted=None, on_denied=None):
+            if on_granted: on_granted()
+            return True
+
 
 try:
     from plyer import camera
@@ -379,7 +388,7 @@ KV = '''
 '''
 
 
-class CollectScreen(MDScreen):
+class CollectScreen(MDScreen, RuntimePermissionScreen):  # Add RuntimePermissionScreen
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.menu = None
@@ -391,6 +400,23 @@ class CollectScreen(MDScreen):
         self.context_menu = None
         self.current_gps = None
         self.photos = []
+
+    def on_enter(self):
+        """Called when screen is shown"""
+        # Check permissions before using camera/GPS
+        self.check_and_request_permissions(
+            on_granted=self._on_permissions_granted,
+            on_denied=self._on_permissions_denied
+        )
+
+    def _on_permissions_granted(self):
+        """Permissions granted, proceed normally"""
+        self.update_gps()
+        self.load_saved_observations()
+
+    def _on_permissions_denied(self):
+        """Permissions denied, show error"""
+        self.show_message("Camera and GPS permissions are required for data collection")
 
 
 

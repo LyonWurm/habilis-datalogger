@@ -170,8 +170,6 @@ def save_tags(tags):
         json.dump(tags, f, indent=2)
 
 
-
-
 def load_tag_batches():
     """Load tag batches from database"""
     if TAG_BATCHES_FILE.exists():
