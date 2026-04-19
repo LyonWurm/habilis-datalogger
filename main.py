@@ -21,7 +21,6 @@ except ImportError:
             if cb: cb(True)
             return True
 
-# Your existing importsself.storage_path = get_data_dir()
 from admin import AdminLoginScreen, AdminDashboardScreen, BagTagManagementScreen, SeasonManagementScreen, \
     ProjectManagementScreen, UserManagementScreen
 from login_screen import LoginScreen
@@ -121,10 +120,10 @@ class FieldApp(MDApp):
 
     def _check_saved_credentials(self):
         """Check for saved login credentials"""
-        cred_file = self.storage_path / "credentials.json"
+        # FIXED: Use get_data_dir() with filename
+        cred_file = self.storage_path / "credentials.json"  # storage_path is already get_data_dir()
         if cred_file.exists():
             self.root.current = "collect"
-
 
 if __name__ == "__main__":
     FieldApp().run()

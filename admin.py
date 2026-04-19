@@ -668,7 +668,7 @@ class AdminDashboardScreen(MDScreen):
             app.theme_cls.theme_style = "Light"
 
         # Save preference
-        data_dir = self.get_data_dir()
+        data_dir = get_data_dir()
         prefs_file = data_dir / "preferences.json"
 
         if prefs_file.exists():
@@ -4203,7 +4203,7 @@ class BagTagManagementScreen(MDScreen):
         project_name = project.get('name', 'unnamed')
 
         # Create directory structure
-        export_dir = Path.home() / "field_data_exports" / f"project_{self.current_project_id}"
+        export_dir = get_data_dir() / "exports" / f"project_{self.current_project_id}"
         export_dir.mkdir(parents=True, exist_ok=True)
 
         json_path = export_dir / f"project_{self.current_project_id}_data.json"

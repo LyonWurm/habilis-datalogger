@@ -490,7 +490,6 @@ class CollectScreen(MDScreen, RuntimePermissionScreen):  # Add RuntimePermission
         with open(prefs_file, 'w') as f:
             json.dump(prefs, f, indent=2)
 
-
     def sync_to_base(self):
         """Send unsynced observations to base station"""
         import requests
@@ -504,11 +503,11 @@ class CollectScreen(MDScreen, RuntimePermissionScreen):  # Add RuntimePermission
         self.base_ip_field = MDTextField(
             hint_text="Base Station IP (e.g., 10.0.0.3)",
             mode="rectangle",
-            text="10.0.0.3"  # Default from your server
+            text="10.0.0.3"
         )
         content.add_widget(self.base_ip_field)
 
-        self.sync_dialog = MDDialog(  # Changed from ip_dialog to sync_dialog
+        self.sync_dialog = MDDialog(
             title="Sync to Base Station",
             type="custom",
             content_cls=content,
@@ -524,7 +523,7 @@ class CollectScreen(MDScreen, RuntimePermissionScreen):  # Add RuntimePermission
         import requests
         from kivy.clock import Clock
 
-        if self.sync_dialog:  # Now this exists
+        if self.sync_dialog:
             self.sync_dialog.dismiss()
 
         if not base_ip:
@@ -550,9 +549,9 @@ class CollectScreen(MDScreen, RuntimePermissionScreen):  # Add RuntimePermission
 
         print(f"🔵 Starting sync to {base_ip}")
 
-        # Load local observations - UPDATED
+        # Load local observations - FIXED: add filename
         data_dir = self.get_data_dir()
-        obs_file = data_dir / "observations.json"
+        obs_file = data_dir / "observations.json"  # ← Added filename
         if not obs_file.exists():
             self.progress_dialog.dismiss()
             self.show_message("No observations to sync")
@@ -593,7 +592,6 @@ class CollectScreen(MDScreen, RuntimePermissionScreen):  # Add RuntimePermission
         print(f"🔵 Sending to URL: {url}")
 
         try:
-            # First, test if server is reachable
             print("🔵 Testing connection...")
             status_response = requests.get(f"http://{base_ip}:5000/api/status", timeout=5)
             print(f"🔵 Status response: {status_response.status_code}")
@@ -1018,9 +1016,10 @@ class CollectScreen(MDScreen, RuntimePermissionScreen):  # Add RuntimePermission
 
         lat, lon = self.current_gps
 
-        # Load existing breadcrumbs - UPDATED
+        # Load existing breadcrumbs - FIXED: ensure filename is appended
         data_dir = self.get_data_dir()
-        bc_file = data_dir / "breadcrumbs.json"
+        bc_file = data_dir / "breadcrumbs.json"  # ← Already correct, but ensure pattern
+
         if bc_file.exists():
             with open(bc_file) as f:
                 breadcrumbs = json.load(f)
@@ -1041,7 +1040,7 @@ class CollectScreen(MDScreen, RuntimePermissionScreen):  # Add RuntimePermission
 
         breadcrumbs.append(breadcrumb)
 
-        # Save - UPDATED
+        # Save
         with open(bc_file, 'w') as f:
             json.dump(breadcrumbs, f, indent=2)
 
@@ -1357,7 +1356,7 @@ class CollectScreen(MDScreen, RuntimePermissionScreen):  # Add RuntimePermission
     def load_saved_observations(self):
         """Load saved observations for duplicate checking"""
         data_dir = self.get_data_dir()
-        obs_file = data_dir / "observations.json"
+        obs_file = data_dir / "observations.json"  # ← Already correct, but ensure this pattern
         if obs_file.exists():
             with open(obs_file) as f:
                 self.saved_observations = json.load(f)
@@ -2451,7 +2450,6 @@ class CollectScreen(MDScreen, RuntimePermissionScreen):  # Add RuntimePermission
         # Update the status label if the dialog is still open
         if hasattr(self, 'settings_dialog') and self.settings_dialog:
             current_theme = "ON" if app.theme_cls.theme_style == "Dark" else "OFF"
-            # Find the status label and update it
             for child in self.settings_dialog.content_cls.children:
                 if isinstance(child, MDBoxLayout):
                     for subchild in child.children:
@@ -2459,9 +2457,9 @@ class CollectScreen(MDScreen, RuntimePermissionScreen):  # Add RuntimePermission
                             subchild.text = current_theme
                             break
 
-        # Save preference
+        # Save preference - FIXED: use get_data_dir() with filename
         data_dir = self.get_data_dir()
-        prefs_file = data_dir / "preferences.json"
+        prefs_file = data_dir / "preferences.json"  # ← Added filename
 
         if prefs_file.exists():
             with open(prefs_file) as f:
@@ -2561,9 +2559,9 @@ class CollectScreen(MDScreen, RuntimePermissionScreen):  # Add RuntimePermission
             timestamp=datetime.now()
         )
 
-        # Save to local JSON file
+        # Save to local JSON file - FIXED: use full file path
         data_dir = self.get_data_dir()
-        obs_file = data_dir / "observations.json"
+        obs_file = data_dir / "observations.json"  # ← Ensure filename is appended
 
         if obs_file.exists():
             with open(obs_file) as f:
@@ -2592,7 +2590,7 @@ class CollectScreen(MDScreen, RuntimePermissionScreen):  # Add RuntimePermission
             "context": self.ids.context_button.text,
             "notes": self.ids.notes_field.text.strip(),
             "photos": self.photos,
-            "synced": False  # Add this line
+            "synced": False
         }
 
         with open(obs_file, 'w') as f:

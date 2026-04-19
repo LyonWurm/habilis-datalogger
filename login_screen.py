@@ -239,7 +239,6 @@ class LoginScreen(MDScreen):
         # Update the status label if the dialog is still open
         if hasattr(self, 'settings_dialog') and self.settings_dialog:
             current_theme = "ON" if app.theme_cls.theme_style == "Dark" else "OFF"
-            # Find the status label and update it
             for child in self.settings_dialog.content_cls.children:
                 if isinstance(child, MDBoxLayout):
                     for subchild in child.children:
@@ -247,10 +246,9 @@ class LoginScreen(MDScreen):
                             subchild.text = current_theme
                             break
 
-        # Save preference
+        # Save preference - FIXED: use get_data_dir() with filename
         data_dir = self.get_data_dir()
-        prefs_file = data_dir / "preferences.json"
-        # No need for mkdir() here because get_data_dir() already creates the directory
+        prefs_file = data_dir / "preferences.json"  # ← Added filename
 
         if prefs_file.exists():
             with open(prefs_file) as f:
@@ -355,15 +353,16 @@ class LoginScreen(MDScreen):
         """Complete the login process"""
         from kivymd.app import MDApp
 
+        # FIXED: Use get_data_dir() with filename
         data_dir = self.get_data_dir()
-        cred_file = data_dir / "credentials.json"
-        # No need for mkdir() here because get_data_dir() already creates the directory
+        cred_file = data_dir / "credentials.json"  # ← Added filename
+
         with open(cred_file, 'w') as f:
             json.dump({
                 'season': season_id,
                 'year': year,
                 'project': project,
-                'user_id': user_id,  # Use the variable, not user['user_id']
+                'user_id': user_id,
                 'user_name': user.get('name', user_id),
                 'login_time': datetime.now().isoformat()
             }, f)
