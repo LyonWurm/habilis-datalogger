@@ -29,7 +29,7 @@ from sync_screen import SyncScreen
 from admin import AllProjectsScreen, AllUsersScreen
 
 # Set window size for desktop
-Window.size = (400, 700)
+#Window.size = (400, 700) only used for testing on desktop
 
 
 class FieldApp(MDApp):

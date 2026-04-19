@@ -46,6 +46,8 @@ KV = '''
 <CollectScreen>:
     MDBoxLayout:
         orientation: "vertical"
+        size_hint: (1, 1)  
+        pos_hint: {'x': 0, 'y': 0}
 
         MDTopAppBar:
             id: top_app_bar

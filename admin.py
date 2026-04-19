@@ -201,6 +201,8 @@ KV = '''
 <AdminLoginScreen>:
     MDBoxLayout:
         orientation: "vertical"
+        size_hint: (1, 1)  
+        pos_hint: {'x': 0, 'y': 0}
 
         MDTopAppBar:
             title: "Admin Access"
@@ -251,6 +253,8 @@ KV = '''
 <AdminDashboardScreen>:
     MDBoxLayout:
         orientation: "vertical"
+        size_hint: (1, 1)  
+        pos_hint: {'x': 0, 'y': 0}
 
         MDTopAppBar:
             id: top_app_bar
@@ -310,7 +314,9 @@ KV = '''
 <SeasonManagementScreen>:
     MDBoxLayout:
         orientation: "vertical"
-
+        size_hint: (1, 1)  
+        pos_hint: {'x': 0, 'y': 0}
+        
         MDTopAppBar:
             title: "Manage Seasons"
             elevation: 4
@@ -326,7 +332,9 @@ KV = '''
 <ProjectManagementScreen>:
     MDBoxLayout:
         orientation: "vertical"
-
+        size_hint: (1, 1)  
+        pos_hint: {'x': 0, 'y': 0}
+        
         MDTopAppBar:
             title: "Manage Projects"
             elevation: 4
@@ -353,6 +361,8 @@ KV = '''
 <UserManagementScreen>:
     MDBoxLayout:
         orientation: "vertical"
+        size_hint: (1, 1)  
+        pos_hint: {'x': 0, 'y': 0}
 
         MDTopAppBar:
             title: "Manage Users"
@@ -381,6 +391,8 @@ KV = '''
 <AllProjectsScreen>:
     MDBoxLayout:
         orientation: "vertical"
+        size_hint: (1, 1)  
+        pos_hint: {'x': 0, 'y': 0}
 
         MDTopAppBar:
             title: "All Projects"
@@ -413,6 +425,8 @@ KV = '''
 <AllUsersScreen>:
     MDBoxLayout:
         orientation: "vertical"
+        size_hint: (1, 1)  
+        pos_hint: {'x': 0, 'y': 0}
 
         MDTopAppBar:
             title: "All Users"
@@ -445,6 +459,8 @@ KV = '''
 <BagTagManagementScreen>:
     MDBoxLayout:
         orientation: "vertical"
+        size_hint: (1, 1)  
+        pos_hint: {'x': 0, 'y': 0}
 
         MDTopAppBar:
             title: "Bag Tag Manager"
