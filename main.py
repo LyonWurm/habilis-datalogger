@@ -56,7 +56,7 @@ class FieldApp(MDApp):
         Builder.load_string(admin_kv)
 
         # Load theme preference
-        prefs_file = get_data_dir()
+        prefs_file = get_data_dir() / "preferences.json"  # ← Added filename
         if prefs_file.exists():
             with open(prefs_file) as f:
                 prefs = json.load(f)

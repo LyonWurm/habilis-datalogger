@@ -1,298 +1,414 @@
-04-18 18:23:41.188  2045  3320 E VibratorManagerServiceImpl: skipandroid.os.RemoteException: Method setUsageExt is unimplemented.
-04-18 18:23:41.333 27348 27348 E FileUtils: err write to mi_exception_log
-04-18 18:23:41.364  4007  4007 E FileUtils: err write to mi_exception_log
-04-18 18:23:41.387 11446 12069 E PowerKeeper.Thermal: ProcessInfo java.lang.NumberFormatException: For input string: "CPU usage from 150471ms to 96553ms ago (2026-04-18 18"
-04-18 18:23:41.452  4007  4419 E ActivityManagerWrapper: getRecentTasks: mainTaskId=52398   userId=0   windowMode=1   baseIntent=Intent { act=android.intent.action.MAIN flag=268435456 cmp=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity} }
-04-18 18:23:41.456  4007  4419 D WorldCirculate: getWorldCirculateInfo, taskInfo.baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10000000 pkg=org.kffs.habilisdatalogger cmp=org.kffs.habilisdatalogger/org.kivy.android.PythonActivity }, displayId=-1, but get Display failed
-04-18 18:23:41.483  4007  4419 E ActivityManagerWrapper: getRecentTasks: mainTaskId=52398   userId=0   windowMode=1   baseIntent=Intent { act=android.intent.action.MAIN flag=268435456 cmp=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity} }
-04-18 18:23:41.484  4007  4419 D WorldCirculate: getWorldCirculateInfo, taskInfo.baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10000000 pkg=org.kffs.habilisdatalogger cmp=org.kffs.habilisdatalogger/org.kivy.android.PythonActivity }, displayId=-1, but get Display failed
-04-18 18:23:42.216  4007  4007 I QuickstepAppTransitionManagerImpl: java.lang.Exception
-04-18 18:23:42.217  4007  4007 E ConnectAnimFinishCallbackManager: java.lang.Exception
-04-18 18:23:44.488  4007  4007 D Launcher: launch, launchIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=org.kffs.habilisdatalogger/org.kivy.android.PythonActivity (has extras) }
-04-18 18:23:44.495  2045  9643 D WindowManager: Collecting in transition 10552: ActivityRecord{7d7ff65 u0 org.kffs.habilisdatalogger/org.kivy.android.PythonActivity init visibleRequested:false
-04-18 18:23:44.506  2045  9643 I ActivityTaskManager: resumeTopActivityInnerLocked topActivity:ActivityRecord{7d7ff65 u0 org.kffs.habilisdatalogger/org.kivy.android.PythonActivity t52399} isFocusable:true this:Task{3e6b43a #52399 type=standard A=10490:org.kffs.habilisdatalogger}
-04-18 18:23:44.508  2045  9643 D WindowManager: Collecting in transition 10552: ActivityRecord{7d7ff65 u0 org.kffs.habilisdatalogger/org.kivy.android.PythonActivity t52399} init visibleRequested:false
-04-18 18:23:44.508  2045  9643 I ActivityRecordImpl: setReadyForStartingWindow activityRecord = ActivityRecord{7d7ff65 u0 org.kffs.habilisdatalogger/org.kivy.android.PythonActivity t52399}
-04-18 18:23:44.509  2045  9643 D WindowManager: Collecting in transition 10552: ActivityRecord{7d7ff65 u0 org.kffs.habilisdatalogger/org.kivy.android.PythonActivity t52399} init visibleRequested:true
-04-18 18:23:44.511  3970  4194 D WindowManagerShell: wct=WindowContainerTransaction { changes = {} hops = [] errorCallbackToken=null taskFragmentOrganizer=null }, hander=com.android.wm.shell.transition.SoScMixedHandler@93417c1, transitionToken=android.os.BinderProxy@eed9bda, request=TransitionRequestInfo { type = OPEN, triggerTask = TaskInfo{userId=0 taskId=52399 displayId=0 isRunning=true baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=org.kffs.habilisdatalogger/org.kivy.android.PythonActivity } baseActivity=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity} topActivity=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity} origActivity=null realActivity=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity} numActivities=1 lastActiveTime=1495186195 supportsSplitScreenMultiWindow=true supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=200 token=WCT{android.window.IWindowContainerToken$Stub$Proxy@543f80b} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=Rect(0, 98 - 0, 0) topActivityInfo=ActivityInfo{70626e8 org.kivy.android.PythonActivity} launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=false isVisible=false isVisibleRequested=true isSleeping=false topActivityInSizeCompat=false topActivityInMiuiSizeCompat=false topActivityEligibleForLetterboxEducation= false topActivityLetterboxed= false isFromDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=-1 topActivityLetterboxHeight=-1 locusId=null displayAreaFeatureId=1 cameraCompatControlState=hidden mIsCastMode=false mTopActivityMediaSize=null mTopActivityRecordName=ActivityRecord{7d7ff65 u0 org.kffs.habilisdatalogger/org.kivy.android.PythonActivity t52399} mTopActivityOrientation=1 mTopActivityWindowIsNowVisible=false isTranslucent=false isEmbedded=false shouldBeVisible=true mBehindAppLockPkg=null mOriginatingUid=0}, remoteTransition = RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@ce97101, appThread = null, debugName = null }, displayChange = null }
-04-18 18:23:44.512  2045  9643 I ActivityTaskManager: START u0 {act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=org.kffs.habilisdatalogger/org.kivy.android.PythonActivity bnds=[581,1397][761,1577] (has extras)} with LAUNCH_SINGLE_TASK from uid 10080 from pid 4007 callingPackage com.miui.home (BAL_ALLOW_ALLOWLISTED_COMPONENT) result code=0
-04-18 18:23:44.513  4007  4007 E FileUtils: err write to mi_exception_log
-04-18 18:23:44.516  3970  3970 D KeyguardEditorHelper: onTopActivityMayChanged, topActivity=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity}; mState=IDEL
-04-18 18:23:44.528  2045  2318 I BLASTSyncEngine: SyncGroup 10552:  Unfinished container:ActivityRecord{7d7ff65 u0 org.kffs.habilisdatalogger/org.kivy.android.PythonActivity t52399}
-04-18 18:23:44.528  2045  2318 I ActivityRecordImpl: isReadyForStartingWindow topActivity = ActivityRecord{7d7ff65 u0 org.kffs.habilisdatalogger/org.kivy.android.PythonActivity t52399} isLaunchSourceTypeHome = true topActivity.mStartingWindow = Window{4cdd8c7 u0 Splash Screen org.kffs.habilisdatalogger}
-04-18 18:23:44.528  2045  2318 I ActivityRecordImpl: isReadyForStartingWindow topActivity = ActivityRecord{7d7ff65 u0 org.kffs.habilisdatalogger/org.kivy.android.PythonActivity t52399} isLaunchSourceTypeHome = true topActivity.mStartingWindow = Window{4cdd8c7 u0 Splash Screen org.kffs.habilisdatalogger}
-04-18 18:23:44.533  4007  4007 D RemoteAnimationAdapterCompat: printLeash::taskInfo = TaskInfo{userId=0 taskId=52399 displayId=0 isRunning=true baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=org.kffs.habilisdatalogger/org.kivy.android.PythonActivity } baseActivity=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity} topActivity=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity} origActivity=null realActivity=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity} numActivities=1 lastActiveTime=1495186195 supportsSplitScreenMultiWindow=true supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=200 token=WCT{android.window.IWindowContainerToken$Stub$Proxy@5235bcb} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=Rect(0, 98 - 0, 0) topActivityInfo=ActivityInfo{81fa8 org.kivy.android.PythonActivity} launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=false isVisible=true isVisibleRequested=true isSleeping=false topActivityInSizeCompat=false topActivityInMiuiSizeCompat=false topActivityEligibleForLetterboxEducation= false topActivityLetterboxed= false isFromDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=-1 topActivityLetterboxHeight=-1 locusId=null displayAreaFeatureId=1 cameraCompatControlState=hidden mIsCastMode=false mTopActivityMediaSize=null mTopActivityRecordName=ActivityRecord{7d7ff65 u0 org.kffs.habilisdatalogger/org.kivy.android.PythonActivity t52399} mTopActivityOrientation=1 mTopActivityWindowIsNowVisible=false isTranslucent=false isEmbedded=false shouldBeVisible=true mBehindAppLockPkg=null mOriginatingUid=0}
-04-18 18:23:44.568  2045  2360 I ActivityManager: Start proc 7058:org.kffs.habilisdatalogger/u0a490 for top-activity {org.kffs.habilisdatalogger/org.kivy.android.PythonActivity} caller=com.miui.home
-04-18 18:23:44.580  4007  4419 E ActivityManagerWrapper: getRecentTasks: mainTaskId=52399   userId=0   windowMode=1   baseIntent=Intent { act=android.intent.action.MAIN flag=270532608 cmp=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity} }
-04-18 18:23:44.581  3970  4194 D MiuiFullScreenTaskRepository: addOrUpdateFullScreenTaskInfo taskId=52399, topActivity=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity}
-04-18 18:23:44.595  4007  4419 E ActivityManagerWrapper: getRecentTasks: mainTaskId=52399   userId=0   windowMode=1   baseIntent=Intent { act=android.intent.action.MAIN flag=270532608 cmp=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity} }
-04-18 18:23:44.616  4007  4419 E ActivityManagerWrapper: getRecentTasks: mainTaskId=52399   userId=0   windowMode=1   baseIntent=Intent { act=android.intent.action.MAIN flag=270532608 cmp=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity} }
-04-18 18:23:44.630  4007  4419 E ActivityManagerWrapper: getRecentTasks: mainTaskId=52399   userId=0   windowMode=1   baseIntent=Intent { act=android.intent.action.MAIN flag=270532608 cmp=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity} }
-04-18 18:23:44.679  3970  4194 D MiuiFullScreenTaskRepository: addOrUpdateFullScreenTaskInfo taskId=52399, topActivity=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity}
-04-18 18:23:44.690  3970  4194 D MiuiFullScreenTaskRepository: setFocusedTask taskId=52399, displayId=0, topActivity=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity}
-04-18 18:23:44.690  3970  4194 D MiuiFullScreenTaskRepository: addOrUpdateFullScreenTaskInfo taskId=52399, topActivity=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity}
-04-18 18:23:44.691  3970  4194 D MiuiFreeformModeController: onFocusTaskChanged taskInfo: TaskInfo{userId=0 taskId=52399 displayId=0 isRunning=true baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=org.kffs.habilisdatalogger/org.kivy.android.PythonActivity } baseActivity=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity} topActivity=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity} origActivity=null realActivity=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity} numActivities=1 lastActiveTime=1495186366 supportsSplitScreenMultiWindow=true supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=200 token=WCT{android.window.IWindowContainerToken$Stub$Proxy@41468a9} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=Rect(0, 98 - 0, 0) topActivityInfo=ActivityInfo{4a3e2e org.kivy.android.PythonActivity} launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=true isVisible=true isVisibleRequested=true isSleeping=false topActivityInSizeCompat=false topActivityInMiuiSizeCompat=false topActivityEligibleForLetterboxEducation= false topActivityLetterboxed= false isFromDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=-1 topActivityLetterboxHeight=-1 locusId=null displayAreaFeatureId=1 cameraCompatControlState=hidden mIsCastMode=false mTopActivityMediaSize=null mTopActivityRecordName=ActivityRecord{7d7ff65 u0 org.kffs.habilisdatalogger/org.kivy.android.PythonActivity t52399} mTopActivityOrientation=1 mTopActivityWindowIsNowVisible=false isTranslucent=false isEmbedded=false shouldBeVisible=true mBehindAppLockPkg=null mOriginatingUid=0}
-04-18 18:23:44.756 11446 12069 E PowerKeeper.Thermal: ProcessInfo java.lang.NumberFormatException: For input string: "CPU usage from 153838ms to 99920ms ago (2026-04-18 18"
-04-18 18:23:44.775  7058  7058 E FileUtils: err open mi_exception_log errno=2
-04-18 18:23:44.776  7058  7058 E FileUtils: err write to mi_exception_log
-04-18 18:23:44.800  7058  7058 V PythonActivity: PythonActivity onCreate running
-04-18 18:23:44.800  7058  7058 V PythonActivity: About to do super onCreate
-04-18 18:23:44.804  3970  4194 D MiuiFullScreenTaskRepository: setFocusedTask taskId=52399, displayId=0, topActivity=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity}
-04-18 18:23:44.804  3970  4194 D MiuiFullScreenTaskRepository: addOrUpdateFullScreenTaskInfo taskId=52399, topActivity=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity}
-04-18 18:23:44.805  7058  7058 V PythonActivity: Did super onCreate
-04-18 18:23:44.828  7058  7100 V PythonActivity: Ready to unpack
-04-18 18:23:44.828  7058  7100 V pythonutil: Unpacking private app
-04-18 18:23:44.828  7058  7100 V pythonutil: Data version is fa09b0bb552dd439b5ad0613e055c74e813a9fcc
-04-18 18:23:44.830  7058  7100 V pythonutil: Unpacking /data/app/~~0rvHMuMyNHMiCPSqe6QQgA==/org.kffs.habilisdatalogger-ZHmkOIVKQHuvFRoBZWqZnQ==/lib/arm64/libpybundle app
-04-18 18:23:44.830  7058  7100 V pythonutil: Data version is fa09b0bb552dd439b5ad0613e055c74e813a9fcc
-04-18 18:23:44.831  7058  7058 V PythonActivity: onResume()
-04-18 18:23:44.863  7058  7058 I ForceDarkHelperStubImpl: setViewRootImplForceDark: false for org.kivy.android.PythonActivity@62bf10, reason: AppDarkModeEnable
-04-18 18:23:44.877  3970  4967 D MiuiFreeformModeObserver: activityResumed() intent： Intent { cmp=org.kffs.habilisdatalogger/org.kivy.android.PythonActivity (has extras) }
-04-18 18:23:44.877  4007  4007 D RecentsImpl: mActivityStateObserver org.kivy.android.PythonActivity
-04-18 18:23:44.877  7058  7058 E FileUtils: err write to mi_exception_log
-04-18 18:23:44.877  4007  4007 W RecentsImpl: onResumed className=org.kivy.android.PythonActivity   mIsInAnotherPro=false   isKeyguardLocked=false   mSecuritySpaceGuideShown=false
-04-18 18:23:44.880  7058  7058 V pythonutil: Checking pattern libsqlite3\.so against libSDL2.so
-04-18 18:23:44.881  7058  7058 V pythonutil: Checking pattern libsqlite3\.so against libSDL2_ttf.so
-04-18 18:23:44.881  7058  7058 V pythonutil: Checking pattern libsqlite3\.so against libssl1.1.so
-04-18 18:23:44.881  7058  7058 V pythonutil: Checking pattern libsqlite3\.so against libpng16.so
-04-18 18:23:44.881  7058  7058 V pythonutil: Checking pattern libsqlite3\.so against libfreetype.so
-04-18 18:23:44.881  7058  7058 V pythonutil: Checking pattern libsqlite3\.so against libmain.so
-04-18 18:23:44.881  7058  7058 V pythonutil: Checking pattern libsqlite3\.so against libpython3.11.so
-04-18 18:23:44.881  7058  7058 V pythonutil: Checking pattern libsqlite3\.so against libcrypto1.1.so
-04-18 18:23:44.881  7058  7058 V pythonutil: Checking pattern libsqlite3\.so against libffi.so
-04-18 18:23:44.881  7058  7058 V pythonutil: Checking pattern libsqlite3\.so against libSDL2_image.so
-04-18 18:23:44.881  7058  7058 V pythonutil: Checking pattern libsqlite3\.so against libSDL2_mixer.so
-04-18 18:23:44.882  7058  7058 V pythonutil: Checking pattern libsqlite3\.so against libpybundle.so
-04-18 18:23:44.882  7058  7058 V pythonutil: Checking pattern libsqlite3\.so against libsqlite3.so
-04-18 18:23:44.882  7058  7058 V pythonutil: Pattern libsqlite3\.so matched file libsqlite3.so
-04-18 18:23:44.882  7058  7058 V pythonutil: Checking pattern libffi\.so against libSDL2.so
-04-18 18:23:44.882  7058  7058 V pythonutil: Checking pattern libffi\.so against libSDL2_ttf.so
-04-18 18:23:44.882  7058  7058 V pythonutil: Checking pattern libffi\.so against libssl1.1.so
-04-18 18:23:44.882  7058  7058 V pythonutil: Checking pattern libffi\.so against libpng16.so
-04-18 18:23:44.882  7058  7058 V pythonutil: Checking pattern libffi\.so against libfreetype.so
-04-18 18:23:44.882  7058  7058 V pythonutil: Checking pattern libffi\.so against libmain.so
-04-18 18:23:44.882  7058  7058 V pythonutil: Checking pattern libffi\.so against libpython3.11.so
-04-18 18:23:44.882  7058  7058 V pythonutil: Checking pattern libffi\.so against libcrypto1.1.so
-04-18 18:23:44.882  7058  7058 V pythonutil: Checking pattern libffi\.so against libffi.so
-04-18 18:23:44.883  7058  7058 V pythonutil: Pattern libffi\.so matched file libffi.so
-04-18 18:23:44.883  7058  7058 V pythonutil: Checking pattern libffi\.so against libSDL2_image.so
-04-18 18:23:44.883  7058  7058 V pythonutil: Checking pattern libffi\.so against libSDL2_mixer.so
-04-18 18:23:44.883  7058  7058 V pythonutil: Checking pattern libffi\.so against libpybundle.so
-04-18 18:23:44.883  7058  7058 V pythonutil: Checking pattern libffi\.so against libsqlite3.so
-04-18 18:23:44.883  7058  7058 V pythonutil: Checking pattern libpng16\.so against libSDL2.so
-04-18 18:23:44.883  7058  7058 V pythonutil: Checking pattern libpng16\.so against libSDL2_ttf.so
-04-18 18:23:44.883  7058  7058 V pythonutil: Checking pattern libpng16\.so against libssl1.1.so
-04-18 18:23:44.883  7058  7058 V pythonutil: Checking pattern libpng16\.so against libpng16.so
-04-18 18:23:44.883  7058  7058 V pythonutil: Pattern libpng16\.so matched file libpng16.so
-04-18 18:23:44.883  7058  7058 V pythonutil: Checking pattern libpng16\.so against libfreetype.so
-04-18 18:23:44.883  7058  7058 V pythonutil: Checking pattern libpng16\.so against libmain.so
-04-18 18:23:44.883  7058  7058 V pythonutil: Checking pattern libpng16\.so against libpython3.11.so
-04-18 18:23:44.884  7058  7058 V pythonutil: Checking pattern libpng16\.so against libcrypto1.1.so
-04-18 18:23:44.884  7058  7058 V pythonutil: Checking pattern libpng16\.so against libffi.so
-04-18 18:23:44.884  7058  7058 V pythonutil: Checking pattern libpng16\.so against libSDL2_image.so
-04-18 18:23:44.884  7058  7058 V pythonutil: Checking pattern libpng16\.so against libSDL2_mixer.so
-04-18 18:23:44.884  7058  7058 V pythonutil: Checking pattern libpng16\.so against libpybundle.so
-04-18 18:23:44.884  7058  7058 V pythonutil: Checking pattern libpng16\.so against libsqlite3.so
-04-18 18:23:44.884  7058  7058 V pythonutil: Checking pattern libssl.*\.so against libSDL2.so
-04-18 18:23:44.884  7058  7058 V pythonutil: Checking pattern libssl.*\.so against libSDL2_ttf.so
-04-18 18:23:44.884  7058  7058 V pythonutil: Checking pattern libssl.*\.so against libssl1.1.so
-04-18 18:23:44.885  7058  7058 V pythonutil: Pattern libssl.*\.so matched file libssl1.1.so
-04-18 18:23:44.885  7058  7058 V pythonutil: Checking pattern libssl.*\.so against libpng16.so
-04-18 18:23:44.885  7058  7058 V pythonutil: Checking pattern libssl.*\.so against libfreetype.so
-04-18 18:23:44.885  7058  7058 V pythonutil: Checking pattern libssl.*\.so against libmain.so
-04-18 18:23:44.886  7058  7058 V pythonutil: Checking pattern libssl.*\.so against libpython3.11.so
-04-18 18:23:44.886  7058  7058 V pythonutil: Checking pattern libssl.*\.so against libcrypto1.1.so
-04-18 18:23:44.886  7058  7058 V pythonutil: Checking pattern libssl.*\.so against libffi.so
-04-18 18:23:44.886  7058  7058 V pythonutil: Checking pattern libssl.*\.so against libSDL2_image.so
-04-18 18:23:44.886  7058  7058 V pythonutil: Checking pattern libssl.*\.so against libSDL2_mixer.so
-04-18 18:23:44.886  7058  7058 V pythonutil: Checking pattern libssl.*\.so against libpybundle.so
-04-18 18:23:44.886  7058  7058 V pythonutil: Checking pattern libssl.*\.so against libsqlite3.so
-04-18 18:23:44.886  7058  7058 V pythonutil: Checking pattern libcrypto.*\.so against libSDL2.so
-04-18 18:23:44.886  7058  7058 V pythonutil: Checking pattern libcrypto.*\.so against libSDL2_ttf.so
-04-18 18:23:44.886  7058  7058 V pythonutil: Checking pattern libcrypto.*\.so against libssl1.1.so
-04-18 18:23:44.887  7058  7058 V pythonutil: Checking pattern libcrypto.*\.so against libpng16.so
-04-18 18:23:44.887  7058  7058 V pythonutil: Checking pattern libcrypto.*\.so against libfreetype.so
-04-18 18:23:44.887  7058  7058 V pythonutil: Checking pattern libcrypto.*\.so against libmain.so
-04-18 18:23:44.887  7058  7058 V pythonutil: Checking pattern libcrypto.*\.so against libpython3.11.so
-04-18 18:23:44.887  7058  7058 V pythonutil: Checking pattern libcrypto.*\.so against libcrypto1.1.so
-04-18 18:23:44.887  7058  7058 V pythonutil: Pattern libcrypto.*\.so matched file libcrypto1.1.so
-04-18 18:23:44.887  7058  7058 V pythonutil: Checking pattern libcrypto.*\.so against libffi.so
-04-18 18:23:44.887  7058  7058 V pythonutil: Checking pattern libcrypto.*\.so against libSDL2_image.so
-04-18 18:23:44.887  7058  7058 V pythonutil: Checking pattern libcrypto.*\.so against libSDL2_mixer.so
-04-18 18:23:44.887  7058  7058 V pythonutil: Checking pattern libcrypto.*\.so against libpybundle.so
-04-18 18:23:44.887  7058  7058 V pythonutil: Checking pattern libcrypto.*\.so against libsqlite3.so
-04-18 18:23:44.887  7058  7058 V pythonutil: Checking pattern libSDL2\.so against libSDL2.so
-04-18 18:23:44.887  7058  7058 V pythonutil: Pattern libSDL2\.so matched file libSDL2.so
-04-18 18:23:44.887  7058  7058 V pythonutil: Checking pattern libSDL2\.so against libSDL2_ttf.so
-04-18 18:23:44.888  7058  7058 V pythonutil: Checking pattern libSDL2\.so against libssl1.1.so
-04-18 18:23:44.888  7058  7058 V pythonutil: Checking pattern libSDL2\.so against libpng16.so
-04-18 18:23:44.888  7058  7058 V pythonutil: Checking pattern libSDL2\.so against libfreetype.so
-04-18 18:23:44.888  7058  7058 V pythonutil: Checking pattern libSDL2\.so against libmain.so
-04-18 18:23:44.888  7058  7058 V pythonutil: Checking pattern libSDL2\.so against libpython3.11.so
-04-18 18:23:44.888  7058  7058 V pythonutil: Checking pattern libSDL2\.so against libcrypto1.1.so
-04-18 18:23:44.888  7058  7058 V pythonutil: Checking pattern libSDL2\.so against libffi.so
-04-18 18:23:44.888  7058  7058 V pythonutil: Checking pattern libSDL2\.so against libSDL2_image.so
-04-18 18:23:44.888  7058  7058 V pythonutil: Checking pattern libSDL2\.so against libSDL2_mixer.so
-04-18 18:23:44.888  7058  7058 V pythonutil: Checking pattern libSDL2\.so against libpybundle.so
-04-18 18:23:44.888  7058  7058 V pythonutil: Checking pattern libSDL2\.so against libsqlite3.so
-04-18 18:23:44.888  7058  7058 V pythonutil: Checking pattern libSDL2_image\.so against libSDL2.so
-04-18 18:23:44.888  7058  7058 V pythonutil: Checking pattern libSDL2_image\.so against libSDL2_ttf.so
-04-18 18:23:44.889  7058  7058 V pythonutil: Checking pattern libSDL2_image\.so against libssl1.1.so
-04-18 18:23:44.889  7058  7058 V pythonutil: Checking pattern libSDL2_image\.so against libpng16.so
-04-18 18:23:44.889  7058  7058 V pythonutil: Checking pattern libSDL2_image\.so against libfreetype.so
-04-18 18:23:44.889  7058  7058 V pythonutil: Checking pattern libSDL2_image\.so against libmain.so
-04-18 18:23:44.889  7058  7058 V pythonutil: Checking pattern libSDL2_image\.so against libpython3.11.so
-04-18 18:23:44.889  7058  7058 V pythonutil: Checking pattern libSDL2_image\.so against libcrypto1.1.so
-04-18 18:23:44.889  7058  7058 V pythonutil: Checking pattern libSDL2_image\.so against libffi.so
-04-18 18:23:44.889  7058  7058 V pythonutil: Checking pattern libSDL2_image\.so against libSDL2_image.so
-04-18 18:23:44.889  7058  7058 V pythonutil: Pattern libSDL2_image\.so matched file libSDL2_image.so
-04-18 18:23:44.889  7058  7058 V pythonutil: Checking pattern libSDL2_image\.so against libSDL2_mixer.so
-04-18 18:23:44.889  7058  7058 V pythonutil: Checking pattern libSDL2_image\.so against libpybundle.so
-04-18 18:23:44.889  7058  7058 V pythonutil: Checking pattern libSDL2_image\.so against libsqlite3.so
-04-18 18:23:44.889  7058  7058 V pythonutil: Checking pattern libSDL2_mixer\.so against libSDL2.so
-04-18 18:23:44.889  7058  7058 V pythonutil: Checking pattern libSDL2_mixer\.so against libSDL2_ttf.so
-04-18 18:23:44.889  7058  7058 V pythonutil: Checking pattern libSDL2_mixer\.so against libssl1.1.so
-04-18 18:23:44.890  7058  7058 V pythonutil: Checking pattern libSDL2_mixer\.so against libpng16.so
-04-18 18:23:44.890  7058  7058 V pythonutil: Checking pattern libSDL2_mixer\.so against libfreetype.so
-04-18 18:23:44.890  7058  7058 V pythonutil: Checking pattern libSDL2_mixer\.so against libmain.so
-04-18 18:23:44.890  7058  7058 V pythonutil: Checking pattern libSDL2_mixer\.so against libpython3.11.so
-04-18 18:23:44.890  7058  7058 V pythonutil: Checking pattern libSDL2_mixer\.so against libcrypto1.1.so
-04-18 18:23:44.890  7058  7058 V pythonutil: Checking pattern libSDL2_mixer\.so against libffi.so
-04-18 18:23:44.890  7058  7058 V pythonutil: Checking pattern libSDL2_mixer\.so against libSDL2_image.so
-04-18 18:23:44.890  7058  7058 V pythonutil: Checking pattern libSDL2_mixer\.so against libSDL2_mixer.so
-04-18 18:23:44.890  7058  7058 V pythonutil: Pattern libSDL2_mixer\.so matched file libSDL2_mixer.so
-04-18 18:23:44.890  7058  7058 V pythonutil: Checking pattern libSDL2_mixer\.so against libpybundle.so
-04-18 18:23:44.890  7058  7058 V pythonutil: Checking pattern libSDL2_mixer\.so against libsqlite3.so
-04-18 18:23:44.890  7058  7058 V pythonutil: Checking pattern libSDL2_ttf\.so against libSDL2.so
-04-18 18:23:44.890  7058  7058 V pythonutil: Checking pattern libSDL2_ttf\.so against libSDL2_ttf.so
-04-18 18:23:44.890  7058  7058 V pythonutil: Pattern libSDL2_ttf\.so matched file libSDL2_ttf.so
-04-18 18:23:44.890  7058  7058 V pythonutil: Checking pattern libSDL2_ttf\.so against libssl1.1.so
-04-18 18:23:44.891  7058  7058 V pythonutil: Checking pattern libSDL2_ttf\.so against libpng16.so
-04-18 18:23:44.891  7058  7058 V pythonutil: Checking pattern libSDL2_ttf\.so against libfreetype.so
-04-18 18:23:44.891  7058  7058 V pythonutil: Checking pattern libSDL2_ttf\.so against libmain.so
-04-18 18:23:44.891  7058  7058 V pythonutil: Checking pattern libSDL2_ttf\.so against libpython3.11.so
-04-18 18:23:44.891  7058  7058 V pythonutil: Checking pattern libSDL2_ttf\.so against libcrypto1.1.so
-04-18 18:23:44.891  7058  7058 V pythonutil: Checking pattern libSDL2_ttf\.so against libffi.so
-04-18 18:23:44.891  7058  7058 V pythonutil: Checking pattern libSDL2_ttf\.so against libSDL2_image.so
-04-18 18:23:44.891  7058  7058 V pythonutil: Checking pattern libSDL2_ttf\.so against libSDL2_mixer.so
-04-18 18:23:44.891  7058  7058 V pythonutil: Checking pattern libSDL2_ttf\.so against libpybundle.so
-04-18 18:23:44.891  7058  7058 V pythonutil: Checking pattern libSDL2_ttf\.so against libsqlite3.so
-04-18 18:23:44.891  7058  7058 V pythonutil: Loading library: sqlite3
-04-18 18:23:44.896  7058  7058 V pythonutil: Loading library: ffi
-04-18 18:23:44.898  7058  7058 V pythonutil: Loading library: png16
-04-18 18:23:44.902  7058  7058 V pythonutil: Loading library: ssl1.1
-04-18 18:23:44.909  7058  7058 V pythonutil: Loading library: crypto1.1
-04-18 18:23:44.910  7058  7058 V pythonutil: Loading library: SDL2
-04-18 18:23:44.918  7058  7058 V pythonutil: Loading library: SDL2_image
-04-18 18:23:44.921  7058  7058 V pythonutil: Loading library: SDL2_mixer
-04-18 18:23:44.924  7058  7058 V pythonutil: Loading library: SDL2_ttf
-04-18 18:23:44.933  7058  7058 V pythonutil: Loading library: python3.5m
-04-18 18:23:44.938  7058  7058 D nativeloader: Load libpython3.5m.so using class loader ns clns-4 (caller=/data/app/~~0rvHMuMyNHMiCPSqe6QQgA==/org.kffs.habilisdatalogger-ZHmkOIVKQHuvFRoBZWqZnQ==/base.apk!classes5.dex): dlopen failed: library "libpython3.5m.so" not found
-04-18 18:23:44.938  7058  7058 V pythonutil: Library loading error: dlopen failed: library "libpython3.5m.so" not found
-04-18 18:23:44.938  7058  7058 V pythonutil: Loading library: python3.6m
-04-18 18:23:44.939  7058  7058 D nativeloader: Load libpython3.6m.so using class loader ns clns-4 (caller=/data/app/~~0rvHMuMyNHMiCPSqe6QQgA==/org.kffs.habilisdatalogger-ZHmkOIVKQHuvFRoBZWqZnQ==/base.apk!classes5.dex): dlopen failed: library "libpython3.6m.so" not found
-04-18 18:23:44.939  7058  7058 V pythonutil: Library loading error: dlopen failed: library "libpython3.6m.so" not found
-04-18 18:23:44.939  7058  7058 V pythonutil: Loading library: python3.7m
-04-18 18:23:44.939  7058  7058 D nativeloader: Load libpython3.7m.so using class loader ns clns-4 (caller=/data/app/~~0rvHMuMyNHMiCPSqe6QQgA==/org.kffs.habilisdatalogger-ZHmkOIVKQHuvFRoBZWqZnQ==/base.apk!classes5.dex): dlopen failed: library "libpython3.7m.so" not found
-04-18 18:23:44.939  7058  7058 V pythonutil: Library loading error: dlopen failed: library "libpython3.7m.so" not found
-04-18 18:23:44.939  7058  7058 V pythonutil: Loading library: python3.8
-04-18 18:23:44.940  7058  7058 D nativeloader: Load libpython3.8.so using class loader ns clns-4 (caller=/data/app/~~0rvHMuMyNHMiCPSqe6QQgA==/org.kffs.habilisdatalogger-ZHmkOIVKQHuvFRoBZWqZnQ==/base.apk!classes5.dex): dlopen failed: library "libpython3.8.so" not found
-04-18 18:23:44.940  7058  7058 V pythonutil: Library loading error: dlopen failed: library "libpython3.8.so" not found
-04-18 18:23:44.940  7058  7058 V pythonutil: Loading library: python3.9
-04-18 18:23:44.941  7058  7058 D nativeloader: Load libpython3.9.so using class loader ns clns-4 (caller=/data/app/~~0rvHMuMyNHMiCPSqe6QQgA==/org.kffs.habilisdatalogger-ZHmkOIVKQHuvFRoBZWqZnQ==/base.apk!classes5.dex): dlopen failed: library "libpython3.9.so" not found
-04-18 18:23:44.941  7058  7058 V pythonutil: Library loading error: dlopen failed: library "libpython3.9.so" not found
-04-18 18:23:44.941  7058  7058 V pythonutil: Loading library: python3.10
-04-18 18:23:44.941  7058  7058 D nativeloader: Load libpython3.10.so using class loader ns clns-4 (caller=/data/app/~~0rvHMuMyNHMiCPSqe6QQgA==/org.kffs.habilisdatalogger-ZHmkOIVKQHuvFRoBZWqZnQ==/base.apk!classes5.dex): dlopen failed: library "libpython3.10.so" not found
-04-18 18:23:44.941  7058  7058 V pythonutil: Library loading error: dlopen failed: library "libpython3.10.so" not found
-04-18 18:23:44.941  7058  7058 V pythonutil: Loading library: python3.11
-04-18 18:23:44.952  7058  7058 D nativeloader: Load /data/app/~~0rvHMuMyNHMiCPSqe6QQgA==/org.kffs.habilisdatalogger-ZHmkOIVKQHuvFRoBZWqZnQ==/lib/arm64/libpython3.11.so using class loader ns clns-4 (caller=/data/app/~~0rvHMuMyNHMiCPSqe6QQgA==/org.kffs.habilisdatalogger-ZHmkOIVKQHuvFRoBZWqZnQ==/base.apk!classes5.dex): ok
-04-18 18:23:44.952  7058  7058 V pythonutil: Loading library: main
-04-18 18:23:44.954  7058  7058 V pythonutil: Loaded everything!
-04-18 18:23:44.996  7058  7058 V PythonActivity: Setting env vars for start.c and Python to use
-04-18 18:23:44.996  7058  7058 V PythonActivity: Access to our meta-data...
-04-18 18:23:44.997  7058  7058 I PythonActivity: Surface will NOT be transparent
-04-18 18:23:44.997  7058  7058 E FileUtils: err write to mi_exception_log
-04-18 18:23:45.005  2045  3320 D CoreBackPreview: Window{266bff2 u0 org.kffs.habilisdatalogger/org.kivy.android.PythonActivity}: Setting back callback OnBackInvokedCallbackInfo{mCallback=android.window.IOnBackInvokedCallback$Stub$Proxy@354639f, mPriority=0, mIsAnimationCallback=false}
-04-18 18:23:45.018  2045  3320 D WindowManager: wms.Input focus has changed to Window{266bff2 u0 org.kffs.habilisdatalogger/org.kivy.android.PythonActivity} display=0 updateInputWindows = true
-04-18 18:23:45.034  1434  1493 I SurfaceFlinger: sf.setTransactionState focusRequest transactionId:8783209966626 frontWin:266bff2 org.kffs.habilisdatalogger/org.kivy.android.PythonActivity
-04-18 18:23:45.036  7058  7058 D VRI[PythonActivity]: vri.reportNextDraw android.view.ViewRootImpl.performTraversals:4331 android.view.ViewRootImpl.doTraversal:2971 android.view.ViewRootImpl$TraversalRunnable.run:10262 android.view.Choreographer$CallbackRecord.run:1634 android.view.Choreographer$CallbackRecord.run:1643 
-04-18 18:23:45.055  7058  7105 V PythonActivity: appConfirmedActive() -> preparing loading screen removal
-04-18 18:23:45.056  7058  7105 I python  : Initializing Python for Android
-04-18 18:23:45.056  7058  7105 I python  : Setting additional env vars from p4a_env_vars.txt
-04-18 18:23:45.056  7058  7058 D VRI[PythonActivity]: vri.Setup new sync=wmsSync-VRI[PythonActivity]#1
-04-18 18:23:45.057  7058  7105 I python  : Changing directory to the one provided by ANDROID_ARGUMENT
-04-18 18:23:45.057  7058  7105 I python  : /data/user/0/org.kffs.habilisdatalogger/files/app
-04-18 18:23:45.060  7058  7105 I python  : Preparing to initialize python
-04-18 18:23:45.060  7058  7105 I python  : _python_bundle dir exists
-04-18 18:23:45.060  7058  7105 I python  : calculated paths to be...
-04-18 18:23:45.060  7058  7105 I python  : /data/user/0/org.kffs.habilisdatalogger/files/app/_python_bundle/stdlib.zip:/data/user/0/org.kffs.habilisdatalogger/files/app/_python_bundle/modules
-04-18 18:23:45.060  7058  7105 I python  : set wchar paths...
-04-18 18:23:45.080  7058  7058 W SDLThread: type=1400 audit(0.0:723554): avc:  granted  { execute } for  path="/data/data/org.kffs.habilisdatalogger/files/app/_python_bundle/modules/zlib.cpython-311.so" dev="dm-54" ino=1697731 scontext=u:r:untrusted_app_32:s0:c234,c257,c512,c768 tcontext=u:object_r:app_data_file:s0:c234,c257,c512,c768 tclass=file app=org.kffs.habilisdatalogger
-04-18 18:23:45.092  7058  7058 D VRI[PythonActivity]: vri.reportDrawFinished
-04-18 18:23:45.092  2045 10070 D WindowManager: wms.finishDrawingLocked: mDrawState=COMMIT_DRAW_PENDING Window{266bff2 u0 org.kffs.habilisdatalogger/org.kivy.android.PythonActivity} in Surface(name=org.kffs.habilisdatalogger/org.kivy.android.PythonActivity#176446)/@0xca0bd8
-04-18 18:23:45.093  7058  7058 E FileUtils: err write to mi_exception_log
-04-18 18:23:45.094  7058  7105 I python  : Initialized python
-04-18 18:23:45.094  7058  7105 I python  : AND: Init threads
-04-18 18:23:45.095  7058  7105 I python  : testing python print redirection
-04-18 18:23:45.096  7058  7105 I python  : Android path ['.', '/data/user/0/org.kffs.habilisdatalogger/files/app/_python_bundle/stdlib.zip', '/data/user/0/org.kffs.habilisdatalogger/files/app/_python_bundle/modules', '/data/user/0/org.kffs.habilisdatalogger/files/app/_python_bundle/site-packages']
-04-18 18:23:45.097  7058  7105 I python  : os.environ is environ({'PATH': '/product/bin:/apex/com.android.runtime/bin:/apex/com.android.art/bin:/system_ext/bin:/system/bin:/system/xbin:/odm/bin:/vendor/bin:/vendor/xbin', 'ANDROID_BOOTLOGO': '1', 'ANDROID_ROOT': '/system', 'ANDROID_ASSETS': '/system/app', 'ANDROID_DATA': '/data', 'ANDROID_STORAGE': '/storage', 'ANDROID_ART_ROOT': '/apex/com.android.art', 'ANDROID_I18N_ROOT': '/apex/com.android.i18n', 'ANDROID_TZDATA_ROOT': '/apex/com.android.tzdata', 'EXTERNAL_STORAGE': '/sdcard', 'ASEC_MOUNTPOINT': '/mnt/asec', 'DOWNLOAD_CACHE': '/data/cache', 'BOOTCLASSPATH': '/apex/com.android.art/javalib/core-oj.jar:/apex/com.android.art/javalib/core-libart.jar:/apex/com.android.art/javalib/okhttp.jar:/apex/com.android.art/javalib/bouncycastle.jar:/apex/com.android.art/javalib/apache-xml.jar:/system/framework/framework.jar:/system/framework/framework-graphics.jar:/system/framework/ext.jar:/system/framework/telephony-common.jar:/system/framework/voip-common.jar:/system/framework/ims-common.jar:/system/framework/tcmiface.jar:/system/framework/telephony-ext.jar:/system/framework/QPerformance.jar:/system/framework/UxPerformance.jar:/system/framework/WfdCommon.jar:/system_ext/framework/miui-framework.jar:/system_ext/framework/miui-telephony-common.jar:/system_ext/framework/miui-enterprise-sdk.jar:/system_ext/framework/vendor.qti.hardware.qconfig-V5-java.jar:/apex/com.android.i18n/javalib/core-icu4j.jar:/apex/com.android.adservices/javalib/framework-adservices.jar:/apex/com.android.adservices/javalib/framework-sdksandbox.jar:/apex/com.android.appsearch/javalib/framework-appsearch.jar:/apex/com.android.configinfrastructure/javalib/framework-configinfrastructure.jar:/apex/com.android.conscrypt/javalib/conscrypt.jar:/apex/com.android.devicelock/javalib/framework-devicelock.jar:/apex/com.android.healthfitness/javalib/framework-healthfitness.jar:/apex/com.android.ipsec/javalib/android.net.ipsec.ike.jar:/apex/com.android.media/javalib/updatable-media.jar:/apex/com.android.mediaprovider/javalib/framework-mediaprovider.jar:/apex/com.android.mediaprovider/javalib/framework-pdf.jar:/apex/com.android.mediaprovider/javalib/framework-photopicker.jar:/apex/com.android.ondevicepersonalization/javalib/framework-ondevicepersonalization.jar:/apex/com.android.os.statsd/javalib/framework-statsd.jar:/apex/com.android.permission/javalib/framework-permission.jar:/apex/com.android.permission/javalib/framework-permission-s.jar:/apex/com.android.scheduling/javalib/framework-scheduling.jar:/apex/com.android.sdkext/javalib/framework-sdkextensions.jar:/apex/com.android.tethering/javalib/framework-connectivity.jar:/apex/com.android.tethering/javalib/framework-connectivity-t.jar:/apex/com.android.tethering/javalib/framework-tethering.jar:/apex/com.android.uwb/javalib/framework-uwb.jar:/apex/com.android.virt/javalib/framework-virtualization.jar:/apex/com.android.wifi/javalib/framework-wifi.jar', 'DEX2OATBOOTCLASSPATH': '/apex/com.android.art/javalib/core-oj.jar:/apex/com.android.art/javalib/core-libart.jar:/apex/com.android.art/javalib/okhttp.jar:/apex/com.android.art/javalib/bouncycastle.jar:/apex/com.android.art/javalib/apache-xml.jar:/system/framework/framework.jar:/system/framework/framework-graphics.jar:/system/framework/ext.jar:/system/framework/telephony-common.jar:/system/framework/voip-common.jar:/system/framework/ims-common.jar:/system/framework/tcmiface.jar:/system/framework/telephony-ext.jar:/system/framework/QPerformance.jar:/system/framework/UxPerformance.jar:/system/framework/WfdCommon.jar:/system_ext/framework/miui-framework.jar:/system_ext/framework/miui-telephony-common.jar:/system_ext/framework/miui-enterprise-sdk.jar:/system_ext/framework/vendor.qti.hardware.qconfig-V5-java.jar:/apex/com.android.i18n/javalib/core-icu4j.jar', 'SYSTEMSERVERCLASSPATH': '/system/framework/com.android.location.provider.jar:/system/framework/services.jar:/system_ext/framework/miui-services.jar:/system_ext/framework/apprecovery.proinstaller.jar:/apex/com.android.adservices/javalib/service-adservices.jar:/apex/com.android.adservices
-04-18 18:23:45.097  7058  7105 I python  : Android kivy bootstrap done. __name__ is __main__
-04-18 18:23:45.097  7058  7105 I python  : AND: Ran string
-04-18 18:23:45.097  7058  7105 I python  : Run user program, change dir and execute entrypoint
-04-18 18:23:45.101  7058  7058 D SurfaceView: UPDATE Surface(name=SurfaceView[org.kffs.habilisdatalogger/org.kivy.android.PythonActivity]#176450)/@0x60c6ca, mIsProjectionMode = false
-04-18 18:23:45.102  2045  2318 I WindowManager: wms.showSurfaceRobustly mWin:Window{266bff2 u0 org.kffs.habilisdatalogger/org.kivy.android.PythonActivity}
-04-18 18:23:45.109  2045  2145 I ActivityTaskManager: Displayed org.kffs.habilisdatalogger/org.kivy.android.PythonActivity for user 0: +609ms
-04-18 18:23:45.148  4007  4419 W RecentsModel: getRunningTask   taskInfo=TaskInfo{userId=0 taskId=52399 displayId=0 isRunning=true baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=org.kffs.habilisdatalogger/org.kivy.android.PythonActivity } baseActivity=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity} topActivity=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity} origActivity=null realActivity=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity} numActivities=1 lastActiveTime=1495186836 supportsSplitScreenMultiWindow=true supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=200 token=WCT{android.window.IWindowContainerToken$Stub$Proxy@b5a08a2} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=Rect(0, 98 - 0, 0) topActivityInfo=ActivityInfo{3433933 org.kivy.android.PythonActivity} launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=true isVisible=true isVisibleRequested=true isSleeping=false topActivityInSizeCompat=false topActivityInMiuiSizeCompat=false topActivityEligibleForLetterboxEducation= false topActivityLetterboxed= false isFromDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=-1 topActivityLetterboxHeight=-1 locusId=null displayAreaFeatureId=1 cameraCompatControlState=hidden mIsCastMode=false mTopActivityMediaSize=null mTopActivityRecordName=ActivityRecord{7d7ff65 u0 org.kffs.habilisdatalogger/org.kivy.android.PythonActivity t52399} mTopActivityOrientation=1 mTopActivityWindowIsNowVisible=true isTranslucent=false isEmbedded=false shouldBeVisible=true mBehindAppLockPkg=null mOriginatingUid=0}
-04-18 18:23:45.148  4007  4419 W RecentsModel: getTaskInfoIgnoreHomeAndFreeform   taskInfo=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity}
-04-18 18:23:45.162  4007  4007 E ConnectAnimFinishCallbackManager: java.lang.Exception
-04-18 18:23:45.168  4007  4419 E ActivityManagerWrapper: getRecentTasks: mainTaskId=52399   userId=0   windowMode=1   baseIntent=Intent { act=android.intent.action.MAIN flag=270532608 cmp=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity} }
-04-18 18:23:45.164  7058  7058 W SDLThread: type=1400 audit(0.0:723555): avc:  granted  { execute } for  path="/data/data/org.kffs.habilisdatalogger/files/app/_python_bundle/modules/_json.cpython-311.so" dev="dm-54" ino=1739877 scontext=u:r:untrusted_app_32:s0:c234,c257,c512,c768 tcontext=u:object_r:app_data_file:s0:c234,c257,c512,c768 tclass=file app=org.kffs.habilisdatalogger
-04-18 18:23:45.204  7058  7058 W SDLThread: type=1400 audit(0.0:723556): avc:  granted  { execute } for  path="/data/data/org.kffs.habilisdatalogger/files/app/_python_bundle/modules/_typing.cpython-311.so" dev="dm-54" ino=1723824 scontext=u:r:untrusted_app_32:s0:c234,c257,c512,c768 tcontext=u:object_r:app_data_file:s0:c234,c257,c512,c768 tclass=file app=org.kffs.habilisdatalogger
-04-18 18:23:45.232  7058  7058 W SDLThread: type=1400 audit(0.0:723557): avc:  granted  { execute } for  path="/data/data/org.kffs.habilisdatalogger/files/app/_python_bundle/modules/math.cpython-311.so" dev="dm-54" ino=1717454 scontext=u:r:untrusted_app_32:s0:c234,c257,c512,c768 tcontext=u:object_r:app_data_file:s0:c234,c257,c512,c768 tclass=file app=org.kffs.habilisdatalogger
-04-18 18:23:45.277  7058  7105 I python  : [INFO   ] [Logger      ] Record log in /data/user/0/org.kffs.habilisdatalogger/files/app/.kivy/logs/kivy_26-04-18_1.txt
-04-18 18:23:45.277  7058  7105 I python  : [INFO   ] [Kivy        ] v2.3.0
-04-18 18:23:45.277  7058  7105 I python  : [INFO   ] [Kivy        ] Installed at "/data/user/0/org.kffs.habilisdatalogger/files/app/_python_bundle/site-packages/kivy/__init__.pyc"
-04-18 18:23:45.277  7058  7105 I python  : [INFO   ] [Python      ] v3.11.5 (main, Apr 18 2026, 00:11:48) [Clang 14.0.7 (https://android.googlesource.com/toolchain/llvm-project 4c603efb0
-04-18 18:23:45.277  7058  7105 I python  : [INFO   ] [Python      ] Interpreter at ""
-04-18 18:23:45.278  7058  7105 I python  : [INFO   ] [Logger      ] Purge log fired. Processing...
-04-18 18:23:45.278  7058  7105 I python  : [INFO   ] [Logger      ] Purge finished!
-04-18 18:23:45.280  7058  7105 I python  : [INFO   ] [KivyMD      ] 1.2.0, git-Unknown, 2026-04-16 (installed at "/data/user/0/org.kffs.habilisdatalogger/files/app/_python_bundle/site-packages/kivymd/__init__.pyc")
-04-18 18:23:45.280  7058  7105 I python  : [WARNING] [KivyMD      ] Version 1.2.0 is deprecated and is no longer supported. Use KivyMD version 2.0.0 from the master branch (pip install https://github.com/kivymd/KivyMD/archive/master.zip)
-04-18 18:23:45.284  7058  7105 I python  : [INFO   ] [Factory     ] 195 symbols loaded
-04-18 18:23:45.804  7058  7058 W SDLThread: type=1400 audit(0.0:723577): avc:  granted  { execute } for  path="/data/data/org.kffs.habilisdatalogger/files/app/_python_bundle/modules/array.cpython-311.so" dev="dm-54" ino=1723881 scontext=u:r:untrusted_app_32:s0:c234,c257,c512,c768 tcontext=u:object_r:app_data_file:s0:c234,c257,c512,c768 tclass=file app=org.kffs.habilisdatalogger
-04-18 18:23:45.808  7058  7058 W SDLThread: type=1400 audit(0.0:723578): avc:  granted  { execute } for  path="/data/data/org.kffs.habilisdatalogger/files/app/_python_bundle/modules/_ssl.cpython-311.so" dev="dm-54" ino=1731126 scontext=u:r:untrusted_app_32:s0:c234,c257,c512,c768 tcontext=u:object_r:app_data_file:s0:c234,c257,c512,c768 tclass=file app=org.kffs.habilisdatalogger
-04-18 18:23:45.816  7058  7058 W SDLThread: type=1400 audit(0.0:723579): avc:  granted  { execute } for  path="/data/data/org.kffs.habilisdatalogger/files/app/_python_bundle/modules/binascii.cpython-311.so" dev="dm-54" ino=1717459 scontext=u:r:untrusted_app_32:s0:c234,c257,c512,c768 tcontext=u:object_r:app_data_file:s0:c234,c257,c512,c768 tclass=file app=org.kffs.habilisdatalogger
-04-18 18:23:45.824  7058  7058 W SDLThread: type=1400 audit(0.0:723580): avc:  granted  { execute } for  path="/data/data/org.kffs.habilisdatalogger/files/app/_python_bundle/modules/_contextvars.cpython-311.so" dev="dm-54" ino=1661765 scontext=u:r:untrusted_app_32:s0:c234,c257,c512,c768 tcontext=u:object_r:app_data_file:s0:c234,c257,c512,c768 tclass=file app=org.kffs.habilisdatalogger
-04-18 18:23:45.828  7058  7058 W SDLThread: type=1400 audit(0.0:723581): avc:  granted  { execute } for  path="/data/data/org.kffs.habilisdatalogger/files/app/_python_bundle/modules/_asyncio.cpython-311.so" dev="dm-54" ino=1665302 scontext=u:r:untrusted_app_32:s0:c234,c257,c512,c768 tcontext=u:object_r:app_data_file:s0:c234,c257,c512,c768 tclass=file app=org.kffs.habilisdatalogger
-04-18 18:23:45.904  7058  7105 I python  : [INFO   ] [Image       ] Providers: img_tex, img_dds, img_sdl2, img_pil (img_ffpyplayer ignored)
-04-18 18:23:45.931  7058  7105 I python  : [INFO   ] [Text        ] Provider: sdl2
-04-18 18:23:46.067  7058  7105 I python  : [INFO   ] [Window      ] Provider: sdl2
-04-18 18:23:46.094  7058  7105 I python  : [INFO   ] [GL          ] Using the "OpenGL ES 2" graphics system
-04-18 18:23:46.097  7058  7105 I python  : [INFO   ] [GL          ] Backend used <sdl2>
-04-18 18:23:46.097  7058  7105 I python  : [INFO   ] [GL          ] OpenGL version <b'OpenGL ES 3.2 V@0530.57 (GIT@4bbe300fc3, Ie69fc1c69b, 1747652194) (Date:05/19/25)'>
-04-18 18:23:46.097  7058  7105 I python  : [INFO   ] [GL          ] OpenGL vendor <b'Qualcomm'>
-04-18 18:23:46.097  7058  7105 I python  : [INFO   ] [GL          ] OpenGL renderer <b'Adreno (TM) 642L'>
-04-18 18:23:46.097  7058  7105 I python  : [INFO   ] [GL          ] OpenGL parsed version: 3, 2
-04-18 18:23:46.097  7058  7105 I python  : [INFO   ] [GL          ] Texture max size <16384>
-04-18 18:23:46.097  7058  7105 I python  : [INFO   ] [GL          ] Texture max units <16>
-04-18 18:23:46.118  7058  7105 I python  : [INFO   ] [Window      ] auto add sdl2 input provider
-04-18 18:23:46.120  7058  7105 I python  : [INFO   ] [Window      ] virtual keyboard not allowed, single mode, not docked
-04-18 18:23:46.217  7058  7105 I python  : [INFO   ] [Clipboard   ] Provider: android
-04-18 18:23:46.358  7058  7105 I python  :  Traceback (most recent call last):
-04-18 18:23:46.358  7058  7105 I python  :    File "/home/vboxuser/habilis-datalogger/.buildozer/android/app/main.py", line 131, in <module>
-04-18 18:23:46.358  7058  7105 I python  :    File "/home/vboxuser/habilis-datalogger/.buildozer/android/app/main.py", line 40, in __init__
-04-18 18:23:46.358  7058  7105 I python  :    File "/home/vboxuser/habilis-datalogger/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/other_builds/python3/arm64-v8a__ndk_target_21/python3/Lib/pathlib.py", line 1116, in mkdir
-04-18 18:23:46.358  7058  7105 I python  :  PermissionError: [Errno 13] Permission denied: '/data/field_data'
-04-18 18:23:46.358  7058  7105 I python  : Python for android ended.
-04-18 18:23:46.593  2045 10070 I WindowManager: WIN DEATH: Window{266bff2 u0 org.kffs.habilisdatalogger/org.kivy.android.PythonActivity}
-04-18 18:23:46.594  2045  3170 E ProcessManager: error write exception log
-04-18 18:23:46.600  2045 10070 W InputManager-JNI: Input channel object '266bff2 org.kffs.habilisdatalogger/org.kivy.android.PythonActivity (client)' was disposed without first being removed with the input manager!
-04-18 18:23:46.632  2045  9645 W ActivityTaskManager: Force removing ActivityRecord{7d7ff65 u0 org.kffs.habilisdatalogger/org.kivy.android.PythonActivity t52399}: app died, no saved state
-04-18 18:23:46.635  2045  9645 D WindowManager: Collecting in transition 10553: ActivityRecord{7d7ff65 u0 org.kffs.habilisdatalogger/org.kivy.android.PythonActivity t52399 f}} init visibleRequested:false
-04-18 18:23:46.636  2045  9645 W WindowManager: onSyncReparent mSyncState =2, mSyncGroup = com.android.server.wm.BLASTSyncEngine$SyncGroup@63584d9 this: ActivityRecord{7d7ff65 u0 org.kffs.habilisdatalogger/org.kivy.android.PythonActivity t52399 f}}
-04-18 18:23:46.713  4007  4419 E ActivityManagerWrapper: getRecentTasks: mainTaskId=52399   userId=0   windowMode=1   baseIntent=Intent { act=android.intent.action.MAIN flag=270532608 cmp=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity} }
-04-18 18:23:46.715  4007  4419 D WorldCirculate: getWorldCirculateInfo, taskInfo.baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=org.kffs.habilisdatalogger/org.kivy.android.PythonActivity }, displayId=-1, but get Display failed
-04-18 18:23:46.731  4007  4007 E FileUtils: err write to mi_exception_log
-04-18 18:23:46.748 11446 12069 E PowerKeeper.Thermal: ProcessInfo java.lang.NumberFormatException: For input string: "CPU usage from 155830ms to 101912ms ago (2026-04-18 18"
-04-18 18:23:50.873  5298  5326 E QcRilRequest: [2287] < OEM_HOOK_RAW error: org.codeaurora.telephony.utils.CommandException: INVALID_ARGUMENTS
-04-18 18:23:50.876 29338 29367 W QC_RIL_OEM_HOOK: qcRilFeatureQueryCmn failed w/ org.codeaurora.telephony.utils.CommandException: SIM_ERR
+04-19 08:00:32.838 30427 31120 E msgr.ColorFilterManagerImpl: java.lang.RuntimeException: Table contained no rows for this user
+04-19 08:00:33.010  2045  4996 E VibratorManagerServiceImpl: skipandroid.os.RemoteException: Method setUsageExt is unimplemented.
+04-19 08:00:33.012  3970  3970 E FileUtils: err write to mi_exception_log
+04-19 08:00:33.180  8875  8875 E FileUtils: err write to mi_exception_log
+04-19 08:00:33.245 31991 31991 E FileUtils: err write to mi_exception_log
+04-19 08:00:33.249  4007  4007 E FileUtils: err write to mi_exception_log
+04-19 08:00:33.278  5638  5638 E FileUtils: err write to mi_exception_log
+04-19 08:00:33.280  8875  8875 E FileUtils: err write to mi_exception_log
+04-19 08:00:33.336  4007  4419 E ActivityManagerWrapper: getRecentTasks: mainTaskId=52412   userId=0   windowMode=1   baseIntent=Intent { act=android.intent.action.MAIN flag=270532608 cmp=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity} }
+04-19 08:00:33.376  4007  4419 E BitmapFactory: Unable to decode stream: java.io.FileNotFoundException: /product/media/theme/miui_mod_icons/dynamic/com.android.settings/2.png: open failed: ENOENT (No such file or directory)
+04-19 08:00:33.381  4007  4419 D WorldCirculate: getWorldCirculateInfo, taskInfo.baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=org.kffs.habilisdatalogger/org.kivy.android.PythonActivity }, displayId=-1, but get Display failed
+04-19 08:00:33.393 11446 12069 E PowerKeeper.Thermal: ProcessInfo java.lang.NumberFormatException: For input string: "CPU usage from 188009ms to 80922ms ago (2026-04-19 07"
+04-19 08:00:33.405  4007  4007 E FileUtils: err write to mi_exception_log
+04-19 08:00:33.445  4007  4419 E ActivityManagerWrapper: getRecentTasks: mainTaskId=52412   userId=0   windowMode=1   baseIntent=Intent { act=android.intent.action.MAIN flag=270532608 cmp=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity} }
+04-19 08:00:33.447  4007  4419 D WorldCirculate: getWorldCirculateInfo, taskInfo.baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=org.kffs.habilisdatalogger/org.kivy.android.PythonActivity }, displayId=-1, but get Display failed
+04-19 08:00:33.605 31290 31290 D AutoDensity: getAccessibilityDpi Exception: android.provider.Settings$SettingNotFoundException: display_density_forced
+04-19 08:00:33.646 31290 31290 E FileUtils: err open mi_exception_log errno=2
+04-19 08:00:33.646 31290 31290 E FileUtils: err write to mi_exception_log
+04-19 08:00:33.949 30427 31112 E msgr.ColdstartExperimentsController: java.lang.IllegalStateException: Main DexStore is null
+04-19 08:00:34.073  7399  7399 E FileUtils: err write to mi_exception_log
+04-19 08:00:34.143  7399  7399 E FileUtils: err write to mi_exception_log
+04-19 08:00:34.153  4007  4007 D Launcher.CellLayout: touch item:ShortcutInfo, id=1068, itemType=0, user=UserHandle{0}, mIconType=0, pkgName=org.kffs.habilisdatalogger, className=org.kivy.android.PythonActivity, screenId=2, container=-100, cellX=1, cellY=5, spanX=1, spanY=1
+04-19 08:00:34.210  4007  4007 D Launcher: launch, launchIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=org.kffs.habilisdatalogger/org.kivy.android.PythonActivity (has extras) }
+04-19 08:00:34.213  4007  4007 I RectFSpringAnim: java.lang.Exception
+04-19 08:00:34.215  4007  4007 E ConnectAnimFinishCallbackManager: java.lang.Exception
+04-19 08:00:34.224  4007  4007 I QuickstepAppTransitionManagerImpl: java.lang.Exception
+04-19 08:00:34.224  4007  4007 E ConnectAnimFinishCallbackManager: java.lang.Exception
+04-19 08:00:34.244 31290 31385 W MiuiGallery2_StorageUtils: [misc-pool-2] - create temp file error : java.io.IOException: No such file or directory
+04-19 08:00:34.253  2045  3727 D WindowManager: Collecting in transition 10726: ActivityRecord{1767643 u0 org.kffs.habilisdatalogger/org.kivy.android.PythonActivity init visibleRequested:false
+04-19 08:00:34.286  2045  3727 I ActivityTaskManager: resumeTopActivityInnerLocked topActivity:ActivityRecord{1767643 u0 org.kffs.habilisdatalogger/org.kivy.android.PythonActivity t52414} isFocusable:true this:Task{94a9cec #52414 type=standard A=10492:org.kffs.habilisdatalogger}
+04-19 08:00:34.287  2045  3727 D WindowManager: Collecting in transition 10726: ActivityRecord{1767643 u0 org.kffs.habilisdatalogger/org.kivy.android.PythonActivity t52414} init visibleRequested:false
+04-19 08:00:34.287  2045  3727 I ActivityRecordImpl: setReadyForStartingWindow activityRecord = ActivityRecord{1767643 u0 org.kffs.habilisdatalogger/org.kivy.android.PythonActivity t52414}
+04-19 08:00:34.288  2045  3727 D WindowManager: Collecting in transition 10726: ActivityRecord{1767643 u0 org.kffs.habilisdatalogger/org.kivy.android.PythonActivity t52414} init visibleRequested:true
+04-19 08:00:34.292  2045  3727 I ActivityTaskManager: START u0 {act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=org.kffs.habilisdatalogger/org.kivy.android.PythonActivity bnds=[328,1706][508,1886] (has extras)} with LAUNCH_SINGLE_TASK from uid 10080 from pid 4007 callingPackage com.miui.home (BAL_ALLOW_ALLOWLISTED_COMPONENT) result code=0
+04-19 08:00:34.292  4007  4007 E FileUtils: err write to mi_exception_log
+04-19 08:00:34.293  4007  4007 E FileUtils: err write to mi_exception_log
+04-19 08:00:34.299  8875  8875 E FileUtils: err write to mi_exception_log
+04-19 08:00:34.300  3970  4194 D WindowManagerShell: wct=WindowContainerTransaction { changes = {} hops = [] errorCallbackToken=null taskFragmentOrganizer=null }, hander=com.android.wm.shell.transition.SoScMixedHandler@93417c1, transitionToken=android.os.BinderProxy@ae2ca94, request=TransitionRequestInfo { type = OPEN, triggerTask = TaskInfo{userId=0 taskId=52414 displayId=0 isRunning=true baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=org.kffs.habilisdatalogger/org.kivy.android.PythonActivity } baseActivity=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity} topActivity=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity} origActivity=null realActivity=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity} numActivities=1 lastActiveTime=1544195974 supportsSplitScreenMultiWindow=true supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=200 token=WCT{android.window.IWindowContainerToken$Stub$Proxy@ec1893d} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=Rect(0, 98 - 0, 0) topActivityInfo=ActivityInfo{2663532 org.kivy.android.PythonActivity} launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=false isVisible=false isVisibleRequested=true isSleeping=false topActivityInSizeCompat=false topActivityInMiuiSizeCompat=false topActivityEligibleForLetterboxEducation= false topActivityLetterboxed= false isFromDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=-1 topActivityLetterboxHeight=-1 locusId=null displayAreaFeatureId=1 cameraCompatControlState=hidden mIsCastMode=false mTopActivityMediaSize=null mTopActivityRecordName=ActivityRecord{1767643 u0 org.kffs.habilisdatalogger/org.kivy.android.PythonActivity t52414} mTopActivityOrientation=1 mTopActivityWindowIsNowVisible=false isTranslucent=false isEmbedded=false shouldBeVisible=true mBehindAppLockPkg=null mOriginatingUid=0}, remoteTransition = RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@661283, appThread = null, debugName = null }, displayChange = null }
+04-19 08:00:34.307  8875  8875 E FileUtils: err write to mi_exception_log
+04-19 08:00:34.318  3970  3970 D KeyguardEditorHelper: onTopActivityMayChanged, topActivity=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity}; mState=IDEL
+04-19 08:00:34.327  2045  2318 I ActivityRecordImpl: isReadyForStartingWindow topActivity = ActivityRecord{1767643 u0 org.kffs.habilisdatalogger/org.kivy.android.PythonActivity t52414} isLaunchSourceTypeHome = true topActivity.mStartingWindow = null
+04-19 08:00:34.349  2045  2318 I ActivityRecordImpl: isReadyForStartingWindow topActivity = ActivityRecord{1767643 u0 org.kffs.habilisdatalogger/org.kivy.android.PythonActivity t52414} isLaunchSourceTypeHome = true topActivity.mStartingWindow = Window{9e63f69 u0 Splash Screen org.kffs.habilisdatalogger}
+04-19 08:00:34.349  2045  2318 I BLASTSyncEngine: SyncGroup 10726:  Unfinished container:ActivityRecord{1767643 u0 org.kffs.habilisdatalogger/org.kivy.android.PythonActivity t52414}
+04-19 08:00:34.349  2045  2318 I ActivityRecordImpl: isReadyForStartingWindow topActivity = ActivityRecord{1767643 u0 org.kffs.habilisdatalogger/org.kivy.android.PythonActivity t52414} isLaunchSourceTypeHome = true topActivity.mStartingWindow = Window{9e63f69 u0 Splash Screen org.kffs.habilisdatalogger}
+04-19 08:00:34.362  4007  4007 D RemoteAnimationAdapterCompat: printLeash::taskInfo = TaskInfo{userId=0 taskId=52414 displayId=0 isRunning=true baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=org.kffs.habilisdatalogger/org.kivy.android.PythonActivity } baseActivity=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity} topActivity=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity} origActivity=null realActivity=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity} numActivities=1 lastActiveTime=1544195974 supportsSplitScreenMultiWindow=true supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=200 token=WCT{android.window.IWindowContainerToken$Stub$Proxy@a5d4d47} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=Rect(0, 98 - 0, 0) topActivityInfo=ActivityInfo{32fb974 org.kivy.android.PythonActivity} launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=false isVisible=true isVisibleRequested=true isSleeping=false topActivityInSizeCompat=false topActivityInMiuiSizeCompat=false topActivityEligibleForLetterboxEducation= false topActivityLetterboxed= false isFromDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=-1 topActivityLetterboxHeight=-1 locusId=null displayAreaFeatureId=1 cameraCompatControlState=hidden mIsCastMode=false mTopActivityMediaSize=null mTopActivityRecordName=ActivityRecord{1767643 u0 org.kffs.habilisdatalogger/org.kivy.android.PythonActivity t52414} mTopActivityOrientation=1 mTopActivityWindowIsNowVisible=false isTranslucent=false isEmbedded=false shouldBeVisible=true mBehindAppLockPkg=null mOriginatingUid=0}
+04-19 08:00:34.378  2045  2360 I ActivityManager: Start proc 31399:org.kffs.habilisdatalogger/u0a492 for top-activity {org.kffs.habilisdatalogger/org.kivy.android.PythonActivity} caller=com.miui.home
+04-19 08:00:34.395  8875  8875 E FileUtils: err write to mi_exception_log
+04-19 08:00:34.399  2045  3170 E ProcessManager: error write exception log
+04-19 08:00:34.419  4007  4419 E ActivityManagerWrapper: getRecentTasks: mainTaskId=52414   userId=0   windowMode=1   baseIntent=Intent { act=android.intent.action.MAIN flag=270532608 cmp=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity} }
+04-19 08:00:34.427  3970  4194 D MiuiFullScreenTaskRepository: addOrUpdateFullScreenTaskInfo taskId=52414, topActivity=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity}
+04-19 08:00:34.444  4007  4419 E ActivityManagerWrapper: getRecentTasks: mainTaskId=52414   userId=0   windowMode=1   baseIntent=Intent { act=android.intent.action.MAIN flag=270532608 cmp=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity} }
+04-19 08:00:34.464  4007  4419 E ActivityManagerWrapper: getRecentTasks: mainTaskId=52414   userId=0   windowMode=1   baseIntent=Intent { act=android.intent.action.MAIN flag=270532608 cmp=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity} }
+04-19 08:00:34.465 24757 24757 E FileUtils: err write to mi_exception_log
+04-19 08:00:34.555  3970  4194 D MiuiFullScreenTaskRepository: addOrUpdateFullScreenTaskInfo taskId=52414, topActivity=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity}
+04-19 08:00:34.560  3970  4194 D MiuiFullScreenTaskRepository: setFocusedTask taskId=52414, displayId=0, topActivity=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity}
+04-19 08:00:34.560  3970  4194 D MiuiFullScreenTaskRepository: addOrUpdateFullScreenTaskInfo taskId=52414, topActivity=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity}
+04-19 08:00:34.560  3970  4194 D MiuiFreeformModeController: onFocusTaskChanged taskInfo: TaskInfo{userId=0 taskId=52414 displayId=0 isRunning=true baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=org.kffs.habilisdatalogger/org.kivy.android.PythonActivity } baseActivity=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity} topActivity=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity} origActivity=null realActivity=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity} numActivities=1 lastActiveTime=1544196240 supportsSplitScreenMultiWindow=true supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=200 token=WCT{android.window.IWindowContainerToken$Stub$Proxy@d5c3b90} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=Rect(0, 98 - 0, 0) topActivityInfo=ActivityInfo{bcb6c89 org.kivy.android.PythonActivity} launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=true isVisible=true isVisibleRequested=true isSleeping=false topActivityInSizeCompat=false topActivityInMiuiSizeCompat=false topActivityEligibleForLetterboxEducation= false topActivityLetterboxed= false isFromDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=-1 topActivityLetterboxHeight=-1 locusId=null displayAreaFeatureId=1 cameraCompatControlState=hidden mIsCastMode=false mTopActivityMediaSize=null mTopActivityRecordName=ActivityRecord{1767643 u0 org.kffs.habilisdatalogger/org.kivy.android.PythonActivity t52414} mTopActivityOrientation=1 mTopActivityWindowIsNowVisible=false isTranslucent=false isEmbedded=false shouldBeVisible=true mBehindAppLockPkg=null mOriginatingUid=0}
+04-19 08:00:34.653 11446 12069 E PowerKeeper.Thermal: ProcessInfo java.lang.NumberFormatException: For input string: "CPU usage from 189282ms to 82195ms ago (2026-04-19 07"
+04-19 08:00:34.661 31399 31399 E FileUtils: err open mi_exception_log errno=2
+04-19 08:00:34.661 31399 31399 E FileUtils: err write to mi_exception_log
+04-19 08:00:34.697 31399 31399 V PythonActivity: PythonActivity onCreate running
+04-19 08:00:34.697 31399 31399 V PythonActivity: About to do super onCreate
+04-19 08:00:34.707 31399 31399 V PythonActivity: Did super onCreate
+04-19 08:00:34.707  3970  4194 D MiuiFullScreenTaskRepository: setFocusedTask taskId=52414, displayId=0, topActivity=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity}
+04-19 08:00:34.707  3970  4194 D MiuiFullScreenTaskRepository: addOrUpdateFullScreenTaskInfo taskId=52414, topActivity=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity}
+04-19 08:00:34.763 31399 31432 V PythonActivity: Ready to unpack
+04-19 08:00:34.763 31399 31432 V pythonutil: Unpacking private app
+04-19 08:00:34.763 31399 31432 V pythonutil: Data version is 36f3f09e850010b27fd3efd8ff5a2beec25a438c
+04-19 08:00:34.766 31399 31432 V pythonutil: Unpacking /data/app/~~I1FA-kOb-WdvNbgjynF6bg==/org.kffs.habilisdatalogger-ctg7y0LbWgb3cgGlcu1ZnQ==/lib/arm64/libpybundle app
+04-19 08:00:34.766 31399 31399 V PythonActivity: onResume()
+04-19 08:00:34.768 31399 31432 V pythonutil: Data version is 36f3f09e850010b27fd3efd8ff5a2beec25a438c
+04-19 08:00:34.825 31399 31399 I ForceDarkHelperStubImpl: setViewRootImplForceDark: false for org.kivy.android.PythonActivity@3d9ddc2, reason: AppDarkModeEnable
+04-19 08:00:34.843 31399 31399 E FileUtils: err write to mi_exception_log
+04-19 08:00:34.843  3970  4889 D MiuiFreeformModeObserver: activityResumed() intent： Intent { cmp=org.kffs.habilisdatalogger/org.kivy.android.PythonActivity (has extras) }
+04-19 08:00:34.844  4007  4007 D RecentsImpl: mActivityStateObserver org.kivy.android.PythonActivity
+04-19 08:00:34.844  4007  4007 W RecentsImpl: onResumed className=org.kivy.android.PythonActivity   mIsInAnotherPro=false   isKeyguardLocked=false   mSecuritySpaceGuideShown=false
+04-19 08:00:34.848 31399 31399 V pythonutil: Checking pattern libsqlite3\.so against libSDL2.so
+04-19 08:00:34.848 31399 31399 V pythonutil: Checking pattern libsqlite3\.so against libSDL2_ttf.so
+04-19 08:00:34.848 31399 31399 V pythonutil: Checking pattern libsqlite3\.so against libssl1.1.so
+04-19 08:00:34.848 31399 31399 V pythonutil: Checking pattern libsqlite3\.so against libpng16.so
+04-19 08:00:34.849 31399 31399 V pythonutil: Checking pattern libsqlite3\.so against libfreetype.so
+04-19 08:00:34.849 31399 31399 V pythonutil: Checking pattern libsqlite3\.so against libmain.so
+04-19 08:00:34.849 31399 31399 V pythonutil: Checking pattern libsqlite3\.so against libpython3.11.so
+04-19 08:00:34.849 31399 31399 V pythonutil: Checking pattern libsqlite3\.so against libcrypto1.1.so
+04-19 08:00:34.849 31399 31399 V pythonutil: Checking pattern libsqlite3\.so against libffi.so
+04-19 08:00:34.849 31399 31399 V pythonutil: Checking pattern libsqlite3\.so against libSDL2_image.so
+04-19 08:00:34.849 31399 31399 V pythonutil: Checking pattern libsqlite3\.so against libSDL2_mixer.so
+04-19 08:00:34.849 31399 31399 V pythonutil: Checking pattern libsqlite3\.so against libpybundle.so
+04-19 08:00:34.849 31399 31399 V pythonutil: Checking pattern libsqlite3\.so against libsqlite3.so
+04-19 08:00:34.849 31399 31399 V pythonutil: Pattern libsqlite3\.so matched file libsqlite3.so
+04-19 08:00:34.849 31399 31399 V pythonutil: Checking pattern libffi\.so against libSDL2.so
+04-19 08:00:34.849 31399 31399 V pythonutil: Checking pattern libffi\.so against libSDL2_ttf.so
+04-19 08:00:34.849 31399 31399 V pythonutil: Checking pattern libffi\.so against libssl1.1.so
+04-19 08:00:34.850 31399 31399 V pythonutil: Checking pattern libffi\.so against libpng16.so
+04-19 08:00:34.850 31399 31399 V pythonutil: Checking pattern libffi\.so against libfreetype.so
+04-19 08:00:34.850 31399 31399 V pythonutil: Checking pattern libffi\.so against libmain.so
+04-19 08:00:34.850 31399 31399 V pythonutil: Checking pattern libffi\.so against libpython3.11.so
+04-19 08:00:34.850 31399 31399 V pythonutil: Checking pattern libffi\.so against libcrypto1.1.so
+04-19 08:00:34.850 31399 31399 V pythonutil: Checking pattern libffi\.so against libffi.so
+04-19 08:00:34.850 31399 31399 V pythonutil: Pattern libffi\.so matched file libffi.so
+04-19 08:00:34.850 31399 31399 V pythonutil: Checking pattern libffi\.so against libSDL2_image.so
+04-19 08:00:34.850 31399 31399 V pythonutil: Checking pattern libffi\.so against libSDL2_mixer.so
+04-19 08:00:34.850 31399 31399 V pythonutil: Checking pattern libffi\.so against libpybundle.so
+04-19 08:00:34.850 31399 31399 V pythonutil: Checking pattern libffi\.so against libsqlite3.so
+04-19 08:00:34.850 31399 31399 V pythonutil: Checking pattern libpng16\.so against libSDL2.so
+04-19 08:00:34.850 31399 31399 V pythonutil: Checking pattern libpng16\.so against libSDL2_ttf.so
+04-19 08:00:34.851 31399 31399 V pythonutil: Checking pattern libpng16\.so against libssl1.1.so
+04-19 08:00:34.851 31399 31399 V pythonutil: Checking pattern libpng16\.so against libpng16.so
+04-19 08:00:34.851 31399 31399 V pythonutil: Pattern libpng16\.so matched file libpng16.so
+04-19 08:00:34.851 31399 31399 V pythonutil: Checking pattern libpng16\.so against libfreetype.so
+04-19 08:00:34.851 31399 31399 V pythonutil: Checking pattern libpng16\.so against libmain.so
+04-19 08:00:34.851 31399 31399 V pythonutil: Checking pattern libpng16\.so against libpython3.11.so
+04-19 08:00:34.851 31399 31399 V pythonutil: Checking pattern libpng16\.so against libcrypto1.1.so
+04-19 08:00:34.851 31399 31399 V pythonutil: Checking pattern libpng16\.so against libffi.so
+04-19 08:00:34.851 31399 31399 V pythonutil: Checking pattern libpng16\.so against libSDL2_image.so
+04-19 08:00:34.851 31399 31399 V pythonutil: Checking pattern libpng16\.so against libSDL2_mixer.so
+04-19 08:00:34.851 31399 31399 V pythonutil: Checking pattern libpng16\.so against libpybundle.so
+04-19 08:00:34.851 31399 31399 V pythonutil: Checking pattern libpng16\.so against libsqlite3.so
+04-19 08:00:34.851 31399 31399 V pythonutil: Checking pattern libssl.*\.so against libSDL2.so
+04-19 08:00:34.851 31399 31399 V pythonutil: Checking pattern libssl.*\.so against libSDL2_ttf.so
+04-19 08:00:34.851 31399 31399 V pythonutil: Checking pattern libssl.*\.so against libssl1.1.so
+04-19 08:00:34.851 31399 31399 V pythonutil: Pattern libssl.*\.so matched file libssl1.1.so
+04-19 08:00:34.851 31399 31399 V pythonutil: Checking pattern libssl.*\.so against libpng16.so
+04-19 08:00:34.852 31399 31399 V pythonutil: Checking pattern libssl.*\.so against libfreetype.so
+04-19 08:00:34.852 31399 31399 V pythonutil: Checking pattern libssl.*\.so against libmain.so
+04-19 08:00:34.852 31399 31399 V pythonutil: Checking pattern libssl.*\.so against libpython3.11.so
+04-19 08:00:34.852 31399 31399 V pythonutil: Checking pattern libssl.*\.so against libcrypto1.1.so
+04-19 08:00:34.852 31399 31399 V pythonutil: Checking pattern libssl.*\.so against libffi.so
+04-19 08:00:34.852 31399 31399 V pythonutil: Checking pattern libssl.*\.so against libSDL2_image.so
+04-19 08:00:34.852 31399 31399 V pythonutil: Checking pattern libssl.*\.so against libSDL2_mixer.so
+04-19 08:00:34.852 31399 31399 V pythonutil: Checking pattern libssl.*\.so against libpybundle.so
+04-19 08:00:34.852 31399 31399 V pythonutil: Checking pattern libssl.*\.so against libsqlite3.so
+04-19 08:00:34.853 31399 31399 V pythonutil: Checking pattern libcrypto.*\.so against libSDL2.so
+04-19 08:00:34.853 31399 31399 V pythonutil: Checking pattern libcrypto.*\.so against libSDL2_ttf.so
+04-19 08:00:34.853 31399 31399 V pythonutil: Checking pattern libcrypto.*\.so against libssl1.1.so
+04-19 08:00:34.853 31399 31399 V pythonutil: Checking pattern libcrypto.*\.so against libpng16.so
+04-19 08:00:34.853 31399 31399 V pythonutil: Checking pattern libcrypto.*\.so against libfreetype.so
+04-19 08:00:34.853 31399 31399 V pythonutil: Checking pattern libcrypto.*\.so against libmain.so
+04-19 08:00:34.854 31399 31399 V pythonutil: Checking pattern libcrypto.*\.so against libpython3.11.so
+04-19 08:00:34.854 31399 31399 V pythonutil: Checking pattern libcrypto.*\.so against libcrypto1.1.so
+04-19 08:00:34.854 31399 31399 V pythonutil: Pattern libcrypto.*\.so matched file libcrypto1.1.so
+04-19 08:00:34.854 31399 31399 V pythonutil: Checking pattern libcrypto.*\.so against libffi.so
+04-19 08:00:34.854 31399 31399 V pythonutil: Checking pattern libcrypto.*\.so against libSDL2_image.so
+04-19 08:00:34.854 31399 31399 V pythonutil: Checking pattern libcrypto.*\.so against libSDL2_mixer.so
+04-19 08:00:34.854 31399 31399 V pythonutil: Checking pattern libcrypto.*\.so against libpybundle.so
+04-19 08:00:34.854 31399 31399 V pythonutil: Checking pattern libcrypto.*\.so against libsqlite3.so
+04-19 08:00:34.855 31399 31399 V pythonutil: Checking pattern libSDL2\.so against libSDL2.so
+04-19 08:00:34.855 31399 31399 V pythonutil: Pattern libSDL2\.so matched file libSDL2.so
+04-19 08:00:34.855 31399 31399 V pythonutil: Checking pattern libSDL2\.so against libSDL2_ttf.so
+04-19 08:00:34.855 31399 31399 V pythonutil: Checking pattern libSDL2\.so against libssl1.1.so
+04-19 08:00:34.855 31399 31399 V pythonutil: Checking pattern libSDL2\.so against libpng16.so
+04-19 08:00:34.855 31399 31399 V pythonutil: Checking pattern libSDL2\.so against libfreetype.so
+04-19 08:00:34.855 31399 31399 V pythonutil: Checking pattern libSDL2\.so against libmain.so
+04-19 08:00:34.855 31399 31399 V pythonutil: Checking pattern libSDL2\.so against libpython3.11.so
+04-19 08:00:34.855 31399 31399 V pythonutil: Checking pattern libSDL2\.so against libcrypto1.1.so
+04-19 08:00:34.855 31399 31399 V pythonutil: Checking pattern libSDL2\.so against libffi.so
+04-19 08:00:34.855 31399 31399 V pythonutil: Checking pattern libSDL2\.so against libSDL2_image.so
+04-19 08:00:34.855 31399 31399 V pythonutil: Checking pattern libSDL2\.so against libSDL2_mixer.so
+04-19 08:00:34.855 31399 31399 V pythonutil: Checking pattern libSDL2\.so against libpybundle.so
+04-19 08:00:34.855 31399 31399 V pythonutil: Checking pattern libSDL2\.so against libsqlite3.so
+04-19 08:00:34.856 31399 31399 V pythonutil: Checking pattern libSDL2_image\.so against libSDL2.so
+04-19 08:00:34.856 31399 31399 V pythonutil: Checking pattern libSDL2_image\.so against libSDL2_ttf.so
+04-19 08:00:34.856 31399 31399 V pythonutil: Checking pattern libSDL2_image\.so against libssl1.1.so
+04-19 08:00:34.856 31399 31399 V pythonutil: Checking pattern libSDL2_image\.so against libpng16.so
+04-19 08:00:34.856 31399 31399 V pythonutil: Checking pattern libSDL2_image\.so against libfreetype.so
+04-19 08:00:34.856 31399 31399 V pythonutil: Checking pattern libSDL2_image\.so against libmain.so
+04-19 08:00:34.856 31399 31399 V pythonutil: Checking pattern libSDL2_image\.so against libpython3.11.so
+04-19 08:00:34.856 31399 31399 V pythonutil: Checking pattern libSDL2_image\.so against libcrypto1.1.so
+04-19 08:00:34.856 31399 31399 V pythonutil: Checking pattern libSDL2_image\.so against libffi.so
+04-19 08:00:34.856 31399 31399 V pythonutil: Checking pattern libSDL2_image\.so against libSDL2_image.so
+04-19 08:00:34.856 31399 31399 V pythonutil: Pattern libSDL2_image\.so matched file libSDL2_image.so
+04-19 08:00:34.856 31399 31399 V pythonutil: Checking pattern libSDL2_image\.so against libSDL2_mixer.so
+04-19 08:00:34.857 31399 31399 V pythonutil: Checking pattern libSDL2_image\.so against libpybundle.so
+04-19 08:00:34.857 31399 31399 V pythonutil: Checking pattern libSDL2_image\.so against libsqlite3.so
+04-19 08:00:34.857 31399 31399 V pythonutil: Checking pattern libSDL2_mixer\.so against libSDL2.so
+04-19 08:00:34.857 31399 31399 V pythonutil: Checking pattern libSDL2_mixer\.so against libSDL2_ttf.so
+04-19 08:00:34.857 31399 31399 V pythonutil: Checking pattern libSDL2_mixer\.so against libssl1.1.so
+04-19 08:00:34.857 31399 31399 V pythonutil: Checking pattern libSDL2_mixer\.so against libpng16.so
+04-19 08:00:34.857 31399 31399 V pythonutil: Checking pattern libSDL2_mixer\.so against libfreetype.so
+04-19 08:00:34.857 31399 31399 V pythonutil: Checking pattern libSDL2_mixer\.so against libmain.so
+04-19 08:00:34.857 31399 31399 V pythonutil: Checking pattern libSDL2_mixer\.so against libpython3.11.so
+04-19 08:00:34.857 31399 31399 V pythonutil: Checking pattern libSDL2_mixer\.so against libcrypto1.1.so
+04-19 08:00:34.857 31399 31399 V pythonutil: Checking pattern libSDL2_mixer\.so against libffi.so
+04-19 08:00:34.858 31399 31399 V pythonutil: Checking pattern libSDL2_mixer\.so against libSDL2_image.so
+04-19 08:00:34.858 31399 31399 V pythonutil: Checking pattern libSDL2_mixer\.so against libSDL2_mixer.so
+04-19 08:00:34.858 31399 31399 V pythonutil: Pattern libSDL2_mixer\.so matched file libSDL2_mixer.so
+04-19 08:00:34.858 31399 31399 V pythonutil: Checking pattern libSDL2_mixer\.so against libpybundle.so
+04-19 08:00:34.858 31399 31399 V pythonutil: Checking pattern libSDL2_mixer\.so against libsqlite3.so
+04-19 08:00:34.858 31399 31399 V pythonutil: Checking pattern libSDL2_ttf\.so against libSDL2.so
+04-19 08:00:34.858 31399 31399 V pythonutil: Checking pattern libSDL2_ttf\.so against libSDL2_ttf.so
+04-19 08:00:34.858 31399 31399 V pythonutil: Pattern libSDL2_ttf\.so matched file libSDL2_ttf.so
+04-19 08:00:34.858 31399 31399 V pythonutil: Checking pattern libSDL2_ttf\.so against libssl1.1.so
+04-19 08:00:34.858 31399 31399 V pythonutil: Checking pattern libSDL2_ttf\.so against libpng16.so
+04-19 08:00:34.858 31399 31399 V pythonutil: Checking pattern libSDL2_ttf\.so against libfreetype.so
+04-19 08:00:34.858 31399 31399 V pythonutil: Checking pattern libSDL2_ttf\.so against libmain.so
+04-19 08:00:34.858 31399 31399 V pythonutil: Checking pattern libSDL2_ttf\.so against libpython3.11.so
+04-19 08:00:34.859 31399 31399 V pythonutil: Checking pattern libSDL2_ttf\.so against libcrypto1.1.so
+04-19 08:00:34.859 31399 31399 V pythonutil: Checking pattern libSDL2_ttf\.so against libffi.so
+04-19 08:00:34.859 31399 31399 V pythonutil: Checking pattern libSDL2_ttf\.so against libSDL2_image.so
+04-19 08:00:34.859 31399 31399 V pythonutil: Checking pattern libSDL2_ttf\.so against libSDL2_mixer.so
+04-19 08:00:34.859 31399 31399 V pythonutil: Checking pattern libSDL2_ttf\.so against libpybundle.so
+04-19 08:00:34.859 31399 31399 V pythonutil: Checking pattern libSDL2_ttf\.so against libsqlite3.so
+04-19 08:00:34.859 31399 31399 V pythonutil: Loading library: sqlite3
+04-19 08:00:34.864 31399 31399 V pythonutil: Loading library: ffi
+04-19 08:00:34.870 31399 31399 V pythonutil: Loading library: png16
+04-19 08:00:34.873 31399 31399 V pythonutil: Loading library: ssl1.1
+04-19 08:00:34.887 31399 31399 V pythonutil: Loading library: crypto1.1
+04-19 08:00:34.888 31399 31399 V pythonutil: Loading library: SDL2
+04-19 08:00:34.894 31399 31399 V pythonutil: Loading library: SDL2_image
+04-19 08:00:34.897 31399 31399 V pythonutil: Loading library: SDL2_mixer
+04-19 08:00:34.901 31399 31399 V pythonutil: Loading library: SDL2_ttf
+04-19 08:00:34.912 31399 31399 V pythonutil: Loading library: python3.5m
+04-19 08:00:34.921 31399 31399 D nativeloader: Load libpython3.5m.so using class loader ns clns-4 (caller=/data/app/~~I1FA-kOb-WdvNbgjynF6bg==/org.kffs.habilisdatalogger-ctg7y0LbWgb3cgGlcu1ZnQ==/base.apk!classes5.dex): dlopen failed: library "libpython3.5m.so" not found
+04-19 08:00:34.921 31399 31399 V pythonutil: Library loading error: dlopen failed: library "libpython3.5m.so" not found
+04-19 08:00:34.921 31399 31399 V pythonutil: Loading library: python3.6m
+04-19 08:00:34.922 31399 31399 D nativeloader: Load libpython3.6m.so using class loader ns clns-4 (caller=/data/app/~~I1FA-kOb-WdvNbgjynF6bg==/org.kffs.habilisdatalogger-ctg7y0LbWgb3cgGlcu1ZnQ==/base.apk!classes5.dex): dlopen failed: library "libpython3.6m.so" not found
+04-19 08:00:34.922 31399 31399 V pythonutil: Library loading error: dlopen failed: library "libpython3.6m.so" not found
+04-19 08:00:34.922 31399 31399 V pythonutil: Loading library: python3.7m
+04-19 08:00:34.923 31399 31399 D nativeloader: Load libpython3.7m.so using class loader ns clns-4 (caller=/data/app/~~I1FA-kOb-WdvNbgjynF6bg==/org.kffs.habilisdatalogger-ctg7y0LbWgb3cgGlcu1ZnQ==/base.apk!classes5.dex): dlopen failed: library "libpython3.7m.so" not found
+04-19 08:00:34.923 31399 31399 V pythonutil: Library loading error: dlopen failed: library "libpython3.7m.so" not found
+04-19 08:00:34.923 31399 31399 V pythonutil: Loading library: python3.8
+04-19 08:00:34.924 31399 31399 D nativeloader: Load libpython3.8.so using class loader ns clns-4 (caller=/data/app/~~I1FA-kOb-WdvNbgjynF6bg==/org.kffs.habilisdatalogger-ctg7y0LbWgb3cgGlcu1ZnQ==/base.apk!classes5.dex): dlopen failed: library "libpython3.8.so" not found
+04-19 08:00:34.924 31399 31399 V pythonutil: Library loading error: dlopen failed: library "libpython3.8.so" not found
+04-19 08:00:34.924 31399 31399 V pythonutil: Loading library: python3.9
+04-19 08:00:34.924 31399 31399 D nativeloader: Load libpython3.9.so using class loader ns clns-4 (caller=/data/app/~~I1FA-kOb-WdvNbgjynF6bg==/org.kffs.habilisdatalogger-ctg7y0LbWgb3cgGlcu1ZnQ==/base.apk!classes5.dex): dlopen failed: library "libpython3.9.so" not found
+04-19 08:00:34.924 31399 31399 V pythonutil: Library loading error: dlopen failed: library "libpython3.9.so" not found
+04-19 08:00:34.925 31399 31399 V pythonutil: Loading library: python3.10
+04-19 08:00:34.925 31399 31399 D nativeloader: Load libpython3.10.so using class loader ns clns-4 (caller=/data/app/~~I1FA-kOb-WdvNbgjynF6bg==/org.kffs.habilisdatalogger-ctg7y0LbWgb3cgGlcu1ZnQ==/base.apk!classes5.dex): dlopen failed: library "libpython3.10.so" not found
+04-19 08:00:34.925 31399 31399 V pythonutil: Library loading error: dlopen failed: library "libpython3.10.so" not found
+04-19 08:00:34.925 31399 31399 V pythonutil: Loading library: python3.11
+04-19 08:00:34.935 31399 31399 D nativeloader: Load /data/app/~~I1FA-kOb-WdvNbgjynF6bg==/org.kffs.habilisdatalogger-ctg7y0LbWgb3cgGlcu1ZnQ==/lib/arm64/libpython3.11.so using class loader ns clns-4 (caller=/data/app/~~I1FA-kOb-WdvNbgjynF6bg==/org.kffs.habilisdatalogger-ctg7y0LbWgb3cgGlcu1ZnQ==/base.apk!classes5.dex): ok
+04-19 08:00:34.935 31399 31399 V pythonutil: Loading library: main
+04-19 08:00:34.938 31399 31399 V pythonutil: Loaded everything!
+04-19 08:00:34.993 31399 31399 V PythonActivity: Setting env vars for start.c and Python to use
+04-19 08:00:34.993 31399 31399 V PythonActivity: Access to our meta-data...
+04-19 08:00:34.994 31399 31399 I PythonActivity: Surface will NOT be transparent
+04-19 08:00:34.995 31399 31399 E FileUtils: err write to mi_exception_log
+04-19 08:00:34.999  4007  4007 E ConnectAnimFinishCallbackManager: java.lang.Exception
+04-19 08:00:35.011  2045  3882 D CoreBackPreview: Window{f63895d u0 org.kffs.habilisdatalogger/org.kivy.android.PythonActivity}: Setting back callback OnBackInvokedCallbackInfo{mCallback=android.window.IOnBackInvokedCallback$Stub$Proxy@e06df60, mPriority=0, mIsAnimationCallback=false}
+04-19 08:00:35.035  2045  4161 D WindowManager: wms.Input focus has changed to Window{f63895d u0 org.kffs.habilisdatalogger/org.kivy.android.PythonActivity} display=0 updateInputWindows = true
+04-19 08:00:35.038  1434  2757 I SurfaceFlinger: sf.setTransactionState focusRequest transactionId:8783209996907 frontWin:f63895d org.kffs.habilisdatalogger/org.kivy.android.PythonActivity
+04-19 08:00:35.046  4007  4007 E FileUtils: err write to mi_exception_log
+04-19 08:00:35.054  5638  5638 E FileUtils: err write to mi_exception_log
+04-19 08:00:35.058 31399 31399 D VRI[PythonActivity]: vri.reportNextDraw android.view.ViewRootImpl.performTraversals:4331 android.view.ViewRootImpl.doTraversal:2971 android.view.ViewRootImpl$TraversalRunnable.run:10262 android.view.Choreographer$CallbackRecord.run:1634 android.view.Choreographer$CallbackRecord.run:1643 
+04-19 08:00:35.103 31399 31442 V PythonActivity: appConfirmedActive() -> preparing loading screen removal
+04-19 08:00:35.104 31399 31399 D VRI[PythonActivity]: vri.Setup new sync=wmsSync-VRI[PythonActivity]#1
+04-19 08:00:35.105 31399 31442 I python  : Initializing Python for Android
+04-19 08:00:35.105 31399 31442 I python  : Setting additional env vars from p4a_env_vars.txt
+04-19 08:00:35.106 31399 31442 I python  : Changing directory to the one provided by ANDROID_ARGUMENT
+04-19 08:00:35.106 31399 31442 I python  : /data/user/0/org.kffs.habilisdatalogger/files/app
+04-19 08:00:35.109 31399 31442 I python  : Preparing to initialize python
+04-19 08:00:35.110 31399 31442 I python  : _python_bundle dir exists
+04-19 08:00:35.110 31399 31442 I python  : calculated paths to be...
+04-19 08:00:35.110 31399 31442 I python  : /data/user/0/org.kffs.habilisdatalogger/files/app/_python_bundle/stdlib.zip:/data/user/0/org.kffs.habilisdatalogger/files/app/_python_bundle/modules
+04-19 08:00:35.110 31399 31442 I python  : set wchar paths...
+04-19 08:00:35.151  8671 17147 E DatabaseUtils: Writing exception to parcel
+04-19 08:00:35.151  8671 17147 E DatabaseUtils: java.lang.IllegalArgumentException: Unsupported MIME type audio/m4a
+04-19 08:00:35.158 31399 31399 W SDLThread: type=1400 audit(0.0:740580): avc:  granted  { execute } for  path="/data/data/org.kffs.habilisdatalogger/files/app/_python_bundle/modules/zlib.cpython-311.so" dev="dm-54" ino=1675400 scontext=u:r:untrusted_app_32:s0:c236,c257,c512,c768 tcontext=u:object_r:app_data_file:s0:c236,c257,c512,c768 tclass=file app=org.kffs.habilisdatalogger
+04-19 08:00:35.187 31399 31442 I python  : Initialized python
+04-19 08:00:35.187 31399 31442 I python  : AND: Init threads
+04-19 08:00:35.188 31399 31442 I python  : testing python print redirection
+04-19 08:00:35.188 31399 31442 I python  : Android path ['.', '/data/user/0/org.kffs.habilisdatalogger/files/app/_python_bundle/stdlib.zip', '/data/user/0/org.kffs.habilisdatalogger/files/app/_python_bundle/modules', '/data/user/0/org.kffs.habilisdatalogger/files/app/_python_bundle/site-packages']
+04-19 08:00:35.189 31399 31442 I python  : os.environ is environ({'PATH': '/product/bin:/apex/com.android.runtime/bin:/apex/com.android.art/bin:/system_ext/bin:/system/bin:/system/xbin:/odm/bin:/vendor/bin:/vendor/xbin', 'ANDROID_BOOTLOGO': '1', 'ANDROID_ROOT': '/system', 'ANDROID_ASSETS': '/system/app', 'ANDROID_DATA': '/data', 'ANDROID_STORAGE': '/storage', 'ANDROID_ART_ROOT': '/apex/com.android.art', 'ANDROID_I18N_ROOT': '/apex/com.android.i18n', 'ANDROID_TZDATA_ROOT': '/apex/com.android.tzdata', 'EXTERNAL_STORAGE': '/sdcard', 'ASEC_MOUNTPOINT': '/mnt/asec', 'DOWNLOAD_CACHE': '/data/cache', 'BOOTCLASSPATH': '/apex/com.android.art/javalib/core-oj.jar:/apex/com.android.art/javalib/core-libart.jar:/apex/com.android.art/javalib/okhttp.jar:/apex/com.android.art/javalib/bouncycastle.jar:/apex/com.android.art/javalib/apache-xml.jar:/system/framework/framework.jar:/system/framework/framework-graphics.jar:/system/framework/ext.jar:/system/framework/telephony-common.jar:/system/framework/voip-common.jar:/system/framework/ims-common.jar:/system/framework/tcmiface.jar:/system/framework/telephony-ext.jar:/system/framework/QPerformance.jar:/system/framework/UxPerformance.jar:/system/framework/WfdCommon.jar:/system_ext/framework/miui-framework.jar:/system_ext/framework/miui-telephony-common.jar:/system_ext/framework/miui-enterprise-sdk.jar:/system_ext/framework/vendor.qti.hardware.qconfig-V5-java.jar:/apex/com.android.i18n/javalib/core-icu4j.jar:/apex/com.android.adservices/javalib/framework-adservices.jar:/apex/com.android.adservices/javalib/framework-sdksandbox.jar:/apex/com.android.appsearch/javalib/framework-appsearch.jar:/apex/com.android.configinfrastructure/javalib/framework-configinfrastructure.jar:/apex/com.android.conscrypt/javalib/conscrypt.jar:/apex/com.android.devicelock/javalib/framework-devicelock.jar:/apex/com.android.healthfitness/javalib/framework-healthfitness.jar:/apex/com.android.ipsec/javalib/android.net.ipsec.ike.jar:/apex/com.android.media/javalib/updatable-media.jar:/apex/com.android.mediaprovider/javalib/framework-mediaprovider.jar:/apex/com.android.mediaprovider/javalib/framework-pdf.jar:/apex/com.android.mediaprovider/javalib/framework-photopicker.jar:/apex/com.android.ondevicepersonalization/javalib/framework-ondevicepersonalization.jar:/apex/com.android.os.statsd/javalib/framework-statsd.jar:/apex/com.android.permission/javalib/framework-permission.jar:/apex/com.android.permission/javalib/framework-permission-s.jar:/apex/com.android.scheduling/javalib/framework-scheduling.jar:/apex/com.android.sdkext/javalib/framework-sdkextensions.jar:/apex/com.android.tethering/javalib/framework-connectivity.jar:/apex/com.android.tethering/javalib/framework-connectivity-t.jar:/apex/com.android.tethering/javalib/framework-tethering.jar:/apex/com.android.uwb/javalib/framework-uwb.jar:/apex/com.android.virt/javalib/framework-virtualization.jar:/apex/com.android.wifi/javalib/framework-wifi.jar', 'DEX2OATBOOTCLASSPATH': '/apex/com.android.art/javalib/core-oj.jar:/apex/com.android.art/javalib/core-libart.jar:/apex/com.android.art/javalib/okhttp.jar:/apex/com.android.art/javalib/bouncycastle.jar:/apex/com.android.art/javalib/apache-xml.jar:/system/framework/framework.jar:/system/framework/framework-graphics.jar:/system/framework/ext.jar:/system/framework/telephony-common.jar:/system/framework/voip-common.jar:/system/framework/ims-common.jar:/system/framework/tcmiface.jar:/system/framework/telephony-ext.jar:/system/framework/QPerformance.jar:/system/framework/UxPerformance.jar:/system/framework/WfdCommon.jar:/system_ext/framework/miui-framework.jar:/system_ext/framework/miui-telephony-common.jar:/system_ext/framework/miui-enterprise-sdk.jar:/system_ext/framework/vendor.qti.hardware.qconfig-V5-java.jar:/apex/com.android.i18n/javalib/core-icu4j.jar', 'SYSTEMSERVERCLASSPATH': '/system/framework/com.android.location.provider.jar:/system/framework/services.jar:/system_ext/framework/miui-services.jar:/system_ext/framework/apprecovery.proinstaller.jar:/apex/com.android.adservices/javalib/service-adservices.jar:/apex/com.android.adservices
+04-19 08:00:35.189 31399 31442 I python  : Android kivy bootstrap done. __name__ is __main__
+04-19 08:00:35.189 31399 31442 I python  : AND: Ran string
+04-19 08:00:35.189 31399 31442 I python  : Run user program, change dir and execute entrypoint
+04-19 08:00:35.196 31399 31399 D VRI[PythonActivity]: vri.reportDrawFinished
+04-19 08:00:35.201 31399 31399 E FileUtils: err write to mi_exception_log
+04-19 08:00:35.203  2045  4253 D WindowManager: wms.finishDrawingLocked: mDrawState=COMMIT_DRAW_PENDING Window{f63895d u0 org.kffs.habilisdatalogger/org.kivy.android.PythonActivity} in Surface(name=org.kffs.habilisdatalogger/org.kivy.android.PythonActivity#179038)/@0xd8e8b11
+04-19 08:00:35.207 31399 31399 D SurfaceView: UPDATE Surface(name=SurfaceView[org.kffs.habilisdatalogger/org.kivy.android.PythonActivity]#179042)/@0x725ac6c, mIsProjectionMode = false
+04-19 08:00:35.214  2045  2318 I WindowManager: wms.showSurfaceRobustly mWin:Window{f63895d u0 org.kffs.habilisdatalogger/org.kivy.android.PythonActivity}
+04-19 08:00:35.229  2045  2145 I ActivityTaskManager: Displayed org.kffs.habilisdatalogger/org.kivy.android.PythonActivity for user 0: +968ms
+04-19 08:00:35.302 31399 31399 W SDLThread: type=1400 audit(0.0:740581): avc:  granted  { execute } for  path="/data/data/org.kffs.habilisdatalogger/files/app/_python_bundle/modules/_json.cpython-311.so" dev="dm-54" ino=1701111 scontext=u:r:untrusted_app_32:s0:c236,c257,c512,c768 tcontext=u:object_r:app_data_file:s0:c236,c257,c512,c768 tclass=file app=org.kffs.habilisdatalogger
+04-19 08:00:35.350 31399 31399 W SDLThread: type=1400 audit(0.0:740582): avc:  granted  { execute } for  path="/data/data/org.kffs.habilisdatalogger/files/app/_python_bundle/modules/_typing.cpython-311.so" dev="dm-54" ino=1738980 scontext=u:r:untrusted_app_32:s0:c236,c257,c512,c768 tcontext=u:object_r:app_data_file:s0:c236,c257,c512,c768 tclass=file app=org.kffs.habilisdatalogger
+04-19 08:00:35.464 31399 31442 I python  : [INFO   ] [Logger      ] Record log in /data/user/0/org.kffs.habilisdatalogger/files/app/.kivy/logs/kivy_26-04-19_0.txt
+04-19 08:00:35.464 31399 31442 I python  : [INFO   ] [Kivy        ] v2.3.0
+04-19 08:00:35.464 31399 31442 I python  : [INFO   ] [Kivy        ] Installed at "/data/user/0/org.kffs.habilisdatalogger/files/app/_python_bundle/site-packages/kivy/__init__.pyc"
+04-19 08:00:35.465 31399 31442 I python  : [INFO   ] [Python      ] v3.11.5 (main, Apr 18 2026, 18:59:04) [Clang 14.0.7 (https://android.googlesource.com/toolchain/llvm-project 4c603efb0
+04-19 08:00:35.465 31399 31442 I python  : [INFO   ] [Python      ] Interpreter at ""
+04-19 08:00:35.465 31399 31442 I python  : [INFO   ] [Logger      ] Purge log fired. Processing...
+04-19 08:00:35.466 31399 31442 I python  : [INFO   ] [Logger      ] Purge finished!
+04-19 08:00:35.470 31399 31442 I python  : [INFO   ] [KivyMD      ] 1.2.0, git-Unknown, 2026-04-16 (installed at "/data/user/0/org.kffs.habilisdatalogger/files/app/_python_bundle/site-packages/kivymd/__init__.pyc")
+04-19 08:00:35.470 31399 31442 I python  : [WARNING] [KivyMD      ] Version 1.2.0 is deprecated and is no longer supported. Use KivyMD version 2.0.0 from the master branch (pip install https://github.com/kivymd/KivyMD/archive/master.zip)
+04-19 08:00:35.479 31399 31442 I python  : [INFO   ] [Factory     ] 195 symbols loaded
+04-19 08:00:35.486 31399 31399 W SDLThread: type=1400 audit(0.0:740590): avc:  granted  { execute } for  path="/data/data/org.kffs.habilisdatalogger/files/app/_python_bundle/modules/_bisect.cpython-311.so" dev="dm-54" ino=1677569 scontext=u:r:untrusted_app_32:s0:c236,c257,c512,c768 tcontext=u:object_r:app_data_file:s0:c236,c257,c512,c768 tclass=file app=org.kffs.habilisdatalogger
+04-19 08:00:35.490 31399 31399 W SDLThread: type=1400 audit(0.0:740591): avc:  granted  { execute } for  path="/data/data/org.kffs.habilisdatalogger/files/app/_python_bundle/modules/_random.cpython-311.so" dev="dm-54" ino=1697342 scontext=u:r:untrusted_app_32:s0:c236,c257,c512,c768 tcontext=u:object_r:app_data_file:s0:c236,c257,c512,c768 tclass=file app=org.kffs.habilisdatalogger
+04-19 08:00:35.494 31399 31399 W SDLThread: type=1400 audit(0.0:740592): avc:  granted  { execute } for  path="/data/data/org.kffs.habilisdatalogger/files/app/_python_bundle/modules/_sha512.cpython-311.so" dev="dm-54" ino=1738804 scontext=u:r:untrusted_app_32:s0:c236,c257,c512,c768 tcontext=u:object_r:app_data_file:s0:c236,c257,c512,c768 tclass=file app=org.kffs.habilisdatalogger
+04-19 08:00:35.502 31399 31399 W SDLThread: type=1400 audit(0.0:740593): avc:  granted  { execute } for  path="/data/data/org.kffs.habilisdatalogger/files/app/_python_bundle/modules/fcntl.cpython-311.so" dev="dm-54" ino=1675346 scontext=u:r:untrusted_app_32:s0:c236,c257,c512,c768 tcontext=u:object_r:app_data_file:s0:c236,c257,c512,c768 tclass=file app=org.kffs.habilisdatalogger
+04-19 08:00:35.506 31399 31399 W SDLThread: type=1400 audit(0.0:740594): avc:  granted  { execute } for  path="/data/data/org.kffs.habilisdatalogger/files/app/_python_bundle/modules/_posixsubprocess.cpython-311.so" dev="dm-54" ino=1697534 scontext=u:r:untrusted_app_32:s0:c236,c257,c512,c768 tcontext=u:object_r:app_data_file:s0:c236,c257,c512,c768 tclass=file app=org.kffs.habilisdatalogger
+04-19 08:00:35.544 11651 11651 E FileUtils: err write to mi_exception_log
+04-19 08:00:35.603 11651 11651 E FileUtils: err write to mi_exception_log
+04-19 08:00:35.778 11651 11651 E FileUtils: err write to mi_exception_log
+04-19 08:00:36.280 31399 31442 I python  : [INFO   ] [Image       ] Providers: img_tex, img_dds, img_sdl2, img_pil (img_ffpyplayer ignored)
+04-19 08:00:36.333 31399 31442 I python  : [INFO   ] [Text        ] Provider: sdl2
+04-19 08:00:36.538 31399 31399 W SDLThread: type=1400 audit(0.0:740638): avc:  granted  { execute } for  path="/data/data/org.kffs.habilisdatalogger/files/app/_python_bundle/modules/_decimal.cpython-311.so" dev="dm-54" ino=1701793 scontext=u:r:untrusted_app_32:s0:c236,c257,c512,c768 tcontext=u:object_r:app_data_file:s0:c236,c257,c512,c768 tclass=file app=org.kffs.habilisdatalogger
+04-19 08:00:36.558 31399 31399 W SDLThread: type=1400 audit(0.0:740639): avc:  granted  { execute } for  path="/data/data/org.kffs.habilisdatalogger/files/app/_python_bundle/site-packages/kivy/core/window/_window_sdl2.so" dev="dm-54" ino=1693402 scontext=u:r:untrusted_app_32:s0:c236,c257,c512,c768 tcontext=u:object_r:app_data_file:s0:c236,c257,c512,c768 tclass=file app=org.kffs.habilisdatalogger
+04-19 08:00:36.594 31399 31442 I python  : [INFO   ] [Window      ] Provider: sdl2
+04-19 08:00:36.598 31399 31399 W SDLThread: type=1400 audit(0.0:740640): avc:  granted  { execute } for  path="/data/data/org.kffs.habilisdatalogger/files/app/_python_bundle/site-packages/kivy/graphics/cgl_backend/cgl_glew.so" dev="dm-54" ino=1739048 scontext=u:r:untrusted_app_32:s0:c236,c257,c512,c768 tcontext=u:object_r:app_data_file:s0:c236,c257,c512,c768 tclass=file app=org.kffs.habilisdatalogger
+04-19 08:00:36.602 31399 31399 W SDLThread: type=1400 audit(0.0:740641): avc:  granted  { execute } for  path="/data/data/org.kffs.habilisdatalogger/files/app/_python_bundle/site-packages/kivy/graphics/cgl_backend/cgl_gl.so" dev="dm-54" ino=1739025 scontext=u:r:untrusted_app_32:s0:c236,c257,c512,c768 tcontext=u:object_r:app_data_file:s0:c236,c257,c512,c768 tclass=file app=org.kffs.habilisdatalogger
+04-19 08:00:36.602 31399 31399 W SDLThread: type=1400 audit(0.0:740642): avc:  granted  { execute } for  path="/data/data/org.kffs.habilisdatalogger/files/app/_python_bundle/site-packages/kivy/graphics/cgl_backend/cgl_sdl2.so" dev="dm-54" ino=1739026 scontext=u:r:untrusted_app_32:s0:c236,c257,c512,c768 tcontext=u:object_r:app_data_file:s0:c236,c257,c512,c768 tclass=file app=org.kffs.habilisdatalogger
+04-19 08:00:36.631 31399 31442 I python  : [INFO   ] [GL          ] Using the "OpenGL ES 2" graphics system
+04-19 08:00:36.633 31399 31442 I python  : [INFO   ] [GL          ] Backend used <sdl2>
+04-19 08:00:36.633 31399 31442 I python  : [INFO   ] [GL          ] OpenGL version <b'OpenGL ES 3.2 V@0530.57 (GIT@4bbe300fc3, Ie69fc1c69b, 1747652194) (Date:05/19/25)'>
+04-19 08:00:36.634 31399 31442 I python  : [INFO   ] [GL          ] OpenGL vendor <b'Qualcomm'>
+04-19 08:00:36.634 31399 31442 I python  : [INFO   ] [GL          ] OpenGL renderer <b'Adreno (TM) 642L'>
+04-19 08:00:36.634 31399 31442 I python  : [INFO   ] [GL          ] OpenGL parsed version: 3, 2
+04-19 08:00:36.634 31399 31442 I python  : [INFO   ] [GL          ] Texture max size <16384>
+04-19 08:00:36.634 31399 31442 I python  : [INFO   ] [GL          ] Texture max units <16>
+04-19 08:00:36.654 31399 31442 I python  : [INFO   ] [Window      ] auto add sdl2 input provider
+04-19 08:00:36.658 31399 31442 I python  : [INFO   ] [Window      ] virtual keyboard not allowed, single mode, not docked
+04-19 08:00:36.790 31399 31442 I python  : [INFO   ] [Clipboard   ] Provider: android
+04-19 08:00:36.984 30427 31077 E msgr.ActionQueryTaskListener: 0 onLoadBatchComplete exception: null FOREGROUND modules: [executorch] actions: [LOAD=[executorch],COMPLETE_SUCCESS=[executorch]]
+04-19 08:00:37.124 31399 31442 I python  :  Traceback (most recent call last):
+04-19 08:00:37.124 31399 31442 I python  :    File "/home/vboxuser/habilis-datalogger/.buildozer/android/app/main.py", line 130, in <module>
+04-19 08:00:37.124 31399 31442 I python  :    File "/home/vboxuser/habilis-datalogger/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/python-installs/habilisdatalogger/arm64-v8a/kivy/app.py", line 955, in run
+04-19 08:00:37.124 31399 31442 I python  :    File "/home/vboxuser/habilis-datalogger/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/python-installs/habilisdatalogger/arm64-v8a/kivy/app.py", line 925, in _run_prepare
+04-19 08:00:37.124 31399 31442 I python  :    File "/home/vboxuser/habilis-datalogger/.buildozer/android/app/main.py", line 61, in build
+04-19 08:00:37.124 31399 31442 I python  :  IsADirectoryError: [Errno 21] Is a directory: 'field_data'
+04-19 08:00:37.125 31399 31442 I python  : Python for android ended.
+04-19 08:00:37.195 30427 30427 E FileUtils: err write to mi_exception_log
+04-19 08:00:37.250 31290 31290 W Glide   : class com.bumptech.glide.load.engine.GlideException: Failed to load resource
+04-19 08:00:37.535  2045  3170 E ProcessManager: error write exception log
+04-19 08:00:37.535  2045  2143 I WindowManager: WIN DEATH: Window{f63895d u0 org.kffs.habilisdatalogger/org.kivy.android.PythonActivity}
+04-19 08:00:37.537  2045  2143 W InputManager-JNI: Input channel object 'f63895d org.kffs.habilisdatalogger/org.kivy.android.PythonActivity (client)' was disposed without first being removed with the input manager!
+04-19 08:00:37.556  2045  6784 W ActivityTaskManager: Force removing ActivityRecord{1767643 u0 org.kffs.habilisdatalogger/org.kivy.android.PythonActivity t52414}: app died, no saved state
+04-19 08:00:37.559  2045  6784 D WindowManager: Collecting in transition 10727: ActivityRecord{1767643 u0 org.kffs.habilisdatalogger/org.kivy.android.PythonActivity t52414 f}} init visibleRequested:false
+04-19 08:00:37.559  2045  6784 W WindowManager: onSyncReparent mSyncState =2, mSyncGroup = com.android.server.wm.BLASTSyncEngine$SyncGroup@15725c0 this: ActivityRecord{1767643 u0 org.kffs.habilisdatalogger/org.kivy.android.PythonActivity t52414 f}}
+04-19 08:00:37.605  4007  4419 E ActivityManagerWrapper: getRecentTasks: mainTaskId=52414   userId=0   windowMode=1   baseIntent=Intent { act=android.intent.action.MAIN flag=270532608 cmp=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity} }
+04-19 08:00:37.610  4007  4419 D WorldCirculate: getWorldCirculateInfo, taskInfo.baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=org.kffs.habilisdatalogger/org.kivy.android.PythonActivity }, displayId=-1, but get Display failed
+04-19 08:00:37.677 29974 29974 W Finsky  : [2] STU: Failed to get storage stats for package 'com.google.mainline.primary.libs' (1601: Error getting stats: android.content.pm.PackageManager.NameNotFoundException)
+04-19 08:00:37.678 11446 12069 E PowerKeeper.Thermal: ProcessInfo java.lang.NumberFormatException: For input string: "CPU usage from 192306ms to 85219ms ago (2026-04-19 07"
+04-19 08:00:37.691 29974 29974 W Finsky  : [2] STU: Failed to get storage stats for package 'com.android.wifi' (1601: Error getting stats: android.content.pm.PackageManager.NameNotFoundException)
+04-19 08:00:37.715  4007  4007 E FileUtils: err write to mi_exception_log
+04-19 08:00:37.837 29974 29974 W Finsky  : [2] STU: Failed to get storage stats for package 'com.android.apex.cts.shim' (1601: Error getting stats: android.content.pm.PackageManager.NameNotFoundException)
+04-19 08:00:37.903 29974 29974 W Finsky  : [2] STU: Failed to get storage stats for package 'com.google.android.appsearch' (1601: Error getting stats: android.content.pm.PackageManager.NameNotFoundException)
+04-19 08:00:37.917 29974 29974 W Finsky  : [2] STU: Failed to get storage stats for package 'com.google.android.art' (1601: Error getting stats: android.content.pm.PackageManager.NameNotFoundException)
+04-19 08:00:37.989 29974 29974 W Finsky  : [2] STU: Failed to get storage stats for package 'com.google.android.mediaprovider' (1601: Error getting stats: android.content.pm.PackageManager.NameNotFoundException)
+04-19 08:00:38.021 29974 29974 W Finsky  : [2] STU: Failed to get storage stats for package 'com.android.virt' (1601: Error getting stats: android.content.pm.PackageManager.NameNotFoundException)
+04-19 08:00:38.022 29974 29974 W Finsky  : [2] STU: Failed to get storage stats for package 'com.google.android.resolv' (1601: Error getting stats: android.content.pm.PackageManager.NameNotFoundException)
+04-19 08:00:38.048 29974 29974 W Finsky  : [2] STU: Failed to get storage stats for package 'com.google.android.configinfrastructure' (1601: Error getting stats: android.content.pm.PackageManager.NameNotFoundException)
+04-19 08:00:38.048 29974 29974 W Finsky  : [2] STU: Failed to get storage stats for package 'com.google.android.media' (1601: Error getting stats: android.content.pm.PackageManager.NameNotFoundException)
+04-19 08:00:38.132 29974 29974 W Finsky  : [2] STU: Failed to get storage stats for package 'com.android.vndk.v31' (1601: Error getting stats: android.content.pm.PackageManager.NameNotFoundException)
+04-19 08:00:38.133 29974 29974 W Finsky  : [2] STU: Failed to get storage stats for package 'com.android.vndk.v30' (1601: Error getting stats: android.content.pm.PackageManager.NameNotFoundException)
+04-19 08:00:38.134 29974 29974 W Finsky  : [2] STU: Failed to get storage stats for package 'com.android.vndk.v33' (1601: Error getting stats: android.content.pm.PackageManager.NameNotFoundException)
+04-19 08:00:38.134 29974 29974 W Finsky  : [2] STU: Failed to get storage stats for package 'com.android.vndk.v32' (1601: Error getting stats: android.content.pm.PackageManager.NameNotFoundException)
+04-19 08:00:38.135 29974 29974 W Finsky  : [2] STU: Failed to get storage stats for package 'com.android.vndk.v34' (1601: Error getting stats: android.content.pm.PackageManager.NameNotFoundException)
+04-19 08:00:38.194 29974 29974 W Finsky  : [2] STU: Failed to get storage stats for package 'com.google.android.sdkext' (1601: Error getting stats: android.content.pm.PackageManager.NameNotFoundException)
+04-19 08:00:38.203 29974 29974 W Finsky  : [2] STU: Failed to get storage stats for package 'com.google.android.adservices' (1601: Error getting stats: android.content.pm.PackageManager.NameNotFoundException)
+04-19 08:00:38.205 29974 29974 W Finsky  : [2] STU: Failed to get storage stats for package 'com.google.android.tethering' (1601: Error getting stats: android.content.pm.PackageManager.NameNotFoundException)
+04-19 08:00:38.247 29974 29974 W Finsky  : [2] STU: Failed to get storage stats for package 'com.android.runtime' (1601: Error getting stats: android.content.pm.PackageManager.NameNotFoundException)
+04-19 08:00:38.315 29974 29974 W Finsky  : [2] STU: Failed to get storage stats for package 'com.google.android.cellbroadcast' (1601: Error getting stats: android.content.pm.PackageManager.NameNotFoundException)
+04-19 08:00:38.688 29974 29974 W Finsky  : [2] STU: Failed to get storage stats for package 'com.google.android.tzdata5' (1601: Error getting stats: android.content.pm.PackageManager.NameNotFoundException)
+04-19 08:00:38.726 29974 29974 W Finsky  : [2] STU: Failed to get storage stats for package 'com.google.android.permission' (1601: Error getting stats: android.content.pm.PackageManager.NameNotFoundException)
+04-19 08:00:40.027 31290 31332 W System.err: android.content.pm.PackageManager$NameNotFoundException: com.miui.mediaviewer
+04-19 08:00:40.399 31493 31493 E FileUtils: err open mi_exception_log errno=2
+04-19 08:00:40.399 31493 31493 E FileUtils: err write to mi_exception_log
+04-19 08:00:40.895 31505 31505 D AutoDensity: 	getAccessibilityDpi Exception: android.provider.Settings$SettingNotFoundException: display_density_forced
+04-19 08:00:40.913 31505 31505 E FileUtils: err open mi_exception_log errno=2
+04-19 08:00:40.913 31505 31505 E FileUtils: err write to mi_exception_log
+04-19 08:00:40.928 31505 31573 D BaseOneTrackImp: OneTrackImp init : Configuration{appId='31*******07'projectId='mi************or'pKeyId='e0************************************af', pluginId='null', channel='com.miui.mediaeditor', international=false, region='null', overrideMiuiRegionSetting=false, mode=APP, GAIDEnable=true, IMSIEnable=true, IMEIEnable=true, LogDirPathForCrashReport=/data/user/0/com.miui.mediaeditor/files/debug_log, ExceptionCatcherEnable=false, instanceId=null}
+04-19 08:00:40.963 29974 29974 W Finsky  : [2] STU: Failed to get storage stats for package 'com.google.android.media.swcodec' (1601: Error getting stats: android.content.pm.PackageManager.NameNotFoundException)
+04-19 08:00:40.976 31505 31505 W Glide   : class com.bumptech.glide.load.engine.GlideException: Failed to load resource
+04-19 08:00:40.978 31505 31514 E DeviceUtils: static init: ComputilityLevel Load Class Exception:java.lang.ClassNotFoundException: Didn't find class "com.miui.performance.ComputilityLevelUtils" on path: DexPathList[[zip file "/system_ext/framework/MiuiBooster.jar"],nativeLibraryDirectories=[/system/lib64, /system_ext/lib64]]
+04-19 08:00:41.080 29974 29974 W Finsky  : [2] STU: Failed to get storage stats for package 'com.google.android.adbd' (1601: Error getting stats: android.content.pm.PackageManager.NameNotFoundException)
+04-19 08:00:41.115 29974 29974 W Finsky  : [2] STU: Failed to get storage stats for package 'com.android.i18n' (1601: Error getting stats: android.content.pm.PackageManager.NameNotFoundException)
+04-19 08:00:41.123 29974 29974 W Finsky  : [2] STU: Failed to get storage stats for package 'com.google.android.conscrypt' (1601: Error getting stats: android.content.pm.PackageManager.NameNotFoundException)
+04-19 08:00:41.165 29974 29974 W Finsky  : [2] STU: Failed to get storage stats for package 'com.google.android.neuralnetworks' (1601: Error getting stats: android.content.pm.PackageManager.NameNotFoundException)
+04-19 08:00:41.194 29974 29974 W Finsky  : [2] STU: Failed to get storage stats for package 'com.google.android.ipsec' (1601: Error getting stats: android.content.pm.PackageManager.NameNotFoundException)
+04-19 08:00:41.194 29974 29974 W Finsky  : [2] STU: Failed to get storage stats for package 'com.android.devicelock' (1601: Error getting stats: android.content.pm.PackageManager.NameNotFoundException)
+04-19 08:00:41.214 29974 29974 W Finsky  : [2] STU: Failed to get storage stats for package 'com.google.android.ondevicepersonalization' (1601: Error getting stats: android.content.pm.PackageManager.NameNotFoundException)
+04-19 08:00:41.237 29974 29974 W Finsky  : [2] STU: Failed to get storage stats for package 'com.google.android.healthfitness' (1601: Error getting stats: android.content.pm.PackageManager.NameNotFoundException)
+04-19 08:00:41.294 29974 29974 W Finsky  : [2] STU: Failed to get storage stats for package 'com.android.uwb' (1601: Error getting stats: android.content.pm.PackageManager.NameNotFoundException)
+04-19 08:00:41.299 29974 29974 W Finsky  : [2] STU: Failed to get storage stats for package 'com.google.android.extservices' (1601: Error getting stats: android.content.pm.PackageManager.NameNotFoundException)
+04-19 08:00:41.442 29974 29974 W Finsky  : [2] STU: Failed to get storage stats for package 'com.google.android.os.statsd' (1601: Error getting stats: android.content.pm.PackageManager.NameNotFoundException)
+04-19 08:00:41.458 29974 29974 W Finsky  : [2] STU: Failed to get storage stats for package 'com.android.rkpd' (1601: Error getting stats: android.content.pm.PackageManager.NameNotFoundException)
+04-19 08:00:41.476 29974 29974 W Finsky  : [2] STU: Failed to get storage stats for package 'com.google.android.scheduling' (1601: Error getting stats: android.content.pm.PackageManager.NameNotFoundException)
+04-19 08:00:41.538 31505 31620 E CloudConfig:  java.net.UnknownHostException: Unable to resolve host "mcc-intl.inf.miui.com": No address associated with hostname
+04-19 08:00:41.539 31505 31624 E CloudConfig:  java.net.UnknownHostException: Unable to resolve host "mcc-intl.inf.miui.com": No address associated with hostname
+04-19 08:00:41.539 31505 31625 E CloudConfig:  java.net.UnknownHostException: Unable to resolve host "mcc-intl.inf.miui.com": No address associated with hostname
+04-19 08:00:41.539 31505 31621 E CloudConfig:  java.net.UnknownHostException: Unable to resolve host "mcc-intl.inf.miui.com": No address associated with hostname
+04-19 08:00:41.540 31505 31623 E CloudConfig:  java.net.UnknownHostException: Unable to resolve host "mcc-intl.inf.miui.com": No address associated with hostname
+04-19 08:00:41.541 31505 31624 E CloudConfig:  java.net.UnknownHostException: Unable to resolve host "mcc-intl.inf.miui.com": No address associated with hostname
+04-19 08:00:41.541 31505 31620 E CloudConfig:  java.net.UnknownHostException: Unable to resolve host "mcc-intl.inf.miui.com": No address associated with hostname
+04-19 08:00:41.542 31505 31623 E CloudConfig:  java.net.UnknownHostException: Unable to resolve host "mcc-intl.inf.miui.com": No address associated with hostname
+04-19 08:00:41.542 31505 31624 E CloudConfig:  java.net.UnknownHostException: Unable to resolve host "mcc-intl.inf.miui.com": No address associated with hostname
+04-19 08:00:41.542 31505 31620 E CloudConfig:  java.net.UnknownHostException: Unable to resolve host "mcc-intl.inf.miui.com": No address associated with hostname
+04-19 08:00:41.543 31505 31619 E CloudConfig:  java.net.UnknownHostException: Unable to resolve host "mcc-intl.inf.miui.com": No address associated with hostname
+04-19 08:00:41.545 31505 31622 E CloudConfig:  java.net.UnknownHostException: Unable to resolve host "mcc-intl.inf.miui.com": No address associated with hostname
+04-19 08:00:41.552 31505 31627 E CloudConfig:  java.net.UnknownHostException: Unable to resolve host "mcc-intl.inf.miui.com": No address associated with hostname
+04-19 08:00:41.820 30427 31450 E msgr.FbnsAIDLClientManager: Fbns AIDL request got RemoteException
+04-19 08:00:41.820 30427 31450 E msgr.FbnsAIDLClientManager: android.os.RemoteException: AIDLService is not bound
+04-19 08:00:41.979 30427 31453 E msgr.FbnsAIDLClientManager: Fbns AIDL request got RemoteException
+04-19 08:00:41.979 30427 31453 E msgr.FbnsAIDLClientManager: android.os.RemoteException: AIDLService is not bound
+04-19 08:00:46.547 31505 31624 E CloudConfig:  java.net.UnknownHostException: Unable to resolve host "mcc-intl.inf.miui.com": No address associated with hostname
+04-19 08:00:46.548 31505 31620 E CloudConfig:  java.net.UnknownHostException: Unable to resolve host "mcc-intl.inf.miui.com": No address associated with hostname
+04-19 08:00:46.548 31505 31622 E CloudConfig:  java.net.UnknownHostException: Unable to resolve host "mcc-intl.inf.miui.com": No address associated with hostname
+04-19 08:00:46.549 31505 31621 E CloudConfig:  java.net.UnknownHostException: Unable to resolve host "mcc-intl.inf.miui.com": No address associated with hostname
+04-19 08:00:46.550 31505 31625 E CloudConfig:  java.net.UnknownHostException: Unable to resolve host "mcc-intl.inf.miui.com": No address associated with hostname
+04-19 08:00:46.550 31505 31623 E CloudConfig:  java.net.UnknownHostException: Unable to resolve host "mcc-intl.inf.miui.com": No address associated with hostname
+04-19 08:00:46.551 31505 31619 E CloudConfig:  java.net.UnknownHostException: Unable to resolve host "mcc-intl.inf.miui.com": No address associated with hostname
+04-19 08:00:46.551 31505 31627 E CloudConfig:  java.net.UnknownHostException: Unable to resolve host "mcc-intl.inf.miui.com": No address associated with hostname
+04-19 08:00:46.554 31505 31625 E CloudConfig:  java.net.UnknownHostException: Unable to resolve host "mcc-intl.inf.miui.com": No address associated with hostname
+04-19 08:00:46.554 31505 31621 E CloudConfig:  java.net.UnknownHostException: Unable to resolve host "mcc-intl.inf.miui.com": No address associated with hostname
+04-19 08:00:46.557 31505 31627 E CloudConfig:  java.net.UnknownHostException: Unable to resolve host "mcc-intl.inf.miui.com": No address associated with hostname
+04-19 08:00:46.559 31505 31627 E CloudConfig:  java.net.UnknownHostException: Unable to resolve host "mcc-intl.inf.miui.com": No address associated with hostname
+04-19 08:00:46.560 31505 31619 E CloudConfig:  java.net.UnknownHostException: Unable to resolve host "mcc-intl.inf.miui.com": No address associated with hostname
+04-19 08:00:46.563 31505 31625 E CloudConfig:  java.net.UnknownHostException: Unable to resolve host "mcc-intl.inf.miui.com": No address associated with hostname
+04-19 08:00:46.576 31505 31620 E CloudConfig:  java.net.UnknownHostException: Unable to resolve host "mcc-intl.inf.miui.com": No address associated with hostname
+04-19 08:00:46.576 31505 31627 E CloudConfig:  java.net.UnknownHostException: Unable to resolve host "mcc-intl.inf.miui.com": No address associated with hostname
+04-19 08:00:46.578 31505 31622 E CloudConfig:  java.net.UnknownHostException: Unable to resolve host "mcc-intl.inf.miui.com": No address associated with hostname
+04-19 08:01:00.044  3970  3970 E ReflectUtils: java.lang.reflect.InvocationTargetException
+04-19 08:01:00.044  3970  3970 E ReflectUtils: Caused by: android.content.pm.PackageManager$NameNotFoundException: com.mi.health
+04-19 08:01:00.094  3970  3970 E FileUtils: err write to mi_exception_log
+04-19 08:01:16.656 23001 23001 E FileUtils: err write to mi_exception_log
