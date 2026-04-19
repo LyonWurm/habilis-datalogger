@@ -1,7 +1,7 @@
 import sys
 from pathlib import Path
 import json
-
+from admin import get_data_dir
 from kivymd.app import MDApp
 from kivy.core.window import Window
 from kivy.lang import Builder
@@ -21,7 +21,7 @@ except ImportError:
             if cb: cb(True)
             return True
 
-# Your existing imports
+# Your existing importsself.storage_path = get_data_dir()
 from admin import AdminLoginScreen, AdminDashboardScreen, BagTagManagementScreen, SeasonManagementScreen, \
     ProjectManagementScreen, UserManagementScreen
 from login_screen import LoginScreen
@@ -36,8 +36,7 @@ Window.size = (400, 700)
 class FieldApp(MDApp):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.storage_path = Path.home() / "field_data"
-        self.storage_path.mkdir(exist_ok=True)
+        self.storage_path = get_data_dir()
         self.current_admin = None
         self.current_season = None
         self.current_user = None
@@ -57,7 +56,7 @@ class FieldApp(MDApp):
         Builder.load_string(admin_kv)
 
         # Load theme preference
-        prefs_file = Path.home() / "field_data" / "preferences.json"
+        prefs_file = get_data_dir()
         if prefs_file.exists():
             with open(prefs_file) as f:
                 prefs = json.load(f)
