@@ -203,6 +203,14 @@ KV = '''
         orientation: "vertical"
         size_hint: (1, 1)  
         pos_hint: {'x': 0, 'y': 0}
+        
+        ScrollView:  # Add this wrapper
+            MDBoxLayout:
+                orientation: "vertical"
+                spacing: "24dp"
+                padding: "24dp"
+                size_hint_y: None
+                height: self.minimum_height        
 
         MDTopAppBar:
             title: "Admin Access"
@@ -393,6 +401,8 @@ KV = '''
         orientation: "vertical"
         size_hint: (1, 1)  
         pos_hint: {'x': 0, 'y': 0}
+        
+
 
         MDTopAppBar:
             title: "All Projects"
@@ -1853,9 +1863,8 @@ class ProjectManagementScreen(MDScreen):
         self.leader_button.text = display
         self.leader_menu.dismiss()
 
-    # In create_project method
     def create_project(self):
-        """Create a new project (independent of season)"""
+        """Create a new project"""
         app = MDApp.get_running_app()
         name = self.project_name.text.strip()
         desc = self.project_desc.text.strip()
@@ -1869,8 +1878,9 @@ class ProjectManagementScreen(MDScreen):
             return
 
         projects = load_projects()
+        seasons = load_seasons()  # Add this
 
-        # Find next available project ID (not per season, global)
+        # Find next available project ID
         existing_ids = []
         for pid in projects.keys():
             try:
@@ -1882,12 +1892,18 @@ class ProjectManagementScreen(MDScreen):
         if existing_ids:
             next_id = max(existing_ids) + 1
 
-        project_id = f"{next_id:03d}"  # 3-digit project ID (001, 002, etc.)
+        project_id = f"{next_id:03d}"
 
         admins = load_admins()
         leader_data = admins.get(self.selected_leader, {})
         leader_name = f"{self.selected_leader} ({leader_data.get('role', 'admin')})"
         leader_user_id = leader_data.get("user_id")
+
+        # Get current season - FIX: Add season_id
+        season_id = self.current_season_id  # Make sure this exists
+        if not season_id:
+            self.show_message("No active season selected")
+            return
 
         projects[project_id] = {
             "project_id": project_id,
@@ -1896,12 +1912,19 @@ class ProjectManagementScreen(MDScreen):
             "leader": self.selected_leader,
             "leader_name": leader_name,
             "leader_user_id": leader_user_id,
-            "status": "active",  # Can be "active" or "closed"
+            "season_id": season_id,  # ← ADD THIS LINE (critical!)
+            "status": "active",
             "created_at": datetime.now().isoformat(),
             "created_by": app.current_admin.get("username")
         }
 
         save_projects(projects)
+
+        # Update season project count
+        if season_id in seasons:
+            seasons[season_id]['projects'] = seasons[season_id].get('projects', 0) + 1
+            save_seasons(seasons)
+
         self.refresh_list()
         self.show_message(f"Project {project_id} created")
 

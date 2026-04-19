@@ -49,6 +49,8 @@ class FieldApp(MDApp):
         from sync_screen import KV as sync_kv
         from admin import KV as admin_kv
 
+        Window.softinput_mode = "below_target"
+
         Builder.load_string(login_kv)
         Builder.load_string(collect_kv)
         Builder.load_string(sync_kv)

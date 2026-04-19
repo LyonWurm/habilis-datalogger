@@ -20,6 +20,14 @@ KV = '''
         orientation: "vertical"
         size_hint: (1, 1)  
         pos_hint: {'x': 0, 'y': 0}
+
+        ScrollView:  # Add this wrapper
+            MDBoxLayout:
+                orientation: "vertical"
+                spacing: "24dp"
+                padding: "24dp"
+                size_hint_y: None
+                height: self.minimum_height
         
         MDTopAppBar:
             id: top_app_bar
@@ -317,13 +325,13 @@ class LoginScreen(MDScreen):
 
         if project not in user_projects:
             # Ask for confirmation
-            self.show_project_confirmation(project, user, user_projects, season_id, year)
+            self.show_project_confirmation(project, user, user_projects, season_id, year, user_id)
             return
 
         # Normal login
         self.complete_login(user, project, season_id, year, user_id)
 
-    def show_project_confirmation(self, project, user, user_projects, season_id, year):
+    def show_project_confirmation(self, project, user, user_projects, season_id, year, user_id):
         """Ask user to confirm if they want to work on a different project"""
         from admin import load_projects
         projects = load_projects()
@@ -345,7 +353,7 @@ class LoginScreen(MDScreen):
                 MDRaisedButton(
                     text="YES, CONTINUE",
                     md_bg_color=(0.8, 0.5, 0.2, 1),
-                    on_release=lambda x: self.complete_login(user, project, season_id, year)
+                    on_release=lambda x: self.complete_login(user, project, season_id, year, user_id)
                 )
             ]
         )
