@@ -21,6 +21,14 @@ KV = '''
         size_hint: (1, 1)  
         pos_hint: {'x': 0, 'y': 0}
 
+
+        
+        MDTopAppBar:
+            id: top_app_bar
+            title: "Habilis Data Logger"
+            elevation: 4
+            left_action_items: [["menu", lambda x: root.open_menu()]]
+
         ScrollView:  # Add this wrapper
             MDBoxLayout:
                 orientation: "vertical"
@@ -28,12 +36,6 @@ KV = '''
                 padding: "24dp"
                 size_hint_y: None
                 height: self.minimum_height
-        
-        MDTopAppBar:
-            id: top_app_bar
-            title: "Habilis Data Logger"
-            elevation: 4
-            left_action_items: [["menu", lambda x: root.open_menu()]]
 
         MDBoxLayout:
             orientation: "vertical"
@@ -280,22 +282,22 @@ class LoginScreen(MDScreen):
             self.show_message("Season+Project must be 4 digits (YYPP)")
             return
 
-        season = season_project[:2]  # First 2 digits: year (e.g., "24")
-        project = season_project[2:]  # Last 2 digits: project (e.g., "01")
+        season = season_project[:2]
+        project = season_project[2:]
 
         # Convert to full year
-        year = f"20{season}"  # "24" -> "2024"
+        year = f"20{season}"
 
         if not user_id.isdigit() or len(user_id) != 2:
             self.show_message("User ID must be 2 digits (01-99)")
             return
 
         # Load local data
-        from admin import load_seasons, load_users, load_projects
+        from admin import load_seasons, load_users, load_projects  # Keep this
 
         seasons = load_seasons()
         users = load_users()
-        projects = load_projects()
+        projects = load_projects()  # Keep this - now we use it!
 
         # Find the season
         season_id = year
@@ -320,11 +322,15 @@ class LoginScreen(MDScreen):
             self.show_message(f"User {user_id} is not assigned to {season_id}")
             return
 
+        # NEW: Check if project exists
+        if project not in projects:
+            self.show_message(f"Project {project} does not exist. Please check the project code.")
+            return
+
         # Check project assignment
         user_projects = user.get('projects', [])
 
         if project not in user_projects:
-            # Ask for confirmation
             self.show_project_confirmation(project, user, user_projects, season_id, year, user_id)
             return
 

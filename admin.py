@@ -202,20 +202,20 @@ KV = '''
     MDBoxLayout:
         orientation: "vertical"
         size_hint: (1, 1)  
-        pos_hint: {'x': 0, 'y': 0}
-        
+        pos_hint: {'x': 0, 'y': 0}      
+
+        MDTopAppBar:
+            title: "Admin Access"
+            elevation: 4
+            left_action_items: [["arrow-left", lambda x: root.go_back()]]
+
         ScrollView:  # Add this wrapper
             MDBoxLayout:
                 orientation: "vertical"
                 spacing: "24dp"
                 padding: "24dp"
                 size_hint_y: None
-                height: self.minimum_height        
-
-        MDTopAppBar:
-            title: "Admin Access"
-            elevation: 4
-            left_action_items: [["arrow-left", lambda x: root.go_back()]]
+                height: self.minimum_height  
 
         MDBoxLayout:
             orientation: "vertical"
@@ -1892,7 +1892,7 @@ class ProjectManagementScreen(MDScreen):
         if existing_ids:
             next_id = max(existing_ids) + 1
 
-        project_id = f"{next_id:03d}"
+        project_id = f"{next_id:02d}"
 
         admins = load_admins()
         leader_data = admins.get(self.selected_leader, {})

@@ -105,17 +105,12 @@ class FieldApp(MDApp):
 
             dialog = MDDialog(
                 title="Permissions Required",
-                text="This app cannot function without camera, GPS, and storage permissions.\n\nPlease grant permissions in system settings.",
+                text="This app cannot function without camera, GPS, and storage permissions.\n\nLimited Functionality",
                 buttons=[
                     MDRaisedButton(
-                        text="EXIT",
-                        on_release=lambda x: sys.exit(0)
-                    ),
-                    MDRaisedButton(
-                        text="RETRY",
-                        on_release=lambda x: [dialog.dismiss(), self.permission_manager.request_all_permissions(
-                            self._on_permissions_result)]
-                    )
+                        text="Ok",
+                        on_release=lambda x: [dialog.dismiss(), self._check_saved_credentials()]                    ),
+
                 ]
             )
             dialog.open()

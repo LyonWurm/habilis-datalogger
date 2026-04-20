@@ -49,13 +49,6 @@ KV = '''
         size_hint: (1, 1)  
         pos_hint: {'x': 0, 'y': 0}
 
-        ScrollView:  # Add this wrapper
-            MDBoxLayout:
-                orientation: "vertical"
-                spacing: "24dp"
-                padding: "24dp"
-                size_hint_y: None
-                height: self.minimum_height
 
         MDTopAppBar:
             id: top_app_bar
