@@ -65,15 +65,13 @@ KV = '''
         size_hint: (1, 1)  
         pos_hint: {'x': 0, 'y': 0}
 
-
-        
         MDTopAppBar:
             id: top_app_bar
             title: "Habilis Data Logger"
             elevation: 4
             left_action_items: [["menu", lambda x: root.open_menu()]]
 
-        ScrollView:  # Add this wrapper
+        ScrollView:
             MDBoxLayout:
                 orientation: "vertical"
                 spacing: "24dp"
@@ -81,62 +79,53 @@ KV = '''
                 size_hint_y: None
                 height: self.minimum_height
 
-        MDBoxLayout:
-            orientation: "vertical"
-            spacing: "24dp"
-            padding: "24dp"
+                # Image:
+                #     source: "assets/icon.png"
+                #     size_hint_y: 0.3
+                #     keep_ratio: True
+                #     pos_hint: {"center_x": 0.5}
 
-        # Image:
-        #     source: "assets/icon.png"
-        #     size_hint_y: 0.3
-        #     keep_ratio: True
-        #     pos_hint: {"center_x": 0.5}
-
-            MDCard:
-                id: login_card
-                orientation: "vertical"
-                padding: "24dp"
-                spacing: "20dp"
-                size_hint: None, None
-                size: "400dp", "350dp"
-                pos_hint: {"center_x": 0.5}
-                md_bg_color: self.theme_cls.bg_dark if self.theme_cls.theme_style == "Dark" else self.theme_cls.bg_light
-               
-               
-                MDLabel:
-                    text: "Field Login"
-                    halign: "center"
-                    theme_text_color: "Primary"
-                    font_style: "H5"
-                    size_hint_y: None
-                    height: "30dp"
-
-                MDTextField:
-                    id: season_project_field
-                    hint_text: "Season + Project"
-                    helper_text: "YYPP format (e.g., 2401 = 2024, Project 01)"
-                    helper_text_mode: "on_focus"
-                    icon_right: "calendar"
-                    mode: "rectangle"
-
-                MDTextField:
-                    id: user_field
-                    hint_text: "User ID (01-99)"
-                    helper_text: "Your 2-digit ID"
-                    helper_text_mode: "on_focus"
-                    icon_right: "account"
-                    mode: "rectangle"
-
-                MDRaisedButton:
-                    text: "LOGIN"
+                MDCard:
+                    id: login_card
+                    orientation: "vertical"
+                    padding: "24dp"
+                    spacing: "20dp"
                     size_hint: None, None
-                    size: "200dp", "48dp"
+                    size: "400dp", "350dp"
                     pos_hint: {"center_x": 0.5}
-                    on_release: root.do_login()
-                
-                
-'''
+                    md_bg_color: self.theme_cls.bg_dark if self.theme_cls.theme_style == "Dark" else self.theme_cls.bg_light
 
+                    MDLabel:
+                        text: "Field Login"
+                        halign: "center"
+                        theme_text_color: "Primary"
+                        font_style: "H5"
+                        size_hint_y: None
+                        height: "30dp"
+
+                    MDTextField:
+                        id: season_project_field
+                        hint_text: "Season + Project"
+                        helper_text: "YYPP format (e.g., 2401 = 2024, Project 01)"
+                        helper_text_mode: "on_focus"
+                        icon_right: "calendar"
+                        mode: "rectangle"
+
+                    MDTextField:
+                        id: user_field
+                        hint_text: "User ID (01-99)"
+                        helper_text: "Your 2-digit ID"
+                        helper_text_mode: "on_focus"
+                        icon_right: "account"
+                        mode: "rectangle"
+
+                    MDRaisedButton:
+                        text: "LOGIN"
+                        size_hint: None, None
+                        size: "200dp", "48dp"
+                        pos_hint: {"center_x": 0.5}
+                        on_release: root.do_login()
+'''
 class LoginScreen(MDScreen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)

@@ -28,8 +28,7 @@ from collect_screen import CollectScreen
 from sync_screen import SyncScreen
 from admin import AllProjectsScreen, AllUsersScreen
 
-# Set window size for desktop
-#Window.size = (400, 700) only used for testing on desktop
+
 
 
 class FieldApp(MDApp):
@@ -70,6 +69,9 @@ class FieldApp(MDApp):
 
         # Screen manager
         sm = ScreenManager()
+        sm = ScreenManager()
+        sm.size_hint = (1, 1)
+        sm.pos_hint = {'x': 0, 'y': 0}
         sm.add_widget(LoginScreen(name="login"))
         sm.add_widget(CollectScreen(name="collect"))
         sm.add_widget(SyncScreen(name="sync"))
