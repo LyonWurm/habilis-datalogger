@@ -17,7 +17,8 @@ from kivy.uix.widget import Widget
 
 # Direct imports - no fallbacks needed for Android
 from plyer import camera, gps
-from permissions import RuntimePermissionScreen
+# Direct imports
+from plyer import camera, gps
 from android.permissions import check_permission, Permission, request_permissions
 from android import activity
 
@@ -372,7 +373,7 @@ KV = '''
 '''
 
 
-class CollectScreen(MDScreen, RuntimePermissionScreen):  # Add RuntimePermissionScreen
+class CollectScreen(MDScreen):  # Add RuntimePermissionScreen
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.menu = None
