@@ -403,18 +403,17 @@ class CollectScreen(MDScreen, RuntimePermissionScreen):  # Add RuntimePermission
         self.show_message("Camera and GPS permissions are required for data collection")
 
     def get_data_dir(self):
-        """Get app-private storage directory - NO PERMISSIONS NEEDED"""
         from pathlib import Path
         import sys
 
-        if hasattr(sys, 'getandroidapilevel'):
-            from android import activity
-            data_dir = Path(activity.getFilesDir()) / "field_data"
-        else:
+        # Use relative path - on Android this resolves to app-private storage
+        data_dir = Path('field_data')
+
+        # On desktop, use home directory
+        if not hasattr(sys, 'getandroidapilevel'):
             data_dir = Path.home() / "field_data"
 
         data_dir.mkdir(parents=True, exist_ok=True)
-        print(f"✅ Data directory: {data_dir}")
         return data_dir
 
     def test_sync_to_server(self):

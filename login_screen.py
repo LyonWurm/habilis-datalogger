@@ -126,6 +126,7 @@ KV = '''
                         pos_hint: {"center_x": 0.5}
                         on_release: root.do_login()
 '''
+
 class LoginScreen(MDScreen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -336,20 +337,17 @@ class LoginScreen(MDScreen):
             json.dump(prefs, f, indent=2)
 
     def get_data_dir(self):
-        """Get app-private storage directory - NO PERMISSIONS NEEDED"""
         from pathlib import Path
         import sys
 
         if hasattr(sys, 'getandroidapilevel'):
-            from android import activity
-            data_dir = Path(activity.getFilesDir()) / "field_data"
+            # Relative path - Android resolves to app-private storage
+            data_dir = Path('field_data')
         else:
             data_dir = Path.home() / "field_data"
 
         data_dir.mkdir(parents=True, exist_ok=True)
-        print(f"✅ Data directory: {data_dir}")
         return data_dir
-
     def open_menu(self):
         """Open dropdown menu from top-left icon"""
         if self.menu:
