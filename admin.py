@@ -41,9 +41,22 @@ except ImportError:
 
 
 def get_data_dir():
+    """Get app-private storage directory - NO PERMISSIONS NEEDED"""
     from pathlib import Path
-    data_dir = Path('field_data')
+    import sys
+
+    if hasattr(sys, 'getandroidapilevel'):
+        # On Android, use app's private storage (always writable)
+        # This directory is automatically created and doesn't require any permissions
+        from android import activity
+        # getFilesDir() returns /data/data/org.kffs.habilisdatalogger/files
+        data_dir = Path(activity.getFilesDir()) / "field_data"
+    else:
+        # Desktop fallback
+        data_dir = Path.home() / "field_data"
+
     data_dir.mkdir(parents=True, exist_ok=True)
+    print(f"✅ Data directory: {data_dir}")
     return data_dir
 
 # Call the function

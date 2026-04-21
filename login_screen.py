@@ -10,6 +10,50 @@ from kivymd.app import MDApp
 from pathlib import Path
 import json
 from datetime import datetime
+from plyer import camera
+from datetime import datetime
+
+# Import data functions
+from admin import load_seasons, load_users, load_projects
+
+
+from android.permissions import check_permission, Permission, request_permissions
+from android import activity
+from plyer import camera
+
+
+class Permission:
+    CAMERA = "android.permission.CAMERA"
+    ACCESS_FINE_LOCATION = "android.permission.ACCESS_FINE_LOCATION"
+    ACCESS_COARSE_LOCATION = "android.permission.ACCESS_COARSE_LOCATION"
+    READ_EXTERNAL_STORAGE = "android.permission.READ_EXTERNAL_STORAGE"
+    WRITE_EXTERNAL_STORAGE = "android.permission.WRITE_EXTERNAL_STORAGE"
+    INTERNET = "android.permission.INTERNET"
+    ACCESS_NETWORK_STATE = "android.permission.ACCESS_NETWORK_STATE"
+
+
+def check_permission(permission):
+    """Stub - assume permissions granted on desktop"""
+    return True
+
+
+def request_permissions(permissions, callback):
+    """Stub - immediately callback with success"""
+    callback(permissions, [True] * len(permissions))
+
+
+class activity:
+    @staticmethod
+    def getFilesDir():
+        """Stub for desktop"""
+        import tempfile
+        return tempfile.gettempdir()
+
+    @staticmethod
+    def getCacheDir():
+        """Stub for desktop"""
+        import tempfile
+        return tempfile.gettempdir()
 
 # Import data functions
 from admin import load_seasons, load_users, load_projects
@@ -98,6 +142,182 @@ class LoginScreen(MDScreen):
         super().__init__(**kwargs)
         self.menu = None
 
+    def scan_join_qr(self):
+        """Scan QR code to join a project"""
+        # Check if we're on Android with camera available
+        if ANDROID_AVAILABLE and ANDROID_PERMISSIONS_AVAILABLE:
+            from android.permissions import check_permission, Permission, request_permissions
+            if not check_permission(Permission.CAMERA):
+                request_permissions([Permission.CAMERA], self._camera_permission_for_qr)
+                return
+
+        # For desktop or if camera permission already granted
+        self._start_qr_scan()
+
+    def _camera_permission_for_qr(self, permissions, results):
+        """Called after camera permission request for QR"""
+        if all(results):
+            self._start_qr_scan()
+        else:
+            self.show_qr_input_dialog()
+
+    def _start_qr_scan(self):
+        """Start the camera for QR scanning"""
+        try:
+            from plyer import camera
+            # Check if camera is available (hasattr check)
+            if not hasattr(camera, 'take_picture'):
+                self.show_message("Camera not available on this device")
+                self.show_qr_input_dialog()
+                return
+
+            from datetime import datetime
+            timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+            filename = f"qr_scan_{timestamp}.jpg"
+            data_dir = self.get_data_dir()
+            scans_dir = data_dir / "qr_scans"
+            scans_dir.mkdir(parents=True, exist_ok=True)
+            filepath = scans_dir / filename
+
+            camera.take_picture(filename=str(filepath), on_complete=self.on_qr_captured)
+            self.show_message("Scan the QR code...")
+        except Exception as e:
+            print(f"Camera error: {e}")
+            self.show_qr_input_dialog()
+
+    def on_qr_captured(self, filepath):
+        """Handle captured QR code image"""
+        # For now, fall back to manual input
+        # Future: Add QR decoding with pyzbar
+        self.show_qr_input_dialog()
+
+    def show_qr_input_dialog(self):
+        """Show dialog to enter QR code data"""
+        from kivymd.uix.dialog import MDDialog
+        from kivymd.uix.textfield import MDTextField
+        from kivymd.uix.button import MDRaisedButton, MDFlatButton
+        from kivy.uix.boxlayout import BoxLayout
+
+        content = BoxLayout(orientation='vertical', spacing=10, padding=20, size_hint_y=None, height=200)
+
+        self.qr_input_field = MDTextField(
+            hint_text="Paste QR data here",
+            mode="rectangle",
+            multiline=True,
+            size_hint_y=None,
+            height=150
+        )
+        content.add_widget(self.qr_input_field)
+
+        self.qr_dialog = MDDialog(
+            title="Join Project",
+            type="custom",
+            content_cls=content,
+            size_hint=(0.9, None),
+            height=350,
+            buttons=[
+                MDFlatButton(text="CANCEL", on_release=lambda x: self.qr_dialog.dismiss()),
+                MDRaisedButton(text="JOIN", on_release=lambda x: self.process_join_qr(self.qr_input_field.text))
+            ]
+        )
+        self.qr_dialog.open()
+
+    def process_join_qr(self, qr_data):
+        """Process scanned QR code and import project configuration"""
+        import json
+        from admin import load_users, save_users, load_projects, save_projects, load_seasons, save_seasons
+        from kivymd.app import MDApp
+
+        if hasattr(self, 'qr_dialog') and self.qr_dialog:
+            self.qr_dialog.dismiss()
+
+        try:
+            config = json.loads(qr_data)
+
+            if config.get('version') != '1.0':
+                self.show_message("Unsupported QR code version")
+                return
+
+            project_id = config.get('project_id')
+            project_name = config.get('project_name', 'Unnamed')
+            season_id = config.get('season_id')
+            users_data = config.get('users', {})
+
+            # Load existing data
+            users = load_users()
+            projects = load_projects()
+            seasons = load_seasons()
+
+            # Check if season exists, if not, create it
+            if season_id not in seasons:
+                seasons[season_id] = {
+                    "organization": "KFFS",
+                    "year": season_id,
+                    "status": "active",
+                    "start_date": datetime.now().strftime("%Y-%m-%d"),
+                    "end_date": f"{int(season_id) + 1}-12-31",
+                    "projects": 0,
+                    "created_at": datetime.now().isoformat(),
+                    "created_by": "QR Import"
+                }
+                save_seasons(seasons)
+
+            # Check if project exists, if not, create it
+            if project_id not in projects:
+                projects[project_id] = {
+                    "project_id": project_id,
+                    "name": project_name,
+                    "description": f"Imported via QR on {datetime.now().strftime('%Y-%m-%d')}",
+                    "season_id": season_id,
+                    "status": "active",
+                    "created_at": datetime.now().isoformat(),
+                    "created_by": "QR Import"
+                }
+                save_projects(projects)
+
+                # Update season project count
+                if season_id in seasons:
+                    seasons[season_id]['projects'] = seasons[season_id].get('projects', 0) + 1
+                    save_seasons(seasons)
+
+            # Import users
+            imported_count = 0
+            for user_id, user_data in users_data.items():
+                if user_id not in users:
+                    users[user_id] = {
+                        "name": user_data.get('name', ''),
+                        "first_name": user_data.get('first_name', ''),
+                        "last_name": user_data.get('last_name', ''),
+                        "user_type": user_data.get('user_type', 'seasonal'),
+                        "season": season_id,
+                        "projects": [project_id],
+                        "status": "active",
+                        "created_at": datetime.now().isoformat(),
+                        "created_by": "QR Import"
+                    }
+                    imported_count += 1
+                else:
+                    # Add project to existing user if not already there
+                    if 'projects' not in users[user_id]:
+                        users[user_id]['projects'] = []
+                    if project_id not in users[user_id]['projects']:
+                        users[user_id]['projects'].append(project_id)
+
+            save_users(users)
+
+            # Auto-fill the login fields
+            # Season ID is like "2025", extract last 2 digits "25", then add project
+            season_short = season_id[2:] if len(season_id) == 4 else season_id
+            self.ids.season_project_field.text = f"{season_short}{project_id}"
+
+            self.show_message(
+                f"Successfully joined project '{project_name}'\n\nImported {imported_count} users.\n\nEnter your User ID to login.")
+
+        except json.JSONDecodeError:
+            self.show_message("Invalid QR code data")
+        except Exception as e:
+            self.show_message(f"Error: {str(e)}")
+
     def test_dark_mode(self):
         """Simple test for dark mode"""
         from kivymd.app import MDApp
@@ -127,9 +347,18 @@ class LoginScreen(MDScreen):
             json.dump(prefs, f, indent=2)
 
     def get_data_dir(self):
+        """Get app-private storage directory - NO PERMISSIONS NEEDED"""
         from pathlib import Path
-        data_dir = Path('field_data')
+        import sys
+
+        if hasattr(sys, 'getandroidapilevel'):
+            from android import activity
+            data_dir = Path(activity.getFilesDir()) / "field_data"
+        else:
+            data_dir = Path.home() / "field_data"
+
         data_dir.mkdir(parents=True, exist_ok=True)
+        print(f"✅ Data directory: {data_dir}")
         return data_dir
 
     def open_menu(self):
@@ -138,6 +367,11 @@ class LoginScreen(MDScreen):
             self.menu.dismiss()
 
         menu_items = [
+            {
+                "text": "Join Project with QR",
+                "leading_icon": "qrcode-scan",
+                "on_release": lambda x="join_project": self.menu_callback("join_project"),
+            },
             {
                 "text": "Admin Login",
                 "leading_icon": "shield-account",
@@ -153,7 +387,7 @@ class LoginScreen(MDScreen):
         self.menu = MDDropdownMenu(
             caller=self.ids.top_app_bar.ids.left_actions,
             items=menu_items,
-            width_mult=3,
+            width_mult=4,
             position="auto",
         )
         self.menu.open()
@@ -164,7 +398,9 @@ class LoginScreen(MDScreen):
         if item == "admin":
             self.go_to_admin()
         elif item == "settings":
-            self.show_settings()  # Change this
+            self.show_settings()
+        elif item == "join_project":
+            self.scan_join_qr()  # Call the QR join method
 
     def go_to_admin(self):
         """Navigate to admin login screen"""
@@ -293,11 +529,11 @@ class LoginScreen(MDScreen):
             return
 
         # Load local data
-        from admin import load_seasons, load_users, load_projects  # Keep this
+        from admin import load_seasons, load_users, load_projects
 
         seasons = load_seasons()
         users = load_users()
-        projects = load_projects()  # Keep this - now we use it!
+        projects = load_projects()
 
         # Find the season
         season_id = year
@@ -322,15 +558,16 @@ class LoginScreen(MDScreen):
             self.show_message(f"User {user_id} is not assigned to {season_id}")
             return
 
-        # NEW: Check if project exists
+        # Check if project exists
         if project not in projects:
-            self.show_message(f"Project {project} does not exist. Please check the project code.")
+            self.show_message(f"Project {project} does not exist")
             return
 
         # Check project assignment
         user_projects = user.get('projects', [])
 
         if project not in user_projects:
+            # Show confirmation dialog with user's full name
             self.show_project_confirmation(project, user, user_projects, season_id, year, user_id)
             return
 
@@ -341,25 +578,44 @@ class LoginScreen(MDScreen):
         """Ask user to confirm if they want to work on a different project"""
         from admin import load_projects
         projects = load_projects()
-        project_data = projects.get(project, {})
+
+        # Format project with leading zeros for lookup (if needed)
+        project_str = project if len(project) == 2 else f"{int(project):02d}"
+        project_data = projects.get(project_str, {})
         project_name = project_data.get('name', 'Unknown')
 
-        current_assignments = ", ".join(user_projects)
+        # Get user's full name
+        user_name = user.get('name', user_id)
+        first_name = user.get('first_name', '')
+        last_name = user.get('last_name', '')
+        full_name = f"{first_name} {last_name}".strip() or user_name
+
+        # Format assigned projects list
+        assigned_projects = []
+        for p in user_projects:
+            p_data = projects.get(p, {})
+            p_name = p_data.get('name', '')
+            assigned_projects.append(f"{p} ({p_name})" if p_name else p)
+
+        assigned_text = ", ".join(assigned_projects) if assigned_projects else "none"
 
         self.confirm_dialog = MDDialog(
-            title="Different Project",
-            text=f"User {user.get('name')} is assigned to project(s): {current_assignments}\n\n"
-                 f"You entered Project {project} ({project_name})\n\n"
+            title="Project Not Assigned",
+            text=f"User {full_name} is not assigned to Project {project_str} ({project_name}).\n\n"
+                 f"Assigned projects: {assigned_text}\n\n"
                  f"Work on this project anyway?",
             buttons=[
                 MDFlatButton(
                     text="NO",
-                    on_release=lambda x: self.confirm_dialog.dismiss()
+                    on_release=lambda x: self.confirm_dialog.dismiss()  # Just closes, stays on login
                 ),
                 MDRaisedButton(
                     text="YES, CONTINUE",
                     md_bg_color=(0.8, 0.5, 0.2, 1),
-                    on_release=lambda x: self.complete_login(user, project, season_id, year, user_id)
+                    on_release=lambda x: [
+                        self.confirm_dialog.dismiss(),
+                        self.complete_login(user, project_str, season_id, year, user_id)
+                    ]
                 )
             ]
         )

@@ -1,9 +1,8 @@
-from admin import load_users, save_users, save_projects, save_seasons, load_projects,load_seasons
+from admin import load_users, save_users, save_projects, save_seasons, load_projects, load_seasons
 from kivymd.uix.screen import MDScreen
-from kivymd.uix.button import MDRaisedButton, MDRectangleFlatButton
+from kivymd.uix.button import MDRaisedButton, MDRectangleFlatButton, MDFlatButton
 from kivymd.uix.menu import MDDropdownMenu
 from kivymd.uix.label import MDLabel
-from kivymd.uix.button import MDRaisedButton, MDRectangleFlatButton, MDFlatButton
 from kivymd.uix.textfield import MDTextField
 from kivymd.uix.card import MDCard
 from kivymd.uix.boxlayout import MDBoxLayout
@@ -16,31 +15,13 @@ import json
 from datetime import datetime
 from kivy.uix.widget import Widget
 
-try:
-    from permissions import RuntimePermissionScreen, ANDROID_AVAILABLE
-except ImportError:
-    ANDROID_AVAILABLE = False
-    class RuntimePermissionScreen:
-        def check_and_request_permissions(self, on_granted=None, on_denied=None):
-            if on_granted: on_granted()
-            return True
+# Direct imports - no fallbacks needed for Android
+from plyer import camera, gps
+from permissions import RuntimePermissionScreen
+from android.permissions import check_permission, Permission, request_permissions
+from android import activity
 
 
-try:
-    from plyer import camera
-    CAMERA_AVAILABLE = True
-except ImportError:
-    CAMERA_AVAILABLE = False
-    print("Camera not available - using mock photos")
-
-# For GPS (will be used when testing on phone)
-try:
-    from plyer import gps
-
-    GPS_AVAILABLE = True
-except ImportError:
-    GPS_AVAILABLE = False
-    print("GPS not available - using mock data")
 
 KV = '''
 <CollectScreen>:
@@ -422,9 +403,18 @@ class CollectScreen(MDScreen, RuntimePermissionScreen):  # Add RuntimePermission
         self.show_message("Camera and GPS permissions are required for data collection")
 
     def get_data_dir(self):
+        """Get app-private storage directory - NO PERMISSIONS NEEDED"""
         from pathlib import Path
-        data_dir = Path('field_data')
+        import sys
+
+        if hasattr(sys, 'getandroidapilevel'):
+            from android import activity
+            data_dir = Path(activity.getFilesDir()) / "field_data"
+        else:
+            data_dir = Path.home() / "field_data"
+
         data_dir.mkdir(parents=True, exist_ok=True)
+        print(f"✅ Data directory: {data_dir}")
         return data_dir
 
     def test_sync_to_server(self):
