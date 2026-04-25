@@ -156,9 +156,6 @@ def save_users(users):
     with open(USERS_FILE, 'w') as f:
         json.dump(users, f, indent=2)
 
-
-
-
 def load_tags():
     """Load tags from database"""
     if TAGS_FILE.exists():

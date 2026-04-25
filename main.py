@@ -19,11 +19,13 @@ except ImportError:
 
     # Dummy classes for desktop testing
     class Permission:
-        CAMERA = "camera"
-        ACCESS_FINE_LOCATION = "gps"
-        ACCESS_COARSE_LOCATION = "gps"
-        READ_EXTERNAL_STORAGE = "storage"
-        WRITE_EXTERNAL_STORAGE = "storage"
+        CAMERA = "android.permission.CAMERA"
+        ACCESS_FINE_LOCATION = "android.permission.ACCESS_FINE_LOCATION"
+        ACCESS_COARSE_LOCATION = "android.permission.ACCESS_COARSE_LOCATION"
+        READ_EXTERNAL_STORAGE = "android.permission.READ_EXTERNAL_STORAGE"
+        WRITE_EXTERNAL_STORAGE = "android.permission.WRITE_EXTERNAL_STORAGE"
+        INTERNET = "android.permission.INTERNET"
+        ACCESS_NETWORK_STATE = "android.permission.ACCESS_NETWORK_STATE"
 
 
     def check_permission(p):

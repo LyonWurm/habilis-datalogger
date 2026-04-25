@@ -27,18 +27,29 @@ except ImportError:
     CAMERA_AVAILABLE = False
     print("Camera not available - using mock photos")
 
-# Add near other imports
 try:
     from android.permissions import check_permission, request_permissions, Permission
+    from android import activity  # Move this inside the try block
     ANDROID_AVAILABLE = True
 except ImportError:
     ANDROID_AVAILABLE = False
     # Dummy for desktop
     class Permission:
-        CAMERA = "camera"
-        ACCESS_FINE_LOCATION = "gps"
+        CAMERA = "android.permission.CAMERA"
+        ACCESS_FINE_LOCATION = "android.permission.ACCESS_FINE_LOCATION"
+        ACCESS_COARSE_LOCATION = "android.permission.ACCESS_COARSE_LOCATION"
+        READ_EXTERNAL_STORAGE = "android.permission.READ_EXTERNAL_STORAGE"
+        WRITE_EXTERNAL_STORAGE = "android.permission.WRITE_EXTERNAL_STORAGE"
+        INTERNET = "android.permission.INTERNET"
+        ACCESS_NETWORK_STATE = "android.permission.ACCESS_NETWORK_STATE"
 
-from android import activity
+    def check_permission(p):
+        return True
+
+    def request_permissions(p, cb):
+        if cb:
+            cb([], [])
+        return True
 
 
 
@@ -639,150 +650,6 @@ class CollectScreen(MDScreen):  # Add RuntimePermissionScreen
             traceback.print_exc()
             self.show_message(f"Sync error: {str(e)}")
 
-    def scan_project_qr(self):
-        """Scan QR code to join a project"""
-        if CAMERA_AVAILABLE and camera:
-            # On real device, use camera
-            try:
-                camera.take_picture(on_complete=self.on_qr_captured)
-                self.show_message("Take a photo of the QR code...")
-            except Exception as e:
-                print(f"Camera error: {e}")
-                self.show_qr_input_dialog()
-        else:
-            # For testing on computer, use input dialog
-            self.show_qr_input_dialog()
-
-    def on_qr_captured(self, filepath):
-        """Handle captured QR code image"""
-        # This would need QR decoding library (like pyzbar)
-        # For now, fall back to manual input
-        self.show_qr_input_dialog()
-        self.show_message("QR scanning coming soon. Please enter data manually.")
-
-    def show_qr_input_dialog(self):
-        """Show dialog to enter QR code data (for testing)"""
-        from kivymd.uix.dialog import MDDialog
-        from kivymd.uix.textfield import MDTextField
-        from kivymd.uix.button import MDRaisedButton, MDFlatButton
-        from kivy.uix.boxlayout import BoxLayout
-
-        content = BoxLayout(orientation='vertical', spacing=10, padding=20, size_hint_y=None, height=200)
-
-        self.qr_input_field = MDTextField(
-            hint_text="Paste QR data here",
-            mode="rectangle",
-            multiline=True,
-            size_hint_y=None,
-            height=150
-        )
-        content.add_widget(self.qr_input_field)
-
-        self.qr_dialog = MDDialog(
-            title="Join Project",
-            type="custom",
-            content_cls=content,
-            size_hint=(0.9, None),
-            height=350,
-            buttons=[
-                MDFlatButton(text="CANCEL", on_release=lambda x: self.qr_dialog.dismiss()),
-                MDRaisedButton(text="JOIN", on_release=lambda x: self.process_project_qr(self.qr_input_field.text))
-            ]
-        )
-        self.qr_dialog.open()
-
-    def process_project_qr(self, qr_data):
-        """Process scanned QR code and import project configuration"""
-        import json
-        from kivymd.app import MDApp
-        from pathlib import Path
-
-        if hasattr(self, 'qr_dialog') and self.qr_dialog:
-            self.qr_dialog.dismiss()
-
-        try:
-            config = json.loads(qr_data)
-
-            if config.get('version') != '1.0':
-                self.show_message("Unsupported QR code version")
-                return
-
-            project_id = config.get('project_id')
-            project_name = config.get('project_name')
-            season_id = config.get('season_id')
-            users_data = config.get('users', {})
-
-            # Load existing data (using imported functions)
-            users = load_users()
-            projects = load_projects()
-            seasons = load_seasons()
-
-            # Check if season exists, if not, create it
-            if season_id not in seasons:
-                seasons[season_id] = {
-                    "organization": "KFFS",
-                    "year": season_id,
-                    "status": "active",
-                    "start_date": datetime.now().strftime("%Y-%m-%d"),
-                    "end_date": f"{int(season_id) + 1}-12-31",
-                    "projects": 0,
-                    "created_at": datetime.now().isoformat(),
-                    "created_by": "QR Import"
-                }
-                save_seasons(seasons)
-
-            # Import users
-            imported_count = 0
-            for user_id, user_data in users_data.items():
-                if user_id not in users:
-                    users[user_id] = {
-                        "name": user_data.get('name', ''),
-                        "first_name": user_data.get('first_name', ''),
-                        "last_name": user_data.get('last_name', ''),
-                        "user_type": user_data.get('user_type', 'seasonal'),
-                        "season": season_id,
-                        "projects": [project_id],
-                        "status": "active",
-                        "created_at": datetime.now().isoformat(),
-                        "created_by": "QR Import"
-                    }
-                    imported_count += 1
-                else:
-                    # Add project to existing user if not already there
-                    if 'projects' not in users[user_id]:
-                        users[user_id]['projects'] = []
-                    if project_id not in users[user_id]['projects']:
-                        users[user_id]['projects'].append(project_id)
-
-            save_users(users)
-
-            # Update current user's session if this is the logged-in user
-            app = MDApp.get_running_app()
-            if hasattr(app, 'current_user') and app.current_user:
-                # Check if the logged-in user is in the imported users
-                current_user_id = app.current_user.get('user_id')
-                if current_user_id and current_user_id in users_data:
-                    app.current_user['season'] = season_id
-                    app.current_user['project'] = project_id
-                    app.current_user['user_name'] = users_data[current_user_id].get('name', '')
-
-                    # Update saved credentials - UPDATED
-                    data_dir = self.get_data_dir()
-                    cred_file = data_dir / "credentials.json"
-                    if cred_file.exists():
-                        with open(cred_file) as f:
-                            creds = json.load(f)
-                        creds['season'] = season_id
-                        creds['project'] = project_id
-                        with open(cred_file, 'w') as f:
-                            json.dump(creds, f, indent=2)
-
-            self.show_message(f"Joined project '{project_name}'\nImported {imported_count} users")
-
-        except json.JSONDecodeError:
-            self.show_message("Invalid QR code data")
-        except Exception as e:
-            self.show_message(f"Error: {str(e)}")
 
     def update_gps(self):
         """Update GPS coordinates"""
@@ -805,15 +672,6 @@ class CollectScreen(MDScreen):  # Add RuntimePermissionScreen
         except Exception as e:
             print(f"GPS error: {e}")
             self.use_mock_gps()
-
-    def _gps_permission_callback(self, permissions, results):
-        """Called after GPS permission request"""
-        if all(results):
-            self.update_gps()
-        else:
-            self.show_message("GPS permission denied. Using mock location.")
-            self.use_mock_gps()
-
 
     def _gps_permission_callback(self, permissions, results):
         """Called after GPS permission request"""
