@@ -8,18 +8,75 @@ from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager
 
 # Import permission manager
+# Android permission handling - built directly into main.py
 try:
-    from permissions import PermissionManager, ANDROID_AVAILABLE
+    from android.permissions import request_permissions, check_permission, Permission
+
+    ANDROID_AVAILABLE = True
 except ImportError:
     ANDROID_AVAILABLE = False
 
 
-    class PermissionManager:
-        def check_permissions(self): return True
+    # Dummy classes for desktop testing
+    class Permission:
+        CAMERA = "camera"
+        ACCESS_FINE_LOCATION = "gps"
+        ACCESS_COARSE_LOCATION = "gps"
+        READ_EXTERNAL_STORAGE = "storage"
+        WRITE_EXTERNAL_STORAGE = "storage"
 
-        def request_all_permissions(self, cb=None):
-            if cb: cb(True)
+
+    def check_permission(p):
+        return True
+
+
+    def request_permissions(p, cb):
+        if cb:
+            cb([], [])
+        return True
+
+
+class PermissionManager:
+    """Simple permission manager built into main.py"""
+
+    def __init__(self):
+        self.granted = False
+
+    def check_permissions(self):
+        if not ANDROID_AVAILABLE:
             return True
+        required = [
+            Permission.CAMERA,
+            Permission.ACCESS_FINE_LOCATION,
+            Permission.ACCESS_COARSE_LOCATION,
+            Permission.READ_EXTERNAL_STORAGE,
+            Permission.WRITE_EXTERNAL_STORAGE,
+        ]
+        for p in required:
+            if not check_permission(p):
+                return False
+        return True
+
+    def request_all_permissions(self, callback=None):
+        if not ANDROID_AVAILABLE:
+            if callback:
+                callback(True)
+            return True
+
+        if self.check_permissions():
+            if callback:
+                callback(True)
+            return True
+
+        required = [
+            Permission.CAMERA,
+            Permission.ACCESS_FINE_LOCATION,
+            Permission.ACCESS_COARSE_LOCATION,
+            Permission.READ_EXTERNAL_STORAGE,
+            Permission.WRITE_EXTERNAL_STORAGE,
+        ]
+        request_permissions(required, lambda p, r: callback(all(r)) if callback else None)
+        return False
 
 from admin import AdminLoginScreen, AdminDashboardScreen, BagTagManagementScreen, SeasonManagementScreen, \
     ProjectManagementScreen, UserManagementScreen

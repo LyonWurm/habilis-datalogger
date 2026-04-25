@@ -19,7 +19,25 @@ from kivy.uix.widget import Widget
 from plyer import camera, gps
 # Direct imports
 from plyer import camera, gps
-from android.permissions import check_permission, Permission, request_permissions
+
+try:
+    from plyer import camera
+    CAMERA_AVAILABLE = True
+except ImportError:
+    CAMERA_AVAILABLE = False
+    print("Camera not available - using mock photos")
+
+# Add near other imports
+try:
+    from android.permissions import check_permission, request_permissions, Permission
+    ANDROID_AVAILABLE = True
+except ImportError:
+    ANDROID_AVAILABLE = False
+    # Dummy for desktop
+    class Permission:
+        CAMERA = "camera"
+        ACCESS_FINE_LOCATION = "gps"
+
 from android import activity
 
 
@@ -388,11 +406,8 @@ class CollectScreen(MDScreen):  # Add RuntimePermissionScreen
 
     def on_enter(self):
         """Called when screen is shown"""
-        # Check permissions before using camera/GPS
-        self.check_and_request_permissions(
-            on_granted=self._on_permissions_granted,
-            on_denied=self._on_permissions_denied
-        )
+        self.update_gps()
+        self.load_saved_observations()
 
     def _on_permissions_granted(self):
         """Permissions granted, proceed normally"""
@@ -771,13 +786,41 @@ class CollectScreen(MDScreen):  # Add RuntimePermissionScreen
 
     def update_gps(self):
         """Update GPS coordinates"""
-        if GPS_AVAILABLE:
-            try:
-                gps.configure(on_location=self.on_gps_location, on_status=self.on_gps_status)
-                gps.start()
-            except NotImplementedError:
-                self.use_mock_gps()
+        # Check GPS permission on Android
+        if ANDROID_AVAILABLE:
+            if not check_permission(Permission.ACCESS_FINE_LOCATION) and not check_permission(
+                    Permission.ACCESS_COARSE_LOCATION):
+                self.show_message("GPS permission not granted. Requesting...")
+                request_permissions([Permission.ACCESS_FINE_LOCATION, Permission.ACCESS_COARSE_LOCATION],
+                                    self._gps_permission_callback)
+                return
+
+        try:
+            from plyer import gps
+            gps.configure(on_location=self.on_gps_location, on_status=self.on_gps_status)
+            gps.start()
+        except ImportError:
+            print("GPS not available - using mock data")
+            self.use_mock_gps()
+        except Exception as e:
+            print(f"GPS error: {e}")
+            self.use_mock_gps()
+
+    def _gps_permission_callback(self, permissions, results):
+        """Called after GPS permission request"""
+        if all(results):
+            self.update_gps()
         else:
+            self.show_message("GPS permission denied. Using mock location.")
+            self.use_mock_gps()
+
+
+    def _gps_permission_callback(self, permissions, results):
+        """Called after GPS permission request"""
+        if all(results):
+            self.update_gps()
+        else:
+            self.show_message("GPS permission denied. Using mock location.")
             self.use_mock_gps()
 
     def use_mock_gps(self):
@@ -2466,24 +2509,37 @@ class CollectScreen(MDScreen):  # Add RuntimePermissionScreen
 
     def take_photo(self):
         """Open camera and capture photo"""
-        if not CAMERA_AVAILABLE or camera is None:
-            self.show_message("Camera not available on this device")
+        # Check camera permission on Android
+        if ANDROID_AVAILABLE and not check_permission(Permission.CAMERA):
+            self.show_message("Camera permission not granted. Requesting...")
+            request_permissions([Permission.CAMERA], self._camera_permission_callback)
             return
 
-        timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
-        filename = f"photo_{timestamp}.jpg"
-        data_dir = self.get_data_dir()
-        photos_dir = data_dir / "photos"
-        photos_dir.mkdir(parents=True, exist_ok=True)
-        filepath = photos_dir / filename
-
         try:
+            from plyer import camera
+            timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+            filename = f"photo_{timestamp}.jpg"
+            data_dir = self.get_data_dir()
+            photos_dir = data_dir / "photos"
+            photos_dir.mkdir(parents=True, exist_ok=True)
+            filepath = photos_dir / filename
+
             camera.take_picture(
                 filename=str(filepath),
                 on_complete=self.on_photo_captured
             )
+        except ImportError:
+            self.show_message("Camera not available on this device")
         except Exception as e:
             self.show_message(f"Camera error: {str(e)}")
+
+    def _camera_permission_callback(self, permissions, results):
+        """Called after camera permission request"""
+        if all(results):
+            self.take_photo()
+        else:
+            self.show_message("Camera permission denied. Cannot take photos.")
+
 
     def on_photo_captured(self, filepath):
         """Called by plyer camera when photo is taken"""
