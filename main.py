@@ -147,12 +147,25 @@ class FieldApp(MDApp):
 
     def on_start(self):
         """Check permissions when app starts"""
+        # Set FileProvider authority for camera (only on Android)
+        try:
+            from android import activity
+            import plyer.camera
+            package_name = activity.getPackageName()
+            plyer.camera.FILEPROVIDER_AUTHORITY = f'{package_name}.fileprovider'
+            print(f"FileProvider authority set to: {plyer.camera.FILEPROVIDER_AUTHORITY}")
+        except (ImportError, AttributeError, Exception) as e:
+            print(f"Could not set FileProvider (non-Android or error): {e}")
+            pass  # Not on Android or plyer doesn't support it yet
+
+        # Your existing permission code
         if ANDROID_AVAILABLE:
             # Request permissions on Android
             self.permission_manager.request_all_permissions(self._on_permissions_result)
         else:
             # Desktop: proceed normally
             self._check_saved_credentials()
+            
 
     def _on_permissions_result(self, granted):
         """Called after permission request completes"""

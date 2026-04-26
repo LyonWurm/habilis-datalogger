@@ -25,6 +25,9 @@ android.ndk_api = 21
 
 android.archs = arm64-v8a, armeabi-v7a
 
+android.gradle_dependencies = androidx.core:core:1.9.0
+android.add_src = android/
+p4a.extra_args = --fileprovider-paths=file_paths.xml
 android.allow_backup = True
 android.logcat_filters = *:S python:D
 
