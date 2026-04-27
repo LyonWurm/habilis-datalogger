@@ -165,7 +165,7 @@ class FieldApp(MDApp):
         else:
             # Desktop: proceed normally
             self._check_saved_credentials()
-            
+
 
     def _on_permissions_result(self, granted):
         """Called after permission request completes"""

@@ -26,6 +26,9 @@ except ImportError:
 
 from plyer import camera
 
+import sys
+import traceback
+
 
 class Permission:
     CAMERA = "android.permission.CAMERA"
@@ -139,26 +142,27 @@ class LoginScreen(MDScreen):
 
     def scan_join_qr(self):
         """Scan QR code to join a project"""
+        print("=== scan_join_qr called ===")
+        print(f"ANDROID_AVAILABLE: {ANDROID_AVAILABLE}")
+
+        if ANDROID_AVAILABLE:
+            try:
+                from android.permissions import check_permission, Permission
+                has_camera = check_permission(Permission.CAMERA)
+                print(f"Camera permission: {has_camera}")
+            except Exception as e:
+                print(f"Permission check error: {e}")
+
         if not ANDROID_AVAILABLE:
-            # On desktop, use manual input
             self.show_qr_input_dialog()
             return
 
-        # Check camera permission
         if not check_permission(Permission.CAMERA):
-            self.show_message("Camera permission required to scan QR codes")
+            print("Requesting camera permission...")
             request_permissions([Permission.CAMERA], self._qr_permission_callback)
             return
 
-        # Use camera to scan QR
-        try:
-            from plyer import camera
-            # You'll need a QR scanning library here
-            # For now, fall back to manual input
-            self.show_qr_input_dialog()
-        except Exception as e:
-            print(f"Camera error: {e}")
-            self.show_qr_input_dialog()
+        self._start_qr_scan()
 
     def _qr_permission_callback(self, permissions, results):
         """Called after QR camera permission request"""
