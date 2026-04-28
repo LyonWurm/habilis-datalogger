@@ -135,6 +135,28 @@ KV = '''
                         on_release: root.do_login()
 '''
 
+
+from kivy.clock import mainthread
+
+@mainthread
+def _qr_permission_callback(self, permissions, results):
+    """Called after QR camera permission request"""
+    if all(results):
+        self.scan_join_qr()
+    else:
+        self.show_message("Camera permission denied. Please enter QR data manually.")
+        self.show_qr_input_dialog()
+
+@mainthread
+def _gps_permission_callback(self, permissions, results):
+    """Called after GPS permission request"""
+    if all(results):
+        self.update_gps()
+    else:
+        self.show_message("GPS permission denied. Using mock location.")
+        self.use_mock_gps()
+
+
 class LoginScreen(MDScreen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)

@@ -48,7 +48,27 @@ except ImportError:
         ACCESS_NETWORK_STATE = "android.permission.ACCESS_NETWORK_STATE"
 
 
+    from kivy.clock import mainthread
 
+
+    @mainthread
+    def _qr_permission_callback(self, permissions, results):
+        """Called after QR camera permission request"""
+        if all(results):
+            self.scan_join_qr()
+        else:
+            self.show_message("Camera permission denied. Please enter QR data manually.")
+            self.show_qr_input_dialog()
+
+
+    @mainthread
+    def _gps_permission_callback(self, permissions, results):
+        """Called after GPS permission request"""
+        if all(results):
+            self.update_gps()
+        else:
+            self.show_message("GPS permission denied. Using mock location.")
+            self.use_mock_gps()
 
 
     def check_permission(p):

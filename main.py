@@ -6,7 +6,7 @@ from kivymd.app import MDApp
 from kivy.core.window import Window
 from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager
-
+from kivy.clock import mainthread
 # Import permission manager
 # Android permission handling - built directly into main.py
 try:
@@ -16,6 +16,28 @@ try:
 except ImportError:
     ANDROID_AVAILABLE = False
 
+
+    @mainthread
+    def _on_permissions_result(self, granted):
+        """Called after permission request completes"""
+        self.permissions_granted = granted
+        if granted:
+            self._check_saved_credentials()
+        else:
+            from kivymd.uix.dialog import MDDialog
+            from kivymd.uix.button import MDRaisedButton
+
+            dialog = MDDialog(
+                title="Permissions Required",
+                text="Some features require camera, GPS, and storage permissions.\n\nYou can still use the app with limited functionality.",
+                buttons=[
+                    MDRaisedButton(
+                        text="OK",
+                        on_release=lambda x: dialog.dismiss()
+                    )
+                ]
+            )
+            dialog.open()
 
     # Dummy classes for desktop testing
     class Permission:
@@ -77,7 +99,16 @@ class PermissionManager:
             Permission.READ_EXTERNAL_STORAGE,
             Permission.WRITE_EXTERNAL_STORAGE,
         ]
-        request_permissions(required, lambda p, r: callback(all(r)) if callback else None)
+
+        from kivy.clock import mainthread
+
+        @mainthread
+        def on_permissions_result(permissions, results):
+            granted = all(results)
+            if callback:
+                callback(granted)
+
+        request_permissions(required, on_permissions_result)
         return False
 
 from admin import AdminLoginScreen, AdminDashboardScreen, BagTagManagementScreen, SeasonManagementScreen, \
@@ -167,28 +198,29 @@ class FieldApp(MDApp):
             self._check_saved_credentials()
 
 
+
+    @mainthread
     def _on_permissions_result(self, granted):
-        """Called after permission request completes"""
+        """Called after permission request completes - MUST run on main thread"""
         self.permissions_granted = granted
         if granted:
             self._check_saved_credentials()
         else:
-            # Show message and exit? Or keep trying?
+            # Create dialog on the main thread
             from kivymd.uix.dialog import MDDialog
             from kivymd.uix.button import MDRaisedButton
 
             dialog = MDDialog(
                 title="Permissions Required",
-                text="This app cannot function without camera, GPS, and storage permissions.\n\nLimited Functionality",
+                text="Some features require camera, GPS, and storage permissions.\n\nYou can still use the app with limited functionality.",
                 buttons=[
                     MDRaisedButton(
-                        text="Ok",
-                        on_release=lambda x: [dialog.dismiss(), self._check_saved_credentials()]                    ),
-
+                        text="OK",
+                        on_release=lambda x: dialog.dismiss()
+                    )
                 ]
             )
             dialog.open()
-
     def _check_saved_credentials(self):
         """Check for saved login credentials"""
         # FIXED: Use get_data_dir() with filename
