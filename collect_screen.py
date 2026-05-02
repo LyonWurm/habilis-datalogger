@@ -688,6 +688,8 @@ class CollectScreen(MDScreen):  # Add RuntimePermissionScreen
             traceback.print_exc()
             self.show_message(f"Sync error: {str(e)}")
 
+    #==== GPS and Breadcrumb Methods ====
+
     def update_gps(self):
         """Update GPS coordinates"""
         print("=== update_gps called ===")
@@ -954,7 +956,7 @@ class CollectScreen(MDScreen):  # Add RuntimePermissionScreen
         content = BoxLayout(orientation='vertical', spacing=10, padding=20, size_hint_y=None, height=100)
 
         self.breadcrumb_name_field = MDTextField(
-            hint_text="Enter a name for this location (e.g., 'Water Source', 'Excavation Site A')",
+            hint_text="Location Name?",
             mode="rectangle",
             multiline=False
         )
@@ -1149,9 +1151,9 @@ class CollectScreen(MDScreen):  # Add RuntimePermissionScreen
             label.bind(on_touch_down=lambda instance, touch, b=bc: self.retrace_from_label(b, instance, touch))
             layout.add_widget(label)
 
-        title = "Select a location to retrace"
+        title = "Retrace to Crumb:"
         if total_count > 15:
-            title += f" (showing most recent 15 of {total_count})"
+            title += f" (showing most recent)"
 
         self.retrace_dialog = MDDialog(
             title=title,
@@ -1175,13 +1177,12 @@ class CollectScreen(MDScreen):  # Add RuntimePermissionScreen
         self.retrace_to_breadcrumb(bc)
         return True
 
-
     def retrace_to_breadcrumb(self, target_bc):
         """Offer options for retracing to selected breadcrumb"""
         from kivymd.uix.dialog import MDDialog
         from math import radians, sin, cos, sqrt, atan2
 
-        print("=== retrace_to_breadcrumb called ===")
+
 
         if not self.current_gps:
             self.show_message("No GPS fix. Please refresh GPS.")
@@ -1205,6 +1206,7 @@ class CollectScreen(MDScreen):  # Add RuntimePermissionScreen
         option_dialog = MDDialog(
             title=f"Pin {target_bc['id']}",
             text=f"Distance: {distance:.0f} meters\n\nHow would you like to navigate?",
+            height=250,
             buttons=[
                 MDFlatButton(
                     text="ONE-TIME INFO",
@@ -1326,7 +1328,8 @@ class CollectScreen(MDScreen):  # Add RuntimePermissionScreen
         else:
             self.saved_observations = {}
 
-    # Dropdown menu methods
+#==== Dropdown menu methods (collection method, chronology, etc.)
+
     def open_collection_method_menu(self):
         menu_items = [
             {"text": "Photo", "on_release": lambda x="Photo": self.set_collection_method(x)},
