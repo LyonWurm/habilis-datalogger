@@ -19,6 +19,16 @@ from kivy.uix.widget import Widget
 from plyer import camera, gps
 # Direct imports
 from plyer import camera, gps
+# Ensure FileProvider authority is set for camera
+try:
+    from android import activity
+    import plyer.camera
+    package_name = activity.getPackageName()
+    if not hasattr(plyer.camera, 'FILEPROVIDER_AUTHORITY') or not plyer.camera.FILEPROVIDER_AUTHORITY:
+        plyer.camera.FILEPROVIDER_AUTHORITY = f'{package_name}.fileprovider'
+        print(f"FileProvider authority set in collect_screen: {plyer.camera.FILEPROVIDER_AUTHORITY}")
+except Exception as e:
+    print(f"Could not set FileProvider in collect_screen: {e}")
 
 import sys
 import traceback
@@ -754,7 +764,7 @@ class CollectScreen(MDScreen):  # Add RuntimePermissionScreen
             self.ids.lat_label.text = f"{lat:.6f}"
             self.ids.lon_label.text = f"{lon:.6f}"
             print(f"GPS fix acquired: {lat}, {lon}")
-            
+
     def on_gps_status(self, stype, status):
         """Called when GPS status changes"""
         if stype == 'provider-enabled':

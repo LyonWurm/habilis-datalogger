@@ -15,7 +15,16 @@ try:
     ANDROID_AVAILABLE = True
 except ImportError:
     ANDROID_AVAILABLE = False
+    # Set FileProvider authority for camera (must happen before any camera import)
+    try:
+        from android import activity
+        import plyer.camera
 
+        package_name = activity.getPackageName()
+        plyer.camera.FILEPROVIDER_AUTHORITY = f'{package_name}.fileprovider'
+        print(f"FileProvider authority set to: {plyer.camera.FILEPROVIDER_AUTHORITY}")
+    except Exception as e:
+        print(f"Could not set FileProvider: {e}")
 
     @mainthread
     def _on_permissions_result(self, granted):
