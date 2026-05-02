@@ -678,17 +678,43 @@ class CollectScreen(MDScreen):  # Add RuntimePermissionScreen
             traceback.print_exc()
             self.show_message(f"Sync error: {str(e)}")
 
-    print("=== update_gps called ===")
-    print(f"ANDROID_AVAILABLE: {ANDROID_AVAILABLE}")
+    def update_gps(self):
+        """Update GPS coordinates"""
+        print("=== update_gps called ===")
+        print(f"ANDROID_AVAILABLE: {ANDROID_AVAILABLE}")
 
-    if ANDROID_AVAILABLE:
+        if ANDROID_AVAILABLE:
+            try:
+                from android.permissions import check_permission
+                import android.permissions as android_perms
+                fine = check_permission(android_perms.Permission.ACCESS_FINE_LOCATION)
+                coarse = check_permission(android_perms.Permission.ACCESS_COARSE_LOCATION)
+                print(f"GPS permissions - Fine: {fine}, Coarse: {coarse}")
+
+                if not fine and not coarse:
+                    print("GPS permission not granted, requesting...")
+                    self.show_message("GPS permission not granted. Requesting...")
+                    from android.permissions import request_permissions
+                    request_permissions([
+                        android_perms.Permission.ACCESS_FINE_LOCATION,
+                        android_perms.Permission.ACCESS_COARSE_LOCATION
+                    ], self._gps_permission_callback)
+                    return
+            except Exception as e:
+                print(f"Permission check error: {e}")
+
         try:
-            from android.permissions import check_permission, Permission
-            fine = check_permission(Permission.ACCESS_FINE_LOCATION)
-            coarse = check_permission(Permission.ACCESS_COARSE_LOCATION)
-            print(f"GPS permissions - Fine: {fine}, Coarse: {coarse}")
+            from plyer import gps
+            print("GPS module imported, configuring...")
+            gps.configure(on_location=self.on_gps_location, on_status=self.on_gps_status)
+            gps.start()
+            print("GPS started successfully")
+        except ImportError:
+            print("GPS import failed - using mock GPS")
+            self.use_mock_gps()
         except Exception as e:
-            print(f"Permission check error: {e}")
+            print(f"GPS error: {e}")
+            self.use_mock_gps()
 
     def _gps_permission_callback(self, permissions, results):
         """Called after GPS permission request"""
