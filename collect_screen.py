@@ -730,15 +730,31 @@ class CollectScreen(MDScreen):  # Add RuntimePermissionScreen
         self.ids.lat_label.text = f"{self.current_gps[0]:.6f}"
         self.ids.lon_label.text = f"{self.current_gps[1]:.6f}"
 
-    def on_gps_location(self, **kwargs):
-        """Called when GPS location updates"""
-        lat = kwargs.get('lat')
-        lon = kwargs.get('lon')
+    def on_gps_location(self, *args, **kwargs):
+        """Called when GPS location updates - handles both formats"""
+        print(f"GPS args: {args}, kwargs: {kwargs}")
+
+        lat = None
+        lon = None
+
+        # Check if locations list is in args
+        if len(args) > 0 and isinstance(args[0], list):
+            locations = args[0]
+            if locations and len(locations) > 0:
+                loc = locations[0]
+                lat = loc.get('latitude', loc.get('lat'))
+                lon = loc.get('longitude', loc.get('lon'))
+        elif 'lat' in kwargs and 'lon' in kwargs:
+            # Old format
+            lat = kwargs.get('lat')
+            lon = kwargs.get('lon')
+
         if lat and lon:
             self.current_gps = (lat, lon)
             self.ids.lat_label.text = f"{lat:.6f}"
             self.ids.lon_label.text = f"{lon:.6f}"
-
+            print(f"GPS fix acquired: {lat}, {lon}")
+            
     def on_gps_status(self, stype, status):
         """Called when GPS status changes"""
         if stype == 'provider-enabled':
