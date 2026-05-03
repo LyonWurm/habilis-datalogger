@@ -14,39 +14,19 @@ from pathlib import Path
 import json
 from datetime import datetime
 from kivy.uix.widget import Widget
-
-# Direct imports - no fallbacks needed for Android
-from plyer import camera, gps
-# Direct imports
-from plyer import camera, gps
-# Ensure FileProvider authority is set for camera
-try:
-    from android import activity
-    import plyer.camera
-    package_name = activity.getPackageName()
-    if not hasattr(plyer.camera, 'FILEPROVIDER_AUTHORITY') or not plyer.camera.FILEPROVIDER_AUTHORITY:
-        plyer.camera.FILEPROVIDER_AUTHORITY = f'{package_name}.fileprovider'
-        print(f"FileProvider authority set in collect_screen: {plyer.camera.FILEPROVIDER_AUTHORITY}")
-except Exception as e:
-    print(f"Could not set FileProvider in collect_screen: {e}")
-
 import sys
 import traceback
 
-
-try:
-    from plyer import camera
-    CAMERA_AVAILABLE = True
-except ImportError:
-    CAMERA_AVAILABLE = False
-    print("Camera not available - using mock photos")
-
+# Android permission imports
 try:
     from android.permissions import check_permission, request_permissions, Permission
-    from android import activity  # Move this inside the try block
+    from android import activity
+
     ANDROID_AVAILABLE = True
 except ImportError:
     ANDROID_AVAILABLE = False
+
+
     # Dummy for desktop
     class Permission:
         CAMERA = "android.permission.CAMERA"
@@ -58,37 +38,34 @@ except ImportError:
         ACCESS_NETWORK_STATE = "android.permission.ACCESS_NETWORK_STATE"
 
 
-    from kivy.clock import mainthread
-
-
-    @mainthread
-    def _qr_permission_callback(self, permissions, results):
-        """Called after QR camera permission request"""
-        if all(results):
-            self.scan_join_qr()
-        else:
-            self.show_message("Camera permission denied. Please enter QR data manually.")
-            self.show_qr_input_dialog()
-
-
-    @mainthread
-    def _gps_permission_callback(self, permissions, results):
-        """Called after GPS permission request"""
-        if all(results):
-            self.update_gps()
-        else:
-            self.show_message("GPS permission denied. Using mock location.")
-            self.use_mock_gps()
-
-
     def check_permission(p):
         return True
+
 
     def request_permissions(p, cb):
         if cb:
             cb([], [])
         return True
 
+# Set FileProvider authority for camera - MUST be done at module level
+if ANDROID_AVAILABLE:
+    try:
+        package_name = activity.getPackageName()
+        # Import plyer camera and set authority BEFORE any camera usage
+        import plyer.camera
+
+        plyer.camera.FILEPROVIDER_AUTHORITY = f'{package_name}.fileprovider'
+        print(f"FileProvider authority set to: {plyer.camera.FILEPROVIDER_AUTHORITY}")
+    except Exception as e:
+        print(f"Could not set FileProvider: {e}")
+
+# GPS import
+try:
+    from plyer import gps
+
+    GPS_AVAILABLE = True
+except ImportError:
+    GPS_AVAILABLE = False
 
 
 KV = '''
@@ -440,7 +417,7 @@ KV = '''
 '''
 
 
-class CollectScreen(MDScreen):  # Add RuntimePermissionScreen
+class CollectScreen(MDScreen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.menu = None
@@ -458,6 +435,17 @@ class CollectScreen(MDScreen):  # Add RuntimePermissionScreen
         self.update_gps()
         self.load_saved_observations()
 
+    def get_data_dir(self):
+        from pathlib import Path
+        import sys
+
+        data_dir = Path('field_data')
+        if not hasattr(sys, 'getandroidapilevel'):
+            data_dir = Path.home() / "field_data"
+        data_dir.mkdir(parents=True, exist_ok=True)
+        return data_dir
+
+
     def _on_permissions_granted(self):
         """Permissions granted, proceed normally"""
         self.update_gps()
@@ -466,20 +454,6 @@ class CollectScreen(MDScreen):  # Add RuntimePermissionScreen
     def _on_permissions_denied(self):
         """Permissions denied, show error"""
         self.show_message("Camera and GPS permissions are required for data collection")
-
-    def get_data_dir(self):
-        from pathlib import Path
-        import sys
-
-        # Use relative path - on Android this resolves to app-private storage
-        data_dir = Path('field_data')
-
-        # On desktop, use home directory
-        if not hasattr(sys, 'getandroidapilevel'):
-            data_dir = Path.home() / "field_data"
-
-        data_dir.mkdir(parents=True, exist_ok=True)
-        return data_dir
 
     def test_sync_to_server(self):
         """Test sending data to the base station server"""
@@ -2454,6 +2428,7 @@ class CollectScreen(MDScreen):  # Add RuntimePermissionScreen
             photos_dir.mkdir(parents=True, exist_ok=True)
             filepath = photos_dir / filename
 
+            print(f"Taking photo, saving to: {filepath}")
             camera.take_picture(
                 filename=str(filepath),
                 on_complete=self.on_photo_captured
@@ -2461,6 +2436,8 @@ class CollectScreen(MDScreen):  # Add RuntimePermissionScreen
         except ImportError:
             self.show_message("Camera not available on this device")
         except Exception as e:
+            print(f"Camera error: {e}")
+            traceback.print_exc()
             self.show_message(f"Camera error: {str(e)}")
 
     def _camera_permission_callback(self, permissions, results):
@@ -2469,7 +2446,6 @@ class CollectScreen(MDScreen):  # Add RuntimePermissionScreen
             self.take_photo()
         else:
             self.show_message("Camera permission denied. Cannot take photos.")
-
 
     def on_photo_captured(self, filepath):
         """Called by plyer camera when photo is taken"""
