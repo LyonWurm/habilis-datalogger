@@ -47,7 +47,7 @@ except ImportError:
             cb([], [])
         return True
 
-# Set FileProvider authority for camera - MUST be done at module level
+"""# Set FileProvider authority for camera - MUST be done at module level
 if ANDROID_AVAILABLE:
     try:
         package_name = activity.getPackageName()
@@ -57,7 +57,7 @@ if ANDROID_AVAILABLE:
         plyer.camera.FILEPROVIDER_AUTHORITY = f'{package_name}.fileprovider'
         print(f"FileProvider authority set to: {plyer.camera.FILEPROVIDER_AUTHORITY}")
     except Exception as e:
-        print(f"Could not set FileProvider: {e}")
+        print(f"Could not set FileProvider: {e}")"""
 
 # GPS import
 try:
@@ -661,7 +661,7 @@ class CollectScreen(MDScreen):
             traceback.print_exc()
             self.show_message(f"Sync error: {str(e)}")
 
-    #==== GPS and Breadcrumb Methods ====
+#==== GPS and Breadcrumb Methods ====
 
     def update_gps(self):
         """Update GPS coordinates"""
@@ -746,6 +746,8 @@ class CollectScreen(MDScreen):
             print("GPS provider enabled")
         elif stype == 'provider-disabled':
             print("GPS provider disabled")
+
+#==== Breadcrumb! ====
 
     def start_live_tracking(self, target_bc):
         """Start live tracking to selected breadcrumb"""
@@ -1980,6 +1982,8 @@ class CollectScreen(MDScreen):
         )
         self.detail_dialog.open()
 
+#==== Save/Export Methods
+
     def get_export_paths(self):
         """Get the export directory and file paths for the current season"""
         from pathlib import Path
@@ -2376,39 +2380,7 @@ class CollectScreen(MDScreen):
         )
         self.settings_dialog.open()
 
-    def toggle_theme(self):
-        """Toggle between light and dark mode"""
-        from kivymd.app import MDApp
-        app = MDApp.get_running_app()
-
-        if app.theme_cls.theme_style == "Light":
-            app.theme_cls.theme_style = "Dark"
-        else:
-            app.theme_cls.theme_style = "Light"
-
-        # Update the status label if the dialog is still open
-        if hasattr(self, 'settings_dialog') and self.settings_dialog:
-            current_theme = "ON" if app.theme_cls.theme_style == "Dark" else "OFF"
-            for child in self.settings_dialog.content_cls.children:
-                if isinstance(child, MDBoxLayout):
-                    for subchild in child.children:
-                        if isinstance(subchild, MDLabel) and subchild.text in ["ON", "OFF"]:
-                            subchild.text = current_theme
-                            break
-
-        # Save preference - FIXED: use get_data_dir() with filename
-        data_dir = self.get_data_dir()
-        prefs_file = data_dir / "preferences.json"  # ← Added filename
-
-        if prefs_file.exists():
-            with open(prefs_file) as f:
-                prefs = json.load(f)
-        else:
-            prefs = {}
-
-        prefs['theme_style'] = app.theme_cls.theme_style
-        with open(prefs_file, 'w') as f:
-            json.dump(prefs, f, indent=2)
+#==== Photo Collection Methods
 
     def take_photo(self):
         """Open camera and capture photo"""
@@ -2432,12 +2404,16 @@ class CollectScreen(MDScreen):
             except Exception as e:
                 print(f"Permission check error: {e}")
                 traceback.print_exc()
-        else:
-            print("ANDROID_AVAILABLE is False - running on desktop?")
 
         try:
+            # Import camera and set FileProvider authority right before use
             from plyer import camera
-            print("Plyer camera imported successfully")
+            from android import activity
+
+            # Set FileProvider authority EVERY TIME before using camera
+            package_name = activity.getPackageName()
+            camera.FILEPROVIDER_AUTHORITY = f'{package_name}.fileprovider'
+            print(f"FileProvider authority set to: {camera.FILEPROVIDER_AUTHORITY}")
 
             timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
             filename = f"photo_{timestamp}.jpg"
@@ -2447,13 +2423,6 @@ class CollectScreen(MDScreen):
             filepath = photos_dir / filename
 
             print(f"Photo path: {filepath}")
-            print(f"File exists before: {filepath.exists()}")
-
-            # Check FileProvider authority
-            if hasattr(camera, 'FILEPROVIDER_AUTHORITY'):
-                print(f"FileProvider authority: {camera.FILEPROVIDER_AUTHORITY}")
-            else:
-                print("WARNING: FILEPROVIDER_AUTHORITY not set in plyer.camera")
 
             camera.take_picture(
                 filename=str(filepath),
