@@ -445,7 +445,6 @@ class CollectScreen(MDScreen):
         data_dir.mkdir(parents=True, exist_ok=True)
         return data_dir
 
-
     def _on_permissions_granted(self):
         """Permissions granted, proceed normally"""
         self.update_gps()
@@ -2413,14 +2412,33 @@ class CollectScreen(MDScreen):
 
     def take_photo(self):
         """Open camera and capture photo"""
+        import traceback
+
+        print("=" * 50)
+        print("TAKE PHOTO CALLED")
+        print("=" * 50)
+
         # Check camera permission on Android
-        if ANDROID_AVAILABLE and not check_permission(Permission.CAMERA):
-            self.show_message("Camera permission not granted. Requesting...")
-            request_permissions([Permission.CAMERA], self._camera_permission_callback)
-            return
+        if ANDROID_AVAILABLE:
+            print(f"ANDROID_AVAILABLE: {ANDROID_AVAILABLE}")
+            try:
+                has_permission = check_permission(Permission.CAMERA)
+                print(f"Camera permission granted: {has_permission}")
+                if not has_permission:
+                    print("Requesting camera permission...")
+                    self.show_message("Camera permission not granted. Requesting...")
+                    request_permissions([Permission.CAMERA], self._camera_permission_callback)
+                    return
+            except Exception as e:
+                print(f"Permission check error: {e}")
+                traceback.print_exc()
+        else:
+            print("ANDROID_AVAILABLE is False - running on desktop?")
 
         try:
             from plyer import camera
+            print("Plyer camera imported successfully")
+
             timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
             filename = f"photo_{timestamp}.jpg"
             data_dir = self.get_data_dir()
@@ -2428,12 +2446,24 @@ class CollectScreen(MDScreen):
             photos_dir.mkdir(parents=True, exist_ok=True)
             filepath = photos_dir / filename
 
-            print(f"Taking photo, saving to: {filepath}")
+            print(f"Photo path: {filepath}")
+            print(f"File exists before: {filepath.exists()}")
+
+            # Check FileProvider authority
+            if hasattr(camera, 'FILEPROVIDER_AUTHORITY'):
+                print(f"FileProvider authority: {camera.FILEPROVIDER_AUTHORITY}")
+            else:
+                print("WARNING: FILEPROVIDER_AUTHORITY not set in plyer.camera")
+
             camera.take_picture(
                 filename=str(filepath),
                 on_complete=self.on_photo_captured
             )
-        except ImportError:
+            print("camera.take_picture called successfully")
+
+        except ImportError as e:
+            print(f"Import error: {e}")
+            traceback.print_exc()
             self.show_message("Camera not available on this device")
         except Exception as e:
             print(f"Camera error: {e}")
@@ -2449,11 +2479,14 @@ class CollectScreen(MDScreen):
 
     def on_photo_captured(self, filepath):
         """Called by plyer camera when photo is taken"""
+        print(f"=== on_photo_captured called with: {filepath} ===")
         if filepath and Path(filepath).exists():
             filename = Path(filepath).name
             self.photos.append(filename)
+            print(f"Photo saved: {filename}")
             self.show_message(f"Photo captured ({len(self.photos)} total)")
         else:
+            print(f"Photo file does not exist: {filepath}")
             self.show_message("Photo capture failed")
 
     def save_observation(self):
