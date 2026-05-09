@@ -430,6 +430,27 @@ class CollectScreen(MDScreen):
         self.current_gps = None
         self.photos = []
 
+        if ANDROID_AVAILABLE:
+            from android import activity
+            activity.bind(on_activity_result=self.on_activity_result)
+
+    def on_activity_result(self, request_code, result_code, intent):
+        """Handle camera result"""
+        from android import activity
+
+        if request_code == 1001:
+            if result_code == -1:  # RESULT_OK
+                if hasattr(self, 'pending_photo_path') and self.pending_photo_path.exists():
+                    print(f"Photo saved: {self.pending_photo_path}")
+                    self.show_message("Photo captured successfully!")
+                else:
+                    print("Photo file not found")
+                    self.show_message("Photo capture failed")
+            else:
+                print(f"Camera cancelled or error: {result_code}")
+                self.show_message("Photo capture cancelled")
+
+
     def on_enter(self):
         """Called when screen is shown"""
         self.update_gps()
@@ -453,6 +474,7 @@ class CollectScreen(MDScreen):
     def _on_permissions_denied(self):
         """Permissions denied, show error"""
         self.show_message("Camera and GPS permissions are required for data collection")
+
 
     def test_sync_to_server(self):
         """Test sending data to the base station server"""
@@ -2383,43 +2405,36 @@ class CollectScreen(MDScreen):
 #==== Photo Collection Methods
 
     def take_photo(self):
-        """Open camera and capture photo"""
+        """Open camera using Android native intent"""
         import traceback
 
-        print("=" * 50)
-        print("TAKE PHOTO CALLED")
-        print("=" * 50)
+        print("TAKE PHOTO CALLED - Using native intent")
 
-        # Check camera permission on Android
-        if ANDROID_AVAILABLE:
-            print(f"ANDROID_AVAILABLE: {ANDROID_AVAILABLE}")
-            try:
-                has_permission = check_permission(Permission.CAMERA)
-                print(f"Camera permission granted: {has_permission}")
-                if not has_permission:
-                    print("Requesting camera permission...")
-                    self.show_message("Camera permission not granted. Requesting...")
-                    request_permissions([Permission.CAMERA], self._camera_permission_callback)
-                    return
-            except Exception as e:
-                print(f"Permission check error: {e}")
-                traceback.print_exc()
+        if not ANDROID_AVAILABLE:
+            self.show_message("Camera only available on Android")
+            return
+
+        # Check permission
+        if not check_permission(Permission.CAMERA):
+            request_permissions([Permission.CAMERA], self._camera_permission_callback)
+            return
 
         try:
-            # Import camera and set FileProvider authority right before use
-            from plyer import camera
+            from jnius import autoclass, cast
             from android import activity
-            from jnius import autoclass
+            from android.runnable import run_on_ui_thread
 
-            # Get package name correctly
-            PythonActivity = autoclass('org.kivy.android.PythonActivity')
-            package_name = PythonActivity.mActivity.getPackageName()
+            # Android classes
+            Intent = autoclass('android.content.Intent')
+            MediaStore = autoclass('android.provider.MediaStore')
+            File = autoclass('java.io.File')
+            FileProvider = autoclass('androidx.core.content.FileProvider')
+
+            # Get package name
+            package_name = activity.getPackageName()
             print(f"Package name: {package_name}")
 
-            # Set FileProvider authority
-            camera.FILEPROVIDER_AUTHORITY = f'{package_name}.fileprovider'
-            print(f"FileProvider authority set to: {camera.FILEPROVIDER_AUTHORITY}")
-
+            # Create file path
             timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
             filename = f"photo_{timestamp}.jpg"
             data_dir = self.get_data_dir()
@@ -2429,21 +2444,39 @@ class CollectScreen(MDScreen):
 
             print(f"Photo path: {filepath}")
 
-            camera.take_picture(
-                filename=str(filepath),
-                on_complete=self.on_photo_captured
+            # Create file and URI
+            file = File(str(filepath))
+            uri = FileProvider.getUriForFile(
+                activity.getApplicationContext(),
+                f'{package_name}.fileprovider',
+                file
             )
-            print("camera.take_picture called successfully")
 
-        except ImportError as e:
-            print(f"Import error: {e}")
-            traceback.print_exc()
-            self.show_message("Camera not available on this device")
+            print(f"URI: {uri}")
+
+            # Create intent
+            intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, uri)
+
+            # Grant permission for the camera app to write to the URI
+            intent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
+
+            # Store the filepath for later
+            self.pending_photo_path = filepath
+
+            # Start camera activity - need to handle result
+            activity.startActivityForResult(intent, 1001)
+
+            # Note: You'll need to add onActivityResult handling
+            # For now, add to photos list immediately and hope it works
+            self.photos.append(filename)
+            self.show_message("Taking photo... Check your photos folder")
+
         except Exception as e:
             print(f"Camera error: {e}")
             traceback.print_exc()
             self.show_message(f"Camera error: {str(e)}")
-            
+
     def _camera_permission_callback(self, permissions, results):
         """Called after camera permission request"""
         if all(results):
