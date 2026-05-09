@@ -2409,9 +2409,14 @@ class CollectScreen(MDScreen):
             # Import camera and set FileProvider authority right before use
             from plyer import camera
             from android import activity
+            from jnius import autoclass
 
-            # Set FileProvider authority EVERY TIME before using camera
-            package_name = activity.getPackageName()
+            # Get package name correctly
+            PythonActivity = autoclass('org.kivy.android.PythonActivity')
+            package_name = PythonActivity.mActivity.getPackageName()
+            print(f"Package name: {package_name}")
+
+            # Set FileProvider authority
             camera.FILEPROVIDER_AUTHORITY = f'{package_name}.fileprovider'
             print(f"FileProvider authority set to: {camera.FILEPROVIDER_AUTHORITY}")
 
@@ -2438,7 +2443,7 @@ class CollectScreen(MDScreen):
             print(f"Camera error: {e}")
             traceback.print_exc()
             self.show_message(f"Camera error: {str(e)}")
-
+            
     def _camera_permission_callback(self, permissions, results):
         """Called after camera permission request"""
         if all(results):
