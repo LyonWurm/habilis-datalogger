@@ -436,20 +436,24 @@ class CollectScreen(MDScreen):
 
     def on_activity_result(self, request_code, result_code, intent):
         """Handle camera result"""
-        from android import activity
-
         if request_code == 1001:
             if result_code == -1:  # RESULT_OK
                 if hasattr(self, 'pending_photo_path') and self.pending_photo_path.exists():
                     print(f"Photo saved: {self.pending_photo_path}")
+                    # Make sure photo is in the list
+                    if hasattr(self, 'pending_photo_filename'):
+                        if self.pending_photo_filename not in self.photos:
+                            self.photos.append(self.pending_photo_filename)
                     self.show_message("Photo captured successfully!")
                 else:
                     print("Photo file not found")
                     self.show_message("Photo capture failed")
             else:
                 print(f"Camera cancelled or error: {result_code}")
+                # Remove from photos if it was added optimistically
+                if hasattr(self, 'pending_photo_filename') and self.pending_photo_filename in self.photos:
+                    self.photos.remove(self.pending_photo_filename)
                 self.show_message("Photo capture cancelled")
-
 
     def on_enter(self):
         """Called when screen is shown"""
@@ -474,7 +478,6 @@ class CollectScreen(MDScreen):
     def _on_permissions_denied(self):
         """Permissions denied, show error"""
         self.show_message("Camera and GPS permissions are required for data collection")
-
 
     def test_sync_to_server(self):
         """Test sending data to the base station server"""
@@ -2420,19 +2423,20 @@ class CollectScreen(MDScreen):
             return
 
         try:
-            from jnius import autoclass, cast
+            from jnius import autoclass
             from android import activity
-            from android.runnable import run_on_ui_thread
+
+            # Get package name correctly
+            PythonActivity = autoclass('org.kivy.android.PythonActivity')
+            context = PythonActivity.mActivity
+            package_name = context.getPackageName()
+            print(f"Package name: {package_name}")
 
             # Android classes
             Intent = autoclass('android.content.Intent')
             MediaStore = autoclass('android.provider.MediaStore')
             File = autoclass('java.io.File')
             FileProvider = autoclass('androidx.core.content.FileProvider')
-
-            # Get package name
-            package_name = activity.getPackageName()
-            print(f"Package name: {package_name}")
 
             # Create file path
             timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
@@ -2447,7 +2451,7 @@ class CollectScreen(MDScreen):
             # Create file and URI
             file = File(str(filepath))
             uri = FileProvider.getUriForFile(
-                activity.getApplicationContext(),
+                context,
                 f'{package_name}.fileprovider',
                 file
             )
@@ -2457,20 +2461,18 @@ class CollectScreen(MDScreen):
             # Create intent
             intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
             intent.putExtra(MediaStore.EXTRA_OUTPUT, uri)
-
-            # Grant permission for the camera app to write to the URI
             intent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
 
-            # Store the filepath for later
+            # Store for callback
             self.pending_photo_path = filepath
+            self.pending_photo_filename = filename
 
-            # Start camera activity - need to handle result
+            # Start camera
             activity.startActivityForResult(intent, 1001)
 
-            # Note: You'll need to add onActivityResult handling
-            # For now, add to photos list immediately and hope it works
+            # Add to photos list optimistically
             self.photos.append(filename)
-            self.show_message("Taking photo... Check your photos folder")
+            self.show_message("Opening camera...")
 
         except Exception as e:
             print(f"Camera error: {e}")
