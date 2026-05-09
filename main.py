@@ -7,13 +7,23 @@ from kivy.core.window import Window
 from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager
 from kivy.clock import mainthread
-# Import permission manager
+
 # Android permission handling - built directly into main.py
 try:
     from android.permissions import request_permissions, check_permission, Permission
+    from android import activity
 
     ANDROID_AVAILABLE = True
-except ImportError:
+
+    # Set FileProvider authority for camera - MOVED HERE (inside the try block)
+    try:
+        import plyer.camera
+
+        package_name = activity.getPackageName()
+        plyer.camera.FILEPROVIDER_AUTHORITY = f'{package_name}.fileprovider'
+        print(f"FileProvider authority set to: {plyer.camera.FILEPROVIDER_AUTHORITY}")
+    except Exception as e:
+        print(f"Could not set FileProvider: {e}")
     ANDROID_AVAILABLE = False
     # Set FileProvider authority for camera (must happen before any camera import)
     try:

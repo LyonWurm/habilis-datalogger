@@ -2426,7 +2426,7 @@ class CollectScreen(MDScreen):
             from jnius import autoclass
             from android import activity
 
-            # Get package name correctly
+            # Get package name
             PythonActivity = autoclass('org.kivy.android.PythonActivity')
             context = PythonActivity.mActivity
             package_name = context.getPackageName()
@@ -2448,11 +2448,14 @@ class CollectScreen(MDScreen):
 
             print(f"Photo path: {filepath}")
 
-            # Create file and URI
+            # Create file and URI - authority MUST match ${applicationId}.fileprovider
             file = File(str(filepath))
+            authority = 'org.kffs.habilisdatalogger.fileprovider'
+            print(f"Authority: {authority}")
+
             uri = FileProvider.getUriForFile(
                 context,
-                f'{package_name}.fileprovider',
+                authority,
                 file
             )
 
