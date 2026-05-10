@@ -47,17 +47,6 @@ except ImportError:
             cb([], [])
         return True
 
-"""# Set FileProvider authority for camera - MUST be done at module level
-if ANDROID_AVAILABLE:
-    try:
-        package_name = activity.getPackageName()
-        # Import plyer camera and set authority BEFORE any camera usage
-        import plyer.camera
-
-        plyer.camera.FILEPROVIDER_AUTHORITY = f'{package_name}.fileprovider'
-        print(f"FileProvider authority set to: {plyer.camera.FILEPROVIDER_AUTHORITY}")
-    except Exception as e:
-        print(f"Could not set FileProvider: {e}")"""
 
 # GPS import
 try:

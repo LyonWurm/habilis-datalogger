@@ -1,7 +1,7 @@
 [app]
 
 title = Habilis Data Logger
-package.name = habilisdl
+package.name = habilisdatalogger
 package.domain = org.kffs
 
 source.dir = .
