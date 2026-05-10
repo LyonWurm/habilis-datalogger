@@ -14,6 +14,7 @@ from pathlib import Path
 import json
 from datetime import datetime
 from kivy.uix.widget import Widget
+from admin import get_data_dir
 import sys
 import traceback
 
@@ -449,15 +450,6 @@ class CollectScreen(MDScreen):
         self.update_gps()
         self.load_saved_observations()
 
-    def get_data_dir(self):
-        from pathlib import Path
-        import sys
-
-        data_dir = Path('field_data')
-        if not hasattr(sys, 'getandroidapilevel'):
-            data_dir = Path.home() / "field_data"
-        data_dir.mkdir(parents=True, exist_ok=True)
-        return data_dir
 
     def _on_permissions_granted(self):
         """Permissions granted, proceed normally"""
@@ -520,7 +512,7 @@ class CollectScreen(MDScreen):
                             break
 
         # Save preference
-        data_dir = self.get_data_dir()
+        data_dir = get_data_dir()
         prefs_file = data_dir / "preferences.json"
         # No need for mkdir() here because get_data_dir() already creates the directory
 
@@ -594,7 +586,7 @@ class CollectScreen(MDScreen):
         print(f"🔵 Starting sync to {base_ip}")
 
         # Load local observations - FIXED: add filename
-        data_dir = self.get_data_dir()
+        data_dir = get_data_dir()
         obs_file = data_dir / "observations.json"  # ← Added filename
         if not obs_file.exists():
             self.progress_dialog.dismiss()
@@ -684,8 +676,7 @@ class CollectScreen(MDScreen):
 
         if ANDROID_AVAILABLE:
             try:
-                from android.permissions import check_permission
-                import android.permissions as android_perms
+
                 fine = check_permission(android_perms.Permission.ACCESS_FINE_LOCATION)
                 coarse = check_permission(android_perms.Permission.ACCESS_COARSE_LOCATION)
                 print(f"GPS permissions - Fine: {fine}, Coarse: {coarse}")
@@ -971,7 +962,7 @@ class CollectScreen(MDScreen):
         lat, lon = self.current_gps
 
         # Load existing breadcrumbs - FIXED: ensure filename is appended
-        data_dir = self.get_data_dir()
+        data_dir = get_data_dir()
         bc_file = data_dir / "breadcrumbs.json"  # ← Already correct, but ensure pattern
 
         if bc_file.exists():
@@ -1003,7 +994,7 @@ class CollectScreen(MDScreen):
 
     def get_next_breadcrumb_id(self):
         """Get the next available breadcrumb ID"""
-        data_dir = self.get_data_dir()
+        data_dir = get_data_dir()
         bc_file = data_dir / "breadcrumbs.json"
         if bc_file.exists():
             with open(bc_file) as f:
@@ -1017,7 +1008,7 @@ class CollectScreen(MDScreen):
         from kivymd.uix.label import MDLabel
         from kivy.uix.boxlayout import BoxLayout
 
-        data_dir = self.get_data_dir()
+        data_dir = get_data_dir()
         bc_file = data_dir / "breadcrumbs.json"
         if not bc_file.exists():
             self.show_message("No breadcrumbs dropped yet")
@@ -1248,7 +1239,7 @@ class CollectScreen(MDScreen):
         from kivymd.uix.dialog import MDDialog
 
         def confirm_clear():
-            data_dir = self.get_data_dir()
+            data_dir = get_data_dir()
             bc_file = data_dir / "breadcrumbs.json"
             if bc_file.exists():
                 bc_file.unlink()
@@ -1299,7 +1290,7 @@ class CollectScreen(MDScreen):
 
     def check_duplicate_field_id(self, field_id):
         """Check if Field ID already exists"""
-        data_dir = self.get_data_dir()
+        data_dir = get_data_dir()
         obs_file = data_dir / "observations.json"
         if obs_file.exists():
             with open(obs_file) as f:
@@ -1309,7 +1300,7 @@ class CollectScreen(MDScreen):
 
     def load_saved_observations(self):
         """Load saved observations for duplicate checking"""
-        data_dir = self.get_data_dir()
+        data_dir = get_data_dir()
         obs_file = data_dir / "observations.json"  # ← Already correct, but ensure this pattern
         if obs_file.exists():
             with open(obs_file) as f:
@@ -1588,7 +1579,7 @@ class CollectScreen(MDScreen):
         user_id = current_user.get('user_id')
 
         # Load observations
-        data_dir = self.get_data_dir()
+        data_dir = get_data_dir()
         obs_file = data_dir / "observations.json"
         if not obs_file.exists():
             self.show_message("No observations found")
@@ -1673,7 +1664,7 @@ class CollectScreen(MDScreen):
         project_id = current_user.get('project')
 
         # Load observations
-        data_dir = self.get_data_dir()
+        data_dir = get_data_dir()
         obs_file = data_dir / "observations.json"
         if not obs_file.exists():
             self.show_message("No observations found")
@@ -2069,7 +2060,7 @@ class CollectScreen(MDScreen):
         collector_name = user_data.get('name', current_user.get('user_name', ''))
 
         # Load saved observations
-        data_dir = self.get_data_dir()
+        data_dir = get_data_dir()
         obs_file = data_dir / "observations.json"
         if not obs_file.exists():
             self.show_message("No saved observations found")
@@ -2162,7 +2153,7 @@ class CollectScreen(MDScreen):
                 # Export photos
                 photos = obs.get('photos', [])
                 for i, photo_name in enumerate(photos):
-                    data_dir = self.get_data_dir()
+                    data_dir = get_data_dir()
                     src_photo = data_dir / "photos" / photo_name
                     if src_photo.exists():
                         ext = src_photo.suffix or '.jpg'
@@ -2220,7 +2211,7 @@ class CollectScreen(MDScreen):
         images_dir.mkdir(exist_ok=True)
 
         # Load saved observations
-        data_dir = self.get_data_dir()
+        data_dir = get_data_dir()
         obs_file = data_dir / "observations.json"
         if not obs_file.exists():
             self.show_message("No saved observations found")
@@ -2280,7 +2271,7 @@ class CollectScreen(MDScreen):
             # Copy photos
             photos = obs.get('photos', [])
             for i, photo_name in enumerate(photos):
-                data_dir = self.get_data_dir()
+                data_dir = get_data_dir()
                 src_photo = data_dir / "photos" / photo_name
                 if src_photo.exists():
                     ext = src_photo.suffix or '.jpg'
@@ -2316,7 +2307,7 @@ class CollectScreen(MDScreen):
         photos_exported = 0
         for i, photo_name in enumerate(self.photos):
             # Source path (where photos are stored)
-            data_dir = self.get_data_dir()
+            data_dir = get_data_dir()
             src_photo = data_dir / "photos" / photo_name
 
             if src_photo.exists():
@@ -2430,7 +2421,7 @@ class CollectScreen(MDScreen):
             # Create file path
             timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
             filename = f"photo_{timestamp}.jpg"
-            data_dir = self.get_data_dir()
+            data_dir = get_data_dir()
             photos_dir = data_dir / "photos"
             photos_dir.mkdir(parents=True, exist_ok=True)
             filepath = photos_dir / filename
@@ -2549,7 +2540,7 @@ class CollectScreen(MDScreen):
         )
 
         # Save to local JSON file - FIXED: use full file path
-        data_dir = self.get_data_dir()
+        data_dir = get_data_dir()
         obs_file = data_dir / "observations.json"  # ← Ensure filename is appended
 
         if obs_file.exists():
@@ -2668,7 +2659,7 @@ class CollectScreen(MDScreen):
         self.sync_dialog.open()
 
     def logout(self):
-        data_dir = self.get_data_dir()
+        data_dir = get_data_dir()
         cred_file = data_dir / "credentials.json"
         if cred_file.exists():
             cred_file.unlink()

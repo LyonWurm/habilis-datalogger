@@ -4,18 +4,16 @@ from kivymd.uix.dialog import MDDialog
 from kivymd.uix.button import MDRaisedButton, MDFlatButton
 from kivy.lang import Builder
 from kivymd.uix.label import MDLabel
-from kivymd.uix.selectioncontrol import MDSwitch
 from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.app import MDApp
 from pathlib import Path
-import json
-from datetime import datetime
 from plyer import camera
+from kivy.clock import mainthread
+import json
+import sys
+import traceback
 from datetime import datetime
-
-# Import data functions
-from admin import load_seasons, load_users, load_projects
-
+from admin import get_data_dir, load_seasons, load_users, load_projects
 
 try:
     from android.permissions import check_permission, request_permissions, Permission
@@ -24,47 +22,35 @@ try:
 except ImportError:
     ANDROID_AVAILABLE = False
 
-from plyer import camera
+    class Permission:
+        CAMERA = "android.permission.CAMERA"
+        ACCESS_FINE_LOCATION = "android.permission.ACCESS_FINE_LOCATION"
+        ACCESS_COARSE_LOCATION = "android.permission.ACCESS_COARSE_LOCATION"
+        READ_EXTERNAL_STORAGE = "android.permission.READ_EXTERNAL_STORAGE"
+        WRITE_EXTERNAL_STORAGE = "android.permission.WRITE_EXTERNAL_STORAGE"
+        INTERNET = "android.permission.INTERNET"
+        ACCESS_NETWORK_STATE = "android.permission.ACCESS_NETWORK_STATE"
 
-import sys
-import traceback
+    def check_permission(p):
+        return True
+
+    def request_permissions(p, cb):
+        if cb:
+            cb([], [])
+        return True
+
+    class activity:
+        @staticmethod
+        def getFilesDir():
+            import tempfile
+            return tempfile.gettempdir()
+
+        @staticmethod
+        def getCacheDir():
+            import tempfile
+            return tempfile.gettempdir()
 
 
-class Permission:
-    CAMERA = "android.permission.CAMERA"
-    ACCESS_FINE_LOCATION = "android.permission.ACCESS_FINE_LOCATION"
-    ACCESS_COARSE_LOCATION = "android.permission.ACCESS_COARSE_LOCATION"
-    READ_EXTERNAL_STORAGE = "android.permission.READ_EXTERNAL_STORAGE"
-    WRITE_EXTERNAL_STORAGE = "android.permission.WRITE_EXTERNAL_STORAGE"
-    INTERNET = "android.permission.INTERNET"
-    ACCESS_NETWORK_STATE = "android.permission.ACCESS_NETWORK_STATE"
-
-
-def check_permission(p):
-    return True
-
-
-def request_permissions(p, cb):
-    if cb:
-        cb([], [])
-    return True
-
-
-class activity:
-    @staticmethod
-    def getFilesDir():
-        """Stub for desktop"""
-        import tempfile
-        return tempfile.gettempdir()
-
-    @staticmethod
-    def getCacheDir():
-        """Stub for desktop"""
-        import tempfile
-        return tempfile.gettempdir()
-
-# Import data functions
-from admin import load_seasons, load_users, load_projects
 
 KV = '''
 <LoginScreen>:
@@ -135,28 +121,6 @@ KV = '''
                         on_release: root.do_login()
 '''
 
-
-from kivy.clock import mainthread
-
-@mainthread
-def _qr_permission_callback(self, permissions, results):
-    """Called after QR camera permission request"""
-    if all(results):
-        self.scan_join_qr()
-    else:
-        self.show_message("Camera permission denied. Please enter QR data manually.")
-        self.show_qr_input_dialog()
-
-@mainthread
-def _gps_permission_callback(self, permissions, results):
-    """Called after GPS permission request"""
-    if all(results):
-        self.update_gps()
-    else:
-        self.show_message("GPS permission denied. Using mock location.")
-        self.use_mock_gps()
-
-
 class LoginScreen(MDScreen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -214,7 +178,7 @@ class LoginScreen(MDScreen):
             from datetime import datetime
             timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
             filename = f"qr_scan_{timestamp}.jpg"
-            data_dir = self.get_data_dir()
+            data_dir = get_data_dir()
             scans_dir = data_dir / "qr_scans"
             scans_dir.mkdir(parents=True, exist_ok=True)
             filepath = scans_dir / filename
@@ -373,7 +337,7 @@ class LoginScreen(MDScreen):
                 self.theme_switch.active = False
 
         # Save preference
-        data_dir = self.get_data_dir()
+        data_dir = get_data_dir()
         prefs_file = data_dir / "preferences.json"
 
         if prefs_file.exists():
@@ -385,19 +349,6 @@ class LoginScreen(MDScreen):
         prefs['theme_style'] = app.theme_cls.theme_style
         with open(prefs_file, 'w') as f:
             json.dump(prefs, f, indent=2)
-
-    def get_data_dir(self):
-        from pathlib import Path
-        import sys
-
-        if hasattr(sys, 'getandroidapilevel'):
-            # Relative path - Android resolves to app-private storage
-            data_dir = Path('field_data')
-        else:
-            data_dir = Path.home() / "field_data"
-
-        data_dir.mkdir(parents=True, exist_ok=True)
-        return data_dir
 
     def open_menu(self):
         """Open dropdown menu from top-left icon"""
@@ -533,7 +484,7 @@ class LoginScreen(MDScreen):
                             break
 
         # Save preference - FIXED: use get_data_dir() with filename
-        data_dir = self.get_data_dir()
+        data_dir = get_data_dir()
         prefs_file = data_dir / "preferences.json"  # ← Added filename
 
         if prefs_file.exists():
@@ -567,8 +518,6 @@ class LoginScreen(MDScreen):
             return
 
         # Load local data
-        from admin import load_seasons, load_users, load_projects
-
         seasons = load_seasons()
         users = load_users()
         projects = load_projects()
@@ -664,7 +613,7 @@ class LoginScreen(MDScreen):
         from kivymd.app import MDApp
 
         # FIXED: Use get_data_dir() with filename
-        data_dir = self.get_data_dir()
+        data_dir = get_data_dir()
         cred_file = data_dir / "credentials.json"  # ← Added filename
 
         with open(cred_file, 'w') as f:
@@ -701,6 +650,3 @@ class LoginScreen(MDScreen):
             ]
         )
         dialog.open()
-
-
-Builder.load_string(KV)
