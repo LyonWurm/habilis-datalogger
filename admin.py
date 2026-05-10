@@ -69,21 +69,16 @@ def hash_password(password):
     """Simple password hashing"""
     return hashlib.sha256(password.encode()).hexdigest()
 
-
 def load_admins():
     if ADMINS_FILE.exists():
         with open(ADMINS_FILE) as f:
             return json.load(f)
     return {}
 
-
 def save_admins(admins):
     ADMINS_FILE.parent.mkdir(exist_ok=True)
     with open(ADMINS_FILE, 'w') as f:
         json.dump(admins, f, indent=2)
-
-
-
 
 def load_seasons():
     if SEASONS_FILE.exists():
@@ -91,12 +86,10 @@ def load_seasons():
             return json.load(f)
     return {}
 
-
 def save_seasons(seasons):
     SEASONS_FILE.parent.mkdir(exist_ok=True)
     with open(SEASONS_FILE, 'w') as f:
         json.dump(seasons, f, indent=2)
-
 
 def get_most_recent_season():
     """Get the most recent active season (by year)"""
@@ -118,21 +111,16 @@ def get_most_recent_season():
     active_seasons.sort(reverse=True)
     return active_seasons[0]
 
-
-
-
 def load_projects():
     if PROJECTS_FILE.exists():
         with open(PROJECTS_FILE) as f:
             return json.load(f)
     return {}
 
-
 def save_projects(projects):
     PROJECTS_FILE.parent.mkdir(exist_ok=True)
     with open(PROJECTS_FILE, 'w') as f:
         json.dump(projects, f, indent=2)
-
 
 def load_members():
     """Load members from database"""
@@ -149,7 +137,6 @@ def load_users():
             return json.load(f)
     return {}
 
-
 def save_users(users):
     """Save users to database"""
     USERS_FILE.parent.mkdir(exist_ok=True)
@@ -163,13 +150,11 @@ def load_tags():
             return json.load(f)
     return {}
 
-
 def save_tags(tags):
     """Save tags to database"""
     TAGS_FILE.parent.mkdir(exist_ok=True)
     with open(TAGS_FILE, 'w') as f:
         json.dump(tags, f, indent=2)
-
 
 def load_tag_batches():
     """Load tag batches from database"""
@@ -177,7 +162,6 @@ def load_tag_batches():
         with open(TAG_BATCHES_FILE) as f:
             return json.load(f)
     return {}
-
 
 def save_tag_batches(batches):
     """Save tag batches to database"""

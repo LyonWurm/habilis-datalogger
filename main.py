@@ -15,50 +15,23 @@ try:
 
     ANDROID_AVAILABLE = True
 
-    # Set FileProvider authority for camera - MOVED HERE (inside the try block)
+    # Set FileProvider authority for camera
     try:
         import plyer.camera
+        from jnius import autoclass
 
-        package_name = activity.getPackageName()
+        PythonActivity = autoclass('org.kivy.android.PythonActivity')
+        package_name = PythonActivity.mActivity.getPackageName()
         plyer.camera.FILEPROVIDER_AUTHORITY = f'{package_name}.fileprovider'
         print(f"FileProvider authority set to: {plyer.camera.FILEPROVIDER_AUTHORITY}")
     except Exception as e:
         print(f"Could not set FileProvider: {e}")
+
+except ImportError:
     ANDROID_AVAILABLE = False
-    # Set FileProvider authority for camera (must happen before any camera import)
-    try:
-        from android import activity
-        import plyer.camera
 
-        package_name = activity.getPackageName()
-        plyer.camera.FILEPROVIDER_AUTHORITY = f'{package_name}.fileprovider'
-        print(f"FileProvider authority set to: {plyer.camera.FILEPROVIDER_AUTHORITY}")
-    except Exception as e:
-        print(f"Could not set FileProvider: {e}")
 
-    @mainthread
-    def _on_permissions_result(self, granted):
-        """Called after permission request completes"""
-        self.permissions_granted = granted
-        if granted:
-            self._check_saved_credentials()
-        else:
-            from kivymd.uix.dialog import MDDialog
-            from kivymd.uix.button import MDRaisedButton
-
-            dialog = MDDialog(
-                title="Permissions Required",
-                text="Some features require camera, GPS, and storage permissions.\n\nYou can still use the app with limited functionality.",
-                buttons=[
-                    MDRaisedButton(
-                        text="OK",
-                        on_release=lambda x: dialog.dismiss()
-                    )
-                ]
-            )
-            dialog.open()
-
-    # Dummy classes for desktop testing
+    # Dummy for desktop
     class Permission:
         CAMERA = "android.permission.CAMERA"
         ACCESS_FINE_LOCATION = "android.permission.ACCESS_FINE_LOCATION"
@@ -118,8 +91,6 @@ class PermissionManager:
             Permission.READ_EXTERNAL_STORAGE,
             Permission.WRITE_EXTERNAL_STORAGE,
         ]
-
-        from kivy.clock import mainthread
 
         @mainthread
         def on_permissions_result(permissions, results):
