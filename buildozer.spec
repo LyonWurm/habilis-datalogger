@@ -25,7 +25,7 @@ android.ndk_api = 21
 
 android.archs = arm64-v8a, armeabi-v7a
 
-android.add_aars = android.manifest_placeholders = fileProviderAuthority=org.kffs.habilisdatalogger.fileprovider
+android.manifest_placeholders = fileProviderAuthority=org.kffs.habilisdatalogger.fileprovider
 
 android.gradle_dependencies = androidx.core:core:1.9.0
 android.add_src = android/
