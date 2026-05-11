@@ -10,7 +10,7 @@ source.exclude_dirs = tests, bin, venv, .git, __pycache__, docs
 
 version = 0.1
 
-requirements = python3,kivy==2.3.0,kivymd==1.2.0,https://github.com/HyTurtle/plyer/archive/master.zip,requests,qrcode,pillow,android,pyjnius
+requirements = python3,kivy==2.3.1,kivymd==1.2.0,https://github.com/HyTurtle/plyer/archive/master.zip,requests,qrcode,pillow,android,pyjnius
 
 orientation = portrait
 fullscreen = 0
@@ -33,6 +33,7 @@ android.allow_backup = True
 android.logcat_filters = *:S python:D
 
 p4a.bootstrap = sdl2
+p4a.python_version = 3.11
 
 [buildozer]
 log_level = 2
