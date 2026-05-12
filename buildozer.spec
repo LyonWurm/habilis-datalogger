@@ -10,8 +10,7 @@ source.exclude_dirs = tests, bin, venv, .git, __pycache__, docs
 
 version = 0.1
 
-requirements = 
-python3,https://github.com/kivy/kivy/archive/master.zip,kivymd==1.2.0,https://github.com/HyTurtle/plyer/archive/master.zip,requests,qrcode,pillow,android,pyjnius
+requirements = python3,https://github.com/kivy/kivy/archive/master.zip,kivymd==1.2.0,https://github.com/HyTurtle/plyer/archive/master.zip,requests,qrcode,pillow,android,pyjnius
 
 orientation = portrait
 fullscreen = 0
