@@ -32,6 +32,9 @@ android.logcat_filters = *:S python:D
 
 p4a.bootstrap = sdl2
 p4a.python_version = 3.10
+p4a.hostpython_version = 3.10
+p4a.hostpython_url = https://www.python.org/ftp/python/3.10.11/Python-3.10.11.tgz
+
 
 [buildozer]
 log_level = 2
