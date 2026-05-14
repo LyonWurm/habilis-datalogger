@@ -11,7 +11,8 @@ python3,kivy==2.3.0,kivymd==1.2.0,https://github.com/HyTurtle/plyer/archive/mast
 orientation = portrait
 fullscreen = 0
 android.permissions = INTERNET, ACCESS_FINE_LOCATION, 
-ACCESS_COARSE_LOCATION, CAMERA, ACCESS_NETWORK_STATE
+ACCESS_COARSE_LOCATION, CAMERA, ACCESS_NETWORK_STATE, 
+READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE
 android.api = 33
 android.minapi = 21
 android.ndk = 25c
@@ -23,6 +24,12 @@ android.add_src = android/
 android.allow_backup = True
 android.logcat_filters = *:S python:D
 p4a.bootstrap = sdl2
+p4a.python_version = 3.10.11
+p4a.hostpython_version = 3.10.11
+p4a.hostpython_url = 
+https://www.python.org/ftp/python/3.10.11/Python-3.10.11.tgz
+
 [buildozer]
 log_level = 2
 warn_on_root = 1
+
