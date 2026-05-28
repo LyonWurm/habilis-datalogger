@@ -447,8 +447,10 @@ class CollectScreen(MDScreen):
 
     def on_enter(self):
         """Called when screen is shown"""
-        self.update_gps()
-        self.load_saved_observations()
+        if hasattr(self, 'update_gps'):
+            self.update_gps()
+        if hasattr(self, 'load_saved_observations'):
+            self.load_saved_observations()
 
 
     def _on_permissions_granted(self):
