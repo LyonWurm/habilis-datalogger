@@ -16,3 +16,4 @@ bin/
 *.db
 *.sqlite
 buildozer.spec
+buildozer.spec
