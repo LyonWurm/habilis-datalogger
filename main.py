@@ -177,19 +177,17 @@ class FieldApp(MDApp):
             # Desktop: proceed normally
             self._check_saved_credentials()
 
-
-
-    @mainthread
     def _on_permissions_result(self, granted):
-        """Called after permission request completes - MUST run on main thread"""
+        from kivy.clock import Clock
+        Clock.schedule_once(lambda dt: self._handle_permissions(granted), 0)
+
+    def _handle_permissions(self, granted):
         self.permissions_granted = granted
         if granted:
             self._check_saved_credentials()
         else:
-            # Create dialog on the main thread
             from kivymd.uix.dialog import MDDialog
             from kivymd.uix.button import MDRaisedButton
-
             dialog = MDDialog(
                 title="Permissions Required",
                 text="Some features require camera, GPS, and storage permissions.\n\nYou can still use the app with limited functionality.",
