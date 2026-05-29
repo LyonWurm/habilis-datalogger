@@ -167,19 +167,14 @@ class FieldApp(MDApp):
         return sm
 
     def on_start(self):
-        """Check permissions when app starts"""
-
-        # Your existing permission code
-        if ANDROID_AVAILABLE:
-            # Request permissions on Android
-            self.permission_manager.request_all_permissions(self._on_permissions_result)
-        else:
-            # Desktop: proceed normally
+        if not ANDROID_AVAILABLE:
             self._check_saved_credentials()
+        else:
+            from kivy.clock import Clock
+            Clock.schedule_once(lambda dt: self._request_permissions_safe(), 1.0)
 
-    def _on_permissions_result(self, granted):
-        from kivy.clock import Clock
-        Clock.schedule_once(lambda dt: self._handle_permissions(granted), 0)
+    def _request_permissions_safe(self):
+        self.permission_manager.request_all_permissions(self._handle_permissions)
 
     def _handle_permissions(self, granted):
         self.permissions_granted = granted
@@ -199,6 +194,8 @@ class FieldApp(MDApp):
                 ]
             )
             dialog.open()
+            self._check_saved_credentials()
+            
     def _check_saved_credentials(self):
         """Check for saved login credentials"""
         # FIXED: Use get_data_dir() with filename
