@@ -6,7 +6,6 @@ from kivymd.app import MDApp
 from kivy.core.window import Window
 from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager
-from kivy.clock import mainthread
 
 # Android permission handling - built directly into main.py
 try:
@@ -92,11 +91,10 @@ class PermissionManager:
             Permission.WRITE_EXTERNAL_STORAGE,
         ]
 
-        @mainthread
         def on_permissions_result(permissions, results):
             granted = all(results)
-            if callback:
-                callback(granted)
+            from kivy.clock import Clock
+            Clock.schedule_once(lambda dt: callback(granted) if callback else None, 0)
 
         request_permissions(required, on_permissions_result)
         return False
@@ -195,7 +193,7 @@ class FieldApp(MDApp):
             )
             dialog.open()
             self._check_saved_credentials()
-            
+
     def _check_saved_credentials(self):
         """Check for saved login credentials"""
         # FIXED: Use get_data_dir() with filename
