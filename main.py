@@ -1,3 +1,8 @@
+import os
+os.environ['KIVY_GL_BACKEND'] = 'sdl2'
+os.environ['KCFG_GRAPHICS_MULTISAMPLES'] = '0'
+os.environ['KCFG_GRAPHICS_MAXFPS'] = '60'
+
 import sys
 from pathlib import Path
 import json
