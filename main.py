@@ -172,32 +172,6 @@ class FieldApp(MDApp):
     def on_start(self):
         if not ANDROID_AVAILABLE:
             self._check_saved_credentials()
-        else:
-            from kivy.clock import Clock
-            Clock.schedule_once(lambda dt: self._request_permissions_safe(), 1.0)
-
-    def _request_permissions_safe(self):
-        self.permission_manager.request_all_permissions(self._handle_permissions)
-
-    def _handle_permissions(self, granted):
-        self.permissions_granted = granted
-        if granted:
-            self._check_saved_credentials()
-        else:
-            from kivymd.uix.dialog import MDDialog
-            from kivymd.uix.button import MDRaisedButton
-            dialog = MDDialog(
-                title="Permissions Required",
-                text="Some features require camera, GPS, and storage permissions.\n\nYou can still use the app with limited functionality.",
-                buttons=[
-                    MDRaisedButton(
-                        text="OK",
-                        on_release=lambda x: dialog.dismiss()
-                    )
-                ]
-            )
-            dialog.open()
-            self._check_saved_credentials()
 
     def _check_saved_credentials(self):
         """Check for saved login credentials"""
