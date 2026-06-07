@@ -1,14 +1,16 @@
 import os
-os.environ['KIVY_NO_ENV_CONFIG'] = '1'
+import sys
 
-from kivy.config import Config
-Config.set('graphics', 'multisamples', '0')
-Config.set('graphics', 'maxfps', '60')
+# Must be before ANY kivy import
+os.environ['KIVY_NO_ENV_CONFIG'] = '1'
 os.environ['KIVY_GL_BACKEND'] = 'sdl2'
 os.environ['KCFG_GRAPHICS_MULTISAMPLES'] = '0'
 os.environ['KCFG_GRAPHICS_MAXFPS'] = '60'
 
-import sys
+from kivy.config import Config
+Config.set('graphics', 'multisamples', '0')
+Config.set('graphics', 'maxfps', '60')
+
 from pathlib import Path
 import json
 from admin import get_data_dir
@@ -16,7 +18,6 @@ from kivymd.app import MDApp
 from kivy.core.window import Window
 from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager
-
 # Android permission handling - built directly into main.py
 try:
     from android.permissions import request_permissions, check_permission, Permission
