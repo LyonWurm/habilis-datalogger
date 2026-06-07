@@ -1,4 +1,9 @@
 import os
+os.environ['KIVY_NO_ENV_CONFIG'] = '1'
+
+from kivy.config import Config
+Config.set('graphics', 'multisamples', '0')
+Config.set('graphics', 'maxfps', '60')
 os.environ['KIVY_GL_BACKEND'] = 'sdl2'
 os.environ['KCFG_GRAPHICS_MULTISAMPLES'] = '0'
 os.environ['KCFG_GRAPHICS_MAXFPS'] = '60'
