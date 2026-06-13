@@ -345,7 +345,6 @@ KV = '''
             id: season_label
             size_hint_y: None
             height: "45dp"
-            padding: ["10dp", "10dp", "10dp", "10dp"]
             theme_text_color: "Secondary"
 
         ScrollView:

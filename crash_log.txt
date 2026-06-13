@@ -1,597 +1,603 @@
-06-11 23:12:40.577  3838  4246 E ActivityManagerWrapper: getRecentTasks: mainTaskId=558   userId=0   windowMode=1   baseIntent=Intent { act=android.intent.action.MAIN flag=268435456 cmp=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity} }
-06-11 23:12:40.587  3838  4246 D WorldCirculate: getWorldCirculateInfo, taskInfo.baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10000000 pkg=org.kffs.habilisdatalogger cmp=org.kffs.habilisdatalogger/org.kivy.android.PythonActivity }, displayId=-1, but get Display failed
-06-11 23:12:40.620  3838  4246 E ActivityManagerWrapper: getRecentTasks: mainTaskId=558   userId=0   windowMode=1   baseIntent=Intent { act=android.intent.action.MAIN flag=268435456 cmp=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity} }
-06-11 23:12:40.623  3838  4246 D WorldCirculate: getWorldCirculateInfo, taskInfo.baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10000000 pkg=org.kffs.habilisdatalogger cmp=org.kffs.habilisdatalogger/org.kivy.android.PythonActivity }, displayId=-1, but get Display failed
-06-11 23:12:40.677  3838  3838 D Launcher.ShortcutInfo: onAddToDatabase, this=ShortcutInfo, id=134, itemType=0, user=UserHandle{0}, mIconType=0, pkgName=org.kffs.habilisdatalogger, className=org.kivy.android.PythonActivity, screenId=2, container=-100, cellX=2, cellY=2, spanX=1, spanY=1
-06-11 23:12:40.677  3838  3838 D Launcher.Model: updateItemInDatabase, item=ShortcutInfo, id=134, itemType=0, user=UserHandle{0}, mIconType=0, pkgName=org.kffs.habilisdatalogger, className=org.kivy.android.PythonActivity, screenId=2, container=-100, cellX=2, cellY=2, spanX=1, spanY=1
-06-11 23:12:40.679  3838  3838 D Launcher: org.kffs.habilisdatalogger, has been opened, remove its new installed indicator
-06-11 23:12:41.645  3838  3838 D Launcher.CellLayout: touch item:ShortcutInfo, id=134, itemType=0, user=UserHandle{0}, mIconType=0, pkgName=org.kffs.habilisdatalogger, className=org.kivy.android.PythonActivity, screenId=2, container=-100, cellX=2, cellY=2, spanX=1, spanY=1
-06-11 23:12:41.712  3838  3838 D Launcher: launch, launchIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=org.kffs.habilisdatalogger/org.kivy.android.PythonActivity (has extras) }
-06-11 23:12:41.720  1948  7880 D WindowManager: Collecting in transition 8460: ActivityRecord{8c1a6c0 u0 org.kffs.habilisdatalogger/org.kivy.android.PythonActivity init visibleRequested:false
-06-11 23:12:41.721  1948  7880 D MiGgameTypeIdentificationImpl: checkIfGameBeSupported app:org.kffs.habilisdatalogger
-06-11 23:12:41.721  1948  7880 I WindowManager: When perf version lower than 2.3, MiGTStub result: false, gameType: 1, packageName: org.kffs.habilisdatalogger
-06-11 23:12:41.725  1948  7880 D WindowManager: setLockTaskAuth: task=Task{3c2aff9 #559 type=standard A=10360:org.kffs.habilisdatalogger} mLockTaskAuth=LOCK_TASK_AUTH_PINNABLE
-06-11 23:12:41.726  1948  7880 D WindowManager: Collecting in transition 8460: Task{3c2aff9 #559 type=standard A=10360:org.kffs.habilisdatalogger} init visibleRequested:false
-06-11 23:12:41.728  1948  7880 D WindowManager: setLockTaskAuth: task=Task{3c2aff9 #559 type=standard A=10360:org.kffs.habilisdatalogger} mLockTaskAuth=LOCK_TASK_AUTH_PINNABLE
-06-11 23:12:41.728  1948  7880 D MiuiFreeFormManagerService: onStartActivityInner as = Task{3c2aff9 #559 type=standard A=10360:org.kffs.habilisdatalogger} op = ActivityOptions(170134943), mPackageName=null, mAnimationType=13, mStartX=0, mStartY=0, mWidth=0, mHeight=0, mLaunchDisplayId=-1, activityOptionsInjector=ActivityOptionsInjector={freeformScale: -1.0, miniFreeformMode: false, needAnimation: true, useCustomLaunchBounds:false}
-06-11 23:12:41.730  1948  7880 I ActivityTaskManager: resumeTopActivityInnerLocked topActivity:ActivityRecord{8c1a6c0 u0 org.kffs.habilisdatalogger/org.kivy.android.PythonActivity t559} isFocusable:true this:Task{3c2aff9 #559 type=standard A=10360:org.kffs.habilisdatalogger}
-06-11 23:12:41.734  1948  7880 D WindowManager: Collecting in transition 8460: ActivityRecord{8c1a6c0 u0 org.kffs.habilisdatalogger/org.kivy.android.PythonActivity t559} init visibleRequested:false
-06-11 23:12:41.734  1948  7880 I ActivityRecordImpl: setReadyForStartingWindow activityRecord = ActivityRecord{8c1a6c0 u0 org.kffs.habilisdatalogger/org.kivy.android.PythonActivity t559}
-06-11 23:12:41.735  1948  7880 D WindowManager: Collecting in transition 8460: ActivityRecord{8c1a6c0 u0 org.kffs.habilisdatalogger/org.kivy.android.PythonActivity t559} init visibleRequested:true
-06-11 23:12:41.738 13186 13275 D WindowManagerShell: wct=WindowContainerTransaction { changes = {} hops = [] errorCallbackToken=null taskFragmentOrganizer=null }, hander=com.android.wm.shell.transition.SoScMixedHandler@730d704, transitionToken=android.os.BinderProxy@99fcd94, request=TransitionRequestInfo { type = OPEN, triggerTask = TaskInfo{userId=0 taskId=559 displayId=0 isRunning=true baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=org.kffs.habilisdatalogger/org.kivy.android.PythonActivity } baseActivity=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity} topActivity=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity} origActivity=null realActivity=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity} numActivities=1 lastActiveTime=654773332 supportsSplitScreenMultiWindow=true supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=200 token=WCT{android.window.IWindowContainerToken$Stub$Proxy@e25d03d} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=Rect(0, 98 - 0, 0) topActivityInfo=ActivityInfo{7ba7032 org.kivy.android.PythonActivity} launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=false isVisible=false isVisibleRequested=true isSleeping=false topActivityInSizeCompat=false topActivityInMiuiSizeCompat=false topActivityEligibleForLetterboxEducation= false topActivityLetterboxed= false isFromDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=-1 topActivityLetterboxHeight=-1 locusId=null displayAreaFeatureId=1 cameraCompatControlState=hidden mIsCastMode=false mTopActivityMediaSize=null mTopActivityRecordName=ActivityRecord{8c1a6c0 u0 org.kffs.habilisdatalogger/org.kivy.android.PythonActivity t559} mTopActivityOrientation=1 mTopActivityWindowIsNowVisible=false isTranslucent=false isEmbedded=false shouldBeVisible=true mBehindAppLockPkg=null mOriginatingUid=0}, remoteTransition = RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@13d3183, appThread = null, debugName = null }, displayChange = null }
-06-11 23:12:41.739  1948  7880 I ActivityTaskManager: START u0 {act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=org.kffs.habilisdatalogger/org.kivy.android.PythonActivity bnds=[583,791][756,964] (has extras)} with LAUNCH_SINGLE_TASK from uid 10158 from pid 3838 callingPackage com.miui.home (BAL_ALLOW_ALLOWLISTED_COMPONENT) result code=0
-06-11 23:12:41.745 13186 13186 I FocusedNotifPromptContr: onTopActivityMayChanged: topActivity=org.kffs.habilisdatalogger
-06-11 23:12:41.745 13186 13186 I FocusedNotifPromptContr: topActivityMayChanged: topActivity=org.kffs.habilisdatalogger
-06-11 23:12:41.745 13186 13186 D KeyguardEditorHelper: onTopActivityMayChanged, topActivity=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity}; mState=IDEL
-06-11 23:12:41.750  1948  6126 D CoreBackPreview: Window{3258d4a u0 Splash Screen org.kffs.habilisdatalogger}: Setting back callback OnBackInvokedCallbackInfo{mCallback=android.window.IOnBackInvokedCallback$Stub$Proxy@2158dd8, mPriority=0, mIsAnimationCallback=false}
-06-11 23:12:41.759  1948  7880 I BLASTSyncEngine: SyncGroup 8460:  Unfinished container:ActivityRecord{8c1a6c0 u0 org.kffs.habilisdatalogger/org.kivy.android.PythonActivity t559}
-06-11 23:12:41.759  1948  7880 I ActivityRecordImpl: isReadyForStartingWindow topActivity = ActivityRecord{8c1a6c0 u0 org.kffs.habilisdatalogger/org.kivy.android.PythonActivity t559} isLaunchSourceTypeHome = true topActivity.mStartingWindow = Window{3258d4a u0 Splash Screen org.kffs.habilisdatalogger}
-06-11 23:12:41.759  1948  7880 I BLASTSyncEngine: SyncGroup 8460:  Unfinished container:Task{3c2aff9 #559 type=standard A=10360:org.kffs.habilisdatalogger}
-06-11 23:12:41.760  1948  7880 I ActivityRecordImpl: isReadyForStartingWindow topActivity = ActivityRecord{8c1a6c0 u0 org.kffs.habilisdatalogger/org.kivy.android.PythonActivity t559} isLaunchSourceTypeHome = true topActivity.mStartingWindow = Window{3258d4a u0 Splash Screen org.kffs.habilisdatalogger}
-06-11 23:12:41.760  1948  7880 I SmartPower: org.kffs.habilisdatalogger/10360(23138): died->visible(73442ms) R(become visible) adj=0.
-06-11 23:12:41.760  1948  7880 D WindowManager: Final targets: [Task{3c2aff9 #559 type=standard A=10360:org.kffs.habilisdatalogger}, Task{fc1ced5 #1 type=home}]
-06-11 23:12:41.764  1948  7880 D WindowManager: Calling onTransitionReady info={id=8460 t=OPEN f=0x0 trk=0 r=[0@Point(0, 0)] c=[{WCT{RemoteToken{e41af84 Task{3c2aff9 #559 type=standard A=10360:org.kffs.habilisdatalogger}}} m=OPEN f=NONE leash=Surface(name=Task=559#136490)/@0x8b73416 sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) d=0},{WCT{RemoteToken{e07270c Task{fc1ced5 #1 type=home}}} m=TO_BACK f=SHOW_WALLPAPER leash=Surface(name=Task=1#16716)/@0xdd7d3e6 sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) d=0}] noAni=[false]}, mToken=Token{98a236d TransitionRecord{57a6eec id=8460 type=OPEN flags=0x0}}
-06-11 23:12:41.769  3838  3838 D RemoteAnimationAdapterCompat: printLeash::taskInfo = TaskInfo{userId=0 taskId=559 displayId=0 isRunning=true baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=org.kffs.habilisdatalogger/org.kivy.android.PythonActivity } baseActivity=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity} topActivity=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity} origActivity=null realActivity=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity} numActivities=1 lastActiveTime=654773332 supportsSplitScreenMultiWindow=true supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=200 token=WCT{android.window.IWindowContainerToken$Stub$Proxy@fb9b3c2} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=Rect(0, 98 - 0, 0) topActivityInfo=ActivityInfo{e2d5d3 org.kivy.android.PythonActivity} launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=false isVisible=true isVisibleRequested=true isSleeping=false topActivityInSizeCompat=false topActivityInMiuiSizeCompat=false topActivityEligibleForLetterboxEducation= false topActivityLetterboxed= false isFromDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=-1 topActivityLetterboxHeight=-1 locusId=null displayAreaFeatureId=1 cameraCompatControlState=hidden mIsCastMode=false mTopActivityMediaSize=null mTopActivityRecordName=ActivityRecord{8c1a6c0 u0 org.kffs.habilisdatalogger/org.kivy.android.PythonActivity t559} mTopActivityOrientation=1 mTopActivityWindowIsNowVisible=false isTranslucent=false isEmbedded=false shouldBeVisible=true mBehindAppLockPkg=null mOriginatingUid=0}
-06-11 23:12:41.779  3838  3838 E LauncherAnimationRunner: onAnimationStart:   target=RemoteAnimationTargetCompat{taskId=559, mode=0, isTranslucent=false, clipRect=Rect(0, 0 - 0, 0), position=Point(0, 0), sourceContainerBounds=Rect(0, 0 - 1080, 2400), prefixOrderIndex=2, isNotInRecents=false, contentInsets=Rect(0, 0 - 0, 0), activityType=1, packageName=org.kffs.habilisdatalogger, startBounds=Rect(0, 0 - 1080, 2400), windowType=-1}
-06-11 23:12:41.793  1948  2308 I WindowManager: wms.showSurfaceRobustly mWin:Window{3258d4a u0 Splash Screen org.kffs.habilisdatalogger}
-06-11 23:12:41.796  1948  2335 I ActivityManager: Start proc 24584:org.kffs.habilisdatalogger/u0a360 for top-activity {org.kffs.habilisdatalogger/org.kivy.android.PythonActivity} caller=com.miui.home
-06-11 23:12:41.804 13186 13275 D MiuiFullScreenTaskRepository: addOrUpdateFullScreenTaskInfo taskId=559, topActivity=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity}
-06-11 23:12:41.807  3838  4246 E ActivityManagerWrapper: getRecentTasks: mainTaskId=559   userId=0   windowMode=1   baseIntent=Intent { act=android.intent.action.MAIN flag=270532608 cmp=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity} }
-06-11 23:12:41.814 24584 24584 E Zygote  : process_name_ptr:24584 org.kffs.habilisdatalogger
-06-11 23:12:41.894  3838  4246 E ActivityManagerWrapper: getRecentTasks: mainTaskId=559   userId=0   windowMode=1   baseIntent=Intent { act=android.intent.action.MAIN flag=270532608 cmp=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity} }
-06-11 23:12:41.920 13186 13275 D MiuiFullScreenTaskRepository: addOrUpdateFullScreenTaskInfo taskId=559, topActivity=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity}
-06-11 23:12:41.930 24071 18501 D BluetoothLatencyMode: ForegroundInfo{mForegroundPackageName='org.kffs.habilisdatalogger', mForegroundUid=10360, mForegroundPid=24584, mLastForegroundPackageName='com.miui.home', mLastForegroundUid=10158, mLastForegroundPid=3838, mMultiWindowForegroundPackageName='org.kffs.habilisdatalogger', mMultiWindowForegroundUid=10360, mFlags=1}
-06-11 23:12:41.930  7953  7965 I GST     : forePkg: org.kffs.habilisdatalogger, preForePkg: com.miui.home
-06-11 23:12:41.930 19295 19420 I ProcessMonitor: onForegroundInfoChanged: ForegroundInfo{mForegroundPackageName='org.kffs.habilisdatalogger', mForegroundUid=10360, mForegroundPid=24584, mLastForegroundPackageName='com.miui.home', mLastForegroundUid=10158, mLastForegroundPid=3838, mMultiWindowForegroundPackageName='org.kffs.habilisdatalogger', mMultiWindowForegroundUid=10360, mFlags=1}
-06-11 23:12:41.931 19295 19420 I GameBoosterService: onForegroundInfoChanged: Cur=org.kffs.habilisdatalogger	 last=com.miui.home
-06-11 23:12:41.931  3838  3880 D AppObserver: ForegroundInfo{mForegroundPackageName='org.kffs.habilisdatalogger', mForegroundUid=10360, mForegroundPid=24584, mLastForegroundPackageName='com.miui.home', mLastForegroundUid=10158, mLastForegroundPid=3838, mMultiWindowForegroundPackageName='org.kffs.habilisdatalogger', mMultiWindowForegroundUid=10360, mFlags=1}
-06-11 23:12:41.932  7590  9879 D PerfEngineController: ForegroundInfo{mForegroundPackageName='org.kffs.habilisdatalogger', mForegroundUid=10360, mForegroundPid=24584, mLastForegroundPackageName='com.miui.home', mLastForegroundUid=10158, mLastForegroundPid=3838, mMultiWindowForegroundPackageName='org.kffs.habilisdatalogger', mMultiWindowForegroundUid=10360, mFlags=1}
-06-11 23:12:41.932 19295 19420 D GameBoosterService: onGameStatusChange foreground:ForegroundInfo{mForegroundPackageName='org.kffs.habilisdatalogger', mForegroundUid=10360, mForegroundPid=24584, mLastForegroundPackageName='com.miui.home', mLastForegroundUid=10158, mLastForegroundPid=3838, mMultiWindowForegroundPackageName='org.kffs.habilisdatalogger', mMultiWindowForegroundUid=10360, mFlags=1}
-06-11 23:12:41.932 19295 19420 I BeautyService: onForegroundInfoChanged: Cur=org.kffs.habilisdatalogger	 last=com.miui.home
-06-11 23:12:41.933 13186 13275 D MiuiFullScreenTaskRepository: setFocusedTask taskId=559, displayId=0, topActivity=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity}
-06-11 23:12:41.933 13186 13275 D MiuiFullScreenTaskRepository: addOrUpdateFullScreenTaskInfo taskId=559, topActivity=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity}
-06-11 23:12:41.933 13186 13275 D MiuiFreeformModeController: onFocusTaskChanged taskInfo: TaskInfo{userId=0 taskId=559 displayId=0 isRunning=true baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=org.kffs.habilisdatalogger/org.kivy.android.PythonActivity } baseActivity=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity} topActivity=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity} origActivity=null realActivity=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity} numActivities=1 lastActiveTime=654773518 supportsSplitScreenMultiWindow=true supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=200 token=WCT{android.window.IWindowContainerToken$Stub$Proxy@d9b5ca9} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=Rect(0, 98 - 0, 0) topActivityInfo=ActivityInfo{518222e org.kivy.android.PythonActivity} launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=true isVisible=true isVisibleRequested=true isSleeping=false topActivityInSizeCompat=false topActivityInMiuiSizeCompat=false topActivityEligibleForLetterboxEducation= false topActivityLetterboxed= false isFromDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=-1 topActivityLetterboxHeight=-1 locusId=null displayAreaFeatureId=1 cameraCompatControlState=hidden mIsCastMode=false mTopActivityMediaSize=null mTopActivityRecordName=ActivityRecord{8c1a6c0 u0 org.kffs.habilisdatalogger/org.kivy.android.PythonActivity t559} mTopActivityOrientation=1 mTopActivityWindowIsNowVisible=false isTranslucent=false isEmbedded=false shouldBeVisible=true mBehindAppLockPkg=null mOriginatingUid=0}
-06-11 23:12:41.973 24584 24584 D nativeloader: Configuring clns-4 for other apk /data/app/~~QpRnp90OX6wuTY-RgOhRrQ==/org.kffs.habilisdatalogger-jClDYnCvabFyuuRbgKU13A==/base.apk. target_sdk_version=30, uses_libraries=, library_path=/data/app/~~QpRnp90OX6wuTY-RgOhRrQ==/org.kffs.habilisdatalogger-jClDYnCvabFyuuRbgKU13A==/lib/arm64:/data/app/~~QpRnp90OX6wuTY-RgOhRrQ==/org.kffs.habilisdatalogger-jClDYnCvabFyuuRbgKU13A==/base.apk!/lib/arm64-v8a, permitted_path=/data:/mnt/expand:/data/user/0/org.kffs.habilisdatalogger
-06-11 23:12:41.991 24584 24584 V GraphicsEnvironment: ANGLE GameManagerService for org.kffs.habilisdatalogger: false
-06-11 23:12:41.991 24584 24584 V GraphicsEnvironment: org.kffs.habilisdatalogger is not listed in per-application setting
-06-11 23:12:41.998 24584 24584 I ForceDarkHelperStubImpl: initialize for org.kffs.habilisdatalogger , ForceDarkOrigin
-06-11 23:12:42.035  1948  5730 I ClipboardServiceI: checkProviderWakePathForClipboard: org.kffs.habilisdataloggeris not a activePermissionOwner
-06-11 23:12:42.044 24584 24584 V SDL     : Device: taoyao
-06-11 23:12:42.044 24584 24584 V SDL     : Model: 2203129G
-06-11 23:12:42.044 24584 24584 V SDL     : onCreate()
-06-11 23:12:42.050 24584 24584 V SDL     : getting identifier
-06-11 23:12:42.050 24584 24584 V SDL     : kind is layout and name lottie
-06-11 23:12:42.050 24584 24584 V SDL     : result is 0
-06-11 23:12:42.051 24584 24584 V SDL     : couldn't find lottie layout or animation, trying static splash
-06-11 23:12:42.051 24584 24584 V SDL     : getting identifier
-06-11 23:12:42.051 24584 24584 V SDL     : kind is drawable and name presplash
-06-11 23:12:42.051 24584 24584 V SDL     : result is 2130771969
-06-11 23:12:42.059 13186 13275 D MiuiFullScreenTaskRepository: setFocusedTask taskId=559, displayId=0, topActivity=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity}
-06-11 23:12:42.059 13186 13275 D MiuiFullScreenTaskRepository: addOrUpdateFullScreenTaskInfo taskId=559, topActivity=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity}
-06-11 23:12:42.065 24584 24584 V SDL     : asked to get string presplash_color
-06-11 23:12:42.065 24584 24584 V SDL     : getting identifier
-06-11 23:12:42.065 24584 24584 V SDL     : kind is string and name presplash_color
-06-11 23:12:42.065 24584 24584 V SDL     : result is 2131034113
-06-11 23:12:42.086 24584 24614 V pythonutil: Unpacking private app
-06-11 23:12:42.086 24584 24614 V pythonutil: Data version is c21ea4d449fe64cd353a027917487d004bc4f39a
-06-11 23:12:42.086 24584 24584 V SDL     : onStart()
-06-11 23:12:42.088 24584 24614 V pythonutil: Unpacking /data/app/~~QpRnp90OX6wuTY-RgOhRrQ==/org.kffs.habilisdatalogger-jClDYnCvabFyuuRbgKU13A==/lib/arm64/libpybundle app
-06-11 23:12:42.088 24584 24614 V pythonutil: Data version is c21ea4d449fe64cd353a027917487d004bc4f39a
-06-11 23:12:42.089 24584 24584 V SDL     : onResume()
-06-11 23:12:42.111  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{c664d8e com.google.android.apps.subscriptions.red/10228} BLOCKED
-06-11 23:12:42.111  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{d0479af com.android.cts.priv.ctsshim/10278} BLOCKED
-06-11 23:12:42.111  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{45551bc com.upside.consumer.android/10348} BLOCKED
-06-11 23:12:42.111  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{603cda8 com.google.android.youtube/10225} BLOCKED
-06-11 23:12:42.111  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{37f0c1 com.android.uwb.resources/10272} BLOCKED
-06-11 23:12:42.111  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{e8f4b27 com.android.internal.display.cutout.emulation.corner/10009} BLOCKED
-06-11 23:12:42.111  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{31311d4 com.android.internal.display.cutout.emulation.double/10010} BLOCKED
-06-11 23:12:42.111  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{9728066 com.google.android.googlequicksearchbox/10176} BLOCKED
-06-11 23:12:42.111  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{dc3efa7 cn.wps.xiaomi.abroad.lite/10297} BLOCKED
-06-11 23:12:42.111  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{19c1c54 com.google.android.apps.googleassistant/10169} BLOCKED
-06-11 23:12:42.111  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{d11d7fd com.google.android.apps.docs.editors.docs/10339} BLOCKED
-06-11 23:12:42.111  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{b163cf2 com.google.android.onetimeinitializer/10143} BLOCKED
-06-11 23:12:42.111  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{435df43 com.google.android.ext.shared/10120} BLOCKED
-06-11 23:12:42.111  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{9b8781f com.android.internal.systemui.navbar.gestural_wide_back/10063} BLOCKED
-06-11 23:12:42.111  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{5c8a9c0 com.android.virtualmachine.res/10269} BLOCKED
-06-11 23:12:42.111  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{4a8f6f9 com.uvnv.mintsim/10326} BLOCKED
-06-11 23:12:42.111  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{4c7363e com.google.android.server.deviceconfig.resources/10266} BLOCKED
-06-11 23:12:42.111  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{d4d2c9f com.android.htmlviewer/10101} BLOCKED
-06-11 23:12:42.111  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{f6ea1ec com.whatsapp/10318} BLOCKED
-06-11 23:12:42.111  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{ff909b5 com.mtb.mbanking.sc.retail.prod/10349} BLOCKED
-06-11 23:12:42.111  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{4fc784a com.google.android.apps.docs.editors.sheets/10357} BLOCKED
-06-11 23:12:42.112  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{f61f3bb com.google.android.health.connect.backuprestore/10276} BLOCKED
-06-11 23:12:42.112  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{299f0d8 com.google.android.apps.messaging/10175} BLOCKED
-06-11 23:12:42.112  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{1fd8c31 com.sfr.android.sfrjeux/10166} BLOCKED
-06-11 23:12:42.112  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{891cf16 com.quicinc.voice.activation/10244} BLOCKED
-06-11 23:12:42.112  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{4321097 us.mitene/10334} BLOCKED
-06-11 23:12:42.112  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{6294284 com.ironsource.appcloud.oobe.hutchison/10139} BLOCKED
-06-11 23:12:42.112  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{7edba6d com.duolingo/10321} BLOCKED
-06-11 23:12:42.112  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{c53c6a2 com.google.android.configupdater/10138} BLOCKED
-06-11 23:12:42.112  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{194546e com.google.android.overlay.modules.permissioncontroller/10031} BLOCKED
-06-11 23:12:42.112  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{97d1f33 com.android.soundrecorder/10310} BLOCKED
-06-11 23:12:42.112  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{e3a02f0 com.altice.android.myapps/10165} BLOCKED
-06-11 23:12:42.112  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{1389069 com.google.android.apps.safetyhub/10162} BLOCKED
-06-11 23:12:42.112  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{b4baaee com.mi.globalbrowser/10298} BLOCKED
-06-11 23:12:42.112  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{f607b8f com.google.ar.core/10320} BLOCKED
-06-11 23:12:42.112  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{1545e1c com.android.simappdialog/10126} BLOCKED
-06-11 23:12:42.112  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{b40ca25 com.microsoft.skydrive/10311} BLOCKED
-06-11 23:12:42.112  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{5cb87fa com.aura.oobe.vodafone/10140} BLOCKED
-06-11 23:12:42.112  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{a416907 com.android.internal.display.cutout.emulation.hole/10011} BLOCKED
-06-11 23:12:42.112  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{e440a34 com.android.internal.display.cutout.emulation.tall/10012} BLOCKED
-06-11 23:12:42.112  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{64c605d com.android.internal.systemui.navbar.threebutton/10059} BLOCKED
-06-11 23:12:42.112  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{7341ab us.zoom.videomeetings/10330} BLOCKED
-06-11 23:12:42.112  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{4574008 com.android.wifi.dialog/10242} BLOCKED
-06-11 23:12:42.112  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{cd8e3a1 com.android.hotwordenrollment.xgoogle/10146} BLOCKED
-06-11 23:12:42.112  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{d3a29c6 com.usbank.mobilebanking/10355} BLOCKED
-06-11 23:12:42.112  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{fa24d87 com.onedebit.chime/10328} BLOCKED
-06-11 23:12:42.112  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{92454b4 com.instagram.android/10335} BLOCKED
-06-11 23:12:42.112  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{d7f18dd com.google.android.as/10168} BLOCKED
-06-11 23:12:42.113  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{9f1c52 com.google.android.gm/10192} BLOCKED
-06-11 23:12:42.113  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{7cc3b23 com.google.android.apps.tachyon/10292} BLOCKED
-06-11 23:12:42.113  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{8b3052a com.google.android.overlay.gmsconfig.common/10019} BLOCKED
-06-11 23:12:42.113  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{c0c0820 com.android.settings.intelligence/10160} BLOCKED
-06-11 23:12:42.113  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{ef878b8 com.android.internal.systemui.navbar.gestural_extra_wide_back/10061} BLOCKED
-06-11 23:12:42.113  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{45965d9 com.microsoft.office.outlook/10356} BLOCKED
-06-11 23:12:42.113  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{5eeab9e com.miui.compass/10302} BLOCKED
-06-11 23:12:42.113  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{91d667f com.google.android.setupwizard/10251} BLOCKED
-06-11 23:12:42.113  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{bf9864c com.miui.android.fashiongallery/10295} BLOCKED
-06-11 23:12:42.113  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{af18695 com.facebook.services/10111} BLOCKED
-06-11 23:12:42.113  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{c15e3aa com.android.printspooler/10260} BLOCKED
-06-11 23:12:42.113  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{2beb9b com.android.hotwordenrollment.okgoogle/10145} BLOCKED
-06-11 23:12:42.113  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{95ebb38 org.ifaa.aidl.manager/10129} BLOCKED
-06-11 23:12:42.113  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{fb0f711 com.android.dreams.basic/10115} BLOCKED
-06-11 23:12:42.113  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{1c69076 com.google.android.as.oss/10173} BLOCKED
-06-11 23:12:42.113  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{2d3a677 de.telekom.tsc/10112} BLOCKED
-06-11 23:12:42.113  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{7e052e4 com.android.rkpdapp/10268} BLOCKED
-06-11 23:12:42.113  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{41cf34d com.google.android.dialer/10172} BLOCKED
-06-11 23:12:42.113  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{d033e02 com.creditkarma.mobile/10340} BLOCKED
-06-11 23:12:42.113  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{ed23313 com.timehop/10329} BLOCKED
-06-11 23:12:42.113  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{ec1b950 com.google.android.captiveportallogin/10119} BLOCKED
-06-11 23:12:42.113  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{2d27749 com.dropbox.android/10337} BLOCKED
-06-11 23:12:42.113  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{797f6e7 com.google.android.overlay.gmsconfig.comms/10079} BLOCKED
-06-11 23:12:42.113  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{698b294 com.google.android.overlay.gmsconfig.geotz/10021} BLOCKED
-06-11 23:12:42.113  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{f6b384e com.google.android.appsearch.apk/10267} BLOCKED
-06-11 23:12:42.113  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{622ed6f com.android.musicfx/10104} BLOCKED
-06-11 23:12:42.113  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{4111a7c com.google.android.apps.docs/10307} BLOCKED
-06-11 23:12:42.113  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{9423f05 com.google.android.apps.maps/10212} BLOCKED
-06-11 23:12:42.113  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{3468b5a com.orange.update/10137} BLOCKED
-06-11 23:12:42.113  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{51af18b com.google.android.webview/10208} BLOCKED
-06-11 23:12:42.113  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{632dbdf com.google.android.overlay.modules.documentsui/10030} BLOCKED
-06-11 23:12:42.113  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{e936268 com.amazon.appmanager/10313} BLOCKED
-06-11 23:12:42.113  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{12cc681 com.google.android.contactkeys/10343} BLOCKED
-06-11 23:12:42.113  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{d520326 com.google.android.contacts/10229} BLOCKED
-06-11 23:12:42.113  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{e451b67 com.android.chrome/10183} BLOCKED
-06-11 23:12:42.113  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{a703d14 com.huami.watch.hmwatchmanager/10338} BLOCKED
-06-11 23:12:42.113  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{5de49bd com.android.wifi.resources/10283} BLOCKED
-06-11 23:12:42.113  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{f4b2bb2 com.google.android.apps.walletnfcrel/10319} BLOCKED
-06-11 23:12:42.113  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{7fe0703 com.google.android.partnersetup/10144} BLOCKED
-06-11 23:12:42.113  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{c3203ad com.google.android.overlay.gmsconfig.asi/10080} BLOCKED
-06-11 23:12:42.114  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{33876e2 com.google.android.overlay.gmsconfig.gsa/10020} BLOCKED
-06-11 23:12:42.114  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{80faa73 com.android.theme.font.notoserifsource/10015} BLOCKED
-06-11 23:12:42.114  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{c9e1680 com.google.android.safetycenter.resources/10270} BLOCKED
-06-11 23:12:42.114  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{1982da9 com.android.internal.display.cutout.emulation.waterfall/10018} BLOCKED
-06-11 23:12:42.114  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{12ac4b9 com.netflix.mediaclient/10316} BLOCKED
-06-11 23:12:42.114  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{db07acf com.android.internal.systemui.navbar.transparent/10078} BLOCKED
-06-11 23:12:42.114  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{73c50fe com.miui.notes/10299} BLOCKED
-06-11 23:12:42.114  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{7d0105f com.zhiliaoapp.musically/10324} BLOCKED
-06-11 23:12:42.114  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{10e1aac com.google.android.connectivity.resources/10282} BLOCKED
-06-11 23:12:42.114  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{c29f375 com.google.android.feedback/10238} BLOCKED
-06-11 23:12:42.114  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{7887f0a com.google.android.printservice.recommendation/10124} BLOCKED
-06-11 23:12:42.114  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{78f537b com.xiaomi.midrop/10291} BLOCKED
-06-11 23:12:42.114  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{f983598 com.google.android.apps.photos/10300} BLOCKED
-06-11 23:12:42.114  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{25557b0 com.google.android.calendar/10226} BLOCKED
-06-11 23:12:42.114  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{fb351f1 com.spotify.music/10314} BLOCKED
-06-11 23:12:42.114  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{3b781d6 com.google.android.apps.googlevoice/10315} BLOCKED
-06-11 23:12:42.114  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{35ac57 com.tencent.soter.soterserver/10134} BLOCKED
-06-11 23:12:42.114  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{3a71344 com.google.android.documentsui/10100} BLOCKED
-06-11 23:12:42.114  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{eb81663 com.miui.permissioncontroller.overlay/10047} BLOCKED
-06-11 23:12:42.114  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{9a1c2d com.android.dreams.phototable/10200} BLOCKED
-06-11 23:12:42.114  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{e01e562 com.google.android.accessibility.switchaccess/10206} BLOCKED
-06-11 23:12:42.114  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{67eb6f3 com.facebook.katana/10317} BLOCKED
-06-11 23:12:42.114  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{2a41fb0 com.android.providers.partnerbookmarks/10125} BLOCKED
-06-11 23:12:42.114  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{3a94e29 com.android.smspush/10261} BLOCKED
-06-11 23:12:42.114  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{19cf5ae com.miui.calculator/10309} BLOCKED
-06-11 23:12:42.114  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{543cf4f com.android.wallpaper.livepicker/10103} BLOCKED
-06-11 23:12:42.114  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{d2386dc com.android.apps.tag/10109} BLOCKED
-06-11 23:12:42.114  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{55fa3e5 com.facebook.orca/10322} BLOCKED
-06-11 23:12:42.114  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{5c6beba com.mercury.bank/10336} BLOCKED
-06-11 23:12:42.114  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{198116b com.android.imsserviceentitlement/10148} BLOCKED
-06-11 23:12:42.114  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{6d034c8 com.facebook.system/10110} BLOCKED
-06-11 23:12:42.114  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{16b9961 com.google.android.healthconnect.controller/10275} BLOCKED
-06-11 23:12:42.114  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{5920c86 com.venmo/10332} BLOCKED
-06-11 23:12:42.114  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{4a45947 com.android.bookmarkprovider/10113} BLOCKED
-06-11 23:12:42.114  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{117d574 com.miui.weather2/10294} BLOCKED
-06-11 23:12:42.114  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{5e76a9d com.ascendo.android.dictionary.de.free/10331} BLOCKED
-06-11 23:12:42.114  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{8726b12 org.mipay.android.manager/10132} BLOCKED
-06-11 23:12:42.114  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{74342e3 com.strava/10325} BLOCKED
-06-11 23:12:42.114  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{b0145ff com.google.android.projection.gearhead/10136} BLOCKED
-06-11 23:12:42.114  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{496d4e0 com.xiaomi.scanner/10290} BLOCKED
-06-11 23:12:42.114  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{e551399 com.google.android.apps.turbo/10161} BLOCKED
-06-11 23:12:42.114  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{788265e com.google.android.safetycore/10342} BLOCKED
-06-11 23:12:42.114  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{b5d2a3f com.google.android.apps.chromecast.app/10341} BLOCKED
-06-11 23:12:42.114  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{518afcc com.android.cts.ctsshim/10279} BLOCKED
-06-11 23:12:42.114  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{5445f0c com.miui.mediaeditor/10301} BLOCKED
-06-11 23:12:42.114  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{25a5055 com.miui.yellowpage/10171} BLOCKED
-06-11 23:12:42.114  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{bac4a6a com.mi.global.shop/10296} BLOCKED
-06-11 23:12:42.114  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{f042b5b com.google.android.apps.setupwizard.searchselector/10174} BLOCKED
-06-11 23:12:42.115  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{d5e5ff8 com.android.hotspot2.osulogin/10284} BLOCKED
-06-11 23:12:42.115  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{43c9cd1 com.azure.authenticator/10327} BLOCKED
-06-11 23:12:42.115  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{3ca336 com.google.android.gms.location.history/10181} BLOCKED
-06-11 23:12:42.115  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{b018bf2 com.android.internal.systemui.navbar.gestural/10060} BLOCKED
-06-11 23:12:42.115  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{7788243 com.google.android.overlay.gmsconfig.personalsafety/10025} BLOCKED
-06-11 23:12:42.115  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{5502237 com.dti.bouyguestelecom/10163} BLOCKED
-06-11 23:12:42.115  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{b1583a4 com.android.bluetoothmidiservice/10114} BLOCKED
-06-11 23:12:42.115  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{b1d350d com.facebook.appmanager/10128} BLOCKED
-06-11 23:12:42.115  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{6a7bcc2 com.google.android.cellbroadcastreceiver/10285} BLOCKED
-06-11 23:12:42.115  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{faaad3 com.orange.aura.oobe/10159} BLOCKED
-06-11 23:12:42.115  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{f22a74a com.android.internal.systemui.navbar.gestural_narrow_back/10062} BLOCKED
-06-11 23:12:42.115  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{cf93610 com.google.android.photopicker/10286} BLOCKED
-06-11 23:12:42.115  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{4f51509 cn.wps.moffice_eng/10312} BLOCKED
-06-11 23:12:42.115  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{6b8e30e com.miui.core/10215} BLOCKED
-06-11 23:12:42.115  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{cbb212f com.google.android.inputmethod.latin/10186} BLOCKED
-06-11 23:12:42.115  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{923a33c com.amazon.kindle/10333} BLOCKED
-06-11 23:12:42.115  1948  7680 I AppsFilter: interaction: PackageSetting{a6d78aa org.kffs.habilisdatalogger/10360} -> PackageSetting{c50f8c5 com.google.android.apps.restore/10147} BLOCKED
-06-11 23:12:42.134 13186 20636 D MiuiFreeformModeObserver: activityResumed() intent： Intent { cmp=org.kffs.habilisdatalogger/org.kivy.android.PythonActivity (has extras) }
-06-11 23:12:42.134  3838  3838 D RecentsImpl: mActivityStateObserver org.kivy.android.PythonActivity
-06-11 23:12:42.135  3838  3838 W RecentsImpl: onResumed className=org.kivy.android.PythonActivity   mIsInAnotherPro=false   isKeyguardLocked=false   mSecuritySpaceGuideShown=false
-06-11 23:12:42.138 24584 24584 V pythonutil: Checking pattern libsqlite3\.so against libSDL2.so
-06-11 23:12:42.138 24584 24584 V pythonutil: Checking pattern libsqlite3\.so against libSDL2_ttf.so
-06-11 23:12:42.138 24584 24584 V pythonutil: Checking pattern libsqlite3\.so against libpng16.so
-06-11 23:12:42.138 24584 24584 V pythonutil: Checking pattern libsqlite3\.so against libfreetype.so
-06-11 23:12:42.138 24584 24584 V pythonutil: Checking pattern libsqlite3\.so against libpython3.10.so
-06-11 23:12:42.138 24584 24584 V pythonutil: Checking pattern libsqlite3\.so against libmain.so
-06-11 23:12:42.138 24584 24584 V pythonutil: Checking pattern libsqlite3\.so against libffi.so
-06-11 23:12:42.138 24584 24584 V pythonutil: Checking pattern libsqlite3\.so against libSDL2_image.so
-06-11 23:12:42.138 24584 24584 V pythonutil: Checking pattern libsqlite3\.so against libcrypto.so
-06-11 23:12:42.139 24584 24584 V pythonutil: Checking pattern libsqlite3\.so against libpythonbin.so
-06-11 23:12:42.139 24584 24584 V pythonutil: Checking pattern libsqlite3\.so against libSDL2_mixer.so
-06-11 23:12:42.139 24584 24584 V pythonutil: Checking pattern libsqlite3\.so against libssl.so
-06-11 23:12:42.139 24584 24584 V pythonutil: Checking pattern libsqlite3\.so against libpybundle.so
-06-11 23:12:42.139 24584 24584 V pythonutil: Checking pattern libsqlite3\.so against libsqlite3.so
-06-11 23:12:42.139 24584 24584 V pythonutil: Pattern libsqlite3\.so matched file libsqlite3.so
-06-11 23:12:42.140 24584 24584 V pythonutil: Checking pattern libffi\.so against libSDL2.so
-06-11 23:12:42.140 24584 24584 V pythonutil: Checking pattern libffi\.so against libSDL2_ttf.so
-06-11 23:12:42.140 24584 24584 V pythonutil: Checking pattern libffi\.so against libpng16.so
-06-11 23:12:42.140 24584 24584 V pythonutil: Checking pattern libffi\.so against libfreetype.so
-06-11 23:12:42.140 24584 24584 V pythonutil: Checking pattern libffi\.so against libpython3.10.so
-06-11 23:12:42.140 24584 24584 V pythonutil: Checking pattern libffi\.so against libmain.so
-06-11 23:12:42.140 24584 24584 V pythonutil: Checking pattern libffi\.so against libffi.so
-06-11 23:12:42.140 24584 24584 V pythonutil: Pattern libffi\.so matched file libffi.so
-06-11 23:12:42.140 24584 24584 V pythonutil: Checking pattern libffi\.so against libSDL2_image.so
-06-11 23:12:42.140 24584 24584 V pythonutil: Checking pattern libffi\.so against libcrypto.so
-06-11 23:12:42.140 24584 24584 V pythonutil: Checking pattern libffi\.so against libpythonbin.so
-06-11 23:12:42.141 24584 24584 V pythonutil: Checking pattern libffi\.so against libSDL2_mixer.so
-06-11 23:12:42.141 24584 24584 V pythonutil: Checking pattern libffi\.so against libssl.so
-06-11 23:12:42.141 24584 24584 V pythonutil: Checking pattern libffi\.so against libpybundle.so
-06-11 23:12:42.141 24584 24584 V pythonutil: Checking pattern libffi\.so against libsqlite3.so
-06-11 23:12:42.141 24584 24584 V pythonutil: Checking pattern libpng16\.so against libSDL2.so
-06-11 23:12:42.141 24584 24584 V pythonutil: Checking pattern libpng16\.so against libSDL2_ttf.so
-06-11 23:12:42.141 24584 24584 V pythonutil: Checking pattern libpng16\.so against libpng16.so
-06-11 23:12:42.141 24584 24584 V pythonutil: Pattern libpng16\.so matched file libpng16.so
-06-11 23:12:42.141 24584 24584 V pythonutil: Checking pattern libpng16\.so against libfreetype.so
-06-11 23:12:42.141 24584 24584 V pythonutil: Checking pattern libpng16\.so against libpython3.10.so
-06-11 23:12:42.141 24584 24584 V pythonutil: Checking pattern libpng16\.so against libmain.so
-06-11 23:12:42.142 24584 24584 V pythonutil: Checking pattern libpng16\.so against libffi.so
-06-11 23:12:42.142 24584 24584 V pythonutil: Checking pattern libpng16\.so against libSDL2_image.so
-06-11 23:12:42.142 24584 24584 V pythonutil: Checking pattern libpng16\.so against libcrypto.so
-06-11 23:12:42.142 24584 24584 V pythonutil: Checking pattern libpng16\.so against libpythonbin.so
-06-11 23:12:42.142 24584 24584 V pythonutil: Checking pattern libpng16\.so against libSDL2_mixer.so
-06-11 23:12:42.142 24584 24584 V pythonutil: Checking pattern libpng16\.so against libssl.so
-06-11 23:12:42.142 24584 24584 V pythonutil: Checking pattern libpng16\.so against libpybundle.so
-06-11 23:12:42.142 24584 24584 V pythonutil: Checking pattern libpng16\.so against libsqlite3.so
-06-11 23:12:42.142 24584 24584 V pythonutil: Checking pattern libssl.*\.so against libSDL2.so
-06-11 23:12:42.142 24584 24584 V pythonutil: Checking pattern libssl.*\.so against libSDL2_ttf.so
-06-11 23:12:42.142 24584 24584 V pythonutil: Checking pattern libssl.*\.so against libpng16.so
-06-11 23:12:42.143 24584 24584 V pythonutil: Checking pattern libssl.*\.so against libfreetype.so
-06-11 23:12:42.143 24584 24584 V pythonutil: Checking pattern libssl.*\.so against libpython3.10.so
-06-11 23:12:42.143 24584 24584 V pythonutil: Checking pattern libssl.*\.so against libmain.so
-06-11 23:12:42.143 24584 24584 V pythonutil: Checking pattern libssl.*\.so against libffi.so
-06-11 23:12:42.143 24584 24584 V pythonutil: Checking pattern libssl.*\.so against libSDL2_image.so
-06-11 23:12:42.143 24584 24584 V pythonutil: Checking pattern libssl.*\.so against libcrypto.so
-06-11 23:12:42.143 24584 24584 V pythonutil: Checking pattern libssl.*\.so against libpythonbin.so
-06-11 23:12:42.143 24584 24584 V pythonutil: Checking pattern libssl.*\.so against libSDL2_mixer.so
-06-11 23:12:42.143 24584 24584 V pythonutil: Checking pattern libssl.*\.so against libssl.so
-06-11 23:12:42.143 24584 24584 V pythonutil: Pattern libssl.*\.so matched file libssl.so
-06-11 23:12:42.143 24584 24584 V pythonutil: Checking pattern libssl.*\.so against libpybundle.so
-06-11 23:12:42.143 24584 24584 V pythonutil: Checking pattern libssl.*\.so against libsqlite3.so
-06-11 23:12:42.144 24584 24584 V pythonutil: Checking pattern libcrypto.*\.so against libSDL2.so
-06-11 23:12:42.144 24584 24584 V pythonutil: Checking pattern libcrypto.*\.so against libSDL2_ttf.so
-06-11 23:12:42.144 24584 24584 V pythonutil: Checking pattern libcrypto.*\.so against libpng16.so
-06-11 23:12:42.144 24584 24584 V pythonutil: Checking pattern libcrypto.*\.so against libfreetype.so
-06-11 23:12:42.144 24584 24584 V pythonutil: Checking pattern libcrypto.*\.so against libpython3.10.so
-06-11 23:12:42.144 24584 24584 V pythonutil: Checking pattern libcrypto.*\.so against libmain.so
-06-11 23:12:42.144 24584 24584 V pythonutil: Checking pattern libcrypto.*\.so against libffi.so
-06-11 23:12:42.144 24584 24584 V pythonutil: Checking pattern libcrypto.*\.so against libSDL2_image.so
-06-11 23:12:42.144 24584 24584 V pythonutil: Checking pattern libcrypto.*\.so against libcrypto.so
-06-11 23:12:42.144 24584 24584 V pythonutil: Pattern libcrypto.*\.so matched file libcrypto.so
-06-11 23:12:42.144 24584 24584 V pythonutil: Checking pattern libcrypto.*\.so against libpythonbin.so
-06-11 23:12:42.144 24584 24584 V pythonutil: Checking pattern libcrypto.*\.so against libSDL2_mixer.so
-06-11 23:12:42.144 24584 24584 V pythonutil: Checking pattern libcrypto.*\.so against libssl.so
-06-11 23:12:42.144 24584 24584 V pythonutil: Checking pattern libcrypto.*\.so against libpybundle.so
-06-11 23:12:42.144 24584 24584 V pythonutil: Checking pattern libcrypto.*\.so against libsqlite3.so
-06-11 23:12:42.145 24584 24584 V pythonutil: Checking pattern libSDL2\.so against libSDL2.so
-06-11 23:12:42.145 24584 24584 V pythonutil: Pattern libSDL2\.so matched file libSDL2.so
-06-11 23:12:42.145 24584 24584 V pythonutil: Checking pattern libSDL2\.so against libSDL2_ttf.so
-06-11 23:12:42.145 24584 24584 V pythonutil: Checking pattern libSDL2\.so against libpng16.so
-06-11 23:12:42.145 24584 24584 V pythonutil: Checking pattern libSDL2\.so against libfreetype.so
-06-11 23:12:42.145 24584 24584 V pythonutil: Checking pattern libSDL2\.so against libpython3.10.so
-06-11 23:12:42.145 24584 24584 V pythonutil: Checking pattern libSDL2\.so against libmain.so
-06-11 23:12:42.145 24584 24584 V pythonutil: Checking pattern libSDL2\.so against libffi.so
-06-11 23:12:42.145 24584 24584 V pythonutil: Checking pattern libSDL2\.so against libSDL2_image.so
-06-11 23:12:42.145 24584 24584 V pythonutil: Checking pattern libSDL2\.so against libcrypto.so
-06-11 23:12:42.145 24584 24584 V pythonutil: Checking pattern libSDL2\.so against libpythonbin.so
-06-11 23:12:42.145 24584 24584 V pythonutil: Checking pattern libSDL2\.so against libSDL2_mixer.so
-06-11 23:12:42.145 24584 24584 V pythonutil: Checking pattern libSDL2\.so against libssl.so
-06-11 23:12:42.145 24584 24584 V pythonutil: Checking pattern libSDL2\.so against libpybundle.so
-06-11 23:12:42.146 24584 24584 V pythonutil: Checking pattern libSDL2\.so against libsqlite3.so
-06-11 23:12:42.146 24584 24584 V pythonutil: Checking pattern libSDL2_image\.so against libSDL2.so
-06-11 23:12:42.146 24584 24584 V pythonutil: Checking pattern libSDL2_image\.so against libSDL2_ttf.so
-06-11 23:12:42.146 24584 24584 V pythonutil: Checking pattern libSDL2_image\.so against libpng16.so
-06-11 23:12:42.146 24584 24584 V pythonutil: Checking pattern libSDL2_image\.so against libfreetype.so
-06-11 23:12:42.146 24584 24584 V pythonutil: Checking pattern libSDL2_image\.so against libpython3.10.so
-06-11 23:12:42.146 24584 24584 V pythonutil: Checking pattern libSDL2_image\.so against libmain.so
-06-11 23:12:42.146 24584 24584 V pythonutil: Checking pattern libSDL2_image\.so against libffi.so
-06-11 23:12:42.146 24584 24584 V pythonutil: Checking pattern libSDL2_image\.so against libSDL2_image.so
-06-11 23:12:42.146 24584 24584 V pythonutil: Pattern libSDL2_image\.so matched file libSDL2_image.so
-06-11 23:12:42.146 24584 24584 V pythonutil: Checking pattern libSDL2_image\.so against libcrypto.so
-06-11 23:12:42.146 24584 24584 V pythonutil: Checking pattern libSDL2_image\.so against libpythonbin.so
-06-11 23:12:42.147 24584 24584 V pythonutil: Checking pattern libSDL2_image\.so against libSDL2_mixer.so
-06-11 23:12:42.147 24584 24584 V pythonutil: Checking pattern libSDL2_image\.so against libssl.so
-06-11 23:12:42.147 24584 24584 V pythonutil: Checking pattern libSDL2_image\.so against libpybundle.so
-06-11 23:12:42.147 24584 24584 V pythonutil: Checking pattern libSDL2_image\.so against libsqlite3.so
-06-11 23:12:42.147 24584 24584 V pythonutil: Checking pattern libSDL2_mixer\.so against libSDL2.so
-06-11 23:12:42.147 24584 24584 V pythonutil: Checking pattern libSDL2_mixer\.so against libSDL2_ttf.so
-06-11 23:12:42.147 24584 24584 V pythonutil: Checking pattern libSDL2_mixer\.so against libpng16.so
-06-11 23:12:42.147 24584 24584 V pythonutil: Checking pattern libSDL2_mixer\.so against libfreetype.so
-06-11 23:12:42.147 24584 24584 V pythonutil: Checking pattern libSDL2_mixer\.so against libpython3.10.so
-06-11 23:12:42.147 24584 24584 V pythonutil: Checking pattern libSDL2_mixer\.so against libmain.so
-06-11 23:12:42.147 24584 24584 V pythonutil: Checking pattern libSDL2_mixer\.so against libffi.so
-06-11 23:12:42.147 24584 24584 V pythonutil: Checking pattern libSDL2_mixer\.so against libSDL2_image.so
-06-11 23:12:42.148 24584 24584 V pythonutil: Checking pattern libSDL2_mixer\.so against libcrypto.so
-06-11 23:12:42.148 24584 24584 V pythonutil: Checking pattern libSDL2_mixer\.so against libpythonbin.so
-06-11 23:12:42.148 24584 24584 V pythonutil: Checking pattern libSDL2_mixer\.so against libSDL2_mixer.so
-06-11 23:12:42.148 24584 24584 V pythonutil: Pattern libSDL2_mixer\.so matched file libSDL2_mixer.so
-06-11 23:12:42.148 24584 24584 V pythonutil: Checking pattern libSDL2_mixer\.so against libssl.so
-06-11 23:12:42.148 24584 24584 V pythonutil: Checking pattern libSDL2_mixer\.so against libpybundle.so
-06-11 23:12:42.148 24584 24584 V pythonutil: Checking pattern libSDL2_mixer\.so against libsqlite3.so
-06-11 23:12:42.148 24584 24584 V pythonutil: Checking pattern libSDL2_ttf\.so against libSDL2.so
-06-11 23:12:42.148 24584 24584 V pythonutil: Checking pattern libSDL2_ttf\.so against libSDL2_ttf.so
-06-11 23:12:42.148 24584 24584 V pythonutil: Pattern libSDL2_ttf\.so matched file libSDL2_ttf.so
-06-11 23:12:42.148 24584 24584 V pythonutil: Checking pattern libSDL2_ttf\.so against libpng16.so
-06-11 23:12:42.148 24584 24584 V pythonutil: Checking pattern libSDL2_ttf\.so against libfreetype.so
-06-11 23:12:42.149 24584 24584 V pythonutil: Checking pattern libSDL2_ttf\.so against libpython3.10.so
-06-11 23:12:42.149 24584 24584 V pythonutil: Checking pattern libSDL2_ttf\.so against libmain.so
-06-11 23:12:42.149 24584 24584 V pythonutil: Checking pattern libSDL2_ttf\.so against libffi.so
-06-11 23:12:42.149 24584 24584 V pythonutil: Checking pattern libSDL2_ttf\.so against libSDL2_image.so
-06-11 23:12:42.149 24584 24584 V pythonutil: Checking pattern libSDL2_ttf\.so against libcrypto.so
-06-11 23:12:42.149 24584 24584 V pythonutil: Checking pattern libSDL2_ttf\.so against libpythonbin.so
-06-11 23:12:42.149 24584 24584 V pythonutil: Checking pattern libSDL2_ttf\.so against libSDL2_mixer.so
-06-11 23:12:42.149 24584 24584 V pythonutil: Checking pattern libSDL2_ttf\.so against libssl.so
-06-11 23:12:42.149 24584 24584 V pythonutil: Checking pattern libSDL2_ttf\.so against libpybundle.so
-06-11 23:12:42.149 24584 24584 V pythonutil: Checking pattern libSDL2_ttf\.so against libsqlite3.so
-06-11 23:12:42.149 24584 24584 V pythonutil: Checking pattern libSDL3\.so against libSDL2.so
-06-11 23:12:42.149 24584 24584 V pythonutil: Checking pattern libSDL3\.so against libSDL2_ttf.so
-06-11 23:12:42.149 24584 24584 V pythonutil: Checking pattern libSDL3\.so against libpng16.so
-06-11 23:12:42.150 24584 24584 V pythonutil: Checking pattern libSDL3\.so against libfreetype.so
-06-11 23:12:42.150 24584 24584 V pythonutil: Checking pattern libSDL3\.so against libpython3.10.so
-06-11 23:12:42.150 24584 24584 V pythonutil: Checking pattern libSDL3\.so against libmain.so
-06-11 23:12:42.150 24584 24584 V pythonutil: Checking pattern libSDL3\.so against libffi.so
-06-11 23:12:42.150 24584 24584 V pythonutil: Checking pattern libSDL3\.so against libSDL2_image.so
-06-11 23:12:42.150 24584 24584 V pythonutil: Checking pattern libSDL3\.so against libcrypto.so
-06-11 23:12:42.150 24584 24584 V pythonutil: Checking pattern libSDL3\.so against libpythonbin.so
-06-11 23:12:42.150 24584 24584 V pythonutil: Checking pattern libSDL3\.so against libSDL2_mixer.so
-06-11 23:12:42.150 24584 24584 V pythonutil: Checking pattern libSDL3\.so against libssl.so
-06-11 23:12:42.150 24584 24584 V pythonutil: Checking pattern libSDL3\.so against libpybundle.so
-06-11 23:12:42.150 24584 24584 V pythonutil: Checking pattern libSDL3\.so against libsqlite3.so
-06-11 23:12:42.150 24584 24584 V pythonutil: Checking pattern libSDL3_image\.so against libSDL2.so
-06-11 23:12:42.151 24584 24584 V pythonutil: Checking pattern libSDL3_image\.so against libSDL2_ttf.so
-06-11 23:12:42.151 24584 24584 V pythonutil: Checking pattern libSDL3_image\.so against libpng16.so
-06-11 23:12:42.151 24584 24584 V pythonutil: Checking pattern libSDL3_image\.so against libfreetype.so
-06-11 23:12:42.151 24584 24584 V pythonutil: Checking pattern libSDL3_image\.so against libpython3.10.so
-06-11 23:12:42.151 24584 24584 V pythonutil: Checking pattern libSDL3_image\.so against libmain.so
-06-11 23:12:42.151 24584 24584 V pythonutil: Checking pattern libSDL3_image\.so against libffi.so
-06-11 23:12:42.151 24584 24584 V pythonutil: Checking pattern libSDL3_image\.so against libSDL2_image.so
-06-11 23:12:42.151 24584 24584 V pythonutil: Checking pattern libSDL3_image\.so against libcrypto.so
-06-11 23:12:42.151 24584 24584 V pythonutil: Checking pattern libSDL3_image\.so against libpythonbin.so
-06-11 23:12:42.151 24584 24584 V pythonutil: Checking pattern libSDL3_image\.so against libSDL2_mixer.so
-06-11 23:12:42.151 24584 24584 V pythonutil: Checking pattern libSDL3_image\.so against libssl.so
-06-11 23:12:42.151 24584 24584 V pythonutil: Checking pattern libSDL3_image\.so against libpybundle.so
-06-11 23:12:42.151 24584 24584 V pythonutil: Checking pattern libSDL3_image\.so against libsqlite3.so
-06-11 23:12:42.152 24584 24584 V pythonutil: Checking pattern libSDL3_mixer\.so against libSDL2.so
-06-11 23:12:42.152 24584 24584 V pythonutil: Checking pattern libSDL3_mixer\.so against libSDL2_ttf.so
-06-11 23:12:42.152 24584 24584 V pythonutil: Checking pattern libSDL3_mixer\.so against libpng16.so
-06-11 23:12:42.152 24584 24584 V pythonutil: Checking pattern libSDL3_mixer\.so against libfreetype.so
-06-11 23:12:42.152 24584 24584 V pythonutil: Checking pattern libSDL3_mixer\.so against libpython3.10.so
-06-11 23:12:42.152 24584 24584 V pythonutil: Checking pattern libSDL3_mixer\.so against libmain.so
-06-11 23:12:42.152 24584 24584 V pythonutil: Checking pattern libSDL3_mixer\.so against libffi.so
-06-11 23:12:42.152 24584 24584 V pythonutil: Checking pattern libSDL3_mixer\.so against libSDL2_image.so
-06-11 23:12:42.152 24584 24584 V pythonutil: Checking pattern libSDL3_mixer\.so against libcrypto.so
-06-11 23:12:42.152 24584 24584 V pythonutil: Checking pattern libSDL3_mixer\.so against libpythonbin.so
-06-11 23:12:42.152 24584 24584 V pythonutil: Checking pattern libSDL3_mixer\.so against libSDL2_mixer.so
-06-11 23:12:42.152 24584 24584 V pythonutil: Checking pattern libSDL3_mixer\.so against libssl.so
-06-11 23:12:42.152 24584 24584 V pythonutil: Checking pattern libSDL3_mixer\.so against libpybundle.so
-06-11 23:12:42.152 24584 24584 V pythonutil: Checking pattern libSDL3_mixer\.so against libsqlite3.so
-06-11 23:12:42.153 24584 24584 V pythonutil: Checking pattern libSDL3_ttf\.so against libSDL2.so
-06-11 23:12:42.153 24584 24584 V pythonutil: Checking pattern libSDL3_ttf\.so against libSDL2_ttf.so
-06-11 23:12:42.153 24584 24584 V pythonutil: Checking pattern libSDL3_ttf\.so against libpng16.so
-06-11 23:12:42.153 24584 24584 V pythonutil: Checking pattern libSDL3_ttf\.so against libfreetype.so
-06-11 23:12:42.153 24584 24584 V pythonutil: Checking pattern libSDL3_ttf\.so against libpython3.10.so
-06-11 23:12:42.153 24584 24584 V pythonutil: Checking pattern libSDL3_ttf\.so against libmain.so
-06-11 23:12:42.153 24584 24584 V pythonutil: Checking pattern libSDL3_ttf\.so against libffi.so
-06-11 23:12:42.153 24584 24584 V pythonutil: Checking pattern libSDL3_ttf\.so against libSDL2_image.so
-06-11 23:12:42.153 24584 24584 V pythonutil: Checking pattern libSDL3_ttf\.so against libcrypto.so
-06-11 23:12:42.153 24584 24584 V pythonutil: Checking pattern libSDL3_ttf\.so against libpythonbin.so
-06-11 23:12:42.153 24584 24584 V pythonutil: Checking pattern libSDL3_ttf\.so against libSDL2_mixer.so
-06-11 23:12:42.153 24584 24584 V pythonutil: Checking pattern libSDL3_ttf\.so against libssl.so
-06-11 23:12:42.153 24584 24584 V pythonutil: Checking pattern libSDL3_ttf\.so against libpybundle.so
-06-11 23:12:42.153 24584 24584 V pythonutil: Checking pattern libSDL3_ttf\.so against libsqlite3.so
-06-11 23:12:42.154 24584 24584 V pythonutil: Loading library: sqlite3
-06-11 23:12:42.159 24584 24584 D nativeloader: Load /data/app/~~QpRnp90OX6wuTY-RgOhRrQ==/org.kffs.habilisdatalogger-jClDYnCvabFyuuRbgKU13A==/lib/arm64/libsqlite3.so using ns clns-4 from class loader (caller=/data/app/~~QpRnp90OX6wuTY-RgOhRrQ==/org.kffs.habilisdatalogger-jClDYnCvabFyuuRbgKU13A==/base.apk!classes5.dex): ok
-06-11 23:12:42.159 24584 24584 V pythonutil: Loading library: ffi
-06-11 23:12:42.160 24584 24584 D nativeloader: Load /data/app/~~QpRnp90OX6wuTY-RgOhRrQ==/org.kffs.habilisdatalogger-jClDYnCvabFyuuRbgKU13A==/lib/arm64/libffi.so using ns clns-4 from class loader (caller=/data/app/~~QpRnp90OX6wuTY-RgOhRrQ==/org.kffs.habilisdatalogger-jClDYnCvabFyuuRbgKU13A==/base.apk!classes5.dex): ok
-06-11 23:12:42.160 24584 24584 V pythonutil: Loading library: png16
-06-11 23:12:42.162 24584 24584 D nativeloader: Load /data/app/~~QpRnp90OX6wuTY-RgOhRrQ==/org.kffs.habilisdatalogger-jClDYnCvabFyuuRbgKU13A==/lib/arm64/libpng16.so using ns clns-4 from class loader (caller=/data/app/~~QpRnp90OX6wuTY-RgOhRrQ==/org.kffs.habilisdatalogger-jClDYnCvabFyuuRbgKU13A==/base.apk!classes5.dex): ok
-06-11 23:12:42.162 24584 24584 V pythonutil: Loading library: ssl
-06-11 23:12:42.169 24584 24584 D nativeloader: Load /data/app/~~QpRnp90OX6wuTY-RgOhRrQ==/org.kffs.habilisdatalogger-jClDYnCvabFyuuRbgKU13A==/lib/arm64/libssl.so using ns clns-4 from class loader (caller=/data/app/~~QpRnp90OX6wuTY-RgOhRrQ==/org.kffs.habilisdatalogger-jClDYnCvabFyuuRbgKU13A==/base.apk!classes5.dex): ok
-06-11 23:12:42.169 24584 24584 V pythonutil: Loading library: crypto
-06-11 23:12:42.169 24584 24584 D nativeloader: Load /data/app/~~QpRnp90OX6wuTY-RgOhRrQ==/org.kffs.habilisdatalogger-jClDYnCvabFyuuRbgKU13A==/lib/arm64/libcrypto.so using ns clns-4 from class loader (caller=/data/app/~~QpRnp90OX6wuTY-RgOhRrQ==/org.kffs.habilisdatalogger-jClDYnCvabFyuuRbgKU13A==/base.apk!classes5.dex): ok
-06-11 23:12:42.170 24584 24584 V pythonutil: Loading library: SDL2
-06-11 23:12:42.177 24584 24584 D nativeloader: Load /data/app/~~QpRnp90OX6wuTY-RgOhRrQ==/org.kffs.habilisdatalogger-jClDYnCvabFyuuRbgKU13A==/lib/arm64/libSDL2.so using ns clns-4 from class loader (caller=/data/app/~~QpRnp90OX6wuTY-RgOhRrQ==/org.kffs.habilisdatalogger-jClDYnCvabFyuuRbgKU13A==/base.apk!classes5.dex): ok
-06-11 23:12:42.177 24584 24584 V pythonutil: Loading library: SDL2_image
-06-11 23:12:42.179 24584 24584 D nativeloader: Load /data/app/~~QpRnp90OX6wuTY-RgOhRrQ==/org.kffs.habilisdatalogger-jClDYnCvabFyuuRbgKU13A==/lib/arm64/libSDL2_image.so using ns clns-4 from class loader (caller=/data/app/~~QpRnp90OX6wuTY-RgOhRrQ==/org.kffs.habilisdatalogger-jClDYnCvabFyuuRbgKU13A==/base.apk!classes5.dex): ok
-06-11 23:12:42.180 24584 24584 V pythonutil: Loading library: SDL2_mixer
-06-11 23:12:42.182 24584 24584 D nativeloader: Load /data/app/~~QpRnp90OX6wuTY-RgOhRrQ==/org.kffs.habilisdatalogger-jClDYnCvabFyuuRbgKU13A==/lib/arm64/libSDL2_mixer.so using ns clns-4 from class loader (caller=/data/app/~~QpRnp90OX6wuTY-RgOhRrQ==/org.kffs.habilisdatalogger-jClDYnCvabFyuuRbgKU13A==/base.apk!classes5.dex): ok
-06-11 23:12:42.182 24584 24584 V pythonutil: Loading library: SDL2_ttf
-06-11 23:12:42.192 24584 24584 D nativeloader: Load /data/app/~~QpRnp90OX6wuTY-RgOhRrQ==/org.kffs.habilisdatalogger-jClDYnCvabFyuuRbgKU13A==/lib/arm64/libSDL2_ttf.so using ns clns-4 from class loader (caller=/data/app/~~QpRnp90OX6wuTY-RgOhRrQ==/org.kffs.habilisdatalogger-jClDYnCvabFyuuRbgKU13A==/base.apk!classes5.dex): ok
-06-11 23:12:42.192 24584 24584 V pythonutil: Loading library: python3.14
-06-11 23:12:42.197 24584 24584 D nativeloader: Load libpython3.14.so using ns clns-4 from class loader (caller=/data/app/~~QpRnp90OX6wuTY-RgOhRrQ==/org.kffs.habilisdatalogger-jClDYnCvabFyuuRbgKU13A==/base.apk!classes5.dex): dlopen failed: library "libpython3.14.so" not found
-06-11 23:12:42.197 24584 24584 V pythonutil: Library loading error: dlopen failed: library "libpython3.14.so" not found
-06-11 23:12:42.197 24584 24584 V pythonutil: Loading library: python3.13
-06-11 23:12:42.198 24584 24584 D nativeloader: Load libpython3.13.so using ns clns-4 from class loader (caller=/data/app/~~QpRnp90OX6wuTY-RgOhRrQ==/org.kffs.habilisdatalogger-jClDYnCvabFyuuRbgKU13A==/base.apk!classes5.dex): dlopen failed: library "libpython3.13.so" not found
-06-11 23:12:42.198 24584 24584 V pythonutil: Library loading error: dlopen failed: library "libpython3.13.so" not found
-06-11 23:12:42.198 24584 24584 V pythonutil: Loading library: python3.12
-06-11 23:12:42.198 24584 24584 D nativeloader: Load libpython3.12.so using ns clns-4 from class loader (caller=/data/app/~~QpRnp90OX6wuTY-RgOhRrQ==/org.kffs.habilisdatalogger-jClDYnCvabFyuuRbgKU13A==/base.apk!classes5.dex): dlopen failed: library "libpython3.12.so" not found
-06-11 23:12:42.198 24584 24584 V pythonutil: Library loading error: dlopen failed: library "libpython3.12.so" not found
-06-11 23:12:42.199 24584 24584 V pythonutil: Loading library: python3.11
-06-11 23:12:42.199 24584 24584 D nativeloader: Load libpython3.11.so using ns clns-4 from class loader (caller=/data/app/~~QpRnp90OX6wuTY-RgOhRrQ==/org.kffs.habilisdatalogger-jClDYnCvabFyuuRbgKU13A==/base.apk!classes5.dex): dlopen failed: library "libpython3.11.so" not found
-06-11 23:12:42.199 24584 24584 V pythonutil: Library loading error: dlopen failed: library "libpython3.11.so" not found
-06-11 23:12:42.199 24584 24584 V pythonutil: Loading library: python3.10
-06-11 23:12:42.202 24584 24584 D nativeloader: Load /data/app/~~QpRnp90OX6wuTY-RgOhRrQ==/org.kffs.habilisdatalogger-jClDYnCvabFyuuRbgKU13A==/lib/arm64/libpython3.10.so using ns clns-4 from class loader (caller=/data/app/~~QpRnp90OX6wuTY-RgOhRrQ==/org.kffs.habilisdatalogger-jClDYnCvabFyuuRbgKU13A==/base.apk!classes5.dex): ok
-06-11 23:12:42.203 24584 24584 V pythonutil: Loading library: main
-06-11 23:12:42.204 24584 24584 D nativeloader: Load /data/app/~~QpRnp90OX6wuTY-RgOhRrQ==/org.kffs.habilisdatalogger-jClDYnCvabFyuuRbgKU13A==/lib/arm64/libmain.so using ns clns-4 from class loader (caller=/data/app/~~QpRnp90OX6wuTY-RgOhRrQ==/org.kffs.habilisdatalogger-jClDYnCvabFyuuRbgKU13A==/base.apk!classes5.dex): ok
-06-11 23:12:42.204 24584 24584 V pythonutil: Loaded everything!
-06-11 23:12:42.205 24584 24584 V SDL     : nativeSetupJNI()
-06-11 23:12:42.206 24584 24584 V SDL     : AUDIO nativeSetupJNI()
-06-11 23:12:42.206 24584 24584 V SDL     : CONTROLLER nativeSetupJNI()
-06-11 23:12:42.253  1948  5734 D CoreBackPreview: Window{6095011 u0 org.kffs.habilisdatalogger/org.kivy.android.PythonActivity}: Setting back callback OnBackInvokedCallbackInfo{mCallback=android.window.IOnBackInvokedCallback$Stub$Proxy@a21dc4d, mPriority=0, mIsAnimationCallback=false}
-06-11 23:12:42.270  1948  5734 D WindowManager: wms.Input focus has changed to Window{6095011 u0 org.kffs.habilisdatalogger/org.kivy.android.PythonActivity} display=0 updateInputWindows = true
-06-11 23:12:42.272  1363  1442 I SurfaceFlinger: sf.setTransactionState focusRequest transactionId:8366597609677 frontWin:6095011 org.kffs.habilisdatalogger/org.kivy.android.PythonActivity
-06-11 23:12:42.298 24584 24584 V SDL     : surfaceCreated()
-06-11 23:12:42.298 24584 24584 V SDL     : surfaceChanged()
-06-11 23:12:42.298 24584 24584 V SDL     : Window size: 1080x2172
-06-11 23:12:42.298 24584 24584 V SDL     : Device size: 1080x2400
-06-11 23:12:42.309 24584 24620 V SDL     : Running main function SDL_main from library /data/app/~~QpRnp90OX6wuTY-RgOhRrQ==/org.kffs.habilisdatalogger-jClDYnCvabFyuuRbgKU13A==/lib/arm64/libmain.so
-06-11 23:12:42.309 24584 24620 V SDL     : nativeRunMain()
-06-11 23:12:42.310 24584 24620 I python  : Initializing Python for Android
-06-11 23:12:42.310 24584 24620 I python  : Setting additional env vars from p4a_env_vars.txt
-06-11 23:12:42.311 24584 24620 I python  : Changing directory to '/data/user/0/org.kffs.habilisdatalogger/files/app'
-06-11 23:12:42.314 24584 24620 I python  : Preparing to initialize python
-06-11 23:12:42.314 24584 24620 I python  : _python_bundle dir exists
-06-11 23:12:42.315 24584 24620 I python  : set wchar paths...
-06-11 23:12:42.348  1948  5743 D WindowManager: wms.finishDrawingLocked: mDrawState=COMMIT_DRAW_PENDING Window{6095011 u0 org.kffs.habilisdatalogger/org.kivy.android.PythonActivity} in Surface(name=org.kffs.habilisdatalogger/org.kivy.android.PythonActivity#136503)/@0x91ebd4e
-06-11 23:12:42.354 24584 24584 D SurfaceView: UPDATE Surface(name=SurfaceView[org.kffs.habilisdatalogger/org.kivy.android.PythonActivity]#136507)/@0x2fb8038, mIsProjectionMode = false
-06-11 23:12:42.355  1948  2308 I WindowManager: wms.showSurfaceRobustly mWin:Window{6095011 u0 org.kffs.habilisdatalogger/org.kivy.android.PythonActivity}
-06-11 23:12:42.357 24584 24620 I python  : Python initialized using legacy Py_Initialize().
-06-11 23:12:42.357 24584 24620 I python  : Initialized python
-06-11 23:12:42.357 24584 24620 I python  : testing python print redirection
-06-11 23:12:42.358 24584 24620 I python  : Android kivy bootstrap done. __name__ is __main__
-06-11 23:12:42.363  1948  2074 I ActivityTaskManager: Displayed org.kffs.habilisdatalogger/org.kivy.android.PythonActivity for user 0: +637ms
-06-11 23:12:42.378 24584 24584 V SDL     : onWindowFocusChanged(): true
-06-11 23:12:42.383  1948  4122 D CoreBackPreview: Window{3258d4a u0 Splash Screen org.kffs.habilisdatalogger}: Setting back callback null
-06-11 23:12:42.383  1948  6134 W InputManager-JNI: Input channel object '3258d4a Splash Screen org.kffs.habilisdatalogger (client)' was disposed without first being removed with the input manager!
-06-11 23:12:42.384  1948  2972 D tsched_scene: handleWindowChanged: pkgName: org.kffs.habilisdatalogger, mForegroundAppName: com.miui.home
-06-11 23:12:42.394  1948  5730 I ImeTracker: org.kffs.habilisdatalogger:25e5bc78: onRequestHide at ORIGIN_SERVER_HIDE_INPUT reason HIDE_UNSPECIFIED_WINDOW
-06-11 23:12:42.394  1948  5730 I ImeTracker: org.kffs.habilisdatalogger:25e5bc78: onCancelled at PHASE_SERVER_SHOULD_HIDE
-06-11 23:12:42.396  1363  2713 D MI-SF   : updateScene: module = 270 (Input), value = 0, pkg = org.kffs.habilisdatalogger, Vrr = 1
-06-11 23:12:42.410 22864 22864 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1446 onStartInput(EditorInfo{EditorInfo{packageName=org.kffs.habilisdatalogger, inputType=0, inputTypeString=NULL, enableLearning=false, autoCorrection=false, autoComplete=false, imeOptions=0, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=-1, initialSelEnd=-1, initialCapsMode=0, label=null, fieldId=0, fieldName=null, extras=Bundle[mParcelledData.dataSize=72], hintText=null, hintLocales=[]}}, false)
-06-11 23:12:42.412  1948  5734 W PackageConfigPersister: App-specific configuration not found for packageName: org.kffs.habilisdatalogger and userId: 0
-06-11 23:12:42.412  1948  7880 I Transition: finishTransition: updateLastSurfacePosition tf=Task{3c2aff9 #559 type=standard A=10360:org.kffs.habilisdatalogger}
-06-11 23:12:42.426  3838  4246 W RecentsModel: getRunningTask   taskInfo=TaskInfo{userId=0 taskId=559 displayId=0 isRunning=true baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=org.kffs.habilisdatalogger/org.kivy.android.PythonActivity } baseActivity=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity} topActivity=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity} origActivity=null realActivity=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity} numActivities=1 lastActiveTime=654774021 supportsSplitScreenMultiWindow=true supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=200 token=WCT{android.window.IWindowContainerToken$Stub$Proxy@58275a3} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=Rect(0, 98 - 0, 0) topActivityInfo=ActivityInfo{775f0a0 org.kivy.android.PythonActivity} launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=true isVisible=true isVisibleRequested=true isSleeping=false topActivityInSizeCompat=false topActivityInMiuiSizeCompat=false topActivityEligibleForLetterboxEducation= false topActivityLetterboxed= false isFromDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=-1 topActivityLetterboxHeight=-1 locusId=null displayAreaFeatureId=1 cameraCompatControlState=hidden mIsCastMode=false mTopActivityMediaSize=null mTopActivityRecordName=ActivityRecord{8c1a6c0 u0 org.kffs.habilisdatalogger/org.kivy.android.PythonActivity t559} mTopActivityOrientation=1 mTopActivityWindowIsNowVisible=true isTranslucent=false isEmbedded=false shouldBeVisible=true mBehindAppLockPkg=null mOriginatingUid=0}
-06-11 23:12:42.426  3838  4246 W RecentsModel: getTaskInfoIgnoreHomeAndFreeform   taskInfo=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity}
-06-11 23:12:42.456  3838  4246 E ActivityManagerWrapper: getRecentTasks: mainTaskId=559   userId=0   windowMode=1   baseIntent=Intent { act=android.intent.action.MAIN flag=270532608 cmp=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity} }
-06-11 23:12:42.484 24584 24620 I python  : [INFO   ] [Logger      ] Record log in /data/user/0/org.kffs.habilisdatalogger/files/app/.kivy/logs/kivy_26-06-11_1.txt
-06-11 23:12:42.485 24584 24620 I python  : [INFO   ] [Kivy        ] v2.1.0
-06-11 23:12:42.485 24584 24620 I python  : [INFO   ] [Kivy        ] Installed at "/data/user/0/org.kffs.habilisdatalogger/files/app/_python_bundle/site-packages/kivy/__init__.pyc"
-06-11 23:12:42.485 24584 24620 I python  : [INFO   ] [Python      ] v3.10.11 (main, May 27 2026, 00:26:06) [Clang 14.0.7 (https://android.googlesource.com/toolchain/llvm-project 4c603efb0
-06-11 23:12:42.485 24584 24620 I python  : [INFO   ] [Python      ] Interpreter at "/data/user/0/org.kffs.habilisdatalogger/files/app/.bin/python"
-06-11 23:12:42.486 24584 24620 I python  : [INFO   ] [Logger      ] Purge log fired. Processing...
-06-11 23:12:42.486 24584 24620 I python  : [INFO   ] [Logger      ] Purge finished!
-06-11 23:12:42.496 24584 24620 I python  : [INFO   ] [KivyMD      ] 1.0.2, git-38fe356, 2022-08-11 (installed at "/data/user/0/org.kffs.habilisdatalogger/files/app/_python_bundle/site-packages/kivymd/__init__.pyc")
-06-11 23:12:42.499 24584 24620 I python  : [INFO   ] [Factory     ] 189 symbols loaded
-06-11 23:12:43.165 24584 24584 W SDLThread: type=1400 audit(0.0:405414): avc:  granted  { execute } for  path="/data/data/org.kffs.habilisdatalogger/files/app/_python_bundle/modules/_socket.cpython-310.so" dev="dm-53" ino=123652 scontext=u:r:untrusted_app_30:s0:c104,c257,c512,c768 tcontext=u:object_r:app_data_file:s0:c104,c257,c512,c768 tclass=file app=org.kffs.habilisdatalogger
-06-11 23:12:43.169 24584 24584 W SDLThread: type=1400 audit(0.0:405415): avc:  granted  { execute } for  path="/data/data/org.kffs.habilisdatalogger/files/app/_python_bundle/modules/array.cpython-310.so" dev="dm-53" ino=123761 scontext=u:r:untrusted_app_30:s0:c104,c257,c512,c768 tcontext=u:object_r:app_data_file:s0:c104,c257,c512,c768 tclass=file app=org.kffs.habilisdatalogger
-06-11 23:12:43.173 24584 24584 W SDLThread: type=1400 audit(0.0:405416): avc:  granted  { execute } for  path="/data/data/org.kffs.habilisdatalogger/files/app/_python_bundle/modules/_ssl.cpython-310.so" dev="dm-53" ino=124014 scontext=u:r:untrusted_app_30:s0:c104,c257,c512,c768 tcontext=u:object_r:app_data_file:s0:c104,c257,c512,c768 tclass=file app=org.kffs.habilisdatalogger
-06-11 23:12:43.181 24584 24584 W SDLThread: type=1400 audit(0.0:405417): avc:  granted  { execute } for  path="/data/data/org.kffs.habilisdatalogger/files/app/_python_bundle/modules/binascii.cpython-310.so" dev="dm-53" ino=124086 scontext=u:r:untrusted_app_30:s0:c104,c257,c512,c768 tcontext=u:object_r:app_data_file:s0:c104,c257,c512,c768 tclass=file app=org.kffs.habilisdatalogger
-06-11 23:12:43.189 24584 24584 W SDLThread: type=1400 audit(0.0:405418): avc:  granted  { execute } for  path="/data/data/org.kffs.habilisdatalogger/files/app/_python_bundle/modules/_contextvars.cpython-310.so" dev="dm-53" ino=111998 scontext=u:r:untrusted_app_30:s0:c104,c257,c512,c768 tcontext=u:object_r:app_data_file:s0:c104,c257,c512,c768 tclass=file app=org.kffs.habilisdatalogger
-06-11 23:12:43.273 24584 24620 I python  : [INFO   ] [Image       ] Providers: img_tex, img_dds, img_sdl2, img_pil (img_ffpyplayer ignored)
-06-11 23:12:43.293 24584 24620 I python  : [INFO   ] [Text        ] Provider: sdl2
-06-11 23:12:43.434 24584 24620 I python  : [INFO   ] [Window      ] Provider: sdl2
-06-11 23:12:43.446 24584 24620 V SDL     : setOrientation() requestedOrientation=1 width=800 height=600 resizable=true hint=Portrait
-06-11 23:12:43.447 24584 24620 I SDL/APP : pixel format wanted SDL_PIXELFORMAT_RGBA8888 (1), got SDL_PIXELFORMAT_RGBA8888 (1)
-06-11 23:12:43.449 24584 24620 I python  : [INFO   ] [GL          ] Using the "OpenGL ES 2" graphics system
-06-11 23:12:43.454 24584 24620 I python  : [INFO   ] [GL          ] Backend used <sdl2>
-06-11 23:12:43.454 24584 24620 I python  : [INFO   ] [GL          ] OpenGL version <b'OpenGL ES 3.2 V@0530.57 (GIT@4bbe300fc3, Ie69fc1c69b, 1747652194) (Date:05/19/25)'>
-06-11 23:12:43.454 24584 24620 I python  : [INFO   ] [GL          ] OpenGL vendor <b'Qualcomm'>
-06-11 23:12:43.455 24584 24620 I python  : [INFO   ] [GL          ] OpenGL renderer <b'Adreno (TM) 642L'>
-06-11 23:12:43.455 24584 24620 I python  : [INFO   ] [GL          ] OpenGL parsed version: 3, 2
-06-11 23:12:43.455 24584 24620 I python  : [INFO   ] [GL          ] Texture max size <16384>
-06-11 23:12:43.455 24584 24620 I python  : [INFO   ] [GL          ] Texture max units <16>
-06-11 23:12:43.458  1948  7880 I PowerManagerServiceImpl: Acquire wakelock: SCREEN_BRIGHT_WAKE_LOCK        'WindowManager/displayId:0' ON_AFTER_RELEASE (uid=1000 pid=1948 pkg=android ws=WorkSource{10360 org.kffs.habilisdatalogger})
-06-11 23:12:43.474 24584 24620 I python  : [INFO   ] [Window      ] auto add sdl2 input provider
-06-11 23:12:43.474  1948  7880 I PowerManagerServiceImpl: Release wakelock: SCREEN_BRIGHT_WAKE_LOCK        'WindowManager/displayId:0' ON_AFTER_RELEASE DISABLED ACQ=-13ms (uid=1000 pid=1948 pkg=android ws=WorkSource{10360 org.kffs.habilisdatalogger})
-06-11 23:12:43.475 24584 24620 I python  : [INFO   ] [Window      ] virtual keyboard not allowed, single mode, not docked
-06-11 23:12:43.657 24584 24620 I python  : Could not set FileProvider: No module named 'plyer.camera'
-06-11 23:12:43.682 24584 24620 I python  : [INFO   ] [GL          ] NPOT texture support is available
-06-11 23:12:45.738 24584 24620 I python  :  Traceback (most recent call last):
-06-11 23:12:45.738 24584 24620 I python  :    File "/home/vboxuser/habilis-datalogger/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/python-installs/habilisdatalogger/arm64-v8a/kivy/lang/builder.py", line 704, in _apply_rule
-06-11 23:12:45.738 24584 24620 I python  :    File "kivy/weakproxy.pyx", line 35, in kivy.weakproxy.WeakProxy.__setattr__
-06-11 23:12:45.739 24584 24620 I python  :    File "kivy/properties.pyx", line 520, in kivy.properties.Property.__set__
-06-11 23:12:45.739 24584 24620 I python  :    File "kivy/properties.pyx", line 1463, in kivy.properties.ReferenceListProperty.set
-06-11 23:12:45.739 24584 24620 I python  :    File "kivy/properties.pyx", line 1452, in kivy.properties.ReferenceListProperty.check
-06-11 23:12:45.739 24584 24620 I python  :  ValueError: MDLabel.padding value length is immutable
-06-11 23:12:45.739 24584 24620 I python  :  
-06-11 23:12:45.739 24584 24620 I python  :  During handling of the above exception, another exception occurred:
-06-11 23:12:45.740 24584 24620 I python  :  
-06-11 23:12:45.740 24584 24620 I python  :  Traceback (most recent call last):
-06-11 23:12:45.740 24584 24620 I python  :    File "/home/vboxuser/habilis-datalogger/.buildozer/android/app/main.py", line 190, in <module>
-06-11 23:12:45.740 24584 24620 I python  :    File "/home/vboxuser/habilis-datalogger/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/python-installs/habilisdatalogger/arm64-v8a/kivy/app.py", line 954, in run
-06-11 23:12:45.740 24584 24620 I python  :    File "/home/vboxuser/habilis-datalogger/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/python-installs/habilisdatalogger/arm64-v8a/kivy/app.py", line 924, in _run_prepare
-06-11 23:12:45.740 24584 24620 I python  :    File "/home/vboxuser/habilis-datalogger/.buildozer/android/app/main.py", line 170, in build
-06-11 23:12:45.741 24584 24620 I python  :    File "/home/vboxuser/habilis-datalogger/.buildozer/android/app/admin.py", line 1232, in __init__
-06-11 23:12:45.741 24584 24620 I python  :    File "/home/vboxuser/habilis-datalogger/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/python-installs/habilisdatalogger/arm64-v8a/kivymd/uix/behaviors/declarative_bahavior.py", line 311, in __init__
-06-11 23:12:45.741 24584 24620 I python  :    File "/home/vboxuser/habilis-datalogger/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/python-installs/habilisdatalogger/arm64-v8a/kivy/uix/relativelayout.py", line 274, in __init__
-06-11 23:12:45.741 24584 24620 I python  :    File "/home/vboxuser/habilis-datalogger/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/python-installs/habilisdatalogger/arm64-v8a/kivy/uix/floatlayout.py", line 65, in __init__
-06-11 23:12:45.741 24584 24620 I python  :    File "/home/vboxuser/habilis-datalogger/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/python-installs/habilisdatalogger/arm64-v8a/kivy/uix/layout.py", line 76, in __init__
-06-11 23:12:45.742 24584 24620 I python  :    File "/home/vboxuser/habilis-datalogger/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/python-installs/habilisdatalogger/arm64-v8a/kivymd/uix/behaviors/backgroundcolor_behavior.py", line 206, in __init__
-06-11 23:12:45.742 24584 24620 I python  :    File "/home/vboxuser/habilis-datalogger/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/python-installs/habilisdatalogger/arm64-v8a/kivymd/uix/behaviors/backgroundcolor_behavior.py", line 162, in __init__
-06-11 23:12:45.742 24584 24620 I python  :    File "/home/vboxuser/habilis-datalogger/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/python-installs/habilisdatalogger/arm64-v8a/kivymd/uix/behaviors/elevation.py", line 851, in __init__
-06-11 23:12:45.742 24584 24620 I python  :    File "/home/vboxuser/habilis-datalogger/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/python-installs/habilisdatalogger/arm64-v8a/kivy/uix/widget.py", line 366, in __init__
-06-11 23:12:45.743 24584 24620 I python  :    File "/home/vboxuser/habilis-datalogger/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/python-installs/habilisdatalogger/arm64-v8a/kivy/uix/widget.py", line 470, in apply_class_lang_rules
-06-11 23:12:45.743 24584 24620 I python  :    File "/home/vboxuser/habilis-datalogger/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/python-installs/habilisdatalogger/arm64-v8a/kivy/lang/builder.py", line 540, in apply
-06-11 23:12:45.743 24584 24620 I python  :    File "/home/vboxuser/habilis-datalogger/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/python-installs/habilisdatalogger/arm64-v8a/kivy/lang/builder.py", line 709, in _apply_rule
-06-11 23:12:45.743 24584 24620 I python  :  kivy.lang.builder.BuilderException: Parser: File "<inline>", line 161:
-06-11 23:12:45.743 24584 24620 I python  :  ...
-06-11 23:12:45.743 24584 24620 I python  :      159:            size_hint_y: None
-06-11 23:12:45.743 24584 24620 I python  :      160:            height: "45dp"
-06-11 23:12:45.743 24584 24620 I python  :  >>  161:            padding: "10dp"
-06-11 23:12:45.744 24584 24620 I python  :      162:            theme_text_color: "Secondary"
-06-11 23:12:45.744 24584 24620 I python  :      163:
-06-11 23:12:45.744 24584 24620 I python  :  ...
-06-11 23:12:45.744 24584 24620 I python  :  ValueError: MDLabel.padding value length is immutable
-06-11 23:12:45.744 24584 24620 I python  :    File "/home/vboxuser/habilis-datalogger/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/python-installs/habilisdatalogger/arm64-v8a/kivy/lang/builder.py", line 704, in _apply_rule
-06-11 23:12:45.744 24584 24620 I python  :    File "kivy/weakproxy.pyx", line 35, in kivy.weakproxy.WeakProxy.__setattr__
-06-11 23:12:45.744 24584 24620 I python  :    File "kivy/properties.pyx", line 520, in kivy.properties.Property.__set__
-06-11 23:12:45.744 24584 24620 I python  :    File "kivy/properties.pyx", line 1463, in kivy.properties.ReferenceListProperty.set
-06-11 23:12:45.744 24584 24620 I python  :    File "kivy/properties.pyx", line 1452, in kivy.properties.ReferenceListProperty.check
-06-11 23:12:45.744 24584 24620 I python  :  
-06-11 23:12:45.744 24584 24620 I python  : Python for android ended.
-06-11 23:12:46.104 21033 21039 W .gms.persistent: ApkAssets: Deleting an ApkAssets object '<empty> and /data/app/~~QpRnp90OX6wuTY-RgOhRrQ==/org.kffs.habilisdatalogger-jClDYnCvabFyuuRbgKU13A==/base.apk' with 1 weak references
-06-11 23:12:46.783  1948  6126 I WindowManager: WIN DEATH: Window{6095011 u0 org.kffs.habilisdatalogger/org.kivy.android.PythonActivity}
-06-11 23:12:46.783  1948  6126 W InputManager-JNI: Input channel object '6095011 org.kffs.habilisdatalogger/org.kivy.android.PythonActivity (client)' was disposed without first being removed with the input manager!
-06-11 23:12:46.784  1948  3868 I ActivityManager: Process org.kffs.habilisdatalogger (pid 24584) has died: fg  TOP 
-06-11 23:12:46.784  1948  7850 I ImeTracker: org.kffs.habilisdatalogger:4b1f4b9e: onRequestHide at ORIGIN_SERVER_HIDE_INPUT reason HIDE_REMOVE_CLIENT
-06-11 23:12:46.784  1948  7850 I ImeTracker: org.kffs.habilisdatalogger:4b1f4b9e: onCancelled at PHASE_SERVER_SHOULD_HIDE
-06-11 23:12:46.788  1363  4699 D MI-SF   : updateScene: module = 270 (Input), value = 0, pkg = org.kffs.habilisdatalogger, Vrr = 1
-06-11 23:12:46.797  1948  3868 W ActivityTaskManager: Force removing ActivityRecord{8c1a6c0 u0 org.kffs.habilisdatalogger/org.kivy.android.PythonActivity t559}: app died, no saved state
-06-11 23:12:46.798  1948  3868 D WindowManager: Collecting in transition 8461: Task{3c2aff9 #559 type=standard A=10360:org.kffs.habilisdatalogger} init visibleRequested:true
-06-11 23:12:46.799  1948  3868 D WindowManager: Collecting in transition 8461: ActivityRecord{8c1a6c0 u0 org.kffs.habilisdatalogger/org.kivy.android.PythonActivity t559 f}} init visibleRequested:false
-06-11 23:12:46.800  1948  3868 W WindowManager: onSyncReparent mSyncState =2, mSyncGroup = com.android.server.wm.BLASTSyncEngine$SyncGroup@2d17cf8 this: ActivityRecord{8c1a6c0 u0 org.kffs.habilisdatalogger/org.kivy.android.PythonActivity t559 f}}
-06-11 23:12:46.800  1948  3868 I ActivityTaskManager: Do not migrate a removing Task! Task{3c2aff9 #559 type=standard A=10360:org.kffs.habilisdatalogger}
-06-11 23:12:46.800  1948  3868 W WindowManager: onSyncReparent mSyncState =2, mSyncGroup = com.android.server.wm.BLASTSyncEngine$SyncGroup@2d17cf8 this: Task{3c2aff9 #559 type=standard A=10360:org.kffs.habilisdatalogger}
-06-11 23:12:46.819  7590 11082 D PerfEngineController: ForegroundInfo{mForegroundPackageName='com.miui.home', mForegroundUid=10158, mForegroundPid=3838, mLastForegroundPackageName='org.kffs.habilisdatalogger', mLastForegroundUid=10360, mLastForegroundPid=24584, mMultiWindowForegroundPackageName='com.miui.home', mMultiWindowForegroundUid=10158, mFlags=0}
-06-11 23:12:46.819 19295 19459 I ProcessMonitor: onForegroundInfoChanged: ForegroundInfo{mForegroundPackageName='com.miui.home', mForegroundUid=10158, mForegroundPid=3838, mLastForegroundPackageName='org.kffs.habilisdatalogger', mLastForegroundUid=10360, mLastForegroundPid=24584, mMultiWindowForegroundPackageName='com.miui.home', mMultiWindowForegroundUid=10158, mFlags=0}
-06-11 23:12:46.819  7953  7965 I GST     : forePkg: com.miui.home, preForePkg: org.kffs.habilisdatalogger
-06-11 23:12:46.819  3838  4380 D AppObserver: ForegroundInfo{mForegroundPackageName='com.miui.home', mForegroundUid=10158, mForegroundPid=3838, mLastForegroundPackageName='org.kffs.habilisdatalogger', mLastForegroundUid=10360, mLastForegroundPid=24584, mMultiWindowForegroundPackageName='com.miui.home', mMultiWindowForegroundUid=10158, mFlags=0}
-06-11 23:12:46.820 24071 12196 D BluetoothLatencyMode: ForegroundInfo{mForegroundPackageName='com.miui.home', mForegroundUid=10158, mForegroundPid=3838, mLastForegroundPackageName='org.kffs.habilisdatalogger', mLastForegroundUid=10360, mLastForegroundPid=24584, mMultiWindowForegroundPackageName='com.miui.home', mMultiWindowForegroundUid=10158, mFlags=0}
-06-11 23:12:46.822 19295 19459 I GameBoosterService: onForegroundInfoChanged: Cur=com.miui.home	 last=org.kffs.habilisdatalogger
-06-11 23:12:46.822 19295 19459 D GameBoosterService: onGameStatusChange foreground:ForegroundInfo{mForegroundPackageName='com.miui.home', mForegroundUid=10158, mForegroundPid=3838, mLastForegroundPackageName='org.kffs.habilisdatalogger', mLastForegroundUid=10360, mLastForegroundPid=24584, mMultiWindowForegroundPackageName='com.miui.home', mMultiWi
+06-12 22:14:58.744  3838  4246 E ActivityManagerWrapper: getRecentTasks: mainTaskId=625   userId=0   windowMode=1   baseIntent=Intent { act=android.intent.action.MAIN flag=268435456 cmp=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity} }
+06-12 22:14:58.747  3838  4246 D WorldCirculate: getWorldCirculateInfo, taskInfo.baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10000000 pkg=org.kffs.habilisdatalogger cmp=org.kffs.habilisdatalogger/org.kivy.android.PythonActivity }, displayId=-1, but get Display failed
+06-12 22:14:58.761  3838  4246 E ActivityManagerWrapper: getRecentTasks: mainTaskId=625   userId=0   windowMode=1   baseIntent=Intent { act=android.intent.action.MAIN flag=268435456 cmp=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity} }
+06-12 22:14:58.762  3838  4246 D WorldCirculate: getWorldCirculateInfo, taskInfo.baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10000000 pkg=org.kffs.habilisdatalogger cmp=org.kffs.habilisdatalogger/org.kivy.android.PythonActivity }, displayId=-1, but get Display failed
+06-12 22:14:59.692  3838  3838 D Launcher.CellLayout: touch item:ShortcutInfo, id=138, itemType=0, user=UserHandle{0}, mIconType=0, pkgName=org.kffs.habilisdatalogger, className=org.kivy.android.PythonActivity, screenId=2, container=-100, cellX=3, cellY=2, spanX=1, spanY=1
+06-12 22:14:59.764  3838  3838 D Launcher: launch, launchIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=org.kffs.habilisdatalogger/org.kivy.android.PythonActivity (has extras) }
+06-12 22:14:59.772  1948  7880 D WindowManager: Collecting in transition 9515: ActivityRecord{fd590c9 u0 org.kffs.habilisdatalogger/org.kivy.android.PythonActivity init visibleRequested:false
+06-12 22:14:59.774  1948  7880 D MiGgameTypeIdentificationImpl: checkIfGameBeSupported app:org.kffs.habilisdatalogger
+06-12 22:14:59.774  1948  7880 I WindowManager: When perf version lower than 2.3, MiGTStub result: false, gameType: 1, packageName: org.kffs.habilisdatalogger
+06-12 22:14:59.778  1948  7880 D WindowManager: setLockTaskAuth: task=Task{48213ce #627 type=standard A=10362:org.kffs.habilisdatalogger} mLockTaskAuth=LOCK_TASK_AUTH_PINNABLE
+06-12 22:14:59.778  1948  7880 D WindowManager: Collecting in transition 9515: Task{48213ce #627 type=standard A=10362:org.kffs.habilisdatalogger} init visibleRequested:false
+06-12 22:14:59.781  1948  7880 D WindowManager: setLockTaskAuth: task=Task{48213ce #627 type=standard A=10362:org.kffs.habilisdatalogger} mLockTaskAuth=LOCK_TASK_AUTH_PINNABLE
+06-12 22:14:59.782  1948  7880 D MiuiFreeFormManagerService: onStartActivityInner as = Task{48213ce #627 type=standard A=10362:org.kffs.habilisdatalogger} op = ActivityOptions(24912380), mPackageName=null, mAnimationType=13, mStartX=0, mStartY=0, mWidth=0, mHeight=0, mLaunchDisplayId=-1, activityOptionsInjector=ActivityOptionsInjector={freeformScale: -1.0, miniFreeformMode: false, needAnimation: true, useCustomLaunchBounds:false}
+06-12 22:14:59.783  3718  3785 I DynamicDDSService: handleMessage(ACTIVITY_INVOKE{appInfo=org.kffs.habilisdatalogger isFullScreen=}true)
+06-12 22:14:59.784  1948  7880 I ActivityTaskManager: resumeTopActivityInnerLocked topActivity:ActivityRecord{fd590c9 u0 org.kffs.habilisdatalogger/org.kivy.android.PythonActivity t627} isFocusable:true this:Task{48213ce #627 type=standard A=10362:org.kffs.habilisdatalogger}
+06-12 22:14:59.786  1948  7880 D WindowManager: Collecting in transition 9515: ActivityRecord{fd590c9 u0 org.kffs.habilisdatalogger/org.kivy.android.PythonActivity t627} init visibleRequested:false
+06-12 22:14:59.786  1948  7880 I ActivityRecordImpl: setReadyForStartingWindow activityRecord = ActivityRecord{fd590c9 u0 org.kffs.habilisdatalogger/org.kivy.android.PythonActivity t627}
+06-12 22:14:59.788  1948  7880 D WindowManager: Collecting in transition 9515: ActivityRecord{fd590c9 u0 org.kffs.habilisdatalogger/org.kivy.android.PythonActivity t627} init visibleRequested:true
+06-12 22:14:59.790 13186 13275 D WindowManagerShell: wct=WindowContainerTransaction { changes = {} hops = [] errorCallbackToken=null taskFragmentOrganizer=null }, hander=com.android.wm.shell.transition.SoScMixedHandler@730d704, transitionToken=android.os.BinderProxy@d543d0a, request=TransitionRequestInfo { type = OPEN, triggerTask = TaskInfo{userId=0 taskId=627 displayId=0 isRunning=true baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=org.kffs.habilisdatalogger/org.kivy.android.PythonActivity } baseActivity=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity} topActivity=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity} origActivity=null realActivity=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity} numActivities=1 lastActiveTime=737710350 supportsSplitScreenMultiWindow=true supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=200 token=WCT{android.window.IWindowContainerToken$Stub$Proxy@733397b} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=Rect(0, 98 - 0, 0) topActivityInfo=ActivityInfo{c752398 org.kivy.android.PythonActivity} launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=false isVisible=false isVisibleRequested=true isSleeping=false topActivityInSizeCompat=false topActivityInMiuiSizeCompat=false topActivityEligibleForLetterboxEducation= false topActivityLetterboxed= false isFromDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=-1 topActivityLetterboxHeight=-1 locusId=null displayAreaFeatureId=1 cameraCompatControlState=hidden mIsCastMode=false mTopActivityMediaSize=null mTopActivityRecordName=ActivityRecord{fd590c9 u0 org.kffs.habilisdatalogger/org.kivy.android.PythonActivity t627} mTopActivityOrientation=1 mTopActivityWindowIsNowVisible=false isTranslucent=false isEmbedded=false shouldBeVisible=true mBehindAppLockPkg=null mOriginatingUid=0}, remoteTransition = RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@e48a7f1, appThread = null, debugName = null }, displayChange = null }
+06-12 22:14:59.792  1948  7880 I ActivityTaskManager: START u0 {act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=org.kffs.habilisdatalogger/org.kivy.android.PythonActivity bnds=[838,793][1011,966] (has extras)} with LAUNCH_SINGLE_TASK from uid 10158 from pid 3838 callingPackage com.miui.home (BAL_ALLOW_ALLOWLISTED_COMPONENT) result code=0
+06-12 22:14:59.805 13186 13186 I FocusedNotifPromptContr: onTopActivityMayChanged: topActivity=org.kffs.habilisdatalogger
+06-12 22:14:59.805 13186 13186 I FocusedNotifPromptContr: topActivityMayChanged: topActivity=org.kffs.habilisdatalogger
+06-12 22:14:59.805 13186 13186 D KeyguardEditorHelper: onTopActivityMayChanged, topActivity=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity}; mState=IDEL
+06-12 22:14:59.808  1948  2308 I BLASTSyncEngine: SyncGroup 9515:  Unfinished container:ActivityRecord{fd590c9 u0 org.kffs.habilisdatalogger/org.kivy.android.PythonActivity t627}
+06-12 22:14:59.808  1948  2308 I ActivityRecordImpl: isReadyForStartingWindow topActivity = ActivityRecord{fd590c9 u0 org.kffs.habilisdatalogger/org.kivy.android.PythonActivity t627} isLaunchSourceTypeHome = true topActivity.mStartingWindow = Window{4c93f0b u0 Splash Screen org.kffs.habilisdatalogger}
+06-12 22:14:59.808  1948  2308 I BLASTSyncEngine: SyncGroup 9515:  Unfinished container:Task{48213ce #627 type=standard A=10362:org.kffs.habilisdatalogger}
+06-12 22:14:59.808  1948  2308 I ActivityRecordImpl: isReadyForStartingWindow topActivity = ActivityRecord{fd590c9 u0 org.kffs.habilisdatalogger/org.kivy.android.PythonActivity t627} isLaunchSourceTypeHome = true topActivity.mStartingWindow = Window{4c93f0b u0 Splash Screen org.kffs.habilisdatalogger}
+06-12 22:14:59.808  1948  2308 I SmartPower: org.kffs.habilisdatalogger/10362(26464): died->visible(62717ms) R(become visible) adj=0.
+06-12 22:14:59.809  1948  2308 D WindowManager: Final targets: [Task{48213ce #627 type=standard A=10362:org.kffs.habilisdatalogger}, Task{fc1ced5 #1 type=home}]
+06-12 22:14:59.811  1948  2308 D WindowManager: Calling onTransitionReady info={id=9515 t=OPEN f=0x0 trk=0 r=[0@Point(0, 0)] c=[{WCT{RemoteToken{a44b494 Task{48213ce #627 type=standard A=10362:org.kffs.habilisdatalogger}}} m=OPEN f=NONE leash=Surface(name=Task=627#153518)/@0xbf8cea6 sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) d=0},{WCT{RemoteToken{e07270c Task{fc1ced5 #1 type=home}}} m=TO_BACK f=SHOW_WALLPAPER leash=Surface(name=Task=1#16716)/@0xdd7d3e6 sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) d=0}] noAni=[false]}, mToken=Token{cbe2b3d TransitionRecord{91d7085 id=9515 type=OPEN flags=0x0}}
+06-12 22:14:59.813  1948  4117 D CoreBackPreview: Window{4c93f0b u0 Splash Screen org.kffs.habilisdatalogger}: Setting back callback OnBackInvokedCallbackInfo{mCallback=android.window.IOnBackInvokedCallback$Stub$Proxy@e028600, mPriority=0, mIsAnimationCallback=false}
+06-12 22:14:59.830  3838  3838 D RemoteAnimationAdapterCompat: printLeash::taskInfo = TaskInfo{userId=0 taskId=627 displayId=0 isRunning=true baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=org.kffs.habilisdatalogger/org.kivy.android.PythonActivity } baseActivity=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity} topActivity=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity} origActivity=null realActivity=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity} numActivities=1 lastActiveTime=737710350 supportsSplitScreenMultiWindow=true supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=200 token=WCT{android.window.IWindowContainerToken$Stub$Proxy@2c06bb1} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=Rect(0, 98 - 0, 0) topActivityInfo=ActivityInfo{8a3f896 org.kivy.android.PythonActivity} launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=false isVisible=true isVisibleRequested=true isSleeping=false topActivityInSizeCompat=false topActivityInMiuiSizeCompat=false topActivityEligibleForLetterboxEducation= false topActivityLetterboxed= false isFromDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=-1 topActivityLetterboxHeight=-1 locusId=null displayAreaFeatureId=1 cameraCompatControlState=hidden mIsCastMode=false mTopActivityMediaSize=null mTopActivityRecordName=ActivityRecord{fd590c9 u0 org.kffs.habilisdatalogger/org.kivy.android.PythonActivity t627} mTopActivityOrientation=1 mTopActivityWindowIsNowVisible=false isTranslucent=false isEmbedded=false shouldBeVisible=true mBehindAppLockPkg=null mOriginatingUid=0}
+06-12 22:14:59.838  3838  3838 E LauncherAnimationRunner: onAnimationStart:   target=RemoteAnimationTargetCompat{taskId=627, mode=0, isTranslucent=false, clipRect=Rect(0, 0 - 0, 0), position=Point(0, 0), sourceContainerBounds=Rect(0, 0 - 1080, 2400), prefixOrderIndex=2, isNotInRecents=false, contentInsets=Rect(0, 0 - 0, 0), activityType=1, packageName=org.kffs.habilisdatalogger, startBounds=Rect(0, 0 - 1080, 2400), windowType=-1}
+06-12 22:14:59.847  3838  4246 E ActivityManagerWrapper: getRecentTasks: mainTaskId=627   userId=0   windowMode=1   baseIntent=Intent { act=android.intent.action.MAIN flag=270532608 cmp=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity} }
+06-12 22:14:59.852  1948  2308 I WindowManager: wms.showSurfaceRobustly mWin:Window{4c93f0b u0 Splash Screen org.kffs.habilisdatalogger}
+06-12 22:14:59.857  1948  2335 I ActivityManager: Start proc 27343:org.kffs.habilisdatalogger/u0a362 for top-activity {org.kffs.habilisdatalogger/org.kivy.android.PythonActivity} caller=com.miui.home
+06-12 22:14:59.858 13186 13275 D MiuiFullScreenTaskRepository: addOrUpdateFullScreenTaskInfo taskId=627, topActivity=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity}
+06-12 22:14:59.866  3838  4246 E ActivityManagerWrapper: getRecentTasks: mainTaskId=627   userId=0   windowMode=1   baseIntent=Intent { act=android.intent.action.MAIN flag=270532608 cmp=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity} }
+06-12 22:14:59.869 27343 27343 E Zygote  : process_name_ptr:27343 org.kffs.habilisdatalogger
+06-12 22:14:59.907  3838  4246 E ActivityManagerWrapper: getRecentTasks: mainTaskId=627   userId=0   windowMode=1   baseIntent=Intent { act=android.intent.action.MAIN flag=270532608 cmp=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity} }
+06-12 22:14:59.932  3838  4246 E ActivityManagerWrapper: getRecentTasks: mainTaskId=627   userId=0   windowMode=1   baseIntent=Intent { act=android.intent.action.MAIN flag=270532608 cmp=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity} }
+06-12 22:14:59.964 13186 13275 D MiuiFullScreenTaskRepository: addOrUpdateFullScreenTaskInfo taskId=627, topActivity=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity}
+06-12 22:14:59.972 13186 13275 D MiuiFullScreenTaskRepository: setFocusedTask taskId=627, displayId=0, topActivity=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity}
+06-12 22:14:59.972 13186 13275 D MiuiFullScreenTaskRepository: addOrUpdateFullScreenTaskInfo taskId=627, topActivity=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity}
+06-12 22:14:59.974 13186 13275 D MiuiFreeformModeController: onFocusTaskChanged taskInfo: TaskInfo{userId=0 taskId=627 displayId=0 isRunning=true baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=org.kffs.habilisdatalogger/org.kivy.android.PythonActivity } baseActivity=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity} topActivity=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity} origActivity=null realActivity=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity} numActivities=1 lastActiveTime=737710527 supportsSplitScreenMultiWindow=true supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=200 token=WCT{android.window.IWindowContainerToken$Stub$Proxy@3e52374} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=Rect(0, 98 - 0, 0) topActivityInfo=ActivityInfo{915a09d org.kivy.android.PythonActivity} launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=true isVisible=true isVisibleRequested=true isSleeping=false topActivityInSizeCompat=false topActivityInMiuiSizeCompat=false topActivityEligibleForLetterboxEducation= false topActivityLetterboxed= false isFromDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=-1 topActivityLetterboxHeight=-1 locusId=null displayAreaFeatureId=1 cameraCompatControlState=hidden mIsCastMode=false mTopActivityMediaSize=null mTopActivityRecordName=ActivityRecord{fd590c9 u0 org.kffs.habilisdatalogger/org.kivy.android.PythonActivity t627} mTopActivityOrientation=1 mTopActivityWindowIsNowVisible=false isTranslucent=false isEmbedded=false shouldBeVisible=true mBehindAppLockPkg=null mOriginatingUid=0}
+06-12 22:14:59.976  3838  4159 D AppObserver: ForegroundInfo{mForegroundPackageName='org.kffs.habilisdatalogger', mForegroundUid=10362, mForegroundPid=27343, mLastForegroundPackageName='com.miui.home', mLastForegroundUid=10158, mLastForegroundPid=3838, mMultiWindowForegroundPackageName='org.kffs.habilisdatalogger', mMultiWindowForegroundUid=10362, mFlags=1}
+06-12 22:14:59.976  7953  7963 I GST     : forePkg: org.kffs.habilisdatalogger, preForePkg: com.miui.home
+06-12 22:14:59.976  7590 11082 D PerfEngineController: ForegroundInfo{mForegroundPackageName='org.kffs.habilisdatalogger', mForegroundUid=10362, mForegroundPid=27343, mLastForegroundPackageName='com.miui.home', mLastForegroundUid=10158, mLastForegroundPid=3838, mMultiWindowForegroundPackageName='org.kffs.habilisdatalogger', mMultiWindowForegroundUid=10362, mFlags=1}
+06-12 22:14:59.977 19295 22245 I ProcessMonitor: onForegroundInfoChanged: ForegroundInfo{mForegroundPackageName='org.kffs.habilisdatalogger', mForegroundUid=10362, mForegroundPid=27343, mLastForegroundPackageName='com.miui.home', mLastForegroundUid=10158, mLastForegroundPid=3838, mMultiWindowForegroundPackageName='org.kffs.habilisdatalogger', mMultiWindowForegroundUid=10362, mFlags=1}
+06-12 22:14:59.978 22923 23694 D BluetoothLatencyMode: ForegroundInfo{mForegroundPackageName='org.kffs.habilisdatalogger', mForegroundUid=10362, mForegroundPid=27343, mLastForegroundPackageName='com.miui.home', mLastForegroundUid=10158, mLastForegroundPid=3838, mMultiWindowForegroundPackageName='org.kffs.habilisdatalogger', mMultiWindowForegroundUid=10362, mFlags=1}
+06-12 22:14:59.978 19295 22245 I GameBoosterService: onForegroundInfoChanged: Cur=org.kffs.habilisdatalogger	 last=com.miui.home
+06-12 22:14:59.978 19295 22245 D GameBoosterService: onGameStatusChange foreground:ForegroundInfo{mForegroundPackageName='org.kffs.habilisdatalogger', mForegroundUid=10362, mForegroundPid=27343, mLastForegroundPackageName='com.miui.home', mLastForegroundUid=10158, mLastForegroundPid=3838, mMultiWindowForegroundPackageName='org.kffs.habilisdatalogger', mMultiWindowForegroundUid=10362, mFlags=1}
+06-12 22:14:59.978 19295 22245 I BeautyService: onForegroundInfoChanged: Cur=org.kffs.habilisdatalogger	 last=com.miui.home
+06-12 22:15:00.016 27343 27343 D nativeloader: Configuring clns-4 for other apk /data/app/~~RbYtQA5_QD4_PwU3W-BErg==/org.kffs.habilisdatalogger-oRBy3Y2soySzARK6rLBbgA==/base.apk. target_sdk_version=30, uses_libraries=, library_path=/data/app/~~RbYtQA5_QD4_PwU3W-BErg==/org.kffs.habilisdatalogger-oRBy3Y2soySzARK6rLBbgA==/lib/arm64:/data/app/~~RbYtQA5_QD4_PwU3W-BErg==/org.kffs.habilisdatalogger-oRBy3Y2soySzARK6rLBbgA==/base.apk!/lib/arm64-v8a, permitted_path=/data:/mnt/expand:/data/user/0/org.kffs.habilisdatalogger
+06-12 22:15:00.037 27343 27343 V GraphicsEnvironment: ANGLE GameManagerService for org.kffs.habilisdatalogger: false
+06-12 22:15:00.037 27343 27343 V GraphicsEnvironment: org.kffs.habilisdatalogger is not listed in per-application setting
+06-12 22:15:00.045  1948  4119 I UiModeManager: systemserver package:org.kffs.habilisdatalogger null
+06-12 22:15:00.045 27343 27343 I ForceDarkHelperStubImpl: initialize for org.kffs.habilisdatalogger , ForceDarkAppConfig: null
+06-12 22:15:00.081  1948  6126 I ClipboardServiceI: checkProviderWakePathForClipboard: org.kffs.habilisdataloggeris not a activePermissionOwner
+06-12 22:15:00.093 27343 27343 V SDL     : Device: taoyao
+06-12 22:15:00.093 27343 27343 V SDL     : Model: 2203129G
+06-12 22:15:00.093 27343 27343 V SDL     : onCreate()
+06-12 22:15:00.094 27343 27343 W bilisdatalogger: type=1400 audit(0.0:448948): avc:  denied  { read } for  name="u:object_r:vendor_displayfeature_prop:s0" dev="tmpfs" ino=12777 scontext=u:r:untrusted_app_30:s0:c106,c257,c512,c768 tcontext=u:object_r:vendor_displayfeature_prop:s0 tclass=file permissive=0 app=org.kffs.habilisdatalogger
+06-12 22:15:00.098 27343 27343 V SDL     : getting identifier
+06-12 22:15:00.098 27343 27343 V SDL     : kind is layout and name lottie
+06-12 22:15:00.098 27343 27343 V SDL     : result is 0
+06-12 22:15:00.099 27343 27343 V SDL     : couldn't find lottie layout or animation, trying static splash
+06-12 22:15:00.099 27343 27343 V SDL     : getting identifier
+06-12 22:15:00.099 27343 27343 V SDL     : kind is drawable and name presplash
+06-12 22:15:00.099 27343 27343 V SDL     : result is 2130771969
+06-12 22:15:00.103 13186 13275 D MiuiFullScreenTaskRepository: setFocusedTask taskId=627, displayId=0, topActivity=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity}
+06-12 22:15:00.103 13186 13275 D MiuiFullScreenTaskRepository: addOrUpdateFullScreenTaskInfo taskId=627, topActivity=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity}
+06-12 22:15:00.112 27343 27343 V SDL     : asked to get string presplash_color
+06-12 22:15:00.112 27343 27343 V SDL     : getting identifier
+06-12 22:15:00.112 27343 27343 V SDL     : kind is string and name presplash_color
+06-12 22:15:00.112 27343 27343 V SDL     : result is 2131034113
+06-12 22:15:00.132 27343 27374 V pythonutil: Unpacking private app
+06-12 22:15:00.132 27343 27374 V pythonutil: Data version is be45cdad08c157b6b35147d3c82ba83fd51bf2bb
+06-12 22:15:00.132 27343 27343 V SDL     : onStart()
+06-12 22:15:00.136 27343 27343 V SDL     : onResume()
+06-12 22:15:00.137 27343 27374 V pythonutil: Unpacking /data/app/~~RbYtQA5_QD4_PwU3W-BErg==/org.kffs.habilisdatalogger-oRBy3Y2soySzARK6rLBbgA==/lib/arm64/libpybundle app
+06-12 22:15:00.138 27343 27374 V pythonutil: Data version is be45cdad08c157b6b35147d3c82ba83fd51bf2bb
+06-12 22:15:00.158  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{9707dd7 com.google.android.apps.subscriptions.red/10228} BLOCKED
+06-12 22:15:00.158  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{1f204e2 com.android.cts.priv.ctsshim/10278} BLOCKED
+06-12 22:15:00.158  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{a552073 com.upside.consumer.android/10348} BLOCKED
+06-12 22:15:00.158  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{51193a9 com.google.android.youtube/10225} BLOCKED
+06-12 22:15:00.158  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{e66aa5c com.android.uwb.resources/10272} BLOCKED
+06-12 22:15:00.158  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{e8f4b27 com.android.internal.display.cutout.emulation.corner/10009} BLOCKED
+06-12 22:15:00.158  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{31311d4 com.android.internal.display.cutout.emulation.double/10010} BLOCKED
+06-12 22:15:00.158  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{fe21048 com.google.android.googlequicksearchbox/10176} BLOCKED
+06-12 22:15:00.158  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{2f01406 cn.wps.xiaomi.abroad.lite/10297} BLOCKED
+06-12 22:15:00.158  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{64b81d com.google.android.apps.googleassistant/10169} BLOCKED
+06-12 22:15:00.158  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{e696a92 com.google.android.apps.docs.editors.docs/10339} BLOCKED
+06-12 22:15:00.159  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{b98a060 com.google.android.onetimeinitializer/10143} BLOCKED
+06-12 22:15:00.159  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{b19b919 com.google.android.ext.shared/10120} BLOCKED
+06-12 22:15:00.159  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{9b8781f com.android.internal.systemui.navbar.gestural_wide_back/10063} BLOCKED
+06-12 22:15:00.159  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{557628c com.android.virtualmachine.res/10269} BLOCKED
+06-12 22:15:00.159  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{a93b9ea com.uvnv.mintsim/10326} BLOCKED
+06-12 22:15:00.159  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{887a4db com.google.android.server.deviceconfig.resources/10266} BLOCKED
+06-12 22:15:00.159  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{25e1b78 com.android.htmlviewer/10101} BLOCKED
+06-12 22:15:00.159  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{5407251 com.whatsapp/10318} BLOCKED
+06-12 22:15:00.159  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{aeb8ab6 com.mtb.mbanking.sc.retail.prod/10349} BLOCKED
+06-12 22:15:00.159  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{951b3b7 com.google.android.apps.docs.editors.sheets/10357} BLOCKED
+06-12 22:15:00.159  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{3157724 com.google.android.health.connect.backuprestore/10276} BLOCKED
+06-12 22:15:00.159  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{448e28d com.google.android.apps.messaging/10175} BLOCKED
+06-12 22:15:00.159  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{e1d9c42 com.sfr.android.sfrjeux/10166} BLOCKED
+06-12 22:15:00.159  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{543d453 com.quicinc.voice.activation/10244} BLOCKED
+06-12 22:15:00.159  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{3c4e190 us.mitene/10334} BLOCKED
+06-12 22:15:00.159  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{cee1a89 com.ironsource.appcloud.oobe.hutchison/10139} BLOCKED
+06-12 22:15:00.159  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{c6d3a8e com.duolingo/10321} BLOCKED
+06-12 22:15:00.159  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{a2d62af com.google.android.configupdater/10138} BLOCKED
+06-12 22:15:00.159  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{194546e com.google.android.overlay.modules.permissioncontroller/10031} BLOCKED
+06-12 22:15:00.159  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{bbe86bc com.android.soundrecorder/10310} BLOCKED
+06-12 22:15:00.159  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{e94d645 com.altice.android.myapps/10165} BLOCKED
+06-12 22:15:00.159  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{d06719a com.google.android.apps.safetyhub/10162} BLOCKED
+06-12 22:15:00.159  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{9777acb com.mi.globalbrowser/10298} BLOCKED
+06-12 22:15:00.159  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{34b52a8 com.google.ar.core/10320} BLOCKED
+06-12 22:15:00.159  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{3191c1 com.android.simappdialog/10126} BLOCKED
+06-12 22:15:00.159  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{bca0d66 com.microsoft.skydrive/10311} BLOCKED
+06-12 22:15:00.159  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{800f8a7 com.aura.oobe.vodafone/10140} BLOCKED
+06-12 22:15:00.159  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{a416907 com.android.internal.display.cutout.emulation.hole/10011} BLOCKED
+06-12 22:15:00.159  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{e440a34 com.android.internal.display.cutout.emulation.tall/10012} BLOCKED
+06-12 22:15:00.159  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{64c605d com.android.internal.systemui.navbar.threebutton/10059} BLOCKED
+06-12 22:15:00.159  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{c56f154 us.zoom.videomeetings/10330} BLOCKED
+06-12 22:15:00.159  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{98488fd com.eken.doorbell/10361} BLOCKED
+06-12 22:15:00.159  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{fd999f2 com.android.wifi.dialog/10242} BLOCKED
+06-12 22:15:00.159  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{fba7843 com.android.hotwordenrollment.xgoogle/10146} BLOCKED
+06-12 22:15:00.159  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{9dbcec0 com.usbank.mobilebanking/10355} BLOCKED
+06-12 22:15:00.159  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{415b7f9 com.onedebit.chime/10328} BLOCKED
+06-12 22:15:00.160  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{ee3633e com.instagram.android/10335} BLOCKED
+06-12 22:15:00.160  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{f02559f com.google.android.as/10168} BLOCKED
+06-12 22:15:00.160  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{20f16ec com.google.android.gm/10192} BLOCKED
+06-12 22:15:00.160  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{ff0dab5 com.google.android.apps.tachyon/10292} BLOCKED
+06-12 22:15:00.160  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{8b3052a com.google.android.overlay.gmsconfig.common/10019} BLOCKED
+06-12 22:15:00.160  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{92e754a com.android.settings.intelligence/10160} BLOCKED
+06-12 22:15:00.160  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{ef878b8 com.android.internal.systemui.navbar.gestural_extra_wide_back/10061} BLOCKED
+06-12 22:15:00.160  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{1c0acbb com.microsoft.office.outlook/10356} BLOCKED
+06-12 22:15:00.160  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{74cb5d8 com.miui.compass/10302} BLOCKED
+06-12 22:15:00.160  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{8216d31 com.google.android.setupwizard/10251} BLOCKED
+06-12 22:15:00.160  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{a669c16 com.miui.android.fashiongallery/10295} BLOCKED
+06-12 22:15:00.160  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{435997 com.facebook.services/10111} BLOCKED
+06-12 22:15:00.160  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{3c35784 com.android.printspooler/10260} BLOCKED
+06-12 22:15:00.160  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{2eeab6d com.android.hotwordenrollment.okgoogle/10145} BLOCKED
+06-12 22:15:00.160  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{b2863a2 org.ifaa.aidl.manager/10129} BLOCKED
+06-12 22:15:00.160  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{fd9f833 com.android.dreams.basic/10115} BLOCKED
+06-12 22:15:00.160  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{3e067f0 com.google.android.as.oss/10173} BLOCKED
+06-12 22:15:00.160  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{9d79169 de.telekom.tsc/10112} BLOCKED
+06-12 22:15:00.160  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{f4d17ee com.android.rkpdapp/10268} BLOCKED
+06-12 22:15:00.160  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{131e48f com.google.android.dialer/10172} BLOCKED
+06-12 22:15:00.160  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{b7c131c com.creditkarma.mobile/10340} BLOCKED
+06-12 22:15:00.160  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{54edb25 com.timehop/10329} BLOCKED
+06-12 22:15:00.160  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{cf6c4fa com.google.android.captiveportallogin/10119} BLOCKED
+06-12 22:15:00.160  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{8723aab com.dropbox.android/10337} BLOCKED
+06-12 22:15:00.160  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{797f6e7 com.google.android.overlay.gmsconfig.comms/10079} BLOCKED
+06-12 22:15:00.160  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{698b294 com.google.android.overlay.gmsconfig.geotz/10021} BLOCKED
+06-12 22:15:00.160  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{1c54508 com.google.android.appsearch.apk/10267} BLOCKED
+06-12 22:15:00.160  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{83704a1 com.android.musicfx/10104} BLOCKED
+06-12 22:15:00.160  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{85c36c6 com.google.android.apps.docs/10307} BLOCKED
+06-12 22:15:00.160  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{b17d687 com.google.android.apps.maps/10212} BLOCKED
+06-12 22:15:00.160  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{feda9b4 com.orange.update/10137} BLOCKED
+06-12 22:15:00.160  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{71e49dd com.google.android.webview/10208} BLOCKED
+06-12 22:15:00.160  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{632dbdf com.google.android.overlay.modules.documentsui/10030} BLOCKED
+06-12 22:15:00.160  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{54f952 com.amazon.appmanager/10313} BLOCKED
+06-12 22:15:00.160  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{f915423 com.google.android.contactkeys/10343} BLOCKED
+06-12 22:15:00.160  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{e95ad20 com.google.android.contacts/10229} BLOCKED
+06-12 22:15:00.160  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{73aa6d9 com.android.chrome/10183} BLOCKED
+06-12 22:15:00.160  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{a9b0f7f com.huami.watch.hmwatchmanager/10338} BLOCKED
+06-12 22:15:00.160  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{42f6781 com.android.wifi.resources/10283} BLOCKED
+06-12 22:15:00.160  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{87e9026 com.google.android.apps.walletnfcrel/10319} BLOCKED
+06-12 22:15:00.160  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{1332467 com.google.android.partnersetup/10144} BLOCKED
+06-12 22:15:00.161  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{c3203ad com.google.android.overlay.gmsconfig.asi/10080} BLOCKED
+06-12 22:15:00.161  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{33876e2 com.google.android.overlay.gmsconfig.gsa/10020} BLOCKED
+06-12 22:15:00.161  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{80faa73 com.android.theme.font.notoserifsource/10015} BLOCKED
+06-12 22:15:00.161  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{6881214 com.google.android.safetycenter.resources/10270} BLOCKED
+06-12 22:15:00.161  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{1982da9 com.android.internal.display.cutout.emulation.waterfall/10018} BLOCKED
+06-12 22:15:00.161  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{53388b2 com.netflix.mediaclient/10316} BLOCKED
+06-12 22:15:00.161  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{db07acf com.android.internal.systemui.navbar.transparent/10078} BLOCKED
+06-12 22:15:00.161  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{643a003 com.miui.notes/10299} BLOCKED
+06-12 22:15:00.161  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{ade3b80 com.zhiliaoapp.musically/10324} BLOCKED
+06-12 22:15:00.161  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{bc085b9 com.google.android.connectivity.resources/10282} BLOCKED
+06-12 22:15:00.161  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{fcd7dfe com.google.android.feedback/10238} BLOCKED
+06-12 22:15:00.161  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{717fa98 com.google.android.printservice.recommendation/10124} BLOCKED
+06-12 22:15:00.161  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{13b8262 com.xiaomi.midrop/10291} BLOCKED
+06-12 22:15:00.161  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{1dc8ff3 com.google.android.apps.photos/10300} BLOCKED
+06-12 22:15:00.161  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{7e74fa8 com.google.android.calendar/10226} BLOCKED
+06-12 22:15:00.161  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{7b784b0 com.spotify.music/10314} BLOCKED
+06-12 22:15:00.161  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{3b14f29 com.google.android.apps.googlevoice/10315} BLOCKED
+06-12 22:15:00.161  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{b5362ae com.tencent.soter.soterserver/10134} BLOCKED
+06-12 22:15:00.161  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{b26384f com.google.android.documentsui/10100} BLOCKED
+06-12 22:15:00.161  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{eb81663 com.miui.permissioncontroller.overlay/10047} BLOCKED
+06-12 22:15:00.161  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{883bdc com.android.dreams.phototable/10200} BLOCKED
+06-12 22:15:00.161  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{466b4e5 com.google.android.accessibility.switchaccess/10206} BLOCKED
+06-12 22:15:00.161  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{8f6fbba com.facebook.katana/10317} BLOCKED
+06-12 22:15:00.161  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{db80a6b com.android.providers.partnerbookmarks/10125} BLOCKED
+06-12 22:15:00.161  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{44b39c8 com.android.smspush/10261} BLOCKED
+06-12 22:15:00.161  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{852ba61 com.miui.calculator/10309} BLOCKED
+06-12 22:15:00.161  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{8091986 com.android.wallpaper.livepicker/10103} BLOCKED
+06-12 22:15:00.161  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{bbe2a74 com.android.apps.tag/10109} BLOCKED
+06-12 22:15:00.161  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{a9f9b9d com.facebook.orca/10322} BLOCKED
+06-12 22:15:00.161  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{6495be3 com.mercury.bank/10336} BLOCKED
+06-12 22:15:00.162  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{bcd79e0 com.android.imsserviceentitlement/10148} BLOCKED
+06-12 22:15:00.162  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{4df5499 com.facebook.system/10110} BLOCKED
+06-12 22:15:00.162  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{72bd33f com.google.android.healthconnect.controller/10275} BLOCKED
+06-12 22:15:00.162  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{9c0540c com.venmo/10332} BLOCKED
+06-12 22:15:00.162  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{de5c76a com.android.bookmarkprovider/10113} BLOCKED
+06-12 22:15:00.162  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{394645b com.miui.weather2/10294} BLOCKED
+06-12 22:15:00.162  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{624a4f8 com.ascendo.android.dictionary.de.free/10331} BLOCKED
+06-12 22:15:00.162  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{7adfdd1 org.mipay.android.manager/10132} BLOCKED
+06-12 22:15:00.162  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{910f036 com.strava/10325} BLOCKED
+06-12 22:15:00.162  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{f911657 com.google.android.projection.gearhead/10136} BLOCKED
+06-12 22:15:00.162  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{52aeb37 com.xiaomi.scanner/10290} BLOCKED
+06-12 22:15:00.162  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{a7b18a4 com.google.android.apps.turbo/10161} BLOCKED
+06-12 22:15:00.162  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{ac3a60d com.google.android.safetycore/10342} BLOCKED
+06-12 22:15:00.162  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{cf3d9c2 com.google.android.apps.chromecast.app/10341} BLOCKED
+06-12 22:15:00.162  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{3df3544 com.android.cts.ctsshim/10279} BLOCKED
+06-12 22:15:00.162  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{229d00e com.miui.mediaeditor/10301} BLOCKED
+06-12 22:15:00.162  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{db6df1a com.miui.yellowpage/10171} BLOCKED
+06-12 22:15:00.162  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{6f31a4b com.mi.global.shop/10296} BLOCKED
+06-12 22:15:00.162  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{8873c28 com.google.android.apps.setupwizard.searchselector/10174} BLOCKED
+06-12 22:15:00.162  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{4d8fd41 com.android.hotspot2.osulogin/10284} BLOCKED
+06-12 22:15:00.162  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{ed3d2e6 com.azure.authenticator/10327} BLOCKED
+06-12 22:15:00.162  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{e571027 com.google.android.gms.location.history/10181} BLOCKED
+06-12 22:15:00.162  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{b018bf2 com.android.internal.systemui.navbar.gestural/10060} BLOCKED
+06-12 22:15:00.162  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{7788243 com.google.android.overlay.gmsconfig.personalsafety/10025} BLOCKED
+06-12 22:15:00.162  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{727f2d4 com.dti.bouyguestelecom/10163} BLOCKED
+06-12 22:15:00.162  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{bf72c7d com.android.bluetoothmidiservice/10114} BLOCKED
+06-12 22:15:00.162  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{d7a3772 com.facebook.appmanager/10128} BLOCKED
+06-12 22:15:00.162  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{e1a87c3 com.google.android.cellbroadcastreceiver/10285} BLOCKED
+06-12 22:15:00.162  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{a7b6840 com.orange.aura.oobe/10159} BLOCKED
+06-12 22:15:00.162  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{f22a74a com.android.internal.systemui.navbar.gestural_narrow_back/10062} BLOCKED
+06-12 22:15:00.162  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{1cf1379 com.google.android.photopicker/10286} BLOCKED
+06-12 22:15:00.162  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{5b058be cn.wps.moffice_eng/10312} BLOCKED
+06-12 22:15:00.162  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{813dd1f com.miui.core/10215} BLOCKED
+06-12 22:15:00.163  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{2cec86c com.google.android.inputmethod.latin/10186} BLOCKED
+06-12 22:15:00.163  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{2a46e35 com.amazon.kindle/10333} BLOCKED
+06-12 22:15:00.163  1948  4119 I AppsFilter: interaction: PackageSetting{ac22e92 org.kffs.habilisdatalogger/10362} -> PackageSetting{b9542ca com.google.android.apps.restore/10147} BLOCKED
+06-12 22:15:00.170 27343 27343 I ForceDarkHelperStubImpl: setViewRootImplForceDark: false for org.kivy.android.PythonActivity@ad15687, reason: AppDarkModeEnable
+06-12 22:15:00.180 13186 20627 D MiuiFreeformModeObserver: activityResumed() intent： Intent { cmp=org.kffs.habilisdatalogger/org.kivy.android.PythonActivity (has extras) }
+06-12 22:15:00.180  3838  3838 D RecentsImpl: mActivityStateObserver org.kivy.android.PythonActivity
+06-12 22:15:00.180  3838  3838 W RecentsImpl: onResumed className=org.kivy.android.PythonActivity   mIsInAnotherPro=false   isKeyguardLocked=false   mSecuritySpaceGuideShown=false
+06-12 22:15:00.185 27343 27343 V pythonutil: Checking pattern libsqlite3\.so against libSDL2.so
+06-12 22:15:00.185 27343 27343 V pythonutil: Checking pattern libsqlite3\.so against libSDL2_ttf.so
+06-12 22:15:00.185 27343 27343 V pythonutil: Checking pattern libsqlite3\.so against libpng16.so
+06-12 22:15:00.185 27343 27343 V pythonutil: Checking pattern libsqlite3\.so against libfreetype.so
+06-12 22:15:00.185 27343 27343 V pythonutil: Checking pattern libsqlite3\.so against libpython3.10.so
+06-12 22:15:00.185 27343 27343 V pythonutil: Checking pattern libsqlite3\.so against libmain.so
+06-12 22:15:00.185 27343 27343 V pythonutil: Checking pattern libsqlite3\.so against libffi.so
+06-12 22:15:00.185 27343 27343 V pythonutil: Checking pattern libsqlite3\.so against libSDL2_image.so
+06-12 22:15:00.185 27343 27343 V pythonutil: Checking pattern libsqlite3\.so against libcrypto.so
+06-12 22:15:00.186 27343 27343 V pythonutil: Checking pattern libsqlite3\.so against libpythonbin.so
+06-12 22:15:00.186 27343 27343 V pythonutil: Checking pattern libsqlite3\.so against libSDL2_mixer.so
+06-12 22:15:00.186 27343 27343 V pythonutil: Checking pattern libsqlite3\.so against libssl.so
+06-12 22:15:00.186 27343 27343 V pythonutil: Checking pattern libsqlite3\.so against libpybundle.so
+06-12 22:15:00.186 27343 27343 V pythonutil: Checking pattern libsqlite3\.so against libsqlite3.so
+06-12 22:15:00.186 27343 27343 V pythonutil: Pattern libsqlite3\.so matched file libsqlite3.so
+06-12 22:15:00.186 27343 27343 V pythonutil: Checking pattern libffi\.so against libSDL2.so
+06-12 22:15:00.187 27343 27343 V pythonutil: Checking pattern libffi\.so against libSDL2_ttf.so
+06-12 22:15:00.187 27343 27343 V pythonutil: Checking pattern libffi\.so against libpng16.so
+06-12 22:15:00.187 27343 27343 V pythonutil: Checking pattern libffi\.so against libfreetype.so
+06-12 22:15:00.187 27343 27343 V pythonutil: Checking pattern libffi\.so against libpython3.10.so
+06-12 22:15:00.188 27343 27343 V pythonutil: Checking pattern libffi\.so against libmain.so
+06-12 22:15:00.188 27343 27343 V pythonutil: Checking pattern libffi\.so against libffi.so
+06-12 22:15:00.188 27343 27343 V pythonutil: Pattern libffi\.so matched file libffi.so
+06-12 22:15:00.188 27343 27343 V pythonutil: Checking pattern libffi\.so against libSDL2_image.so
+06-12 22:15:00.188 27343 27343 V pythonutil: Checking pattern libffi\.so against libcrypto.so
+06-12 22:15:00.188 27343 27343 V pythonutil: Checking pattern libffi\.so against libpythonbin.so
+06-12 22:15:00.188 27343 27343 V pythonutil: Checking pattern libffi\.so against libSDL2_mixer.so
+06-12 22:15:00.188 27343 27343 V pythonutil: Checking pattern libffi\.so against libssl.so
+06-12 22:15:00.188 27343 27343 V pythonutil: Checking pattern libffi\.so against libpybundle.so
+06-12 22:15:00.188 27343 27343 V pythonutil: Checking pattern libffi\.so against libsqlite3.so
+06-12 22:15:00.188 27343 27343 V pythonutil: Checking pattern libpng16\.so against libSDL2.so
+06-12 22:15:00.189 27343 27343 V pythonutil: Checking pattern libpng16\.so against libSDL2_ttf.so
+06-12 22:15:00.189 27343 27343 V pythonutil: Checking pattern libpng16\.so against libpng16.so
+06-12 22:15:00.189 27343 27343 V pythonutil: Pattern libpng16\.so matched file libpng16.so
+06-12 22:15:00.189 27343 27343 V pythonutil: Checking pattern libpng16\.so against libfreetype.so
+06-12 22:15:00.189 27343 27343 V pythonutil: Checking pattern libpng16\.so against libpython3.10.so
+06-12 22:15:00.189 27343 27343 V pythonutil: Checking pattern libpng16\.so against libmain.so
+06-12 22:15:00.189 27343 27343 V pythonutil: Checking pattern libpng16\.so against libffi.so
+06-12 22:15:00.189 27343 27343 V pythonutil: Checking pattern libpng16\.so against libSDL2_image.so
+06-12 22:15:00.189 27343 27343 V pythonutil: Checking pattern libpng16\.so against libcrypto.so
+06-12 22:15:00.189 27343 27343 V pythonutil: Checking pattern libpng16\.so against libpythonbin.so
+06-12 22:15:00.189 27343 27343 V pythonutil: Checking pattern libpng16\.so against libSDL2_mixer.so
+06-12 22:15:00.189 27343 27343 V pythonutil: Checking pattern libpng16\.so against libssl.so
+06-12 22:15:00.189 27343 27343 V pythonutil: Checking pattern libpng16\.so against libpybundle.so
+06-12 22:15:00.189 27343 27343 V pythonutil: Checking pattern libpng16\.so against libsqlite3.so
+06-12 22:15:00.190 27343 27343 V pythonutil: Checking pattern libssl.*\.so against libSDL2.so
+06-12 22:15:00.190 27343 27343 V pythonutil: Checking pattern libssl.*\.so against libSDL2_ttf.so
+06-12 22:15:00.190 27343 27343 V pythonutil: Checking pattern libssl.*\.so against libpng16.so
+06-12 22:15:00.190 27343 27343 V pythonutil: Checking pattern libssl.*\.so against libfreetype.so
+06-12 22:15:00.190 27343 27343 V pythonutil: Checking pattern libssl.*\.so against libpython3.10.so
+06-12 22:15:00.190 27343 27343 V pythonutil: Checking pattern libssl.*\.so against libmain.so
+06-12 22:15:00.190 27343 27343 V pythonutil: Checking pattern libssl.*\.so against libffi.so
+06-12 22:15:00.190 27343 27343 V pythonutil: Checking pattern libssl.*\.so against libSDL2_image.so
+06-12 22:15:00.190 27343 27343 V pythonutil: Checking pattern libssl.*\.so against libcrypto.so
+06-12 22:15:00.190 27343 27343 V pythonutil: Checking pattern libssl.*\.so against libpythonbin.so
+06-12 22:15:00.190 27343 27343 V pythonutil: Checking pattern libssl.*\.so against libSDL2_mixer.so
+06-12 22:15:00.190 27343 27343 V pythonutil: Checking pattern libssl.*\.so against libssl.so
+06-12 22:15:00.190 27343 27343 V pythonutil: Pattern libssl.*\.so matched file libssl.so
+06-12 22:15:00.190 27343 27343 V pythonutil: Checking pattern libssl.*\.so against libpybundle.so
+06-12 22:15:00.191 27343 27343 V pythonutil: Checking pattern libssl.*\.so against libsqlite3.so
+06-12 22:15:00.191 27343 27343 V pythonutil: Checking pattern libcrypto.*\.so against libSDL2.so
+06-12 22:15:00.191 27343 27343 V pythonutil: Checking pattern libcrypto.*\.so against libSDL2_ttf.so
+06-12 22:15:00.191 27343 27343 V pythonutil: Checking pattern libcrypto.*\.so against libpng16.so
+06-12 22:15:00.191 27343 27343 V pythonutil: Checking pattern libcrypto.*\.so against libfreetype.so
+06-12 22:15:00.191 27343 27343 V pythonutil: Checking pattern libcrypto.*\.so against libpython3.10.so
+06-12 22:15:00.191 27343 27343 V pythonutil: Checking pattern libcrypto.*\.so against libmain.so
+06-12 22:15:00.191 27343 27343 V pythonutil: Checking pattern libcrypto.*\.so against libffi.so
+06-12 22:15:00.191 27343 27343 V pythonutil: Checking pattern libcrypto.*\.so against libSDL2_image.so
+06-12 22:15:00.191 27343 27343 V pythonutil: Checking pattern libcrypto.*\.so against libcrypto.so
+06-12 22:15:00.191 27343 27343 V pythonutil: Pattern libcrypto.*\.so matched file libcrypto.so
+06-12 22:15:00.191 27343 27343 V pythonutil: Checking pattern libcrypto.*\.so against libpythonbin.so
+06-12 22:15:00.191 27343 27343 V pythonutil: Checking pattern libcrypto.*\.so against libSDL2_mixer.so
+06-12 22:15:00.192 27343 27343 V pythonutil: Checking pattern libcrypto.*\.so against libssl.so
+06-12 22:15:00.192 27343 27343 V pythonutil: Checking pattern libcrypto.*\.so against libpybundle.so
+06-12 22:15:00.192 27343 27343 V pythonutil: Checking pattern libcrypto.*\.so against libsqlite3.so
+06-12 22:15:00.192 27343 27343 V pythonutil: Checking pattern libSDL2\.so against libSDL2.so
+06-12 22:15:00.192 27343 27343 V pythonutil: Pattern libSDL2\.so matched file libSDL2.so
+06-12 22:15:00.192 27343 27343 V pythonutil: Checking pattern libSDL2\.so against libSDL2_ttf.so
+06-12 22:15:00.192 27343 27343 V pythonutil: Checking pattern libSDL2\.so against libpng16.so
+06-12 22:15:00.192 27343 27343 V pythonutil: Checking pattern libSDL2\.so against libfreetype.so
+06-12 22:15:00.192 27343 27343 V pythonutil: Checking pattern libSDL2\.so against libpython3.10.so
+06-12 22:15:00.192 27343 27343 V pythonutil: Checking pattern libSDL2\.so against libmain.so
+06-12 22:15:00.192 27343 27343 V pythonutil: Checking pattern libSDL2\.so against libffi.so
+06-12 22:15:00.192 27343 27343 V pythonutil: Checking pattern libSDL2\.so against libSDL2_image.so
+06-12 22:15:00.193 27343 27343 V pythonutil: Checking pattern libSDL2\.so against libcrypto.so
+06-12 22:15:00.193 27343 27343 V pythonutil: Checking pattern libSDL2\.so against libpythonbin.so
+06-12 22:15:00.193 27343 27343 V pythonutil: Checking pattern libSDL2\.so against libSDL2_mixer.so
+06-12 22:15:00.193 27343 27343 V pythonutil: Checking pattern libSDL2\.so against libssl.so
+06-12 22:15:00.193 27343 27343 V pythonutil: Checking pattern libSDL2\.so against libpybundle.so
+06-12 22:15:00.193 27343 27343 V pythonutil: Checking pattern libSDL2\.so against libsqlite3.so
+06-12 22:15:00.193 27343 27343 V pythonutil: Checking pattern libSDL2_image\.so against libSDL2.so
+06-12 22:15:00.193 27343 27343 V pythonutil: Checking pattern libSDL2_image\.so against libSDL2_ttf.so
+06-12 22:15:00.193 27343 27343 V pythonutil: Checking pattern libSDL2_image\.so against libpng16.so
+06-12 22:15:00.193 27343 27343 V pythonutil: Checking pattern libSDL2_image\.so against libfreetype.so
+06-12 22:15:00.193 27343 27343 V pythonutil: Checking pattern libSDL2_image\.so against libpython3.10.so
+06-12 22:15:00.194 27343 27343 V pythonutil: Checking pattern libSDL2_image\.so against libmain.so
+06-12 22:15:00.194 27343 27343 V pythonutil: Checking pattern libSDL2_image\.so against libffi.so
+06-12 22:15:00.194 27343 27343 V pythonutil: Checking pattern libSDL2_image\.so against libSDL2_image.so
+06-12 22:15:00.194 27343 27343 V pythonutil: Pattern libSDL2_image\.so matched file libSDL2_image.so
+06-12 22:15:00.194 27343 27343 V pythonutil: Checking pattern libSDL2_image\.so against libcrypto.so
+06-12 22:15:00.194 27343 27343 V pythonutil: Checking pattern libSDL2_image\.so against libpythonbin.so
+06-12 22:15:00.194 27343 27343 V pythonutil: Checking pattern libSDL2_image\.so against libSDL2_mixer.so
+06-12 22:15:00.194 27343 27343 V pythonutil: Checking pattern libSDL2_image\.so against libssl.so
+06-12 22:15:00.194 27343 27343 V pythonutil: Checking pattern libSDL2_image\.so against libpybundle.so
+06-12 22:15:00.194 27343 27343 V pythonutil: Checking pattern libSDL2_image\.so against libsqlite3.so
+06-12 22:15:00.194 27343 27343 V pythonutil: Checking pattern libSDL2_mixer\.so against libSDL2.so
+06-12 22:15:00.194 27343 27343 V pythonutil: Checking pattern libSDL2_mixer\.so against libSDL2_ttf.so
+06-12 22:15:00.194 27343 27343 V pythonutil: Checking pattern libSDL2_mixer\.so against libpng16.so
+06-12 22:15:00.194 27343 27343 V pythonutil: Checking pattern libSDL2_mixer\.so against libfreetype.so
+06-12 22:15:00.195 27343 27343 V pythonutil: Checking pattern libSDL2_mixer\.so against libpython3.10.so
+06-12 22:15:00.195 27343 27343 V pythonutil: Checking pattern libSDL2_mixer\.so against libmain.so
+06-12 22:15:00.195 27343 27343 V pythonutil: Checking pattern libSDL2_mixer\.so against libffi.so
+06-12 22:15:00.195 27343 27343 V pythonutil: Checking pattern libSDL2_mixer\.so against libSDL2_image.so
+06-12 22:15:00.195 27343 27343 V pythonutil: Checking pattern libSDL2_mixer\.so against libcrypto.so
+06-12 22:15:00.195 27343 27343 V pythonutil: Checking pattern libSDL2_mixer\.so against libpythonbin.so
+06-12 22:15:00.195 27343 27343 V pythonutil: Checking pattern libSDL2_mixer\.so against libSDL2_mixer.so
+06-12 22:15:00.195 27343 27343 V pythonutil: Pattern libSDL2_mixer\.so matched file libSDL2_mixer.so
+06-12 22:15:00.195 27343 27343 V pythonutil: Checking pattern libSDL2_mixer\.so against libssl.so
+06-12 22:15:00.195 27343 27343 V pythonutil: Checking pattern libSDL2_mixer\.so against libpybundle.so
+06-12 22:15:00.195 27343 27343 V pythonutil: Checking pattern libSDL2_mixer\.so against libsqlite3.so
+06-12 22:15:00.195 27343 27343 V pythonutil: Checking pattern libSDL2_ttf\.so against libSDL2.so
+06-12 22:15:00.195 27343 27343 V pythonutil: Checking pattern libSDL2_ttf\.so against libSDL2_ttf.so
+06-12 22:15:00.196 27343 27343 V pythonutil: Pattern libSDL2_ttf\.so matched file libSDL2_ttf.so
+06-12 22:15:00.196 27343 27343 V pythonutil: Checking pattern libSDL2_ttf\.so against libpng16.so
+06-12 22:15:00.196 27343 27343 V pythonutil: Checking pattern libSDL2_ttf\.so against libfreetype.so
+06-12 22:15:00.196 27343 27343 V pythonutil: Checking pattern libSDL2_ttf\.so against libpython3.10.so
+06-12 22:15:00.196 27343 27343 V pythonutil: Checking pattern libSDL2_ttf\.so against libmain.so
+06-12 22:15:00.196 27343 27343 V pythonutil: Checking pattern libSDL2_ttf\.so against libffi.so
+06-12 22:15:00.196 27343 27343 V pythonutil: Checking pattern libSDL2_ttf\.so against libSDL2_image.so
+06-12 22:15:00.196 27343 27343 V pythonutil: Checking pattern libSDL2_ttf\.so against libcrypto.so
+06-12 22:15:00.196 27343 27343 V pythonutil: Checking pattern libSDL2_ttf\.so against libpythonbin.so
+06-12 22:15:00.196 27343 27343 V pythonutil: Checking pattern libSDL2_ttf\.so against libSDL2_mixer.so
+06-12 22:15:00.196 27343 27343 V pythonutil: Checking pattern libSDL2_ttf\.so against libssl.so
+06-12 22:15:00.196 27343 27343 V pythonutil: Checking pattern libSDL2_ttf\.so against libpybundle.so
+06-12 22:15:00.196 27343 27343 V pythonutil: Checking pattern libSDL2_ttf\.so against libsqlite3.so
+06-12 22:15:00.197 27343 27343 V pythonutil: Checking pattern libSDL3\.so against libSDL2.so
+06-12 22:15:00.197 27343 27343 V pythonutil: Checking pattern libSDL3\.so against libSDL2_ttf.so
+06-12 22:15:00.197 27343 27343 V pythonutil: Checking pattern libSDL3\.so against libpng16.so
+06-12 22:15:00.197 27343 27343 V pythonutil: Checking pattern libSDL3\.so against libfreetype.so
+06-12 22:15:00.197 27343 27343 V pythonutil: Checking pattern libSDL3\.so against libpython3.10.so
+06-12 22:15:00.197 27343 27343 V pythonutil: Checking pattern libSDL3\.so against libmain.so
+06-12 22:15:00.197 27343 27343 V pythonutil: Checking pattern libSDL3\.so against libffi.so
+06-12 22:15:00.197 27343 27343 V pythonutil: Checking pattern libSDL3\.so against libSDL2_image.so
+06-12 22:15:00.197 27343 27343 V pythonutil: Checking pattern libSDL3\.so against libcrypto.so
+06-12 22:15:00.197 27343 27343 V pythonutil: Checking pattern libSDL3\.so against libpythonbin.so
+06-12 22:15:00.197 27343 27343 V pythonutil: Checking pattern libSDL3\.so against libSDL2_mixer.so
+06-12 22:15:00.197 27343 27343 V pythonutil: Checking pattern libSDL3\.so against libssl.so
+06-12 22:15:00.197 27343 27343 V pythonutil: Checking pattern libSDL3\.so against libpybundle.so
+06-12 22:15:00.197 27343 27343 V pythonutil: Checking pattern libSDL3\.so against libsqlite3.so
+06-12 22:15:00.198 27343 27343 V pythonutil: Checking pattern libSDL3_image\.so against libSDL2.so
+06-12 22:15:00.198 27343 27343 V pythonutil: Checking pattern libSDL3_image\.so against libSDL2_ttf.so
+06-12 22:15:00.198 27343 27343 V pythonutil: Checking pattern libSDL3_image\.so against libpng16.so
+06-12 22:15:00.198 27343 27343 V pythonutil: Checking pattern libSDL3_image\.so against libfreetype.so
+06-12 22:15:00.198 27343 27343 V pythonutil: Checking pattern libSDL3_image\.so against libpython3.10.so
+06-12 22:15:00.198 27343 27343 V pythonutil: Checking pattern libSDL3_image\.so against libmain.so
+06-12 22:15:00.198 27343 27343 V pythonutil: Checking pattern libSDL3_image\.so against libffi.so
+06-12 22:15:00.198 27343 27343 V pythonutil: Checking pattern libSDL3_image\.so against libSDL2_image.so
+06-12 22:15:00.198 27343 27343 V pythonutil: Checking pattern libSDL3_image\.so against libcrypto.so
+06-12 22:15:00.198 27343 27343 V pythonutil: Checking pattern libSDL3_image\.so against libpythonbin.so
+06-12 22:15:00.198 27343 27343 V pythonutil: Checking pattern libSDL3_image\.so against libSDL2_mixer.so
+06-12 22:15:00.198 27343 27343 V pythonutil: Checking pattern libSDL3_image\.so against libssl.so
+06-12 22:15:00.198 27343 27343 V pythonutil: Checking pattern libSDL3_image\.so against libpybundle.so
+06-12 22:15:00.198 27343 27343 V pythonutil: Checking pattern libSDL3_image\.so against libsqlite3.so
+06-12 22:15:00.199 27343 27343 V pythonutil: Checking pattern libSDL3_mixer\.so against libSDL2.so
+06-12 22:15:00.199 27343 27343 V pythonutil: Checking pattern libSDL3_mixer\.so against libSDL2_ttf.so
+06-12 22:15:00.199 27343 27343 V pythonutil: Checking pattern libSDL3_mixer\.so against libpng16.so
+06-12 22:15:00.199 27343 27343 V pythonutil: Checking pattern libSDL3_mixer\.so against libfreetype.so
+06-12 22:15:00.200 27343 27343 V pythonutil: Checking pattern libSDL3_mixer\.so against libpython3.10.so
+06-12 22:15:00.200 27343 27343 V pythonutil: Checking pattern libSDL3_mixer\.so against libmain.so
+06-12 22:15:00.200 27343 27343 V pythonutil: Checking pattern libSDL3_mixer\.so against libffi.so
+06-12 22:15:00.200 27343 27343 V pythonutil: Checking pattern libSDL3_mixer\.so against libSDL2_image.so
+06-12 22:15:00.200 27343 27343 V pythonutil: Checking pattern libSDL3_mixer\.so against libcrypto.so
+06-12 22:15:00.200 27343 27343 V pythonutil: Checking pattern libSDL3_mixer\.so against libpythonbin.so
+06-12 22:15:00.200 27343 27343 V pythonutil: Checking pattern libSDL3_mixer\.so against libSDL2_mixer.so
+06-12 22:15:00.200 27343 27343 V pythonutil: Checking pattern libSDL3_mixer\.so against libssl.so
+06-12 22:15:00.200 27343 27343 V pythonutil: Checking pattern libSDL3_mixer\.so against libpybundle.so
+06-12 22:15:00.200 27343 27343 V pythonutil: Checking pattern libSDL3_mixer\.so against libsqlite3.so
+06-12 22:15:00.201 27343 27343 V pythonutil: Checking pattern libSDL3_ttf\.so against libSDL2.so
+06-12 22:15:00.201 27343 27343 V pythonutil: Checking pattern libSDL3_ttf\.so against libSDL2_ttf.so
+06-12 22:15:00.201 27343 27343 V pythonutil: Checking pattern libSDL3_ttf\.so against libpng16.so
+06-12 22:15:00.201 27343 27343 V pythonutil: Checking pattern libSDL3_ttf\.so against libfreetype.so
+06-12 22:15:00.201 27343 27343 V pythonutil: Checking pattern libSDL3_ttf\.so against libpython3.10.so
+06-12 22:15:00.201 27343 27343 V pythonutil: Checking pattern libSDL3_ttf\.so against libmain.so
+06-12 22:15:00.201 27343 27343 V pythonutil: Checking pattern libSDL3_ttf\.so against libffi.so
+06-12 22:15:00.201 27343 27343 V pythonutil: Checking pattern libSDL3_ttf\.so against libSDL2_image.so
+06-12 22:15:00.201 27343 27343 V pythonutil: Checking pattern libSDL3_ttf\.so against libcrypto.so
+06-12 22:15:00.201 27343 27343 V pythonutil: Checking pattern libSDL3_ttf\.so against libpythonbin.so
+06-12 22:15:00.201 27343 27343 V pythonutil: Checking pattern libSDL3_ttf\.so against libSDL2_mixer.so
+06-12 22:15:00.201 27343 27343 V pythonutil: Checking pattern libSDL3_ttf\.so against libssl.so
+06-12 22:15:00.202 27343 27343 V pythonutil: Checking pattern libSDL3_ttf\.so against libpybundle.so
+06-12 22:15:00.202 27343 27343 V pythonutil: Checking pattern libSDL3_ttf\.so against libsqlite3.so
+06-12 22:15:00.202 27343 27343 V pythonutil: Loading library: sqlite3
+06-12 22:15:00.206 27343 27343 D nativeloader: Load /data/app/~~RbYtQA5_QD4_PwU3W-BErg==/org.kffs.habilisdatalogger-oRBy3Y2soySzARK6rLBbgA==/lib/arm64/libsqlite3.so using ns clns-4 from class loader (caller=/data/app/~~RbYtQA5_QD4_PwU3W-BErg==/org.kffs.habilisdatalogger-oRBy3Y2soySzARK6rLBbgA==/base.apk!classes5.dex): ok
+06-12 22:15:00.206 27343 27343 V pythonutil: Loading library: ffi
+06-12 22:15:00.207 27343 27343 D nativeloader: Load /data/app/~~RbYtQA5_QD4_PwU3W-BErg==/org.kffs.habilisdatalogger-oRBy3Y2soySzARK6rLBbgA==/lib/arm64/libffi.so using ns clns-4 from class loader (caller=/data/app/~~RbYtQA5_QD4_PwU3W-BErg==/org.kffs.habilisdatalogger-oRBy3Y2soySzARK6rLBbgA==/base.apk!classes5.dex): ok
+06-12 22:15:00.207 27343 27343 V pythonutil: Loading library: png16
+06-12 22:15:00.210 27343 27343 D nativeloader: Load /data/app/~~RbYtQA5_QD4_PwU3W-BErg==/org.kffs.habilisdatalogger-oRBy3Y2soySzARK6rLBbgA==/lib/arm64/libpng16.so using ns clns-4 from class loader (caller=/data/app/~~RbYtQA5_QD4_PwU3W-BErg==/org.kffs.habilisdatalogger-oRBy3Y2soySzARK6rLBbgA==/base.apk!classes5.dex): ok
+06-12 22:15:00.210 27343 27343 V pythonutil: Loading library: ssl
+06-12 22:15:00.219 27343 27343 D nativeloader: Load /data/app/~~RbYtQA5_QD4_PwU3W-BErg==/org.kffs.habilisdatalogger-oRBy3Y2soySzARK6rLBbgA==/lib/arm64/libssl.so using ns clns-4 from class loader (caller=/data/app/~~RbYtQA5_QD4_PwU3W-BErg==/org.kffs.habilisdatalogger-oRBy3Y2soySzARK6rLBbgA==/base.apk!classes5.dex): ok
+06-12 22:15:00.220 27343 27343 V pythonutil: Loading library: crypto
+06-12 22:15:00.220 27343 27343 D nativeloader: Load /data/app/~~RbYtQA5_QD4_PwU3W-BErg==/org.kffs.habilisdatalogger-oRBy3Y2soySzARK6rLBbgA==/lib/arm64/libcrypto.so using ns clns-4 from class loader (caller=/data/app/~~RbYtQA5_QD4_PwU3W-BErg==/org.kffs.habilisdatalogger-oRBy3Y2soySzARK6rLBbgA==/base.apk!classes5.dex): ok
+06-12 22:15:00.220 27343 27343 V pythonutil: Loading library: SDL2
+06-12 22:15:00.226 27343 27343 D nativeloader: Load /data/app/~~RbYtQA5_QD4_PwU3W-BErg==/org.kffs.habilisdatalogger-oRBy3Y2soySzARK6rLBbgA==/lib/arm64/libSDL2.so using ns clns-4 from class loader (caller=/data/app/~~RbYtQA5_QD4_PwU3W-BErg==/org.kffs.habilisdatalogger-oRBy3Y2soySzARK6rLBbgA==/base.apk!classes5.dex): ok
+06-12 22:15:00.226 27343 27343 V pythonutil: Loading library: SDL2_image
+06-12 22:15:00.229 27343 27343 D nativeloader: Load /data/app/~~RbYtQA5_QD4_PwU3W-BErg==/org.kffs.habilisdatalogger-oRBy3Y2soySzARK6rLBbgA==/lib/arm64/libSDL2_image.so using ns clns-4 from class loader (caller=/data/app/~~RbYtQA5_QD4_PwU3W-BErg==/org.kffs.habilisdatalogger-oRBy3Y2soySzARK6rLBbgA==/base.apk!classes5.dex): ok
+06-12 22:15:00.229 27343 27343 V pythonutil: Loading library: SDL2_mixer
+06-12 22:15:00.232 27343 27343 D nativeloader: Load /data/app/~~RbYtQA5_QD4_PwU3W-BErg==/org.kffs.habilisdatalogger-oRBy3Y2soySzARK6rLBbgA==/lib/arm64/libSDL2_mixer.so using ns clns-4 from class loader (caller=/data/app/~~RbYtQA5_QD4_PwU3W-BErg==/org.kffs.habilisdatalogger-oRBy3Y2soySzARK6rLBbgA==/base.apk!classes5.dex): ok
+06-12 22:15:00.233 27343 27343 V pythonutil: Loading library: SDL2_ttf
+06-12 22:15:00.241 27343 27343 D nativeloader: Load /data/app/~~RbYtQA5_QD4_PwU3W-BErg==/org.kffs.habilisdatalogger-oRBy3Y2soySzARK6rLBbgA==/lib/arm64/libSDL2_ttf.so using ns clns-4 from class loader (caller=/data/app/~~RbYtQA5_QD4_PwU3W-BErg==/org.kffs.habilisdatalogger-oRBy3Y2soySzARK6rLBbgA==/base.apk!classes5.dex): ok
+06-12 22:15:00.241 27343 27343 V pythonutil: Loading library: python3.14
+06-12 22:15:00.245 27343 27343 D nativeloader: Load libpython3.14.so using ns clns-4 from class loader (caller=/data/app/~~RbYtQA5_QD4_PwU3W-BErg==/org.kffs.habilisdatalogger-oRBy3Y2soySzARK6rLBbgA==/base.apk!classes5.dex): dlopen failed: library "libpython3.14.so" not found
+06-12 22:15:00.245 27343 27343 V pythonutil: Library loading error: dlopen failed: library "libpython3.14.so" not found
+06-12 22:15:00.245 27343 27343 V pythonutil: Loading library: python3.13
+06-12 22:15:00.246 27343 27343 D nativeloader: Load libpython3.13.so using ns clns-4 from class loader (caller=/data/app/~~RbYtQA5_QD4_PwU3W-BErg==/org.kffs.habilisdatalogger-oRBy3Y2soySzARK6rLBbgA==/base.apk!classes5.dex): dlopen failed: library "libpython3.13.so" not found
+06-12 22:15:00.246 27343 27343 V pythonutil: Library loading error: dlopen failed: library "libpython3.13.so" not found
+06-12 22:15:00.246 27343 27343 V pythonutil: Loading library: python3.12
+06-12 22:15:00.246 27343 27343 D nativeloader: Load libpython3.12.so using ns clns-4 from class loader (caller=/data/app/~~RbYtQA5_QD4_PwU3W-BErg==/org.kffs.habilisdatalogger-oRBy3Y2soySzARK6rLBbgA==/base.apk!classes5.dex): dlopen failed: library "libpython3.12.so" not found
+06-12 22:15:00.246 27343 27343 V pythonutil: Library loading error: dlopen failed: library "libpython3.12.so" not found
+06-12 22:15:00.247 27343 27343 V pythonutil: Loading library: python3.11
+06-12 22:15:00.247 27343 27343 D nativeloader: Load libpython3.11.so using ns clns-4 from class loader (caller=/data/app/~~RbYtQA5_QD4_PwU3W-BErg==/org.kffs.habilisdatalogger-oRBy3Y2soySzARK6rLBbgA==/base.apk!classes5.dex): dlopen failed: library "libpython3.11.so" not found
+06-12 22:15:00.247 27343 27343 V pythonutil: Library loading error: dlopen failed: library "libpython3.11.so" not found
+06-12 22:15:00.247 27343 27343 V pythonutil: Loading library: python3.10
+06-12 22:15:00.252 27343 27343 D nativeloader: Load /data/app/~~RbYtQA5_QD4_PwU3W-BErg==/org.kffs.habilisdatalogger-oRBy3Y2soySzARK6rLBbgA==/lib/arm64/libpython3.10.so using ns clns-4 from class loader (caller=/data/app/~~RbYtQA5_QD4_PwU3W-BErg==/org.kffs.habilisdatalogger-oRBy3Y2soySzARK6rLBbgA==/base.apk!classes5.dex): ok
+06-12 22:15:00.252 27343 27343 V pythonutil: Loading library: main
+06-12 22:15:00.254 27343 27343 D nativeloader: Load /data/app/~~RbYtQA5_QD4_PwU3W-BErg==/org.kffs.habilisdatalogger-oRBy3Y2soySzARK6rLBbgA==/lib/arm64/libmain.so using ns clns-4 from class loader (caller=/data/app/~~RbYtQA5_QD4_PwU3W-BErg==/org.kffs.habilisdatalogger-oRBy3Y2soySzARK6rLBbgA==/base.apk!classes5.dex): ok
+06-12 22:15:00.254 27343 27343 V pythonutil: Loaded everything!
+06-12 22:15:00.256 27343 27343 V SDL     : nativeSetupJNI()
+06-12 22:15:00.256 27343 27343 V SDL     : AUDIO nativeSetupJNI()
+06-12 22:15:00.256 27343 27343 V SDL     : CONTROLLER nativeSetupJNI()
+06-12 22:15:00.308  1948  7880 D CoreBackPreview: Window{9cc4d19 u0 org.kffs.habilisdatalogger/org.kivy.android.PythonActivity}: Setting back callback OnBackInvokedCallbackInfo{mCallback=android.window.IOnBackInvokedCallback$Stub$Proxy@3cba1d5, mPriority=0, mIsAnimationCallback=false}
+06-12 22:15:00.323  1948  7880 D WindowManager: wms.Input focus has changed to Window{9cc4d19 u0 org.kffs.habilisdatalogger/org.kivy.android.PythonActivity} display=0 updateInputWindows = true
+06-12 22:15:00.334  1363  1441 I SurfaceFlinger: sf.setTransactionState focusRequest transactionId:8366597771460 frontWin:9cc4d19 org.kffs.habilisdatalogger/org.kivy.android.PythonActivity
+06-12 22:15:00.343 27343 27343 V SDL     : surfaceCreated()
+06-12 22:15:00.343 27343 27343 V SDL     : surfaceChanged()
+06-12 22:15:00.343 27343 27343 V SDL     : Window size: 1080x2172
+06-12 22:15:00.343 27343 27343 V SDL     : Device size: 1080x2400
+06-12 22:15:00.356 27343 27379 V SDL     : Running main function SDL_main from library /data/app/~~RbYtQA5_QD4_PwU3W-BErg==/org.kffs.habilisdatalogger-oRBy3Y2soySzARK6rLBbgA==/lib/arm64/libmain.so
+06-12 22:15:00.356 27343 27379 V SDL     : nativeRunMain()
+06-12 22:15:00.360 27343 27379 I python  : Initializing Python for Android
+06-12 22:15:00.360 27343 27379 I python  : Setting additional env vars from p4a_env_vars.txt
+06-12 22:15:00.362 27343 27379 I python  : Changing directory to '/data/user/0/org.kffs.habilisdatalogger/files/app'
+06-12 22:15:00.369 27343 27379 I python  : Preparing to initialize python
+06-12 22:15:00.369 27343 27379 I python  : _python_bundle dir exists
+06-12 22:15:00.369 27343 27379 I python  : set wchar paths...
+06-12 22:15:00.386 27343 27343 W SDLThread: type=1400 audit(0.0:448949): avc:  granted  { execute } for  path="/data/data/org.kffs.habilisdatalogger/files/app/_python_bundle/modules/zlib.cpython-310.so" dev="dm-53" ino=131876 scontext=u:r:untrusted_app_30:s0:c106,c257,c512,c768 tcontext=u:object_r:app_data_file:s0:c106,c257,c512,c768 tclass=file app=org.kffs.habilisdatalogger
+06-12 22:15:00.394  1948  4119 D WindowManager: wms.finishDrawingLocked: mDrawState=COMMIT_DRAW_PENDING Window{9cc4d19 u0 org.kffs.habilisdatalogger/org.kivy.android.PythonActivity} in Surface(name=org.kffs.habilisdatalogger/org.kivy.android.PythonActivity#153531)/@0x8a90eb6
+06-12 22:15:00.403 27343 27343 D SurfaceView: UPDATE Surface(name=SurfaceView[org.kffs.habilisdatalogger/org.kivy.android.PythonActivity]#153535)/@0x976d811, mIsProjectionMode = false
+06-12 22:15:00.404 27343 27379 I python  : Python initialized using legacy Py_Initialize().
+06-12 22:15:00.404 27343 27379 I python  : Initialized python
+06-12 22:15:00.404 27343 27379 I python  : testing python print redirection
+06-12 22:15:00.405 27343 27379 I python  : Android kivy bootstrap done. __name__ is __main__
+06-12 22:15:00.405  1948  2308 I WindowManager: wms.showSurfaceRobustly mWin:Window{9cc4d19 u0 org.kffs.habilisdatalogger/org.kivy.android.PythonActivity}
+06-12 22:15:00.412  1948  2074 I ActivityTaskManager: Displayed org.kffs.habilisdatalogger/org.kivy.android.PythonActivity for user 0: +637ms
+06-12 22:15:00.421 27343 27343 V SDL     : onWindowFocusChanged(): true
+06-12 22:15:00.425  1948  7880 D CoreBackPreview: Window{4c93f0b u0 Splash Screen org.kffs.habilisdatalogger}: Setting back callback null
+06-12 22:15:00.428  1948  4109 W InputManager-JNI: Input channel object '4c93f0b Splash Screen org.kffs.habilisdatalogger (client)' was disposed without first being removed with the input manager!
+06-12 22:15:00.428  1948  2972 D tsched_scene: handleWindowChanged: pkgName: org.kffs.habilisdatalogger, mForegroundAppName: com.miui.home
+06-12 22:15:00.438  1948  3868 I ImeTracker: org.kffs.habilisdatalogger:5034bf9d: onRequestHide at ORIGIN_SERVER_HIDE_INPUT reason HIDE_UNSPECIFIED_WINDOW
+06-12 22:15:00.438  1948  3868 I ImeTracker: org.kffs.habilisdatalogger:5034bf9d: onCancelled at PHASE_SERVER_SHOULD_HIDE
+06-12 22:15:00.442  1363  1442 D MI-SF   : updateScene: module = 270 (Input), value = 0, pkg = org.kffs.habilisdatalogger, Vrr = 1
+06-12 22:15:00.453 22864 22864 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1446 onStartInput(EditorInfo{EditorInfo{packageName=org.kffs.habilisdatalogger, inputType=0, inputTypeString=NULL, enableLearning=false, autoCorrection=false, autoComplete=false, imeOptions=0, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=-1, initialSelEnd=-1, initialCapsMode=0, label=null, fieldId=0, fieldName=null, extras=Bundle[mParcelledData.dataSize=72], hintText=null, hintLocales=[]}}, false)
+06-12 22:15:00.455  1948  4109 W PackageConfigPersister: App-specific configuration not found for packageName: org.kffs.habilisdatalogger and userId: 0
+06-12 22:15:00.469  1948  7882 I Transition: finishTransition: updateLastSurfacePosition tf=Task{48213ce #627 type=standard A=10362:org.kffs.habilisdatalogger}
+06-12 22:15:00.470 27343 27343 W SDLThread: type=1400 audit(0.0:448950): avc:  granted  { execute } for  path="/data/data/org.kffs.habilisdatalogger/files/app/_python_bundle/modules/math.cpython-310.so" dev="dm-53" ino=131831 scontext=u:r:untrusted_app_30:s0:c106,c257,c512,c768 tcontext=u:object_r:app_data_file:s0:c106,c257,c512,c768 tclass=file app=org.kffs.habilisdatalogger
+06-12 22:15:00.478 27343 27343 W SDLThread: type=1400 audit(0.0:448951): avc:  granted  { execute } for  path="/data/data/org.kffs.habilisdatalogger/files/app/_python_bundle/modules/_bisect.cpython-310.so" dev="dm-53" ino=130274 scontext=u:r:untrusted_app_30:s0:c106,c257,c512,c768 tcontext=u:object_r:app_data_file:s0:c106,c257,c512,c768 tclass=file app=org.kffs.habilisdatalogger
+06-12 22:15:00.536 27343 27379 I python  : [INFO   ] [Logger      ] Record log in /data/user/0/org.kffs.habilisdatalogger/files/app/.kivy/logs/kivy_26-06-12_1.txt
+06-12 22:15:00.536 27343 27379 I python  : [INFO   ] [Kivy        ] v2.1.0
+06-12 22:15:00.537 27343 27379 I python  : [INFO   ] [Kivy        ] Installed at "/data/user/0/org.kffs.habilisdatalogger/files/app/_python_bundle/site-packages/kivy/__init__.pyc"
+06-12 22:15:00.537 27343 27379 I python  : [INFO   ] [Python      ] v3.10.11 (main, May 27 2026, 00:26:06) [Clang 14.0.7 (https://android.googlesource.com/toolchain/llvm-project 4c603efb0
+06-12 22:15:00.537 27343 27379 I python  : [INFO   ] [Python      ] Interpreter at "/data/user/0/org.kffs.habilisdatalogger/files/app/.bin/python"
+06-12 22:15:00.537 27343 27379 I python  : [INFO   ] [Logger      ] Purge log fired. Processing...
+06-12 22:15:00.538 27343 27379 I python  : [INFO   ] [Logger      ] Purge finished!
+06-12 22:15:00.550 27343 27379 I python  : [INFO   ] [KivyMD      ] 1.0.2, git-38fe356, 2022-08-11 (installed at "/data/user/0/org.kffs.habilisdatalogger/files/app/_python_bundle/site-packages/kivymd/__init__.pyc")
+06-12 22:15:00.554 27343 27379 I python  : [INFO   ] [Factory     ] 189 symbols loaded
+06-12 22:15:01.222 27343 27343 W SDLThread: type=1400 audit(0.0:448970): avc:  granted  { execute } for  path="/data/data/org.kffs.habilisdatalogger/files/app/_python_bundle/modules/_socket.cpython-310.so" dev="dm-53" ino=44792 scontext=u:r:untrusted_app_30:s0:c106,c257,c512,c768 tcontext=u:object_r:app_data_file:s0:c106,c257,c512,c768 tclass=file app=org.kffs.habilisdatalogger
+06-12 22:15:01.226 27343 27343 W SDLThread: type=1400 audit(0.0:448971): avc:  granted  { execute } for  path="/data/data/org.kffs.habilisdatalogger/files/app/_python_bundle/modules/array.cpython-310.so" dev="dm-53" ino=131900 scontext=u:r:untrusted_app_30:s0:c106,c257,c512,c768 tcontext=u:object_r:app_data_file:s0:c106,c257,c512,c768 tclass=file app=org.kffs.habilisdatalogger
+06-12 22:15:01.230 27343 27343 W SDLThread: type=1400 audit(0.0:448972): avc:  granted  { execute } for  path="/data/data/org.kffs.habilisdatalogger/files/app/_python_bundle/modules/_ssl.cpython-310.so" dev="dm-53" ino=44839 scontext=u:r:untrusted_app_30:s0:c106,c257,c512,c768 tcontext=u:object_r:app_data_file:s0:c106,c257,c512,c768 tclass=file app=org.kffs.habilisdatalogger
+06-12 22:15:01.238 27343 27343 W SDLThread: type=1400 audit(0.0:448973): avc:  granted  { execute } for  path="/data/data/org.kffs.habilisdatalogger/files/app/_python_bundle/modules/binascii.cpython-310.so" dev="dm-53" ino=131946 scontext=u:r:untrusted_app_30:s0:c106,c257,c512,c768 tcontext=u:object_r:app_data_file:s0:c106,c257,c512,c768 tclass=file app=org.kffs.habilisdatalogger
+06-12 22:15:01.246 27343 27343 W SDLThread: type=1400 audit(0.0:448974): avc:  granted  { execute } for  path="/data/data/org.kffs.habilisdatalogger/files/app/_python_bundle/modules/_contextvars.cpython-310.so" dev="dm-53" ino=44715 scontext=u:r:untrusted_app_30:s0:c106,c257,c512,c768 tcontext=u:object_r:app_data_file:s0:c106,c257,c512,c768 tclass=file app=org.kffs.habilisdatalogger
+06-12 22:15:01.331 27343 27379 I python  : [INFO   ] [Image       ] Providers: img_tex, img_dds, img_sdl2, img_pil (img_ffpyplayer ignored)
+06-12 22:15:01.355 27343 27379 I python  : [INFO   ] [Text        ] Provider: sdl2
+06-12 22:15:01.504 27343 27379 I python  : [INFO   ] [Window      ] Provider: sdl2
+06-12 22:15:01.518  1948  4109 I PowerManagerServiceImpl: Acquire wakelock: SCREEN_BRIGHT_WAKE_LOCK        'WindowManager/displayId:0' ON_AFTER_RELEASE (uid=1000 pid=1948 pkg=android ws=WorkSource{10362 org.kffs.habilisdatalogger})
+06-12 22:15:01.521 27343 27379 V SDL     : setOrientation() requestedOrientation=1 width=800 height=600 resizable=true hint=Portrait
+06-12 22:15:01.524 27343 27379 I SDL/APP : pixel format wanted SDL_PIXELFORMAT_RGBA8888 (1), got SDL_PIXELFORMAT_RGBA8888 (1)
+06-12 22:15:01.525 27343 27379 I python  : [INFO   ] [GL          ] Using the "OpenGL ES 2" graphics system
+06-12 22:15:01.531 27343 27379 I python  : [INFO   ] [GL          ] Backend used <sdl2>
+06-12 22:15:01.531 27343 27379 I python  : [INFO   ] [GL          ] OpenGL version <b'OpenGL ES 3.2 V@0530.57 (GIT@4bbe300fc3, Ie69fc1c69b, 1747652194) (Date:05/19/25)'>
+06-12 22:15:01.531 27343 27379 I python  : [INFO   ] [GL          ] OpenGL vendor <b'Qualcomm'>
+06-12 22:15:01.532 27343 27379 I python  : [INFO   ] [GL          ] OpenGL renderer <b'Adreno (TM) 642L'>
+06-12 22:15:01.532 27343 27379 I python  : [INFO   ] [GL          ] OpenGL parsed version: 3, 2
+06-12 22:15:01.532 27343 27379 I python  : [INFO   ] [GL          ] Texture max size <16384>
+06-12 22:15:01.532 27343 27379 I python  : [INFO   ] [GL          ] Texture max units <16>
+06-12 22:15:01.549 27343 27379 I python  : [INFO   ] [Window      ] auto add sdl2 input provider
+06-12 22:15:01.551  1948  7882 I PowerManagerServiceImpl: Release wakelock: SCREEN_BRIGHT_WAKE_LOCK        'WindowManager/displayId:0' ON_AFTER_RELEASE DISABLED ACQ=-30ms (uid=1000 pid=1948 pkg=android ws=WorkSource{10362 org.kffs.habilisdatalogger})
+06-12 22:15:01.552 27343 27379 I python  : [INFO   ] [Window      ] virtual keyboard not allowed, single mode, not docked
+06-12 22:15:01.750 27343 27379 I python  : Could not set FileProvider: No module named 'plyer.camera'
+06-12 22:15:01.777 27343 27379 I python  : [INFO   ] [GL          ] NPOT texture support is available
+06-12 22:15:03.834 27343 27379 I python  :  Traceback (most recent call last):
+06-12 22:15:03.834 27343 27379 I python  :    File "/home/vboxuser/habilis-datalogger/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/python-installs/habilisdatalogger/arm64-v8a/kivy/lang/builder.py", line 704, in _apply_rule
+06-12 22:15:03.835 27343 27379 I python  :    File "kivy/weakproxy.pyx", line 35, in kivy.weakproxy.WeakProxy.__setattr__
+06-12 22:15:03.835 27343 27379 I python  :    File "kivy/properties.pyx", line 520, in kivy.properties.Property.__set__
+06-12 22:15:03.835 27343 27379 I python  :    File "kivy/properties.pyx", line 1463, in kivy.properties.ReferenceListProperty.set
+06-12 22:15:03.835 27343 27379 I python  :    File "kivy/properties.pyx", line 1452, in kivy.properties.ReferenceListProperty.check
+06-12 22:15:03.835 27343 27379 I python  :  ValueError: MDLabel.padding value length is immutable
+06-12 22:15:03.835 27343 27379 I python  :  
+06-12 22:15:03.836 27343 27379 I python  :  During handling of the above exception, another exception occurred:
+06-12 22:15:03.836 27343 27379 I python  :  
+06-12 22:15:03.836 27343 27379 I python  :  Traceback (most recent call last):
+06-12 22:15:03.836 27343 27379 I python  :    File "/home/vboxuser/habilis-datalogger/.buildozer/android/app/main.py", line 190, in <module>
+06-12 22:15:03.836 27343 27379 I python  :    File "/home/vboxuser/habilis-datalogger/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/python-installs/habilisdatalogger/arm64-v8a/kivy/app.py", line 954, in run
+06-12 22:15:03.836 27343 27379 I python  :    File "/home/vboxuser/habilis-datalogger/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/python-installs/habilisdatalogger/arm64-v8a/kivy/app.py", line 924, in _run_prepare
+06-12 22:15:03.836 27343 27379 I python  :    File "/home/vboxuser/habilis-datalogger/.buildozer/android/app/main.py", line 170, in build
+06-12 22:15:03.837 27343 27379 I python  :    File "/home/vboxuser/habilis-datalogger/.buildozer/android/app/admin.py", line 1232, in __init__
+06-12 22:15:03.837 27343 27379 I python  :    File "/home/vboxuser/habilis-datalogger/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/python-installs/habilisdatalogger/arm64-v8a/kivymd/uix/behaviors/declarative_bahavior.py", line 311, in __init__
+06-12 22:15:03.837 27343 27379 I python  :    File "/home/vboxuser/habilis-datalogger/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/python-installs/habilisdatalogger/arm64-v8a/kivy/uix/relativelayout.py", line 274, in __init__
+06-12 22:15:03.837 27343 27379 I python  :    File "/home/vboxuser/habilis-datalogger/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/python-installs/habilisdatalogger/arm64-v8a/kivy/uix/floatlayout.py", line 65, in __init__
+06-12 22:15:03.837 27343 27379 I python  :    File "/home/vboxuser/habilis-datalogger/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/python-installs/habilisdatalogger/arm64-v8a/kivy/uix/layout.py", line 76, in __init__
+06-12 22:15:03.838 27343 27379 I python  :    File "/home/vboxuser/habilis-datalogger/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/python-installs/habilisdatalogger/arm64-v8a/kivymd/uix/behaviors/backgroundcolor_behavior.py", line 206, in __init__
+06-12 22:15:03.838 27343 27379 I python  :    File "/home/vboxuser/habilis-datalogger/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/python-installs/habilisdatalogger/arm64-v8a/kivymd/uix/behaviors/backgroundcolor_behavior.py", line 162, in __init__
+06-12 22:15:03.838 27343 27379 I python  :    File "/home/vboxuser/habilis-datalogger/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/python-installs/habilisdatalogger/arm64-v8a/kivymd/uix/behaviors/elevation.py", line 851, in __init__
+06-12 22:15:03.838 27343 27379 I python  :    File "/home/vboxuser/habilis-datalogger/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/python-installs/habilisdatalogger/arm64-v8a/kivy/uix/widget.py", line 366, in __init__
+06-12 22:15:03.838 27343 27379 I python  :    File "/home/vboxuser/habilis-datalogger/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/python-installs/habilisdatalogger/arm64-v8a/kivy/uix/widget.py", line 470, in apply_class_lang_rules
+06-12 22:15:03.839 27343 27379 I python  :    File "/home/vboxuser/habilis-datalogger/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/python-installs/habilisdatalogger/arm64-v8a/kivy/lang/builder.py", line 540, in apply
+06-12 22:15:03.839 27343 27379 I python  :    File "/home/vboxuser/habilis-datalogger/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/python-installs/habilisdatalogger/arm64-v8a/kivy/lang/builder.py", line 709, in _apply_rule
+06-12 22:15:03.839 27343 27379 I python  :  kivy.lang.builder.BuilderException: Parser: File "<inline>", line 161:
+06-12 22:15:03.839 27343 27379 I python  :  ...
+06-12 22:15:03.839 27343 27379 I python  :      159:            size_hint_y: None
+06-12 22:15:03.839 27343 27379 I python  :      160:            height: "45dp"
+06-12 22:15:03.839 27343 27379 I python  :  >>  161:            padding: ["10dp", "10dp", "10dp", "10dp"]
+06-12 22:15:03.839 27343 27379 I python  :      162:            theme_text_color: "Secondary"
+06-12 22:15:03.840 27343 27379 I python  :      163:
+06-12 22:15:03.840 27343 27379 I python  :  ...
+06-12 22:15:03.840 27343 27379 I python  :  ValueError: MDLabel.padding value length is immutable
+06-12 22:15:03.840 27343 27379 I python  :    File "/home/vboxuser/habilis-datalogger/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/python-installs/habilisdatalogger/arm64-v8a/kivy/lang/builder.py", line 704, in _apply_rule
+06-12 22:15:03.840 27343 27379 I python  :    File "kivy/weakproxy.pyx", line 35, in kivy.weakproxy.WeakProxy.__setattr__
+06-12 22:15:03.840 27343 27379 I python  :    File "kivy/properties.pyx", line 520, in kivy.properties.Property.__set__
+06-12 22:15:03.840 27343 27379 I python  :    File "kivy/properties.pyx", line 1463, in kivy.properties.ReferenceListProperty.set
+06-12 22:15:03.840 27343 27379 I python  :    File "kivy/properties.pyx", line 1452, in kivy.properties.ReferenceListProperty.check
+06-12 22:15:03.840 27343 27379 I python  :  
+06-12 22:15:03.840 27343 27379 I python  : Python for android ended.
+06-12 22:15:05.211  1948  4119 I WindowManager: WIN DEATH: Window{9cc4d19 u0 org.kffs.habilisdatalogger/org.kivy.android.PythonActivity}
+06-12 22:15:05.212  1948  6126 I ImeTracker: org.kffs.habilisdatalogger:d5664e6d: onRequestHide at ORIGIN_SERVER_HIDE_INPUT reason HIDE_REMOVE_CLIENT
+06-12 22:15:05.212  1948  7264 I ActivityManager: Process org.kffs.habilisdatalogger (pid 27343) has died: fg  TOP 
+06-12 22:15:05.212  1948  6126 I ImeTracker: org.kffs.habilisdatalogger:d5664e6d: onCancelled at PHASE_SERVER_SHOULD_HIDE
+06-12 22:15:05.212  1948  4119 W InputManager-JNI: Input channel object '9cc4d19 org.kffs.habilisdatalogger/org.kivy.android.PythonActivity (client)' was disposed without first being removed with the input manager!
+06-12 22:15:05.218  1363  1442 D MI-SF   : updateScene: module = 270 (Input), value = 0, pkg = org.kffs.habilisdatalogger, Vrr = 1
+06-12 22:15:05.250  1948  7264 W ActivityTaskManager: Force removing ActivityRecord{fd590c9 u0 org.kffs.habilisdatalogger/org.kivy.android.PythonActivity t627}: app died, no saved state
+06-12 22:15:05.251  1948  7264 D WindowManager: Collecting in transition 9516: Task{48213ce #627 type=standard A=10362:org.kffs.habilisdatalogger} init visibleRequested:true
+06-12 22:15:05.252  1948  7264 D WindowManager: Collecting in transition 9516: ActivityRecord{fd590c9 u0 org.kffs.habilisdatalogger/org.kivy.android.PythonActivity t627 f}} init visibleRequested:false
+06-12 22:15:05.252  1948  7264 W WindowManager: onSyncReparent mSyncState =2, mSyncGroup = com.android.server.wm.BLASTSyncEngine$SyncGroup@4091bee this: ActivityRecord{fd590c9 u0 org.kffs.habilisdatalogger/org.kivy.android.PythonActivity t627 f}}
+06-12 22:15:05.253  1948  7264 I ActivityTaskManager: Do not migrate a removing Task! Task{48213ce #627 type=standard A=10362:org.kffs.habilisdatalogger}
+06-12 22:15:05.253  1948  7264 W WindowManager: onSyncReparent mSyncState =2, mSyncGroup = com.android.server.wm.BLASTSyncEngine$SyncGroup@4091bee this: Task{48213ce #627 type=standard A=10362:org.kffs.habilisdatalogger}
+06-12 22:15:05.268 22923 12674 D BluetoothLatencyMode: ForegroundInfo{mForegroundPackageName='com.miui.home', mForegroundUid=10158, mForegroundPid=3838, mLastForegroundPackageName='org.kffs.habilisdatalogger', mLastForegroundUid=10362, mLastForegroundPid=27343, mMultiWindowForegroundPackageName='com.miui.home', mMultiWindowForegroundUid=10158, mFlags=0}
+06-12 22:15:05.268  7590 11082 D PerfEngineController: ForegroundInfo{mForegroundPackageName='com.miui.home', mForegroundUid=10158, mForegroundPid=3838, mLastForegroundPackageName='org.kffs.habilisdatalogger', mLastForegroundUid=10362, mLastForegroundPid=27343, mMultiWindowForegroundPackageName='com.miui.home', mMultiWindowForegroundUid=10158, mFlags=0}
+06-12 22:15:05.268 19295 22245 I ProcessMonitor: onForegroundInfoChanged: ForegroundInfo{mForegroundPackageName='com.miui.home', mForegroundUid=10158, mForegroundPid=3838, mLastForegroundPackageName='org.kffs.habilisdatalogger', mLastForegroundUid=10362, mLastForegroundPid=27343, mMultiWindowForegroundPackageName='com.miui.home', mMultiWindowForegroundUid=10158, mFlags=0}
+06-12 22:15:05.268  7953  7963 I GST     : forePkg: com.miui.home, preForePkg: org.kffs.habilisdatalogger
+06-12 22:15:05.269  3838  4206 D AppObserver: ForegroundInfo{mForegroundPackageName='com.miui.home', mForegroundUid=10158, mForegroundPid=3838, mLastForegroundPackageName='org.kffs.habilisdatalogger', mLastForegroundUid=10362, mLastForegroundPid=27343, mMultiWindowForegroundPackageName='com.miui.home', mMultiWindowForegroundUid=10158, mFlags=0}
+06-12 22:15:05.271 19295 22245 I GameBoosterService: onForegroundInfoChanged: Cur=com.miui.home	 last=org.kffs.habilisdatalogger
+06-12 22:15:05.272 19295 22245 D GameBoosterService: onGameStatusChange foreground:ForegroundInfo{mForegroundPackageName='com.miui.home', mForegroundUid=10158, mForegroundPid=3838, mLastForegroundPackageName='org.kffs.habilisdatalogger', mLastForegroundUid=10362, mLastForegroundPid=27343, mMultiWindowForegroundPackageName='com.miui.home', mMultiWindowForegroundUid=10158, mFlags=0}
+06-12 22:15:05.273 19295 22245 I BeautyService: onForegroundInfoChanged: Cur=com.miui.home	 last=org.kffs.habilisdatalogger
+06-12 22:15:05.281  3838  4246 E ActivityManagerWrapper: getRecentTasks: mainTaskId=627   userId=0   windowMode=1   baseIntent=Intent { act=android.intent.action.MAIN flag=270532608 cmp=ComponentInfo{org.kffs.habilisdatalogger/org.kivy.android.PythonActivity} }
+06-12 22:15:05.282  3838  4246 D WorldCirculate: getWorldCirculateInfo, taskInfo.baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=org.kffs.habilisdatal
