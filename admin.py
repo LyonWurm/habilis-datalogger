@@ -197,7 +197,7 @@ KV = '''
             elevation: 4
             left_action_items: [["arrow-left", lambda x: root.go_back()]]
 
-        ScrollView:  # Add this wrapper
+        ScrollView:
             MDBoxLayout:
                 orientation: "vertical"
                 spacing: "24dp"
@@ -205,42 +205,41 @@ KV = '''
                 size_hint_y: None
                 height: self.minimum_height  
 
-
-            MDCard:
-                id: admin_login_card
-                orientation: "vertical"
-                padding: "24dp"
-                spacing: "24dp"
-                size_hint: None, None
-                size: "400dp", "300dp"
-                pos_hint: {"center_x": 0.5}
-                md_bg_color: self.theme_cls.bg_dark if self.theme_cls.theme_style == "Dark" else self.theme_cls.bg_light
-
-                MDTextField:
-                    id: username_field
-                    hint_text: "Username"
-                    icon_right: "account"
-                    mode: "rectangle"
-
-                MDTextField:
-                    id: password_field
-                    hint_text: "Password"
-                    icon_right: "lock"
-                    password: True
-                    mode: "rectangle"
-
-                MDRaisedButton:
-                    text: "LOGIN"
+                MDCard:
+                    id: admin_login_card
+                    orientation: "vertical"
+                    padding: "24dp"
+                    spacing: "24dp"
                     size_hint: None, None
-                    size: "200dp", "48dp"
+                    size: "400dp", "300dp"
                     pos_hint: {"center_x": 0.5}
-                    on_release: root.do_admin_login()
+                    md_bg_color: self.theme_cls.bg_dark if self.theme_cls.theme_style == "Dark" else self.theme_cls.bg_light
 
-                MDLabel:
-                    text: "Default: KFFS / KNMER-1813"
-                    halign: "center"
-                    theme_text_color: "Hint"
-                    font_style: "Caption"
+                    MDTextField:
+                        id: username_field
+                        hint_text: "Username"
+                        icon_right: "account"
+                        mode: "rectangle"
+
+                    MDTextField:
+                        id: password_field
+                        hint_text: "Password"
+                        icon_right: "lock"
+                        password: True
+                        mode: "rectangle"
+
+                    MDRaisedButton:
+                        text: "LOGIN"
+                        size_hint: None, None
+                        size: "200dp", "48dp"
+                        pos_hint: {"center_x": 0.5}
+                        on_release: root.do_admin_login()
+
+                    MDLabel:
+                        text: "Default: KFFS / KNMER-1813"
+                        halign: "center"
+                        theme_text_color: "Hint"
+                        font_style: "Caption"
 
 <AdminDashboardScreen>:
     MDBoxLayout:
