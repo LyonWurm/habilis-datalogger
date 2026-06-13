@@ -158,7 +158,6 @@ class FieldApp(MDApp):
 
         # Screen manager
         sm = ScreenManager()
-        sm = ScreenManager()
         sm.size_hint = (1, 1)
         sm.pos_hint = {'x': 0, 'y': 0}
         sm.add_widget(LoginScreen(name="login"))
@@ -176,8 +175,14 @@ class FieldApp(MDApp):
         return sm
 
     def on_start(self):
-        if not ANDROID_AVAILABLE:
+        if ANDROID_AVAILABLE:
+            self.permission_manager.request_all_permissions(self._on_permissions_result)
+        else:
             self._check_saved_credentials()
+
+    def _on_permissions_result(self, granted):
+        self.permissions_granted = granted
+        self._check_saved_credentials()
 
     def _check_saved_credentials(self):
         """Check for saved login credentials"""

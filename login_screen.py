@@ -150,6 +150,7 @@ class LoginScreen(MDScreen):
 
         self._start_qr_scan()
 
+    @mainthread
     def _qr_permission_callback(self, permissions, results):
         """Called after QR camera permission request"""
         if all(results):
@@ -158,6 +159,7 @@ class LoginScreen(MDScreen):
             self.show_message("Camera permission denied. Please enter QR data manually.")
             self.show_qr_input_dialog()
 
+    @mainthread
     def _camera_permission_for_qr(self, permissions, results):
         """Called after camera permission request for QR"""
         if all(results):
@@ -322,34 +324,6 @@ class LoginScreen(MDScreen):
         except Exception as e:
             self.show_message(f"Error: {str(e)}")
 
-    def test_dark_mode(self):
-        """Simple test for dark mode"""
-        from kivymd.app import MDApp
-        app = MDApp.get_running_app()
-
-        if app.theme_cls.theme_style == "Light":
-            app.theme_cls.theme_style = "Dark"
-            if hasattr(self, 'theme_switch'):
-                self.theme_switch.active = True
-        else:
-            app.theme_cls.theme_style = "Light"
-            if hasattr(self, 'theme_switch'):
-                self.theme_switch.active = False
-
-        # Save preference
-        data_dir = get_data_dir()
-        prefs_file = data_dir / "preferences.json"
-
-        if prefs_file.exists():
-            with open(prefs_file) as f:
-                prefs = json.load(f)
-        else:
-            prefs = {}
-
-        prefs['theme_style'] = app.theme_cls.theme_style
-        with open(prefs_file, 'w') as f:
-            json.dump(prefs, f, indent=2)
-
     def open_menu(self):
         """Open dropdown menu from top-left icon"""
         if self.menu:
@@ -394,74 +368,6 @@ class LoginScreen(MDScreen):
     def go_to_admin(self):
         """Navigate to admin login screen"""
         self.manager.current = "admin_login"
-
-    def show_settings(self):
-        """Show settings dialog with Dark/Light mode toggle"""
-        from kivymd.uix.dialog import MDDialog
-        from kivymd.uix.label import MDLabel
-        from kivymd.uix.button import MDRaisedButton
-        from kivymd.uix.boxlayout import MDBoxLayout
-        from kivymd.app import MDApp
-
-        app = MDApp.get_running_app()
-
-        current_theme = "ON" if app.theme_cls.theme_style == "Dark" else "OFF"
-
-        content = MDBoxLayout(
-            orientation='vertical',
-            spacing=10,
-            padding=20,
-            size_hint_y=None,
-            height=150
-        )
-
-        # Dark Mode row
-        dark_row = MDBoxLayout(
-            orientation='horizontal',
-            size_hint_y=None,
-            height=50,
-            spacing=10
-        )
-
-        # Dark Mode button on the left
-        dark_btn = MDRaisedButton(
-            text="Dark Mode",
-            size_hint_x=0.6,
-            height=40,
-            on_release=lambda x: self.toggle_theme()
-        )
-
-        # Status on the right
-        dark_status = MDLabel(
-            text=current_theme,
-            size_hint_x=0.4,
-            halign="center",
-            theme_text_color="Secondary"
-        )
-
-        dark_row.add_widget(dark_btn)
-        dark_row.add_widget(dark_status)
-        content.add_widget(dark_row)
-
-        # Add more settings here in future rows
-        # Example:
-        # language_row = MDBoxLayout(orientation='horizontal', size_hint_y=None, height=50, spacing=10)
-        # ...
-
-        self.settings_dialog = MDDialog(
-            title="Settings",
-            type="custom",
-            content_cls=content,
-            size_hint=(0.9, None),
-            height=250,
-            buttons=[
-                MDRaisedButton(
-                    text="CLOSE",
-                    on_release=lambda x: self.settings_dialog.dismiss()
-                )
-            ]
-        )
-        self.settings_dialog.open()
 
     def toggle_theme(self):
         """Toggle between light and dark mode"""

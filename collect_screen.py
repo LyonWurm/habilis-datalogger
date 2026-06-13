@@ -9,7 +9,7 @@ from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.uix.dialog import MDDialog
 from kivymd.app import MDApp
 from kivy.lang import Builder
-from kivy.clock import Clock
+from kivy.clock import Clock, mainthread
 from pathlib import Path
 import json
 from datetime import datetime
@@ -678,18 +678,16 @@ class CollectScreen(MDScreen):
 
         if ANDROID_AVAILABLE:
             try:
-
-                fine = check_permission(android_perms.Permission.ACCESS_FINE_LOCATION)
-                coarse = check_permission(android_perms.Permission.ACCESS_COARSE_LOCATION)
+                fine = check_permission(Permission.ACCESS_FINE_LOCATION)
+                coarse = check_permission(Permission.ACCESS_COARSE_LOCATION)
                 print(f"GPS permissions - Fine: {fine}, Coarse: {coarse}")
 
                 if not fine and not coarse:
                     print("GPS permission not granted, requesting...")
                     self.show_message("GPS permission not granted. Requesting...")
-                    from android.permissions import request_permissions
                     request_permissions([
-                        android_perms.Permission.ACCESS_FINE_LOCATION,
-                        android_perms.Permission.ACCESS_COARSE_LOCATION
+                        Permission.ACCESS_FINE_LOCATION,
+                        Permission.ACCESS_COARSE_LOCATION
                     ], self._gps_permission_callback)
                     return
             except Exception as e:
@@ -708,6 +706,7 @@ class CollectScreen(MDScreen):
             print(f"GPS error: {e}")
             self.use_mock_gps()
 
+    @mainthread
     def _gps_permission_callback(self, permissions, results):
         """Called after GPS permission request"""
         if all(results):
@@ -2464,6 +2463,7 @@ class CollectScreen(MDScreen):
             traceback.print_exc()
             self.show_message(f"Camera error: {str(e)}")
 
+    @mainthread
     def _camera_permission_callback(self, permissions, results):
         """Called after camera permission request"""
         if all(results):

@@ -205,10 +205,6 @@ KV = '''
                 size_hint_y: None
                 height: self.minimum_height  
 
-        MDBoxLayout:
-            orientation: "vertical"
-            spacing: "24dp"
-            padding: "24dp"
 
             MDCard:
                 id: admin_login_card
