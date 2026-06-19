@@ -2666,3 +2666,12 @@ class CollectScreen(MDScreen):
         if cred_file.exists():
             cred_file.unlink()
         self.manager.current = "login"
+
+    def on_leave(self):
+        """Stop GPS when leaving the collect screen"""
+        try:
+            from plyer import gps
+            gps.stop()
+            print("GPS stopped")
+        except Exception as e:
+            print(f"GPS stop error: {e}")

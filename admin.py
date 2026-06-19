@@ -14,6 +14,7 @@ from kivy.lang import Builder
 from kivy.uix.scrollview import ScrollView
 from kivymd.uix.card import MDSeparator
 from kivymd.uix.card import MDCard
+from functools import partial
 from kivy.clock import Clock
 from pathlib import Path
 import json
@@ -637,6 +638,7 @@ class AdminDashboardScreen(MDScreen):
             size_hint_x=0.6,
             height=40,
             on_release=lambda x: self.toggle_theme()
+
         )
 
         dark_status = MDLabel(
@@ -887,153 +889,82 @@ class SeasonManagementScreen(MDScreen):
             self.add_season_to_list(season_id, data)
 
     def add_season_to_list(self, season_id, data):
-        """Add a single season item to the list UI"""
-        card = MDCard(
-            orientation="vertical",
-            size_hint_y=None,
-            height="140dp",  # Taller to accommodate more info
-            padding="10dp",
-            spacing="5dp",
-            elevation=2
-        )
-
-        # Header with organization and year
-        header = MDBoxLayout(
-            orientation="horizontal",
-            size_hint_y=None,
-            height="30dp"
-        )
+        """Add a single season item to the list UI - OPTIMIZED"""
+        from functools import partial
 
         org = data.get('organization', 'KFFS')
         year = data.get('year', 'Unknown')
         status = data.get('status', 'active')
-
-        # Status indicator
-        status_color = (0.2, 0.8, 0.2, 1) if status == 'active' else (0.5, 0.5, 0.5, 1)
-        status_text = "ACTIVE" if status == 'active' else "CLOSED"
-
-        header.add_widget(
-            MDLabel(
-                text=f"{org} {year}",
-                theme_text_color="Primary",
-                font_style="H6",
-                size_hint_x=0.5
-            )
-        )
-        header.add_widget(
-            MDLabel(
-                text=status_text,
-                theme_text_color="Custom",
-                text_color=status_color,
-                font_style="Subtitle1",
-                size_hint_x=0.3,
-                halign="center"
-            )
-        )
-
-        # Project count
         projects = data.get('projects', 0)
-        header.add_widget(
-            MDLabel(
-                text=f"Projects: {projects}",
-                theme_text_color="Secondary",
-                font_style="Subtitle1",
-                size_hint_x=0.2,
-                halign="right"
-            )
-        )
-        card.add_widget(header)
-
-        # Date range
-        dates = MDBoxLayout(
-            orientation="horizontal",
-            size_hint_y=None,
-            height="25dp",
-            spacing="10dp"
-        )
-
         start = data.get('start_date', 'Not set')
         end = data.get('end_date', 'Not set')
 
-        dates.add_widget(
-            MDLabel(
-                text=f"Start: {start}",
-                theme_text_color="Secondary",
-                font_style="Caption",
-                size_hint_x=0.5
-            )
-        )
-        dates.add_widget(
-            MDLabel(
-                text=f"End: {end}",
-                theme_text_color="Secondary",
-                font_style="Caption",
-                size_hint_x=0.5,
-                halign="right"
-            )
-        )
-        card.add_widget(dates)
+        # Use TwoLineListItem instead of custom MDCard
+        if status == 'active':
+            primary_text = f"{org} {year}  [ACTIVE]"
+            secondary_text = f"Projects: {projects}  |  {start} → {end}"
+        else:
+            closed_by = data.get('closed_by', 'unknown')
+            closed_at = data.get('closed_at', '')
+            primary_text = f"{org} {year}  [CLOSED]"
+            secondary_text = f"Closed: {closed_at} by {closed_by}"
 
-        # Closed info (if closed)
-        if status == 'closed' and 'closed_at' in data:
-            closed_info = MDBoxLayout(
-                orientation="horizontal",
-                size_hint_y=None,
-                height="20dp"
-            )
-            closed_info.add_widget(
-                MDLabel(
-                    text=f"Closed: {data['closed_at']} by {data.get('closed_by', 'unknown')}",
-                    theme_text_color="Hint",
-                    font_style="Caption"
-                )
-            )
-            card.add_widget(closed_info)
+        item = TwoLineListItem(
+            text=primary_text,
+            secondary_text=secondary_text,
+            theme_text_color="Primary",
+            font_style="Subtitle1",
+            _md_bg_color=(0.95, 0.95, 0.95, 1) if status == 'active' else (0.9, 0.9, 0.9, 1)
+        )
 
-        # Action buttons
+        # Add action buttons as a separate widget attached to the item
         actions = MDBoxLayout(
             orientation="horizontal",
             size_hint_y=None,
             height="40dp",
-            spacing="10dp"
+            spacing="8dp",
+            padding=["10dp", "0dp", "10dp", "5dp"]
         )
 
         # View projects button
         view_btn = MDRaisedButton(
-            text="VIEW PROJECTS",
+            text="VIEW",
             size_hint=(None, None),
-            size=("120dp", "35dp"),
-            font_size="11sp",
-            disabled=(status == 'closed'),  # Disable if season is closed
-            on_release=lambda x, s=season_id: self.view_projects(s)
+            size=("70dp", "30dp"),
+            font_size="10sp",
+            disabled=(status == 'closed'),
+            on_release=partial(self.view_projects, season_id)  # ← functools.partial
         )
         actions.add_widget(view_btn)
 
-        # Close season button (only if active)
+        # Close button (only if active)
         if status == 'active':
             close_btn = MDRaisedButton(
                 text="CLOSE",
                 size_hint=(None, None),
-                size=("70dp", "35dp"),
-                font_size="11sp",
-                md_bg_color=(0.8, 0.5, 0.2, 1),  # Orange
-                on_release=lambda x, s=season_id: self.confirm_close_season(s)
+                size=("60dp", "30dp"),
+                font_size="10sp",
+                md_bg_color=(0.8, 0.5, 0.2, 1),
+                on_release=partial(self.confirm_close_season, season_id)  # ← functools.partial
             )
             actions.add_widget(close_btn)
 
-        # Delete button (available to admins)
+        # Delete button
         delete_btn = MDRaisedButton(
             text="DELETE",
             size_hint=(None, None),
-            size=("70dp", "35dp"),
-            font_size="11sp",
+            size=("60dp", "30dp"),
+            font_size="10sp",
             md_bg_color=(0.8, 0.2, 0.2, 1),
-            on_release=lambda x, s=season_id: self.confirm_delete_season(s)
+            on_release=partial(self.confirm_delete_season, season_id)  # ← functools.partial
         )
         actions.add_widget(delete_btn)
 
-        card.add_widget(actions)
-        self.ids.season_list.add_widget(card)
+        # Add actions to the item
+        item.add_widget(actions)
+
+        # Add to list
+        self.ids.season_list.add_widget(item)
 
     def show_add_season_dialog(self):
         """Show dialog to add a new season with dates"""
@@ -1587,238 +1518,136 @@ class ProjectManagementScreen(MDScreen):
         self.dialog.open()
 
     def add_project_to_list(self, project_id, data):
-        """Add a single project item to the list UI"""
-        card = MDCard(
-            orientation="vertical",
-            size_hint_y=None,
-            height="235dp",
-            padding="15dp",
-            spacing="8dp",
-            elevation=2,
-            radius=[10, 10, 10, 10]
-        )
-        top_spacer = MDBoxLayout(
-            size_hint_y=None,
-            height="10dp"
-        )
-        card.add_widget(top_spacer)
-
-        # Header with project ID and name
-        header = MDBoxLayout(
-            orientation="horizontal",
-            size_hint_y=None,
-            height="35dp",
-            spacing="10dp"
-        )
+        """Add a single project item to the list UI - OPTIMIZED"""
+        from functools import partial
 
         project_name = data.get('name', 'Unnamed Project')
         status = data.get('status', 'active')
-
-        status_color = (0.2, 0.8, 0.2, 1) if status == 'active' else (0.5, 0.5, 0.5, 1)
-        status_text = "● ACTIVE" if status == 'active' else "● CLOSED"
-
-        header.add_widget(
-            MDLabel(
-                text=f"Project {project_id}: {project_name}",
-                theme_text_color="Primary",
-                font_style="H6",
-                size_hint_x=0.7
-            )
-        )
-
-        status_label = MDLabel(
-            text=status_text,
-            theme_text_color="Custom",
-            text_color=status_color,
-            font_style="Subtitle1",
-            size_hint_x=0.3,
-            halign="right"
-        )
-        header.add_widget(status_label)
-        card.add_widget(header)
-
-        # Leader info
-        leader_box = MDBoxLayout(
-            orientation="horizontal",
-            size_hint_y=None,
-            height="25dp"
-        )
         project_leader = data.get('leader_name', 'Unassigned')
-        leader_box.add_widget(
-            MDLabel(
-                text=f"👤 Leader: {project_leader}",
-                theme_text_color="Secondary",
-                font_style="Subtitle2"
-            )
-        )
-        card.add_widget(leader_box)
-
-        # Contributors section
         contributors = data.get('contributors', [])
         contributor_names = data.get('contributor_names', [])
-
-        if contributors:
-            display_contributors = contributor_names[:3]
-            remaining = len(contributors) - 3
-            contrib_text = "👥 Contributors: " + ", ".join(display_contributors)
-            if remaining > 0:
-                contrib_text += f" +{remaining} more"
-        else:
-            contrib_text = "👥 No contributors assigned"
-
-        contrib_label = MDLabel(
-            text=contrib_text,
-            theme_text_color="Hint",
-            font_style="Caption",
-            size_hint_y=None,
-            height="20dp"
-        )
-        card.add_widget(contrib_label)
-
-        # Collection count
         collections = data.get('collections', 0)
-        collection_label = MDLabel(
-            text=f"📊 Collections: {collections}",
-            theme_text_color="Hint",
-            font_style="Caption",
-            size_hint_y=None,
-            height="20dp"
-        )
-        card.add_widget(collection_label)
 
-        # Action buttons
+        # Build display text
+        status_indicator = "● ACTIVE" if status == 'active' else "● CLOSED"
+        primary_text = f"Project {project_id}: {project_name}  {status_indicator}"
+
+        # Secondary text with leader and contributor count
+        contrib_count = len(contributors)
+        secondary_text = f"Leader: {project_leader}  |  Contributors: {contrib_count}  |  Collections: {collections}"
+
+        # Create the item
+        item = TwoLineListItem(
+            text=primary_text,
+            secondary_text=secondary_text,
+            theme_text_color="Primary",
+            _md_bg_color=(0.95, 0.95, 0.95, 1) if status == 'active' else (0.9, 0.9, 0.9, 1)
+        )
+
+        # Action buttons container
         actions = MDBoxLayout(
             orientation="horizontal",
             size_hint_y=None,
-            height="45dp",
-            spacing="8dp",
-            padding=["0dp", "5dp", "0dp", "0dp"]
+            height="40dp",
+            spacing="5dp",
+            padding=["5dp", "2dp", "5dp", "2dp"]
         )
 
         app = MDApp.get_running_app()
         current_user = app.current_admin.get("username")
         current_role = app.current_admin.get("role")
         project_leader_username = data.get('leader')
-        status = data.get('status', 'active')
 
-        button_height = "40dp"
-        button_font_size = "11sp"
-        contrib_color = (0.5, 0.3, 0.8, 1)
-        close_color = (0.8, 0.5, 0.2, 1)
-        delete_color = (0.8, 0.2, 0.2, 1)
-
-        # Determine what the current user can do
         can_edit = (current_role == "superadmin" or current_user == project_leader_username)
         is_superadmin = (current_role == "superadmin")
 
-        # Count how many buttons will be shown to calculate spacing
-        button_count = 0
-        if can_edit:
-            button_count += 1
-        if is_superadmin:
-            button_count += 1
-        if can_edit and status == 'active' and (
-                current_role == "superadmin" or current_user == project_leader_username):
-            button_count += 1
+        btn_height = "32dp"
+        btn_font = "9sp"
 
-        # Calculate button width based on count (with 3 columns, each gets equal width)
-        if button_count == 3:
-            button_width = 0.33
-        elif button_count == 2:
-            button_width = 0.5
-        else:
-            button_width = 1.0
-
-        # 1. CONTRIBUTORS button (only visible if user can edit the project)
-        if can_edit:
-            contrib_btn = MDRaisedButton(
+        # CONTRIBUTORS button
+        if can_edit and status == 'active':
+            btn = MDRaisedButton(
                 text="CONTRIBUTORS",
-                size_hint=(button_width, None),
-                height=button_height,
-                font_size=button_font_size,
-                md_bg_color=contrib_color,
-                disabled=(status == 'closed'),
-                on_release=lambda x, p=project_id: self.manage_contributors(p)
+                size_hint=(None, None),
+                size=("90dp", btn_height),
+                font_size=btn_font,
+                md_bg_color=(0.5, 0.3, 0.8, 1),
+                on_release=partial(self.manage_contributors, project_id)
             )
-            actions.add_widget(contrib_btn)
+            actions.add_widget(btn)
 
+        # QR CODE button
         if can_edit or is_superadmin:
-            qr_btn = MDRaisedButton(
-                text="QR CODE",
-                size_hint=(0.2, None),
-                height=button_height,
-                font_size=button_font_size,
-                md_bg_color=(0.3, 0.5, 0.7, 1),  # Blue
-                on_release=lambda x, p=project_id: self.show_project_qr(p)
+            btn = MDRaisedButton(
+                text="QR",
+                size_hint=(None, None),
+                size=("50dp", btn_height),
+                font_size=btn_font,
+                md_bg_color=(0.3, 0.5, 0.7, 1),
+                on_release=partial(self.show_project_qr, project_id)
             )
-            actions.add_widget(qr_btn)
+            actions.add_widget(btn)
 
-        # 2. BAG TAGS button (only visible to superadmin)
+        # BAG TAGS button (superadmin only)
         if is_superadmin:
-            bagtag_btn = MDRaisedButton(
-                text="BAG TAGS",
-                size_hint=(button_width, None),
-                height=button_height,
-                font_size=button_font_size,
-                md_bg_color=(0.6, 0.4, 0.2, 1),  # Brown
-                on_release=lambda x, p=project_id: self.manage_bag_tags(p)
+            btn = MDRaisedButton(
+                text="TAGS",
+                size_hint=(None, None),
+                size=("50dp", btn_height),
+                font_size=btn_font,
+                md_bg_color=(0.6, 0.4, 0.2, 1),
+                on_release=partial(self.manage_bag_tags, project_id)
             )
-            actions.add_widget(bagtag_btn)
+            actions.add_widget(btn)
 
-        # 3. CLOSE button (leader or superadmin, and only if active)
+        # CLOSE button
         can_close = (current_role == "superadmin" or current_user == project_leader_username)
         if can_close and status == 'active':
-            close_btn = MDRaisedButton(
+            btn = MDRaisedButton(
                 text="CLOSE",
-                size_hint=(button_width, None),
-                height=button_height,
-                font_size=button_font_size,
-                md_bg_color=close_color,
-                on_release=lambda x, p=project_id: self.confirm_close_project(p)
+                size_hint=(None, None),
+                size=("55dp", btn_height),
+                font_size=btn_font,
+                md_bg_color=(0.8, 0.5, 0.2, 1),
+                on_release=partial(self.confirm_close_project, project_id)
             )
-            actions.add_widget(close_btn)
+            actions.add_widget(btn)
 
-        # Add spacers if needed to maintain layout
-        if button_count == 1:
-            # Add spacers on both sides to center the single button
-            spacer = MDBoxLayout(size_hint_x=0.33)
-            actions.add_widget(spacer, index=0)
-            actions.add_widget(spacer)
+        item.add_widget(actions)
 
-        card.add_widget(actions)
-
-        # Superadmin additional actions (reassign and delete)
+        # Superadmin extra actions
         if is_superadmin:
-            admin_actions = MDBoxLayout(
+            extra_actions = MDBoxLayout(
                 orientation="horizontal",
                 size_hint_y=None,
-                height="35dp",
-                spacing="8dp"
+                height="30dp",
+                spacing="5dp",
+                padding=["5dp", "0dp", "5dp", "2dp"]
             )
 
             reassign_btn = MDRaisedButton(
-                text="REASSIGN LEADER",
-                size_hint=(0.5, None),
-                height="30dp",
-                font_size="10sp",
+                text="REASSIGN",
+                size_hint=(None, None),
+                size=("75dp", "25dp"),
+                font_size="8sp",
                 md_bg_color=(0.3, 0.3, 0.3, 1),
-                on_release=lambda x, p=project_id: self.show_reassign_dialog(p)
+                on_release=partial(self.show_reassign_dialog, project_id)
             )
-            admin_actions.add_widget(reassign_btn)
+            extra_actions.add_widget(reassign_btn)
 
             delete_btn = MDRaisedButton(
                 text="DELETE",
-                size_hint=(0.5, None),
-                height="30dp",
-                font_size="10sp",
-                md_bg_color=delete_color,
-                on_release=lambda x, p=project_id: self.confirm_delete_project(p)
+                size_hint=(None, None),
+                size=("60dp", "25dp"),
+                font_size="8sp",
+                md_bg_color=(0.8, 0.2, 0.2, 1),
+                on_release=partial(self.confirm_delete_project, project_id)
             )
-            admin_actions.add_widget(delete_btn)
+            extra_actions.add_widget(delete_btn)
 
-            card.add_widget(admin_actions)
+            item.add_widget(extra_actions)
 
-        self.ids.project_list.add_widget(card)
+        self.ids.project_list.add_widget(item)
 
     def open_leader_menu(self):
         """Open dropdown menu to select project leader"""
@@ -2229,7 +2058,8 @@ class ProjectManagementScreen(MDScreen):
                 self.show_message("Contributor removed")
 
     def refresh_list(self):
-        """Load and display all projects for current season"""
+        """Load and display all projects for current season - OPTIMIZED"""
+        # Clear ALL widgets from the list
         self.ids.project_list.clear_widgets()
 
         if not self.current_season_id:
@@ -2241,30 +2071,12 @@ class ProjectManagementScreen(MDScreen):
         self.all_projects = list(season_projects.items())
 
         if not self.all_projects:
-            # Show "no projects" message
-            card = MDCard(
-                orientation="vertical",
-                size_hint_y=None,
-                height="80dp",
-                padding="20dp",
-                spacing="10dp"
+            # Show a simple "no projects" message using OneLineListItem
+            item = OneLineListItem(
+                text="No projects found. Click + to add.",
+                theme_text_color="Secondary"
             )
-            card.add_widget(
-                MDLabel(
-                    text="No projects found for this season.",
-                    halign="center",
-                    theme_text_color="Secondary"
-                )
-            )
-            card.add_widget(
-                MDLabel(
-                    text="Click the + button to add a project.",
-                    halign="center",
-                    theme_text_color="Hint",
-                    font_style="Caption"
-                )
-            )
-            self.ids.project_list.add_widget(card)
+            self.ids.project_list.add_widget(item)
         else:
             for project_id, data in season_projects.items():
                 self.add_project_to_list(project_id, data)
@@ -2510,71 +2322,16 @@ class UserManagementScreen(MDScreen):
             self.add_user_to_list(user_id, data)
 
     def add_user_to_list(self, user_id, data):
-        """Add a single user item to the list UI"""
-        card = MDCard(
-            orientation="vertical",
-            size_hint_y=None,
-            height="190dp",
-            padding="15dp",
-            spacing="5dp",
-            elevation=2,
-            radius=[10, 10, 10, 10]
-        )
-
-        # Header with user ID and name
-        header = MDBoxLayout(
-            orientation="horizontal",
-            size_hint_y=None,
-            height="25dp",
-            spacing="10dp"
-        )
+        """Add a single user item to the list UI - OPTIMIZED"""
+        from functools import partial
 
         name = data.get('name', 'Unknown')
         status = data.get('status', 'active')
         user_type = data.get('user_type', 'seasonal')
-
-        # Status indicator
-        status_color = (0.2, 0.8, 0.2, 1) if status == 'active' else (0.5, 0.5, 0.5, 1)
-        status_text = "●" if status == 'active' else "○"
-
-        # User type badge
-        type_color = (0.3, 0.3, 0.8, 1) if user_type == 'faculty' else (0.3, 0.8, 0.3, 1)
-        type_text = "F" if user_type == 'faculty' else "S"
-
-        header.add_widget(
-            MDLabel(
-                text=f"{user_id}: {name}",
-                theme_text_color="Primary",
-                font_style="H6",
-                size_hint_x=0.6
-            )
-        )
-
-        header.add_widget(
-            MDLabel(
-                text=type_text,
-                theme_text_color="Custom",
-                text_color=type_color,
-                font_style="Subtitle1",
-                size_hint_x=0.1,
-                halign="center"
-            )
-        )
-
-        header.add_widget(
-            MDLabel(
-                text=status_text,
-                theme_text_color="Custom",
-                text_color=status_color,
-                font_style="Subtitle1",
-                size_hint_x=0.1,
-                halign="center"
-            )
-        )
-        card.add_widget(header)
-
-        # Season info
         season_id = data.get('season', 'Not assigned')
+        projects = data.get('projects', [])
+
+        # Get season display
         if season_id != 'Not assigned':
             seasons = load_seasons()
             season_data = seasons.get(season_id, {})
@@ -2584,97 +2341,83 @@ class UserManagementScreen(MDScreen):
         else:
             display_season = "Not assigned"
 
-        season_label = MDLabel(
-            text=f"📅 Season: {display_season}",
-            theme_text_color="Secondary",
-            font_style="Caption",
-            size_hint_y=None,
-            height="20dp"
-        )
-        card.add_widget(season_label)
+        # Build display text
+        type_label = "F" if user_type == 'faculty' else "S"
+        status_dot = "●" if status == 'active' else "○"
+        project_count = len(projects)
 
-        # Projects section
-        projects = data.get('projects', [])
-        if projects:
-            project_text = "📋 Projects: " + ", ".join(projects[:3])
-            if len(projects) > 3:
-                project_text += f" +{len(projects) - 3} more"
-        else:
-            project_text = "📋 No projects assigned"
+        primary_text = f"{user_id}: {name}  [{type_label}] {status_dot}"
+        secondary_text = f"Season: {display_season}  |  Projects: {project_count}"
 
-        project_label = MDLabel(
-            text=project_text,
-            theme_text_color="Secondary",
-            font_style="Caption",
-            size_hint_y=None,
-            height="25dp"
+        item = TwoLineListItem(
+            text=primary_text,
+            secondary_text=secondary_text,
+            theme_text_color="Primary",
+            _md_bg_color=(0.95, 0.95, 0.95, 1) if status == 'active' else (0.9, 0.9, 0.9, 1)
         )
-        card.add_widget(project_label)
 
         # Action buttons
         actions = MDBoxLayout(
             orientation="horizontal",
             size_hint_y=None,
-            height="40dp",
-            spacing="10dp"
+            height="35dp",
+            spacing="5dp",
+            padding=["5dp", "2dp", "5dp", "2dp"]
         )
 
         app = MDApp.get_running_app()
         current_role = app.current_admin.get("role")
-        user_type = data.get('user_type', 'seasonal')
 
-        # Superadmin sees additional actions for faculty users
-        if current_role == "superadmin" and user_type == "faculty":
-            # Add admin-specific buttons: Reset Password, Demote to Seasonal
-            pass
+        btn_height = "30dp"
+        btn_font = "9sp"
 
         if current_role in ["admin", "superadmin"]:
             assign_btn = MDRaisedButton(
-                text="ASSIGN PROJECTS",
-                size_hint=(0.5, None),
-                height="35dp",
-                font_size="10sp",
+                text="ASSIGN",
+                size_hint=(None, None),
+                size=("60dp", btn_height),
+                font_size=btn_font,
                 md_bg_color=(0.3, 0.5, 0.8, 1),
-                on_release=lambda x, u=user_id: self.manage_user_projects(u)
+                on_release=partial(self.manage_user_projects, user_id)
             )
             actions.add_widget(assign_btn)
 
             if status == 'active':
                 deactivate_btn = MDRaisedButton(
                     text="DEACTIVATE",
-                    size_hint=(0.5, None),
-                    height="35dp",
-                    font_size="10sp",
+                    size_hint=(None, None),
+                    size=("80dp", btn_height),
+                    font_size=btn_font,
                     md_bg_color=(0.8, 0.2, 0.2, 1),
-                    on_release=lambda x, u=user_id: self.deactivate_user(u)
+                    on_release=partial(self.deactivate_user, user_id)
                 )
                 actions.add_widget(deactivate_btn)
             else:
                 reactivate_btn = MDRaisedButton(
                     text="REACTIVATE",
-                    size_hint=(0.5, None),
-                    height="35dp",
-                    font_size="10sp",
+                    size_hint=(None, None),
+                    size=("80dp", btn_height),
+                    font_size=btn_font,
                     md_bg_color=(0.2, 0.6, 0.2, 1),
-                    on_release=lambda x, u=user_id: self.reactivate_user(u)
+                    on_release=partial(self.reactivate_user, user_id)
                 )
                 actions.add_widget(reactivate_btn)
 
-        card.add_widget(actions)
+        item.add_widget(actions)
 
-        # Delete button only for superadmin
+        # Delete button (superadmin only)
         if current_role == "superadmin":
             delete_btn = MDRaisedButton(
-                text="DELETE USER",
-                size_hint_y=None,
-                height="30dp",
-                font_size="10sp",
+                text="DELETE",
+                size_hint=(None, None),
+                size=("60dp", "25dp"),
+                font_size="8sp",
                 md_bg_color=(0.8, 0.2, 0.2, 1),
-                on_release=lambda x, u=user_id: self.confirm_delete_user(u)
+                on_release=partial(self.confirm_delete_user, user_id)
             )
-            card.add_widget(delete_btn)
+            item.add_widget(delete_btn)
 
-        self.ids.user_list.add_widget(card)
+        self.ids.user_list.add_widget(item)
 
     def test_button(self):
         print("🔵🔵🔵 BUTTON WAS CLICKED! 🔵🔵🔵")
@@ -3331,116 +3074,20 @@ class AllProjectsScreen(MDScreen):
         self.apply_filter(self.current_filter)
 
     def add_project_to_list(self, project):
-        """Add a single project item to the list UI"""
-        card = MDCard(
-            orientation="vertical",
-            size_hint_y=None,
-            height="160dp",
-            padding="15dp",
-            spacing="5dp",
-            elevation=2,
-            radius=[10, 10, 10, 10]
-        )
-
-        # Status color
-        status_color = (0.2, 0.8, 0.2, 1) if project['status'] == 'active' else (0.5, 0.5, 0.5, 1)
+        """Add a single project item to the list UI - OPTIMIZED"""
         status_text = "ACTIVE" if project['status'] == 'active' else "CLOSED"
 
-        # Header with project ID and name
-        header = MDBoxLayout(
-            orientation="horizontal",
-            size_hint_y=None,
-            height="35dp",
-            spacing="10dp"
+        primary_text = f"{project['id']}: {project['name']}  [{status_text}]"
+        secondary_text = f"Season: {project['season']}  |  Leader: {project['leader']}  |  Collections: {project['collections']}  |  Contributors: {project['contributors']}"
+
+        item = TwoLineListItem(
+            text=primary_text,
+            secondary_text=secondary_text,
+            theme_text_color="Primary",
+            _md_bg_color=(0.95, 0.95, 0.95, 1) if project['status'] == 'active' else (0.9, 0.9, 0.9, 1)
         )
 
-        header.add_widget(
-            MDLabel(
-                text=f"{project['id']}: {project['name']}",
-                theme_text_color="Primary",
-                font_style="H6",
-                size_hint_x=0.6
-            )
-        )
-
-        header.add_widget(
-            MDLabel(
-                text=status_text,
-                theme_text_color="Custom",
-                text_color=status_color,
-                font_style="Subtitle1",
-                size_hint_x=0.2,
-                halign="center"
-            )
-        )
-        card.add_widget(header)
-
-        # Season and leader info
-        info_box = MDBoxLayout(
-            orientation="horizontal",
-            size_hint_y=None,
-            height="25dp",
-            spacing="10dp"
-        )
-
-        info_box.add_widget(
-            MDLabel(
-                text=f"📅 {project['season']}",
-                theme_text_color="Secondary",
-                font_style="Subtitle2",
-                size_hint_x=0.5
-            )
-        )
-        info_box.add_widget(
-            MDLabel(
-                text=f"👤 {project['leader']}",
-                theme_text_color="Secondary",
-                font_style="Subtitle2",
-                size_hint_x=0.5,
-                halign="right"
-            )
-        )
-        card.add_widget(info_box)
-
-        # Stats
-        stats_box = MDBoxLayout(
-            orientation="horizontal",
-            size_hint_y=None,
-            height="25dp",
-            spacing="10dp"
-        )
-
-        stats_box.add_widget(
-            MDLabel(
-                text=f"📊 Collections: {project['collections']}",
-                theme_text_color="Hint",
-                font_style="Caption",
-                size_hint_x=0.5
-            )
-        )
-        stats_box.add_widget(
-            MDLabel(
-                text=f"👥 Contributors: {project['contributors']}",
-                theme_text_color="Hint",
-                font_style="Caption",
-                size_hint_x=0.5,
-                halign="right"
-            )
-        )
-        card.add_widget(stats_box)
-
-        # Description (if exists)
-        if project.get('description'):
-            desc_label = MDLabel(
-                text=project['description'][:60] + ("..." if len(project['description']) > 60 else ""),
-                theme_text_color="Secondary",
-                font_style="Caption",
-                size_hint_y=None,
-                height="30dp"
-            )
-            card.add_widget(desc_label)
-
-        self.ids.project_list.add_widget(card)
+        self.ids.project_list.add_widget(item)
 
     def filter_list(self, search_text):
         """Filter projects by search text"""
@@ -3557,102 +3204,22 @@ class AllUsersScreen(MDScreen):
         self.apply_filter(self.current_filter)
 
     def add_user_to_list(self, user):
-        """Add a single user item to the list UI"""
-        card = MDCard(
-            orientation="vertical",
-            size_hint_y=None,
-            height="150dp",
-            padding="15dp",
-            spacing="5dp",
-            elevation=2,
-            radius=[10, 10, 10, 10]
+        """Add a single user item to the list UI - OPTIMIZED"""
+        type_label = "F" if user['user_type'] == 'faculty' else "S"
+        status_dot = "●" if user['status'] == 'active' else "○"
+        project_count = len(user.get('projects', []))
+
+        primary_text = f"{user['id']}: {user['name']}  [{type_label}] {status_dot}"
+        secondary_text = f"Season: {user['season']}  |  Projects: {project_count}  |  Created: {user['created_at']}"
+
+        item = TwoLineListItem(
+            text=primary_text,
+            secondary_text=secondary_text,
+            theme_text_color="Primary",
+            _md_bg_color=(0.95, 0.95, 0.95, 1) if user['status'] == 'active' else (0.9, 0.9, 0.9, 1)
         )
 
-        # Status and type colors
-        status_color = (0.2, 0.8, 0.2, 1) if user['status'] == 'active' else (0.5, 0.5, 0.5, 1)
-        status_text = "●" if user['status'] == 'active' else "○"
-
-        type_color = (0.3, 0.3, 0.8, 1) if user['user_type'] == 'faculty' else (0.3, 0.8, 0.3, 1)
-        type_text = "F" if user['user_type'] == 'faculty' else "S"
-
-        # Header with user ID and name
-        header = MDBoxLayout(
-            orientation="horizontal",
-            size_hint_y=None,
-            height="30dp",
-            spacing="10dp"
-        )
-
-        header.add_widget(
-            MDLabel(
-                text=f"{user['id']}: {user['name']}",
-                theme_text_color="Primary",
-                font_style="H6",
-                size_hint_x=0.6
-            )
-        )
-
-        header.add_widget(
-            MDLabel(
-                text=type_text,
-                theme_text_color="Custom",
-                text_color=type_color,
-                font_style="Subtitle1",
-                size_hint_x=0.15,
-                halign="center"
-            )
-        )
-
-        header.add_widget(
-            MDLabel(
-                text=status_text,
-                theme_text_color="Custom",
-                text_color=status_color,
-                font_style="Subtitle1",
-                size_hint_x=0.15,
-                halign="center"
-            )
-        )
-        card.add_widget(header)
-
-        # Season info
-        season_label = MDLabel(
-            text=f"📅 Season: {user['season']}",
-            theme_text_color="Secondary",
-            font_style="Caption",
-            size_hint_y=None,
-            height="25dp"
-        )
-        card.add_widget(season_label)
-
-        # Projects
-        if user['projects']:
-            projects_text = "📋 Projects: " + ", ".join(user['projects'][:3])
-            if len(user['projects']) > 3:
-                projects_text += f" +{len(user['projects']) - 3} more"
-        else:
-            projects_text = "📋 No projects assigned"
-
-        projects_label = MDLabel(
-            text=projects_text,
-            theme_text_color="Secondary",
-            font_style="Caption",
-            size_hint_y=None,
-            height="25dp"
-        )
-        card.add_widget(projects_label)
-
-        # Created info
-        created_label = MDLabel(
-            text=f"📅 Created: {user['created_at']}",
-            theme_text_color="Hint",
-            font_style="Caption",
-            size_hint_y=None,
-            height="20dp"
-        )
-        card.add_widget(created_label)
-
-        self.ids.user_list.add_widget(card)
+        self.ids.user_list.add_widget(item)
 
     def filter_list(self, search_text):
         """Filter users by search text"""
