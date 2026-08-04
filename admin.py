@@ -190,8 +190,6 @@ KV = '''
 <AdminLoginScreen>:
     MDBoxLayout:
         orientation: "vertical"
-        size_hint: (1, 1)  
-        pos_hint: {'x': 0, 'y': 0}      
 
         MDTopAppBar:
             title: "Admin Access"
@@ -201,46 +199,43 @@ KV = '''
         ScrollView:
             MDBoxLayout:
                 orientation: "vertical"
-                spacing: "24dp"
+                spacing: "16dp"
                 padding: "24dp"
                 size_hint_y: None
-                height: self.minimum_height  
+                height: self.minimum_height
 
-                MDCard:
-                    id: admin_login_card
-                    orientation: "vertical"
-                    padding: "24dp"
-                    spacing: "24dp"
-                    size_hint: None, None
-                    size: "400dp", "300dp"
+                MDTextField:
+                    id: username_field
+                    hint_text: "Username"
+                    icon_right: "account"
+                    mode: "rectangle"
+                    size_hint_y: None
+                    height: "50dp"
+
+                MDTextField:
+                    id: password_field
+                    hint_text: "Password"
+                    icon_right: "lock"
+                    password: True
+                    mode: "rectangle"
+                    size_hint_y: None
+                    height: "50dp"
+
+                MDRaisedButton:
+                    text: "LOGIN"
+                    size_hint_x: 0.5
+                    size_hint_y: None
+                    height: "48dp"
                     pos_hint: {"center_x": 0.5}
-                    md_bg_color: self.theme_cls.bg_dark if self.theme_cls.theme_style == "Dark" else self.theme_cls.bg_light
+                    on_release: root.do_admin_login()
 
-                    MDTextField:
-                        id: username_field
-                        hint_text: "Username"
-                        icon_right: "account"
-                        mode: "rectangle"
-
-                    MDTextField:
-                        id: password_field
-                        hint_text: "Password"
-                        icon_right: "lock"
-                        password: True
-                        mode: "rectangle"
-
-                    MDRaisedButton:
-                        text: "LOGIN"
-                        size_hint: None, None
-                        size: "200dp", "48dp"
-                        pos_hint: {"center_x": 0.5}
-                        on_release: root.do_admin_login()
-
-                    MDLabel:
-                        text: "Default: KFFS / KNMER-1813"
-                        halign: "center"
-                        theme_text_color: "Hint"
-                        font_style: "Caption"
+                MDLabel:
+                    text: "Default: KFFS / KNMER-1813"
+                    halign: "center"
+                    theme_text_color: "Hint"
+                    font_style: "Caption"
+                    size_hint_y: None
+                    height: "20dp"                   
 
 <AdminDashboardScreen>:
     MDBoxLayout:
@@ -581,12 +576,14 @@ class AdminDashboardScreen(MDScreen):
         self.update_list_items()
 
     def update_list_items(self):
-        """Update the dashboard list based on user role"""
+        """Update the dashboard list based on user role - OPTIMIZED"""
         list_widget = self.ids.admin_options_list
-        list_widget.clear_widgets()
 
-        app = MDApp.get_running_app()
-        role = app.current_admin.get("role", "admin")
+        # Only rebuild if list is empty or different
+        if len(list_widget.children) > 0:
+            return
+
+        list_widget.clear_widgets()
 
         # Common items for all admins
         common_items = [
@@ -597,11 +594,10 @@ class AdminDashboardScreen(MDScreen):
             ("View All Users", "view_all_users"),
         ]
 
-        # Add common items
         for text, method in common_items:
             item = OneLineListItem(
                 text=text,
-                on_release=lambda x, m=method: getattr(self, m)()
+                on_release=partial(getattr(self, method))
             )
             list_widget.add_widget(item)
 
@@ -2660,89 +2656,77 @@ class UserManagementScreen(MDScreen):
         return f"{next_id:02d}"
 
     def manage_user_projects(self, user_id):
-        """Open dialog to manage user's project assignments"""
+        """Open dialog to manage user's project assignments - OPTIMIZED"""
+        from functools import partial
+
         users = load_users()
         user = users.get(user_id, {})
 
-        content = MDBoxLayout(
-            orientation="vertical",
-            spacing="10dp",
-            padding="20dp",
-            size_hint_y=None,
-            height="300dp"
-        )
+        # Create a simple list using MDList
+        list_container = MDList()
 
-        content.add_widget(
-            MDLabel(
-                text=f"Projects for {user_id}: {user.get('name')}",
-                theme_text_color="Primary",
-                font_style="H6",
-                size_hint_y=None,
-                height="30dp"
-            )
-        )
+        user_projects = user.get('projects', [])
 
-        projects = user.get('projects', [])
-
-        if projects:
-            for i, project_id in enumerate(projects):
-                project_box = MDBoxLayout(
-                    orientation="horizontal",
-                    size_hint_y=None,
-                    height="40dp",
-                    spacing="10dp"
-                )
-
-                # Get project name for display
+        if user_projects:
+            for i, project_id in enumerate(user_projects):
                 all_projects = load_projects()
                 project_data = all_projects.get(project_id, {})
                 project_name = project_data.get('name', '')
                 display_text = f"Project {project_id}: {project_name}" if project_name else f"Project {project_id}"
 
-                project_box.add_widget(
-                    MDLabel(
-                        text=display_text,
-                        size_hint_x=0.7,
-                        halign="left"
-                    )
+                # Use TwoLineListItem with a remove button via a separate box
+                item = TwoLineListItem(
+                    text=display_text,
+                    secondary_text="Click to remove",
+                    on_release=partial(self.remove_user_project, user_id, i)
                 )
-
-                remove_btn = MDRaisedButton(
-                    text="REMOVE",
-                    size_hint=(None, None),
-                    size=("70dp", "30dp"),
-                    font_size="10sp",
-                    md_bg_color=(0.8, 0.2, 0.2, 1),
-                    on_release=lambda x, u=user_id, idx=i: self.remove_user_project(u, idx)
-                )
-                project_box.add_widget(remove_btn)
-
-                content.add_widget(project_box)
+                list_container.add_widget(item)
         else:
-            content.add_widget(
-                MDLabel(
-                    text="No projects assigned",
-                    theme_text_color="Hint",
-                    size_hint_y=None,
-                    height="30dp"
-                )
+            item = OneLineListItem(
+                text="No projects assigned",
+                theme_text_color="Hint"
             )
+            list_container.add_widget(item)
 
-        # ADD PROJECT button - now opens dropdown directly
+        # Wrap in ScrollView
+        scroll = ScrollView()
+        scroll.add_widget(list_container)
+
+        # Add a button below
         add_btn = MDRaisedButton(
             text="ADD PROJECT",
             size_hint_y=None,
             height="45dp",
-            on_release=lambda x: self.open_add_project_dropdown(user_id)
+            on_release=partial(self.open_add_project_dropdown, user_id)
         )
+
+        # Combine in a BoxLayout
+        content = MDBoxLayout(
+            orientation="vertical",
+            spacing="10dp",
+            padding="10dp",
+            size_hint_y=None
+        )
+        content.add_widget(MDLabel(
+            text=f"Projects for {user_id}: {user.get('name')}",
+            theme_text_color="Primary",
+            font_style="H6",
+            size_hint_y=None,
+            height="30dp"
+        ))
+        content.add_widget(scroll)
         content.add_widget(add_btn)
 
         self.project_dialog = MDDialog(
             title="Manage Projects",
             type="custom",
             content_cls=content,
+            size_hint=(0.9, 0.8),
             buttons=[
-                MDFlatButton(text="DONE", on_release=lambda x: self.project_dialog.dismiss())
+                MDFlatButton(
+                    text="DONE",
+                    on_release=partial(lambda x: self.project_dialog.dismiss())
+                )
             ]
         )
         self.project_dialog.open()
@@ -3334,96 +3318,50 @@ class BagTagManagementScreen(MDScreen):
             self.show_new_config_form()
 
     def show_existing_config(self):
-        """Show existing tag configuration"""
-        # Clear and build UI for existing config
+        """Show existing tag configuration - OPTIMIZED"""
         self.ids.main_layout.clear_widgets()
 
-        # Header info
-        header = MDCard(
-            orientation="vertical",
-            padding="15dp",
-            spacing="10dp",
-            size_hint_y=None,
-            height="120dp"
+        # Use OneLineListItem for simple display
+        title_item = OneLineListItem(
+            text=f"Tag Config: Project {self.current_project_id}",
+            theme_text_color="Primary"
         )
-        header.add_widget(
-            MDLabel(
-                text=f"Tag Configuration for Project {self.current_project_id}",
-                theme_text_color="Primary",
-                font_style="H5",
-                halign="center"
-            )
-        )
-        header.add_widget(
-            MDLabel(
-                text=f"{self.current_project_data.get('name', 'Unnamed Project')}",
-                theme_text_color="Secondary",
-                halign="center"
-            )
-        )
-        self.ids.main_layout.add_widget(header)
+        self.ids.main_layout.add_widget(title_item)
 
-        # Custom fields display
-        fields_card = MDCard(
-            orientation="vertical",
-            padding="15dp",
-            spacing="5dp",
-            size_hint_y=None,
-            height=f"{60 + len(self.custom_fields) * 40}dp"
+        subtitle_item = OneLineListItem(
+            text=self.current_project_data.get('name', 'Unnamed Project'),
+            theme_text_color="Secondary"
         )
-        fields_card.add_widget(
-            MDLabel(
-                text="Custom Fields:",
-                theme_text_color="Secondary",
-                font_style="Subtitle1"
-            )
-        )
+        self.ids.main_layout.add_widget(subtitle_item)
 
+        # Show custom fields as simple list items
         for i, field in enumerate(self.custom_fields):
-            field_box = MDBoxLayout(
-                orientation="horizontal",
-                size_hint_y=None,
-                height="35dp",
-                spacing="10dp"
+            item = OneLineListItem(
+                text=f"{i + 1}. {field.get('label', 'Untitled')} [{field.get('type', 'text')}]",
+                theme_text_color="Secondary"
             )
-            field_box.add_widget(
-                MDLabel(
-                    text=f"{i + 1}. {field.get('label', 'Untitled')}",
-                    size_hint_x=0.8
-                )
-            )
-            field_box.add_widget(
-                MDLabel(
-                    text=f"[{field.get('type', 'text')}]",
-                    theme_text_color="Hint",
-                    size_hint_x=0.2,
-                    halign="right"
-                )
-            )
-            fields_card.add_widget(field_box)
+            self.ids.main_layout.add_widget(item)
 
-        self.ids.main_layout.add_widget(fields_card)
-
-        # Action buttons
+        # Add actions
         actions = MDBoxLayout(
             orientation="horizontal",
             size_hint_y=None,
-            height="60dp",
-            spacing="15dp",
+            height="50dp",
+            spacing="10dp",
             padding="10dp"
         )
 
         generate_btn = MDRaisedButton(
             text="GENERATE TAGS",
             md_bg_color=(0.2, 0.6, 0.2, 1),
-            on_release=lambda x: self.show_generate_dialog()
+            on_release=partial(self.show_generate_dialog)
         )
         actions.add_widget(generate_btn)
 
         edit_btn = MDRaisedButton(
             text="EDIT CONFIG",
             md_bg_color=(0.8, 0.5, 0.2, 1),
-            on_release=lambda x: self.edit_config()
+            on_release=partial(self.edit_config)
         )
         actions.add_widget(edit_btn)
 

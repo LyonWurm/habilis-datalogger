@@ -12,6 +12,7 @@ from kivy.lang import Builder
 from kivy.clock import Clock, mainthread
 from pathlib import Path
 import json
+import jnius
 from datetime import datetime
 from kivy.uix.widget import Widget
 from admin import get_data_dir
