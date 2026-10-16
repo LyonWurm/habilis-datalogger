@@ -6,10 +6,11 @@ source.dir = .
 source.include_exts = py,png,jpg,kv,atlas,json
 source.exclude_dirs = tests, bin, venv, .git, __pycache__, docs
 version = 0.1
+# Updated permissions: use Android 13+ media permissions instead of deprecated READ/WRITE_EXTERNAL_STORAGE
 requirements = python3,kivy==2.3.0,kivymd==1.1.1,https://github.com/HyTurtle/plyer/archive/master.zip,requests,qrcode,pillow,android,pyjnius
 orientation = portrait
 fullscreen = 0
-android.permissions = INTERNET, ACCESS_FINE_LOCATION, ACCESS_COARSE_LOCATION, CAMERA, ACCESS_NETWORK_STATE, READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE
+android.permissions = INTERNET, ACCESS_FINE_LOCATION, ACCESS_COARSE_LOCATION, CAMERA, ACCESS_NETWORK_STATE, READ_MEDIA_IMAGES, READ_MEDIA_VIDEO
 android.api = 33
 android.minapi = 21
 android.ndk = 25c
