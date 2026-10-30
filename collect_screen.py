@@ -2408,19 +2408,15 @@ class CollectScreen(MDScreen):
             from jnius import autoclass
             from android import activity
 
-            # Get package name
             PythonActivity = autoclass('org.kivy.android.PythonActivity')
             context = PythonActivity.mActivity
             package_name = context.getPackageName()
-            print(f"Package name: {package_name}")
-
-            # Android classes
             Intent = autoclass('android.content.Intent')
             MediaStore = autoclass('android.provider.MediaStore')
             File = autoclass('java.io.File')
             FileProvider = autoclass('androidx.core.content.FileProvider')
 
-            # Create file path
+            # Build file path
             timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
             filename = f"photo_{timestamp}.jpg"
             data_dir = get_data_dir()
@@ -2428,42 +2424,62 @@ class CollectScreen(MDScreen):
             photos_dir.mkdir(parents=True, exist_ok=True)
             filepath = photos_dir / filename
 
-            print(f"Photo path: {filepath}")
-
-            # Create file and URI - authority MUST match ${applicationId}.fileprovider
+            # Create java.io.File for the path
             file = File(str(filepath))
-            authority = 'org.kffs.habilisdatalogger.fileprovider'
-            print(f"Authority: {authority}")
 
-            uri = FileProvider.getUriForFile(
-                context,
-                authority,
-                file
-            )
+            # Determine authority dynamically (must match the provider entry in AndroidManifest)
+            # Prefer plyer.camera.FILEPROVIDER_AUTHORITY if plyer set it, otherwise use package.fileprovider
+            try:
+                from plyer import camera as plyer_camera
+                authority = getattr(plyer_camera, 'FILEPROVIDER_AUTHORITY', f"{package_name}.fileprovider")
+            except Exception:
+                authority = f"{package_name}.fileprovider"
 
-            print(f"URI: {uri}")
+            # Build content:// URI via FileProvider
+            uri = FileProvider.getUriForFile(context, authority, file)
 
-            # Create intent
+            # Create intent and attach output URI
             intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
             intent.putExtra(MediaStore.EXTRA_OUTPUT, uri)
-            intent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
+            # Grant both read and write for the camera app
+            intent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION)
 
-            # Store for callback
+            # Explicitly grant URI permissions to any activity that can handle the intent (works around provider restrictions)
+            pm = context.getPackageManager()
+            resolve_info_list = pm.queryIntentActivities(intent, 0)
+            # resolve_info_list is a Java List — iterate safely
+            for i in range(resolve_info_list.size()):
+                ri = resolve_info_list.get(i)
+                pkg = ri.activityInfo.packageName
+                context.grantUriPermission(pkg, uri,
+                                           Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION)
+
+            # Save pending path for on_activity_result
             self.pending_photo_path = filepath
             self.pending_photo_filename = filename
 
-            # Start camera
+            # Launch camera
             activity.startActivityForResult(intent, 1001)
 
             # Add to photos list optimistically
-            self.photos.append(filename)
+            if filename not in self.photos:
+                self.photos.append(filename)
             self.show_message("Opening camera...")
 
         except Exception as e:
-            print(f"Camera error: {e}")
+            # Fallback: try plyer camera (may work on some devices)
+            import traceback
+            print(f"Native camera intent failed: {e}")
             traceback.print_exc()
-            self.show_message(f"Camera error: {str(e)}")
-
+            try:
+                from plyer import camera as plyer_camera
+                # plyer.camera.take_picture(filename=..., on_complete=...) expects a string path
+                plyer_camera.take_picture(filename=str(filepath), on_complete=self.on_photo_captured)
+                self.show_message("Opening camera (fallback)...")
+            except Exception as e2:
+                print(f"plyer.camera.take_picture failed: {e2}")
+                traceback.print_exc()
+                self.show_message(f"Camera error: {e2}")
     @mainthread
     def _camera_permission_callback(self, permissions, results):
         """Called after camera permission request"""
