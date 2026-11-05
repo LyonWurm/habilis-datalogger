@@ -545,7 +545,7 @@ class AdminDashboardScreen(MDScreen):
             width_mult=4,
         )
         self.menu.open()
-        
+
     def menu_callback(self, item):
         self.menu.dismiss()
         if item == "seasons":
