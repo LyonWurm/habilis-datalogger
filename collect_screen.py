@@ -1492,53 +1492,51 @@ class CollectScreen(MDScreen):
 
         menu_items = [
             {
+                "viewclass": "OneLineListItem",
                 "text": "My Observations",
-                "leading_icon": "format-list-bulleted",
                 "on_release": lambda x="my_obs": self.menu_callback("my_obs"),
             },
             {
+                "viewclass": "OneLineListItem",
                 "text": "Breadcrumb Trail",
-                "leading_icon": "map-marker-path",
                 "on_release": lambda x="breadcrumb": self.menu_callback("breadcrumb"),
             },
             {
+                "viewclass": "OneLineListItem",
                 "text": "Join Project",
-                "leading_icon": "qrcode",
                 "on_release": lambda x="join_project": self.menu_callback("join_project"),
             },
             {
+                "viewclass": "OneLineListItem",
                 "text": "Sync to Base",
-                "leading_icon": "sync",
                 "on_release": lambda x="sync_to_base": self.menu_callback("sync_to_base"),
             },
             {
+                "viewclass": "OneLineListItem",
                 "text": "Save My Data",
-                "leading_icon": "content-save",
                 "on_release": lambda x="save_my_data": self.menu_callback("save_my_data"),
             },
             {
+                "viewclass": "OneLineListItem",
                 "text": "Export Data",
-                "leading_icon": "export",
                 "on_release": lambda x="export": self.menu_callback("export"),
             },
             {
+                "viewclass": "OneLineListItem",
                 "text": "Settings",
-                "leading_icon": "cog",
                 "on_release": lambda x="settings": self.menu_callback("settings"),
             },
             {
+                "viewclass": "OneLineListItem",
                 "text": "Logout",
-                "leading_icon": "logout",
                 "on_release": lambda x="logout": self.menu_callback("logout"),
             },
         ]
 
         self.menu = MDDropdownMenu(
-            caller=self.ids.top_app_bar.ids.left_actions,
+            caller=self.ids.top_app_bar,
             items=menu_items,
             width_mult=4,
-            position="auto",
-            hor_growth="left",
         )
         self.menu.open()
 

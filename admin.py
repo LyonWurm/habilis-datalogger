@@ -518,35 +518,34 @@ class AdminDashboardScreen(MDScreen):
 
         menu_items = [
             {
+                "viewclass": "OneLineListItem",
                 "text": "Seasons",
-                "leading_icon": "calendar",
                 "on_release": lambda x="seasons": self.menu_callback("seasons"),
             },
             {
+                "viewclass": "OneLineListItem",
                 "text": "Projects",
-                "leading_icon": "account-group",
                 "on_release": lambda x="projects": self.menu_callback("projects"),
             },
             {
+                "viewclass": "OneLineListItem",
                 "text": "Users",
-                "leading_icon": "account",
                 "on_release": lambda x="users": self.menu_callback("users"),
             },
             {
+                "viewclass": "OneLineListItem",
                 "text": "Settings",
-                "leading_icon": "cog",
                 "on_release": lambda x="settings": self.menu_callback("settings"),
             },
         ]
 
         self.menu = MDDropdownMenu(
-            caller=self.ids.top_app_bar.ids.left_actions,
+            caller=self.ids.top_app_bar,
             items=menu_items,
             width_mult=4,
-            position="auto",
         )
         self.menu.open()
-
+        
     def menu_callback(self, item):
         self.menu.dismiss()
         if item == "seasons":

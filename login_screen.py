@@ -331,27 +331,26 @@ class LoginScreen(MDScreen):
 
         menu_items = [
             {
+                "viewclass": "OneLineListItem",  # <-- THIS IS THE FIX
                 "text": "Join Project with QR",
-                "leading_icon": "qrcode-scan",
                 "on_release": lambda x="join_project": self.menu_callback("join_project"),
             },
             {
+                "viewclass": "OneLineListItem",
                 "text": "Admin Login",
-                "leading_icon": "shield-account",
                 "on_release": lambda x="admin": self.menu_callback("admin"),
             },
             {
+                "viewclass": "OneLineListItem",
                 "text": "Settings",
-                "leading_icon": "cog",
                 "on_release": lambda x="settings": self.menu_callback("settings"),
             },
         ]
 
         self.menu = MDDropdownMenu(
-            caller=self.ids.top_app_bar.ids.left_actions,
+            caller=self.ids.top_app_bar,
             items=menu_items,
             width_mult=4,
-            position="auto",
         )
         self.menu.open()
 
