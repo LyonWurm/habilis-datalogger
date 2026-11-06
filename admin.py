@@ -910,7 +910,6 @@ class SeasonManagementScreen(MDScreen):
             secondary_text=secondary_text,
             theme_text_color="Primary",
             font_style="Subtitle1",
-            _md_bg_color=(0.95, 0.95, 0.95, 1) if status == 'active' else (0.9, 0.9, 0.9, 1)
         )
 
         # Add action buttons as a separate widget attached to the item
@@ -1539,7 +1538,6 @@ class ProjectManagementScreen(MDScreen):
             text=primary_text,
             secondary_text=secondary_text,
             theme_text_color="Primary",
-            _md_bg_color=(0.95, 0.95, 0.95, 1) if status == 'active' else (0.9, 0.9, 0.9, 1)
         )
 
         # Action buttons container
@@ -2354,7 +2352,6 @@ class UserManagementScreen(MDScreen):
             text=primary_text,
             secondary_text=secondary_text,
             theme_text_color="Primary",
-            _md_bg_color=(0.95, 0.95, 0.95, 1) if status == 'active' else (0.9, 0.9, 0.9, 1)
         )
 
         # Action buttons
@@ -3076,7 +3073,6 @@ class AllProjectsScreen(MDScreen):
             text=primary_text,
             secondary_text=secondary_text,
             theme_text_color="Primary",
-            _md_bg_color=(0.95, 0.95, 0.95, 1) if project['status'] == 'active' else (0.9, 0.9, 0.9, 1)
         )
 
         self.ids.project_list.add_widget(item)
@@ -3211,7 +3207,6 @@ class AllUsersScreen(MDScreen):
             text=primary_text,
             secondary_text=secondary_text,
             theme_text_color="Primary",
-            _md_bg_color=(0.95, 0.95, 0.95, 1) if user['status'] == 'active' else (0.9, 0.9, 0.9, 1)
         )
 
         self.ids.user_list.add_widget(item)
