@@ -87,6 +87,8 @@ KV = '''
                     size_hint: None, None
                     size: "400dp", "350dp"
                     pos_hint: {"center_x": 0.5}
+                    style: "outlined"
+                    radius: [12, 12, 12, 12]
                     md_bg_color: self.theme_cls.bg_dark if self.theme_cls.theme_style == "Dark" else self.theme_cls.bg_light
 
                     MDLabel:

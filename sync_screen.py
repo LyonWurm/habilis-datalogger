@@ -25,6 +25,8 @@ KV = '''
                     spacing: "16dp"
                     size_hint_y: None
                     height: self.minimum_height
+                    style: "outlined"
+                    radius: [12, 12, 12, 12]
 
                     MDLabel:
                         text: "Pending Data"
@@ -64,6 +66,8 @@ KV = '''
                     spacing: "16dp"
                     size_hint_y: None
                     height: self.minimum_height
+                    style: "outlined"
+                    radius: [12, 12, 12, 12]
 
                     MDLabel:
                         text: "Export Options"

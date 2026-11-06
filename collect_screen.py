@@ -88,6 +88,8 @@ KV = '''
                     spacing: "3dp"
                     size_hint_y: None
                     height: "180dp"
+                    style: "outlined"
+                    radius: [12, 12, 12, 12]
         
                     MDBoxLayout:
                         orientation: "horizontal"
@@ -124,6 +126,8 @@ KV = '''
                     spacing: "16dp"
                     size_hint_y: None
                     height: self.minimum_height
+                    style: "outlined"
+                    radius: [12, 12, 12, 12]
 
                     MDBoxLayout:
                         orientation: "horizontal"
@@ -201,6 +205,8 @@ KV = '''
                     spacing: "16dp"
                     size_hint_y: None
                     height: self.minimum_height
+                    style: "outlined"
+                    radius: [12, 12, 12, 12]
 
                     MDLabel:
                         text: "Collection Information"
@@ -225,6 +231,8 @@ KV = '''
                     spacing: "16dp"
                     size_hint_y: None
                     height: self.minimum_height
+                    style: "outlined"
+                    radius: [12, 12, 12, 12]
 
                     MDLabel:
                         text: "Collection Parameters"
@@ -379,6 +387,8 @@ KV = '''
                     spacing: "16dp"
                     size_hint_y: None
                     height: self.minimum_height
+                    style: "outlined"
+                    radius: [12, 12, 12, 12]
 
                     MDLabel:
                         text: "Observation Notes:"

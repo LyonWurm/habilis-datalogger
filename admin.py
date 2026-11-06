@@ -1213,7 +1213,9 @@ class ProjectManagementScreen(MDScreen):
             size_hint_y=None,
             height="100dp",
             padding="20dp",
-            spacing="10dp"
+            spacing="10dp",
+            style= "outlined",
+            radius= [12, 12, 12, 12]
         )
         card.add_widget(
             MDLabel(
@@ -3375,7 +3377,9 @@ class BagTagManagementScreen(MDScreen):
             orientation="vertical",
             padding="15dp",
             size_hint_y=None,
-            height="80dp"
+            height="80dp",
+            style="outlined",
+            radius= [12, 12, 12, 12]
         )
         title.add_widget(
             MDLabel(
@@ -3393,7 +3397,9 @@ class BagTagManagementScreen(MDScreen):
             padding="10dp",
             spacing="5dp",
             size_hint_y=None,
-            height="360dp"  # Fixed height: header (40) + 5 fields * 64dp
+            height="360dp",  # Fixed height: header (40) + 5 fields * 64dp
+            style = "outlined",
+            radius = [12, 12, 12, 12],
         )
 
         fields_card.add_widget(
@@ -3491,7 +3497,9 @@ class BagTagManagementScreen(MDScreen):
             orientation="vertical",
             padding="15dp",
             size_hint_y=None,
-            height="80dp"
+            height="80dp",
+            style="outlined",
+            radius=[12, 12, 12, 12],
         )
         title.add_widget(
             MDLabel(
@@ -3509,7 +3517,9 @@ class BagTagManagementScreen(MDScreen):
             padding="10dp",
             spacing="5dp",
             size_hint_y=None,
-            height="360dp"
+            height="360dp",
+            style="outlined",
+            radius=[12, 12, 12, 12],
         )
 
         fields_card.add_widget(
