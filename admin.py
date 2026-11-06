@@ -544,6 +544,7 @@ class AdminDashboardScreen(MDScreen):
             items=menu_items,
             width_mult=4,
         )
+        self.menu.check_position_caller(None, None, None)
         self.menu.open()
 
     def menu_callback(self, item):
@@ -1654,6 +1655,7 @@ class ProjectManagementScreen(MDScreen):
         for username, data in admins.items():
             display = f"{username} ({data['role']})"
             menu_items.append({
+                "viewclass": "OneLineListItem",
                 "text": display,
                 "on_release": lambda x=username, d=display: self.set_leader(x, d)
             })
@@ -1853,6 +1855,7 @@ class ProjectManagementScreen(MDScreen):
             if data.get('season') == current_season_id and user_id not in existing_contributors:
                 display = f"{user_id}: {data.get('name', 'Unknown')}"
                 menu_items.append({
+                    "viewclass": "OneLineListItem",
                     "text": display,
                     "on_release": lambda x=user_id, d=display: self.confirm_add_contributor(x, d)
                 })
@@ -2204,6 +2207,7 @@ class ProjectManagementScreen(MDScreen):
         for username, data in admins.items():
             display = f"{username} ({data['role']})"
             menu_items.append({
+                "viewclass": "OneLineListItem",
                 "text": display,
                 "on_release": lambda x=username, d=display: self.set_reassign_leader(x, d)
             })
@@ -2483,10 +2487,12 @@ class UserManagementScreen(MDScreen):
 
         menu_items = [
             {
+                "viewclass": "OneLineListItem",
                 "text": "Seasonal User",
                 "on_release": lambda x="seasonal": self.set_user_type(x)
             },
             {
+                "viewclass": "OneLineListItem",
                 "text": "Faculty (Admin Access)",
                 "on_release": lambda x="faculty": self.set_user_type(x)
             },
@@ -2496,7 +2502,6 @@ class UserManagementScreen(MDScreen):
             caller=self.user_type_button,
             items=menu_items,
             width_mult=3,
-            position="auto",
         )
         self.user_type_menu.open()
 
@@ -2760,6 +2765,7 @@ class UserManagementScreen(MDScreen):
         for project_id, project_name in available_projects:
             display = f"{project_id}: {project_name}"
             menu_items.append({
+                "viewclass": "OneLineListItem",
                 "text": display,
                 "on_release": lambda x=project_id, d=display: self.add_user_project_with_id(user_id, project_id)
             })
@@ -2885,6 +2891,7 @@ class UserManagementScreen(MDScreen):
         for project_id, project_name in available_projects:
             display = f"{project_id}: {project_name}"
             menu_items.append({
+                "viewclass": "OneLineListItem",
                 "text": display,
                 "on_release": lambda x=project_id, d=display: self.set_project_for_user(x, d, user_id)
             })
@@ -3090,14 +3097,17 @@ class AllProjectsScreen(MDScreen):
         """Show filter dropdown menu"""
         menu_items = [
             {
+                "viewclass": "OneLineListItem",
                 "text": "All Projects",
                 "on_release": lambda x="all": self.set_filter("all"),
             },
             {
+                "viewclass": "OneLineListItem",
                 "text": "Active Only",
                 "on_release": lambda x="active": self.set_filter("active"),
             },
             {
+                "viewclass": "OneLineListItem",
                 "text": "Closed Only",
                 "on_release": lambda x="closed": self.set_filter("closed"),
             },
@@ -3221,22 +3231,27 @@ class AllUsersScreen(MDScreen):
         """Show filter dropdown menu"""
         menu_items = [
             {
+                "viewclass": "OneLineListItem",
                 "text": "All Users",
                 "on_release": lambda x="all": self.set_filter("all"),
             },
             {
+                "viewclass": "OneLineListItem",
                 "text": "Active Only",
                 "on_release": lambda x="active": self.set_filter("active"),
             },
             {
+                "viewclass": "OneLineListItem",
                 "text": "Inactive Only",
                 "on_release": lambda x="inactive": self.set_filter("inactive"),
             },
             {
+                "viewclass": "OneLineListItem",
                 "text": "Faculty Only",
                 "on_release": lambda x="faculty": self.set_filter("faculty"),
             },
             {
+                "viewclass": "OneLineListItem",
                 "text": "Seasonal Only",
                 "on_release": lambda x="seasonal": self.set_filter("seasonal"),
             },

@@ -354,6 +354,7 @@ class LoginScreen(MDScreen):
             items=menu_items,
             width_mult=4,
         )
+        self.menu.check_position_caller(None, None, None)
         self.menu.open()
 
     def menu_callback(self, item):
