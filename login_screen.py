@@ -342,11 +342,7 @@ class LoginScreen(MDScreen):
                 "text": "Admin Login",
                 "on_release": lambda x="admin": self.menu_callback("admin"),
             },
-            {
-                "viewclass": "OneLineListItem",
-                "text": "Settings",
-                "on_release": lambda x="settings": self.menu_callback("settings"),
-            },
+
         ]
 
         self.menu = MDDropdownMenu(

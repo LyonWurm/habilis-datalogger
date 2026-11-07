@@ -176,7 +176,7 @@ def init_superadmin():
     admins = load_admins()
     if not admins:
         admins["KFFS"] = {
-            "password_hash": hash_password("KNMER-1813"),
+            "password_hash": hash_password("1813"),
             "role": "superadmin",
             "created_at": datetime.now().isoformat(),
             "created_by": "system"
@@ -230,7 +230,7 @@ KV = '''
                     on_release: root.do_admin_login()
 
                 MDLabel:
-                    text: "Default: KFFS / KNMER-1813"
+                    text: "Default: KFFS / 1813"
                     halign: "center"
                     theme_text_color: "Hint"
                     font_style: "Caption"
@@ -1064,7 +1064,7 @@ class SeasonManagementScreen(MDScreen):
         self.refresh_list()
         self.show_message(f"Season {org} {year} created")
 
-    def confirm_close_season(self, season_id):
+    def confirm_close_season(self, season_id, *args):
         """Confirm manual season closure"""
         seasons = load_seasons()
         season = seasons.get(season_id, {})
@@ -1103,7 +1103,7 @@ class SeasonManagementScreen(MDScreen):
         app.current_season = season_id
         self.manager.current = "project_management"
 
-    def confirm_delete_season(self, season_id):
+    def confirm_delete_season(self, season_id, *args):
         """Confirm season deletion"""
         seasons = load_seasons()
         season = seasons.get(season_id, {})
@@ -2024,7 +2024,7 @@ class ProjectManagementScreen(MDScreen):
         )
         self.confirm_remove_dialog.open()
 
-    def do_remove_contributor(self, user_id):
+    def do_remove_contributor(self, user_id, *args):
         """Actually remove the contributor after confirmation"""
         projects = load_projects()
         users = load_users()
@@ -2085,7 +2085,7 @@ class ProjectManagementScreen(MDScreen):
         app.current_bagtag_project = project_id
         self.manager.current = "bagtag_management"
 
-    def confirm_close_project(self, project_id):
+    def confirm_close_project(self, project_id, *args):
         """Confirm project closure"""
         projects = load_projects()
         project = projects.get(project_id, {})
@@ -2117,7 +2117,7 @@ class ProjectManagementScreen(MDScreen):
             self.refresh_list()
             self.show_message("Project closed")
 
-    def confirm_delete_project(self, project_id):
+    def confirm_delete_project(self, project_id, *args):
         """Confirm project deletion"""
         projects = load_projects()
         project = projects.get(project_id, {})
@@ -2321,7 +2321,6 @@ class UserManagementScreen(MDScreen):
             self.add_user_to_list(user_id, data)
 
     def add_user_to_list(self, user_id, data):
-        """Add a single user item to the list UI - OPTIMIZED"""
         from functools import partial
 
         name = data.get('name', 'Unknown')
@@ -2330,7 +2329,7 @@ class UserManagementScreen(MDScreen):
         season_id = data.get('season', 'Not assigned')
         projects = data.get('projects', [])
 
-        # Get season display
+        # Season display (unchanged)
         if season_id != 'Not assigned':
             seasons = load_seasons()
             season_data = seasons.get(season_id, {})
@@ -2340,7 +2339,6 @@ class UserManagementScreen(MDScreen):
         else:
             display_season = "Not assigned"
 
-        # Build display text
         type_label = "F" if user_type == 'faculty' else "S"
         status_dot = "●" if status == 'active' else "○"
         project_count = len(projects)
@@ -2348,74 +2346,92 @@ class UserManagementScreen(MDScreen):
         primary_text = f"{user_id}: {name}  [{type_label}] {status_dot}"
         secondary_text = f"Season: {display_season}  |  Projects: {project_count}"
 
-        item = TwoLineListItem(
-            text=primary_text,
-            secondary_text=secondary_text,
-            theme_text_color="Primary",
+        # Container — explicit height, vertical stack
+        row = MDCard(
+            orientation="vertical",
+            size_hint_y=None,
+            height="130dp",  # <-- tune this
+            padding="10dp",
+            spacing="4dp",
+            style="outlined",
+            radius=[12, 12, 12, 12],
         )
 
-        # Action buttons
+        # Text block
+        row.add_widget(MDLabel(
+            text=primary_text,
+            theme_text_color="Primary",
+            font_style="Subtitle1",
+            size_hint_y=None,
+            height="24dp",
+        ))
+        row.add_widget(MDLabel(
+            text=secondary_text,
+            theme_text_color="Secondary",
+            font_style="Caption",
+            size_hint_y=None,
+            height="18dp",
+        ))
+
+        # Button row — one horizontal box, spacing controls separation
         actions = MDBoxLayout(
             orientation="horizontal",
             size_hint_y=None,
-            height="35dp",
-            spacing="5dp",
-            padding=["5dp", "2dp", "5dp", "2dp"]
+            height="40dp",
+            spacing="8dp",
+            padding=["0dp", "4dp", "0dp", "0dp"],  # top pad pushes buttons down slightly
         )
 
         app = MDApp.get_running_app()
         current_role = app.current_admin.get("role")
 
-        btn_height = "30dp"
-        btn_font = "9sp"
-
         if current_role in ["admin", "superadmin"]:
-            assign_btn = MDRaisedButton(
+            # ASSIGN (left)
+            actions.add_widget(MDRaisedButton(
                 text="ASSIGN",
                 size_hint=(None, None),
-                size=("60dp", btn_height),
-                font_size=btn_font,
+                size=("70dp", "32dp"),
+                font_size="10sp",
                 md_bg_color=(0.3, 0.5, 0.8, 1),
-                on_release=partial(self.manage_user_projects, user_id)
-            )
-            actions.add_widget(assign_btn)
+                on_release=partial(self.manage_user_projects, user_id),
+            ))
 
+            # Spacer pushes DELETE/DEACTIVATE to the right
+            actions.add_widget(Widget())
+
+            # DEACTIVATE / REACTIVATE (right)
             if status == 'active':
-                deactivate_btn = MDRaisedButton(
+                actions.add_widget(MDRaisedButton(
                     text="DEACTIVATE",
                     size_hint=(None, None),
-                    size=("80dp", btn_height),
-                    font_size=btn_font,
+                    size=("90dp", "32dp"),
+                    font_size="10sp",
                     md_bg_color=(0.8, 0.2, 0.2, 1),
-                    on_release=partial(self.deactivate_user, user_id)
-                )
-                actions.add_widget(deactivate_btn)
+                    on_release=partial(self.deactivate_user, user_id),
+                ))
             else:
-                reactivate_btn = MDRaisedButton(
+                actions.add_widget(MDRaisedButton(
                     text="REACTIVATE",
                     size_hint=(None, None),
-                    size=("80dp", btn_height),
-                    font_size=btn_font,
+                    size=("90dp", "32dp"),
+                    font_size="10sp",
                     md_bg_color=(0.2, 0.6, 0.2, 1),
-                    on_release=partial(self.reactivate_user, user_id)
-                )
-                actions.add_widget(reactivate_btn)
+                    on_release=partial(self.reactivate_user, user_id),
+                ))
 
-        item.add_widget(actions)
+            # DELETE (superadmin only, rightmost)
+            if current_role == "superadmin":
+                actions.add_widget(MDRaisedButton(
+                    text="DELETE",
+                    size_hint=(None, None),
+                    size=("70dp", "32dp"),
+                    font_size="10sp",
+                    md_bg_color=(0.8, 0.2, 0.2, 1),
+                    on_release=partial(self.confirm_delete_user, user_id),
+                ))
 
-        # Delete button (superadmin only)
-        if current_role == "superadmin":
-            delete_btn = MDRaisedButton(
-                text="DELETE",
-                size_hint=(None, None),
-                size=("60dp", "25dp"),
-                font_size="8sp",
-                md_bg_color=(0.8, 0.2, 0.2, 1),
-                on_release=partial(self.confirm_delete_user, user_id)
-            )
-            item.add_widget(delete_btn)
-
-        self.ids.user_list.add_widget(item)
+        row.add_widget(actions)
+        self.ids.user_list.add_widget(row)
 
     def test_button(self):
         print("🔵🔵🔵 BUTTON WAS CLICKED! 🔵🔵🔵")
@@ -2954,7 +2970,7 @@ class UserManagementScreen(MDScreen):
             self.refresh_list()
             self.show_message(f"User {user_id} reactivated")
 
-    def confirm_delete_user(self, user_id):
+    def confirm_delete_user(self, user_id, *args):
         """Confirm user deletion"""
         users = load_users()
         user = users.get(user_id, {})
