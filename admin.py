@@ -1,6 +1,7 @@
 from kivymd.uix.screen import MDScreen
 from typing import Dict, Any
 from kivymd.app import MDApp
+from kivy.uix.widget import Widget
 from kivymd.uix.button import MDRaisedButton, MDFlatButton
 from kivymd.uix.menu import MDDropdownMenu
 from kivymd.uix.dialog import MDDialog
@@ -176,7 +177,7 @@ def init_superadmin():
     admins = load_admins()
     if not admins:
         admins["KFFS"] = {
-            "password_hash": hash_password("1813"),
+            "password_hash": hash_password("KNMER-1813"),
             "role": "superadmin",
             "created_at": datetime.now().isoformat(),
             "created_by": "system"
@@ -230,7 +231,7 @@ KV = '''
                     on_release: root.do_admin_login()
 
                 MDLabel:
-                    text: "Default: KFFS / 1813"
+                    text: "Default: KFFS / KNMER-1813"
                     halign: "center"
                     theme_text_color: "Hint"
                     font_style: "Caption"
