@@ -1098,7 +1098,7 @@ class SeasonManagementScreen(MDScreen):
             self.refresh_list()
             self.show_message("Season closed")
 
-    def view_projects(self, season_id):
+    def view_projects(self, season_id, *args):
         """Navigate to projects for this season"""
         app = MDApp.get_running_app()
         app.current_season = season_id
@@ -1326,7 +1326,7 @@ class ProjectManagementScreen(MDScreen):
         self.season_switch_dialog.dismiss()
         self.show_message(f"Switched to {display}")
 
-    def show_project_qr(self, project_id):
+    def show_project_qr(self, project_id, *args):
         import qrcode
         from io import BytesIO
         from kivy.core.image import Image as CoreImage
@@ -1737,7 +1737,7 @@ class ProjectManagementScreen(MDScreen):
         self.refresh_list()
         self.show_message(f"Project {project_id} created")
 
-    def manage_contributors(self, project_id):
+    def manage_contributors(self, project_id, *args):
         """Open contributor management dialog"""
         projects = load_projects()
         project = projects.get(project_id, {})
@@ -2080,7 +2080,7 @@ class ProjectManagementScreen(MDScreen):
             for project_id, data in season_projects.items():
                 self.add_project_to_list(project_id, data)
 
-    def manage_bag_tags(self, project_id):
+    def manage_bag_tags(self, project_id, *args):
         """Navigate to bag tag management for this project"""
         app = MDApp.get_running_app()
         app.current_bagtag_project = project_id
@@ -2156,7 +2156,7 @@ class ProjectManagementScreen(MDScreen):
             self.refresh_list()
             self.show_message("Project deleted")
 
-    def show_reassign_dialog(self, project_id):
+    def show_reassign_dialog(self, project_id, *args):
         """Show dialog to reassign project leader"""
         projects = load_projects()
         project = projects.get(project_id, {})
@@ -2675,7 +2675,7 @@ class UserManagementScreen(MDScreen):
 
         return f"{next_id:02d}"
 
-    def manage_user_projects(self, user_id):
+    def manage_user_projects(self, user_id, *args):
         """Open dialog to manage user's project assignments - OPTIMIZED"""
         from functools import partial
 
