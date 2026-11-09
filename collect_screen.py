@@ -3,6 +3,7 @@ from kivymd.uix.screen import MDScreen
 from kivymd.uix.button import MDRaisedButton, MDRectangleFlatButton, MDFlatButton
 from kivymd.uix.menu import MDDropdownMenu
 from kivymd.uix.label import MDLabel
+from kivymd.uix.list import OneLineListItem
 from kivymd.uix.textfield import MDTextField
 from kivymd.uix.card import MDCard
 from kivymd.uix.boxlayout import MDBoxLayout
@@ -1017,7 +1018,6 @@ class CollectScreen(MDScreen):
     def view_breadcrumbs(self):
         """Show list of named breadcrumbs"""
         from kivymd.uix.dialog import MDDialog
-        from kivymd.uix.label import MDLabel
         from kivy.uix.boxlayout import BoxLayout
 
         data_dir = get_data_dir()
@@ -1039,7 +1039,7 @@ class CollectScreen(MDScreen):
         showing_count = len(limited_bc)
 
         # Calculate height based on number of items
-        item_height = 40
+        item_height = 48
         total_height = showing_count * item_height + 20
 
         # Create a vertical layout with exact height
@@ -1055,17 +1055,9 @@ class CollectScreen(MDScreen):
         for bc in reversed(limited_bc):
             name = bc.get('name', f"Pin {bc['id']}")
             date_str = bc.get('date_str', 'Unknown')
-
-            # Simple text display without icon
             display_text = f"{name} ({date_str})"
 
-            label = MDLabel(
-                text=display_text,
-                size_hint_y=None,
-                height=item_height,
-                font_style="Body1"
-            )
-            layout.add_widget(label)
+            layout.add_widget(OneLineListItem(text=display_text))
 
         # Create dialog with buttons
         title = f"Breadcrumb Trail ({total_count})"
@@ -1114,7 +1106,7 @@ class CollectScreen(MDScreen):
         showing_count = len(limited_bc)
 
         # Calculate height based on number of items
-        item_height = 40
+        item_height = 48
         total_height = showing_count * item_height + 20
 
         # Create a vertical layout with exact height
@@ -2590,7 +2582,6 @@ class CollectScreen(MDScreen):
 
     def save_observation(self):
         """Save current observation"""
-        from core.models import FieldObservation
         from datetime import datetime
 
         # Get Field ID
@@ -2632,19 +2623,7 @@ class CollectScreen(MDScreen):
             "context": self.ids.context_button.text,
         }
 
-        obs = FieldObservation(
-            field_id=field_id,
-            season_id=current_user.get('season'),
-            project_id=current_user.get('project'),
-            user_id=current_user.get('user_id'),
-            user_name=current_user.get('user_name'),
-            gps_latitude=self.current_gps[0] if self.current_gps else None,
-            gps_longitude=self.current_gps[1] if self.current_gps else None,
-            notes=self.ids.notes_field.text,
-            custom_fields=collection_data,
-            photo_paths=self.photos,
-            timestamp=datetime.now()
-        )
+
 
         # Save to local JSON file - FIXED: use full file path
         data_dir = get_data_dir()
