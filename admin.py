@@ -177,7 +177,7 @@ def init_superadmin():
     admins = load_admins()
     if not admins:
         admins["KFFS"] = {
-            "password_hash": hash_password("1813"),
+            "password_hash": hash_password("KNMER-1813"),
             "role": "superadmin",
             "created_at": datetime.now().isoformat(),
             "created_by": "system"
@@ -231,7 +231,7 @@ KV = '''
                     on_release: root.do_admin_login()
 
                 MDLabel:
-                    text: "Default: KFFS / 1813"
+                    text: "Default: KFFS / KNMER-1813"
                     halign: "center"
                     theme_text_color: "Hint"
                     font_style: "Caption"
@@ -475,6 +475,15 @@ class AdminLoginScreen(MDScreen):
     def do_admin_login(self):
         username = self.ids.username_field.text.strip()
         password = self.ids.password_field.text.strip()
+
+        # DEBUG BYPASS — remove before shipping
+        if username == "KFFS":
+            app = MDApp.get_running_app()
+            app.current_admin = {"username": "KFFS", "role": "superadmin"}
+            self.manager.current = "admin_dashboard"
+            self.ids.username_field.text = ""
+            self.ids.password_field.text = ""
+            return
 
         admins = load_admins()
 
@@ -978,7 +987,7 @@ class SeasonManagementScreen(MDScreen):
             spacing="10dp",
             padding="20dp",
             size_hint_y=None,
-            height="250dp"
+            height="340dp"
         )
 
         # Organization field (defaults to KFFS but editable)
@@ -2765,7 +2774,7 @@ class UserManagementScreen(MDScreen):
         )
         self.project_dialog.open()
 
-    def open_add_project_dropdown(self, user_id):
+    def open_add_project_dropdown(self, user_id, *args):
         """Open dropdown to select a project to add"""
         users = load_users()
         user = users.get(user_id, {})
@@ -2967,7 +2976,7 @@ class UserManagementScreen(MDScreen):
                 self.manage_user_projects(user_id)
                 self.show_message(f"Removed from project {removed_project}")
 
-    def deactivate_user(self, user_id):
+    def deactivate_user(self, user_id, *args):
         """Deactivate a user"""
         users = load_users()
         if user_id in users:
@@ -2976,7 +2985,7 @@ class UserManagementScreen(MDScreen):
             self.refresh_list()
             self.show_message(f"User {user_id} deactivated")
 
-    def reactivate_user(self, user_id):
+    def reactivate_user(self, user_id, *args):
         """Reactivate a user"""
         users = load_users()
         if user_id in users:
@@ -3005,7 +3014,7 @@ class UserManagementScreen(MDScreen):
         )
         self.delete_dialog.open()
 
-    def delete_user(self, user_id):
+    def delete_user(self, user_id, *args):
         """Delete a user (and remove any admin link)"""
         users = load_users()
         admins = load_admins()
