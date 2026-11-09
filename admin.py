@@ -177,7 +177,7 @@ def init_superadmin():
     admins = load_admins()
     if not admins:
         admins["KFFS"] = {
-            "password_hash": hash_password("KNMER-1813"),
+            "password_hash": hash_password("1813"),
             "role": "superadmin",
             "created_at": datetime.now().isoformat(),
             "created_by": "system"
@@ -231,7 +231,7 @@ KV = '''
                     on_release: root.do_admin_login()
 
                 MDLabel:
-                    text: "Default: KFFS / KNMER-1813"
+                    text: "Default: KFFS / 1813"
                     halign: "center"
                     theme_text_color: "Hint"
                     font_style: "Caption"
@@ -886,7 +886,7 @@ class SeasonManagementScreen(MDScreen):
             self.add_season_to_list(season_id, data)
 
     def add_season_to_list(self, season_id, data):
-        """Add a single season item to the list UI - OPTIMIZED"""
+        """Add a single season item to the list UI — MDCard layout"""
         from functools import partial
 
         org = data.get('organization', 'KFFS')
@@ -896,7 +896,6 @@ class SeasonManagementScreen(MDScreen):
         start = data.get('start_date', 'Not set')
         end = data.get('end_date', 'Not set')
 
-        # Use TwoLineListItem instead of custom MDCard
         if status == 'active':
             primary_text = f"{org} {year}  [ACTIVE]"
             secondary_text = f"Projects: {projects}  |  {start} → {end}"
@@ -906,61 +905,71 @@ class SeasonManagementScreen(MDScreen):
             primary_text = f"{org} {year}  [CLOSED]"
             secondary_text = f"Closed: {closed_at} by {closed_by}"
 
-        item = TwoLineListItem(
-            text=primary_text,
-            secondary_text=secondary_text,
-            theme_text_color="Primary",
-            font_style="Subtitle1",
+        row = MDCard(
+            orientation="vertical",
+            size_hint_y=None,
+            height="120dp",
+            padding="10dp",
+            spacing="4dp",
+            style="outlined",
+            radius=[12, 12, 12, 12],
         )
 
-        # Add action buttons as a separate widget attached to the item
+        row.add_widget(MDLabel(
+            text=primary_text,
+            theme_text_color="Primary",
+            font_style="Subtitle1",
+            size_hint_y=None,
+            height="24dp",
+        ))
+        row.add_widget(MDLabel(
+            text=secondary_text,
+            theme_text_color="Secondary",
+            font_style="Caption",
+            size_hint_y=None,
+            height="18dp",
+        ))
+
         actions = MDBoxLayout(
             orientation="horizontal",
             size_hint_y=None,
             height="40dp",
             spacing="8dp",
-            padding=["10dp", "0dp", "10dp", "5dp"]
+            padding=["0dp", "4dp", "0dp", "0dp"],
         )
 
-        # View projects button
-        view_btn = MDRaisedButton(
+        actions.add_widget(MDRaisedButton(
             text="VIEW",
             size_hint=(None, None),
-            size=("70dp", "30dp"),
+            size=("70dp", "32dp"),
             font_size="10sp",
             disabled=(status == 'closed'),
-            on_release=partial(self.view_projects, season_id)  # ← functools.partial
-        )
-        actions.add_widget(view_btn)
+            on_release=partial(self.view_projects, season_id),
+        ))
 
-        # Close button (only if active)
+        actions.add_widget(Widget())
+
         if status == 'active':
-            close_btn = MDRaisedButton(
+            actions.add_widget(MDRaisedButton(
                 text="CLOSE",
                 size_hint=(None, None),
-                size=("60dp", "30dp"),
+                size=("70dp", "32dp"),
                 font_size="10sp",
                 md_bg_color=(0.8, 0.5, 0.2, 1),
-                on_release=partial(self.confirm_close_season, season_id)  # ← functools.partial
-            )
-            actions.add_widget(close_btn)
+                on_release=partial(self.confirm_close_season, season_id),
+            ))
 
-        # Delete button
-        delete_btn = MDRaisedButton(
+        actions.add_widget(MDRaisedButton(
             text="DELETE",
             size_hint=(None, None),
-            size=("60dp", "30dp"),
+            size=("70dp", "32dp"),
             font_size="10sp",
             md_bg_color=(0.8, 0.2, 0.2, 1),
-            on_release=partial(self.confirm_delete_season, season_id)  # ← functools.partial
-        )
-        actions.add_widget(delete_btn)
+            on_release=partial(self.confirm_delete_season, season_id),
+        ))
 
-        # Add actions to the item
-        item.add_widget(actions)
-
-        # Add to list
-        self.ids.season_list.add_widget(item)
+        row.add_widget(actions)
+        self.ids.season_list.add_widget(row)
 
     def show_add_season_dialog(self):
         """Show dialog to add a new season with dates"""
@@ -1516,39 +1525,45 @@ class ProjectManagementScreen(MDScreen):
         self.dialog.open()
 
     def add_project_to_list(self, project_id, data):
-        """Add a single project item to the list UI - OPTIMIZED"""
+        """Add a single project item to the list UI — MDCard layout"""
         from functools import partial
 
         project_name = data.get('name', 'Unnamed Project')
         status = data.get('status', 'active')
         project_leader = data.get('leader_name', 'Unassigned')
         contributors = data.get('contributors', [])
-        contributor_names = data.get('contributor_names', [])
         collections = data.get('collections', 0)
 
-        # Build display text
         status_indicator = "● ACTIVE" if status == 'active' else "● CLOSED"
         primary_text = f"Project {project_id}: {project_name}  {status_indicator}"
 
-        # Secondary text with leader and contributor count
         contrib_count = len(contributors)
         secondary_text = f"Leader: {project_leader}  |  Contributors: {contrib_count}  |  Collections: {collections}"
 
-        # Create the item
-        item = TwoLineListItem(
-            text=primary_text,
-            secondary_text=secondary_text,
-            theme_text_color="Primary",
+        row = MDCard(
+            orientation="vertical",
+            size_hint_y=None,
+            height="150dp",  # taller: two button rows possible for superadmin
+            padding="10dp",
+            spacing="4dp",
+            style="outlined",
+            radius=[12, 12, 12, 12],
         )
 
-        # Action buttons container
-        actions = MDBoxLayout(
-            orientation="horizontal",
+        row.add_widget(MDLabel(
+            text=primary_text,
+            theme_text_color="Primary",
+            font_style="Subtitle1",
             size_hint_y=None,
-            height="40dp",
-            spacing="5dp",
-            padding=["5dp", "2dp", "5dp", "2dp"]
-        )
+            height="24dp",
+        ))
+        row.add_widget(MDLabel(
+            text=secondary_text,
+            theme_text_color="Secondary",
+            font_style="Caption",
+            size_hint_y=None,
+            height="18dp",
+        ))
 
         app = MDApp.get_running_app()
         current_user = app.current_admin.get("username")
@@ -1558,93 +1573,92 @@ class ProjectManagementScreen(MDScreen):
         can_edit = (current_role == "superadmin" or current_user == project_leader_username)
         is_superadmin = (current_role == "superadmin")
 
-        btn_height = "32dp"
-        btn_font = "9sp"
+        # Row 1 — primary actions
+        actions = MDBoxLayout(
+            orientation="horizontal",
+            size_hint_y=None,
+            height="40dp",
+            spacing="8dp",
+            padding=["0dp", "4dp", "0dp", "0dp"],
+        )
 
-        # CONTRIBUTORS button
         if can_edit and status == 'active':
-            btn = MDRaisedButton(
+            actions.add_widget(MDRaisedButton(
                 text="CONTRIBUTORS",
                 size_hint=(None, None),
-                size=("90dp", btn_height),
-                font_size=btn_font,
+                size=("105dp", "32dp"),
+                font_size="9sp",
                 md_bg_color=(0.5, 0.3, 0.8, 1),
-                on_release=partial(self.manage_contributors, project_id)
-            )
-            actions.add_widget(btn)
+                on_release=partial(self.manage_contributors, project_id),
+            ))
 
-        # QR CODE button
         if can_edit or is_superadmin:
-            btn = MDRaisedButton(
+            actions.add_widget(MDRaisedButton(
                 text="QR",
                 size_hint=(None, None),
-                size=("50dp", btn_height),
-                font_size=btn_font,
+                size=("50dp", "32dp"),
+                font_size="9sp",
                 md_bg_color=(0.3, 0.5, 0.7, 1),
-                on_release=partial(self.show_project_qr, project_id)
-            )
-            actions.add_widget(btn)
+                on_release=partial(self.show_project_qr, project_id),
+            ))
 
-        # BAG TAGS button (superadmin only)
-        if is_superadmin:
-            btn = MDRaisedButton(
-                text="TAGS",
-                size_hint=(None, None),
-                size=("50dp", btn_height),
-                font_size=btn_font,
-                md_bg_color=(0.6, 0.4, 0.2, 1),
-                on_release=partial(self.manage_bag_tags, project_id)
-            )
-            actions.add_widget(btn)
+        actions.add_widget(Widget())
 
-        # CLOSE button
         can_close = (current_role == "superadmin" or current_user == project_leader_username)
         if can_close and status == 'active':
-            btn = MDRaisedButton(
+            actions.add_widget(MDRaisedButton(
                 text="CLOSE",
                 size_hint=(None, None),
-                size=("55dp", btn_height),
-                font_size=btn_font,
+                size=("60dp", "32dp"),
+                font_size="9sp",
                 md_bg_color=(0.8, 0.5, 0.2, 1),
-                on_release=partial(self.confirm_close_project, project_id)
-            )
-            actions.add_widget(btn)
+                on_release=partial(self.confirm_close_project, project_id),
+            ))
 
-        item.add_widget(actions)
+        row.add_widget(actions)
 
-        # Superadmin extra actions
+        # Row 2 — superadmin-only extras
         if is_superadmin:
             extra_actions = MDBoxLayout(
                 orientation="horizontal",
                 size_hint_y=None,
-                height="30dp",
-                spacing="5dp",
-                padding=["5dp", "0dp", "5dp", "2dp"]
+                height="36dp",
+                spacing="8dp",
+                padding=["0dp", "0dp", "0dp", "0dp"],
             )
 
-            reassign_btn = MDRaisedButton(
+            extra_actions.add_widget(MDRaisedButton(
+                text="TAGS",
+                size_hint=(None, None),
+                size=("60dp", "30dp"),
+                font_size="9sp",
+                md_bg_color=(0.6, 0.4, 0.2, 1),
+                on_release=partial(self.manage_bag_tags, project_id),
+            ))
+
+            extra_actions.add_widget(Widget())
+
+            extra_actions.add_widget(MDRaisedButton(
                 text="REASSIGN",
                 size_hint=(None, None),
-                size=("75dp", "25dp"),
-                font_size="8sp",
+                size=("80dp", "30dp"),
+                font_size="9sp",
                 md_bg_color=(0.3, 0.3, 0.3, 1),
-                on_release=partial(self.show_reassign_dialog, project_id)
-            )
-            extra_actions.add_widget(reassign_btn)
+                on_release=partial(self.show_reassign_dialog, project_id),
+            ))
 
-            delete_btn = MDRaisedButton(
+            extra_actions.add_widget(MDRaisedButton(
                 text="DELETE",
                 size_hint=(None, None),
-                size=("60dp", "25dp"),
-                font_size="8sp",
+                size=("65dp", "30dp"),
+                font_size="9sp",
                 md_bg_color=(0.8, 0.2, 0.2, 1),
-                on_release=partial(self.confirm_delete_project, project_id)
-            )
-            extra_actions.add_widget(delete_btn)
+                on_release=partial(self.confirm_delete_project, project_id),
+            ))
 
-            item.add_widget(extra_actions)
+            row.add_widget(extra_actions)
 
-        self.ids.project_list.add_widget(item)
+        self.ids.project_list.add_widget(row)
 
     def open_leader_menu(self):
         """Open dropdown menu to select project leader"""
@@ -2745,7 +2759,7 @@ class UserManagementScreen(MDScreen):
             buttons=[
                 MDFlatButton(
                     text="DONE",
-                    on_release=partial(lambda x: self.project_dialog.dismiss())
+                    on_release=lambda x: self.project_dialog.dismiss()
                 )
             ]
         )
