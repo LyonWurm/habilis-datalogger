@@ -781,9 +781,9 @@ class CollectScreen(MDScreen):
         content = BoxLayout(
             orientation='vertical',
             spacing=15,
-            padding=[20, 40, 20, 25],
+            padding=[20, 30, 20, 20],
             size_hint_y=None,
-            height=380
+            height=460
         )
 
         # Target name (use custom name if available)
@@ -794,7 +794,7 @@ class CollectScreen(MDScreen):
                 font_style="H6",
                 halign="center",
                 size_hint_y=None,
-                height=35
+                height="60dp"
             )
         )
         content.add_widget(Widget(size_hint_y=None, height=5))
@@ -805,7 +805,7 @@ class CollectScreen(MDScreen):
             font_style="H2",
             halign="center",
             size_hint_y=None,
-            height=70
+            height="110dp"
         )
         content.add_widget(self.tracking_distance_label)
         content.add_widget(Widget(size_hint_y=None, height=5))
@@ -816,7 +816,7 @@ class CollectScreen(MDScreen):
             font_style="H4",
             halign="center",
             size_hint_y=None,
-            height=50
+            height="80dp"
         )
         content.add_widget(self.tracking_direction_label)
         content.add_widget(Widget(size_hint_y=None, height=5))
@@ -827,7 +827,7 @@ class CollectScreen(MDScreen):
             font_style="H4",
             halign="center",
             size_hint_y=None,
-            height=50
+            height="80dp"
         )
         content.add_widget(self.tracking_heading_label)
         content.add_widget(Widget(size_hint_y=None, height=5))
@@ -838,7 +838,7 @@ class CollectScreen(MDScreen):
             font_style="Caption",
             halign="center",
             size_hint_y=None,
-            height=35
+            height="50dp"
         )
         content.add_widget(self.tracking_status_label)
 
@@ -847,7 +847,7 @@ class CollectScreen(MDScreen):
             type="custom",
             content_cls=content,
             size_hint=(0.9, None),
-            height=460,
+            height=520,
             auto_dismiss=False,
             buttons=[
                 MDRaisedButton(
@@ -920,11 +920,11 @@ class CollectScreen(MDScreen):
         self.tracking_status_label.text = f"Location: {lat1:.6f}, {lon1:.6f}"
 
         if distance < 10:
-            self.tracking_distance_label.text_color = (0.2, 0.8, 0.2, 1)
+            self.tracking_distance_label.text_color = (0.2, 0.8, 0.2, 1)  # green, close
         elif distance < 50:
-            self.tracking_distance_label.text_color = (0.8, 0.8, 0.2, 1)
+            self.tracking_distance_label.text_color = (0.8, 0.8, 0.2, 1)  # yellow, mid
         else:
-            self.tracking_distance_label.text_color = (1, 1, 1, 1)
+            self.tracking_distance_label.text_color = (0.2, 0.2, 0.2, 1)  # dark gray/black instead of white
 
     def stop_tracking(self):
         """Stop live tracking"""
@@ -2545,22 +2545,14 @@ class CollectScreen(MDScreen):
             if filename not in self.photos:
                 self.photos.append(filename)
             self.show_message("Opening camera...")
-
         except Exception as e:
-            # Fallback: try plyer camera (may work on some devices)
             import traceback
             print(f"Native camera intent failed: {e}")
             traceback.print_exc()
-            try:
-                from plyer import camera as plyer_camera
-                # plyer.camera.take_picture(filename=..., on_complete=...) expects a string path
-                plyer_camera.take_picture(filename=str(filepath), on_complete=self.on_photo_captured)
-                self.show_message("Opening camera (fallback)...")
-            except Exception as e2:
-                print(f"plyer.camera.take_picture failed: {e2}")
-                traceback.print_exc()
-                self.show_message(f"Camera error: {e2}")
+            self.show_message(f"Camera error: {e}")
+
     @mainthread
+
     def _camera_permission_callback(self, permissions, results):
         """Called after camera permission request"""
         if all(results):
