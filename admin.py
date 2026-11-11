@@ -3538,7 +3538,7 @@ class BagTagManagementScreen(MDScreen):
         self.update_ui()
         self.show_message("Configuration saved!")
 
-    def edit_config(self):
+    def edit_config(self, *args):
         """Edit existing configuration"""
         self.ids.main_layout.clear_widgets()
 
@@ -3638,7 +3638,7 @@ class BagTagManagementScreen(MDScreen):
         )
         self.ids.main_layout.add_widget(cancel_btn)
 
-    def show_generate_dialog(self):
+    def show_generate_dialog(self, *args):
         """Show dialog to generate a batch of tags"""
         content = MDBoxLayout(
             orientation="vertical",

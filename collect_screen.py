@@ -1069,7 +1069,7 @@ class CollectScreen(MDScreen):
             type="custom",
             content_cls=layout,
             size_hint=(0.9, None),
-            height=total_height + 100,
+            height=total_height + 180,
             buttons=[
                 MDRaisedButton(
                     text="RETRACE",
@@ -1144,7 +1144,7 @@ class CollectScreen(MDScreen):
             type="custom",
             content_cls=layout,
             size_hint=(0.9, None),
-            height=total_height + 80,
+            height=total_height + 180,
             buttons=[
                 MDRaisedButton(
                     text="CANCEL",

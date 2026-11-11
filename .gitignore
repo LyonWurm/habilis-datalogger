@@ -1,19 +1,15 @@
+# macOS
+.DS_Store
+**/.DS_Store
+
+# Python
 __pycache__/
 *.pyc
 *.pyo
-*.so
-.Python
-*.DS_Store
+
+# Buildozer / p4a
 .buildozer/
 bin/
-*.apk
-*.log
+
+# IDE
 .idea/
-.vscode/
-*.swp
-*.swo
-*~
-*.db
-*.sqlite
-buildozer.spec
-buildozer.spec
