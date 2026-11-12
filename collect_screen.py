@@ -775,6 +775,8 @@ class CollectScreen(MDScreen):
         from kivy.uix.boxlayout import BoxLayout
         from kivy.uix.label import Label
 
+        DARK = (0.15, 0.15, 0.15, 1)
+
         content = BoxLayout(
             orientation='vertical',
             spacing=8,
@@ -909,13 +911,6 @@ class CollectScreen(MDScreen):
         self.tracking_direction_label.text = f"To Target: {cardinal} ({bearing_deg:.0f}°)"
         self.tracking_heading_label.text = f"Heading: {heading_cardinal}"
         self.tracking_status_label.text = f"Location: {lat1:.6f}, {lon1:.6f}"
-
-        if distance < 10:
-            self.tracking_distance_label.text_color = (0.2, 0.8, 0.2, 1)  # green, close
-        elif distance < 50:
-            self.tracking_distance_label.text_color = (0.8, 0.8, 0.2, 1)  # yellow, mid
-        else:
-            self.tracking_distance_label.text_color = (0.2, 0.2, 0.2, 1)  # dark gray/black instead of white
 
     def stop_tracking(self):
         """Stop live tracking"""

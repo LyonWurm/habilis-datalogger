@@ -2752,7 +2752,7 @@ class UserManagementScreen(MDScreen):
             spacing="10dp",
             padding="10dp",
             size_hint_y=None,
-            height="500dp"
+            height="350dp"
         )
         content.add_widget(MDLabel(
             text=f"Projects for {user_id}: {user.get('name')}",
