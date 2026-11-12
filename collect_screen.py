@@ -790,6 +790,7 @@ class CollectScreen(MDScreen):
         content.add_widget(Label(
             text=f"Target: {target_name}",
             font_size="20sp",
+            color=DARK,
             halign="center",
             valign="middle",
             size_hint_y=None,
@@ -799,6 +800,7 @@ class CollectScreen(MDScreen):
         self.tracking_distance_label = Label(
             text="-- m",
             font_size="48sp",
+            color=DARK,
             halign="center",
             valign="middle",
             size_hint_y=None,
@@ -809,6 +811,7 @@ class CollectScreen(MDScreen):
         self.tracking_direction_label = Label(
             text="To target: --",
             font_size="22sp",
+            color=DARK,
             halign="center",
             valign="middle",
             size_hint_y=None,
@@ -819,6 +822,7 @@ class CollectScreen(MDScreen):
         self.tracking_heading_label = Label(
             text="Heading: --",
             font_size="22sp",
+            color=DARK,
             halign="center",
             valign="middle",
             size_hint_y=None,
@@ -829,6 +833,7 @@ class CollectScreen(MDScreen):
         self.tracking_status_label = Label(
             text="Location: --",
             font_size="13sp",
+            color=DARK,
             halign="center",
             valign="middle",
             size_hint_y=None,
@@ -841,6 +846,7 @@ class CollectScreen(MDScreen):
             type="custom",
             content_cls=content,
             size_hint=(0.9, None),
+            height="550dp",
             auto_dismiss=False,
             buttons=[
                 MDRaisedButton(

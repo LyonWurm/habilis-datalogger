@@ -2768,7 +2768,7 @@ class UserManagementScreen(MDScreen):
             title="Manage Projects",
             type="custom",
             content_cls=content,
-            size_hint=(0.9, 0.8),
+            size_hint=(0.9, None),
             buttons=[
                 MDFlatButton(
                     text="DONE",
