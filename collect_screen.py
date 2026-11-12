@@ -783,8 +783,8 @@ class CollectScreen(MDScreen):
             spacing=8,
             padding=[20, 20, 20, 20],
             size_hint_y=None,
-            height=440,
         )
+        content_inner.bind(minimum_height=content_inner.setter('height'))
 
         target_name = target_bc.get('name', f"Pin {target_bc['id']}")
 
@@ -844,7 +844,7 @@ class CollectScreen(MDScreen):
 
         scroll = ScrollView(
             size_hint_y=None,
-            height="420dp",
+            height="380dp",
             do_scroll_x=False,
             do_scroll_y=True,
         )
@@ -868,7 +868,7 @@ class CollectScreen(MDScreen):
         self.tracking_dialog.open()
 
         Clock.schedule_interval(self.update_tracking_display_simple, 1.0)
-        
+
     def update_tracking_display_simple(self, dt):
         """Update tracking display with current GPS"""
         if not self.tracking_active or not hasattr(self, 'tracking_dialog') or not self.tracking_dialog:
