@@ -773,21 +773,22 @@ class CollectScreen(MDScreen):
         self.tracking_active = True
 
         from kivy.uix.boxlayout import BoxLayout
+        from kivy.uix.scrollview import ScrollView
         from kivy.uix.label import Label
 
         DARK = (0.15, 0.15, 0.15, 1)
 
-        content = BoxLayout(
+        content_inner = BoxLayout(
             orientation='vertical',
             spacing=8,
             padding=[20, 20, 20, 20],
             size_hint_y=None,
-            height=400,
+            height=440,
         )
 
         target_name = target_bc.get('name', f"Pin {target_bc['id']}")
 
-        content.add_widget(Label(
+        content_inner.add_widget(Label(
             text=f"Target: {target_name}",
             font_size="20sp",
             color=DARK,
@@ -806,7 +807,7 @@ class CollectScreen(MDScreen):
             size_hint_y=None,
             height="80dp",
         )
-        content.add_widget(self.tracking_distance_label)
+        content_inner.add_widget(self.tracking_distance_label)
 
         self.tracking_direction_label = Label(
             text="To target: --",
@@ -817,7 +818,7 @@ class CollectScreen(MDScreen):
             size_hint_y=None,
             height="50dp",
         )
-        content.add_widget(self.tracking_direction_label)
+        content_inner.add_widget(self.tracking_direction_label)
 
         self.tracking_heading_label = Label(
             text="Heading: --",
@@ -828,7 +829,7 @@ class CollectScreen(MDScreen):
             size_hint_y=None,
             height="50dp",
         )
-        content.add_widget(self.tracking_heading_label)
+        content_inner.add_widget(self.tracking_heading_label)
 
         self.tracking_status_label = Label(
             text="Location: --",
@@ -839,12 +840,20 @@ class CollectScreen(MDScreen):
             size_hint_y=None,
             height="40dp",
         )
-        content.add_widget(self.tracking_status_label)
+        content_inner.add_widget(self.tracking_status_label)
+
+        scroll = ScrollView(
+            size_hint_y=None,
+            height="420dp",
+            do_scroll_x=False,
+            do_scroll_y=True,
+        )
+        scroll.add_widget(content_inner)
 
         self.tracking_dialog = MDDialog(
             title="Live Tracking:",
             type="custom",
-            content_cls=content,
+            content_cls=scroll,
             size_hint=(0.9, None),
             height="550dp",
             auto_dismiss=False,
@@ -859,7 +868,7 @@ class CollectScreen(MDScreen):
         self.tracking_dialog.open()
 
         Clock.schedule_interval(self.update_tracking_display_simple, 1.0)
-
+        
     def update_tracking_display_simple(self, dt):
         """Update tracking display with current GPS"""
         if not self.tracking_active or not hasattr(self, 'tracking_dialog') or not self.tracking_dialog:
