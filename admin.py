@@ -2732,7 +2732,10 @@ class UserManagementScreen(MDScreen):
             list_container.add_widget(item)
 
         # Wrap in ScrollView
-        scroll = ScrollView()
+        scroll = ScrollView(
+            size_hint_y=None,
+            height="250dp"
+        )
         scroll.add_widget(list_container)
 
         # Add a button below
@@ -2748,14 +2751,15 @@ class UserManagementScreen(MDScreen):
             orientation="vertical",
             spacing="10dp",
             padding="10dp",
-            size_hint_y=None
+            size_hint_y=None,
+            height="500dp"
         )
         content.add_widget(MDLabel(
             text=f"Projects for {user_id}: {user.get('name')}",
             theme_text_color="Primary",
             font_style="H6",
             size_hint_y=None,
-            height="30dp"
+            height="50dp"
         ))
         content.add_widget(scroll)
         content.add_widget(add_btn)

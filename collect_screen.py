@@ -772,73 +772,65 @@ class CollectScreen(MDScreen):
         self.tracking_target = target_bc
         self.tracking_active = True
 
-        self.tracking_target = target_bc
-        self.tracking_active = True
-
         from kivy.uix.boxlayout import BoxLayout
-        from kivymd.uix.label import MDLabel
+        from kivy.uix.label import Label
 
         content = BoxLayout(
             orientation='vertical',
-            spacing=15,
-            padding=[20, 30, 20, 20],
+            spacing=8,
+            padding=[20, 20, 20, 20],
             size_hint_y=None,
-            height=460
+            height=400,
         )
 
-        # Target name (use custom name if available)
         target_name = target_bc.get('name', f"Pin {target_bc['id']}")
-        content.add_widget(
-            MDLabel(
-                text=f"Target: {target_name}",
-                font_style="H6",
-                halign="center",
-                size_hint_y=None,
-                height="60dp"
-            )
-        )
-        content.add_widget(Widget(size_hint_y=None, height=5))
 
-        # Distance (large)
-        self.tracking_distance_label = MDLabel(
-            text="-- m",
-            font_style="H2",
+        content.add_widget(Label(
+            text=f"Target: {target_name}",
+            font_size="20sp",
             halign="center",
+            valign="middle",
             size_hint_y=None,
-            height="110dp"
+            height="40dp",
+        ))
+
+        self.tracking_distance_label = Label(
+            text="-- m",
+            font_size="48sp",
+            halign="center",
+            valign="middle",
+            size_hint_y=None,
+            height="80dp",
         )
         content.add_widget(self.tracking_distance_label)
-        content.add_widget(Widget(size_hint_y=None, height=5))
 
-        # Direction to target
-        self.tracking_direction_label = MDLabel(
+        self.tracking_direction_label = Label(
             text="To target: --",
-            font_style="H4",
+            font_size="22sp",
             halign="center",
+            valign="middle",
             size_hint_y=None,
-            height="80dp"
+            height="50dp",
         )
         content.add_widget(self.tracking_direction_label)
-        content.add_widget(Widget(size_hint_y=None, height=5))
 
-        # Your heading
-        self.tracking_heading_label = MDLabel(
+        self.tracking_heading_label = Label(
             text="Heading: --",
-            font_style="H4",
+            font_size="22sp",
             halign="center",
+            valign="middle",
             size_hint_y=None,
-            height="80dp"
+            height="50dp",
         )
         content.add_widget(self.tracking_heading_label)
-        content.add_widget(Widget(size_hint_y=None, height=5))
 
-        # Your Location
-        self.tracking_status_label = MDLabel(
+        self.tracking_status_label = Label(
             text="Location: --",
-            font_style="Caption",
+            font_size="13sp",
             halign="center",
+            valign="middle",
             size_hint_y=None,
-            height="50dp"
+            height="40dp",
         )
         content.add_widget(self.tracking_status_label)
 
@@ -847,7 +839,6 @@ class CollectScreen(MDScreen):
             type="custom",
             content_cls=content,
             size_hint=(0.9, None),
-            height=520,
             auto_dismiss=False,
             buttons=[
                 MDRaisedButton(
