@@ -2792,7 +2792,7 @@ class UserManagementScreen(MDScreen):
             ]
         )
         self.project_dialog.open()
-        
+
     def open_add_project_dropdown(self, user_id, *args):
         """Open dropdown to select a project to add"""
         users = load_users()
@@ -2827,7 +2827,7 @@ class UserManagementScreen(MDScreen):
             })
 
         self.add_project_menu = MDDropdownMenu(
-            caller=self.project_dialog.content_cls.children[-1],  # The ADD PROJECT button
+            caller=self.add_btn,
             items=menu_items,
             width_mult=4,
         )
