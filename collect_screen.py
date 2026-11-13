@@ -1191,12 +1191,7 @@ class CollectScreen(MDScreen):
         option_dialog = MDDialog(
             title=f"Pin {target_bc['id']}",
             text=f"Distance: {distance:.0f} meters\n\nHow would you like to navigate?",
-            height=250,
             buttons=[
-                MDFlatButton(
-                    text="ONE-TIME INFO",
-                    on_release=lambda x: self.show_one_time_info(target_bc, distance, option_dialog)
-                ),
                 MDRaisedButton(
                     text="LIVE TRACKING",
                     on_release=lambda x: self.start_live_tracking(target_bc)
@@ -2091,7 +2086,7 @@ class CollectScreen(MDScreen):
             return None, None
 
         # Create export directory structure
-        export_dir = Path.home() / "field_data_exports" / season
+        export_dir = get_data_dir() / "exports" / season
         export_dir.mkdir(parents=True, exist_ok=True)
 
         # Create images directory
@@ -2286,7 +2281,7 @@ class CollectScreen(MDScreen):
         season = current_user.get('season')
 
         # Create personal backup directory
-        backup_dir = Path.home() / "field_data_backups" / f"{user_name}_{user_id}" / season
+        backup_dir = get_data_dir() / "backups" / f"{user_name}_{user_id}" / season
         backup_dir.mkdir(parents=True, exist_ok=True)
 
         # Create images subdirectory

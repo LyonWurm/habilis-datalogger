@@ -1079,6 +1079,22 @@ class SeasonManagementScreen(MDScreen):
 
         save_seasons(seasons)
 
+        # After saving the new season, attach any unassigned users to it
+        users = load_users()
+        seasons_now = load_seasons()
+        changed = False
+
+        for uid, udata in users.items():
+            user_season = udata.get('season')
+            # "Not assigned" or points to a season that doesn't exist = orphan
+            if not user_season or user_season not in seasons_now:
+                users[uid]['season'] = season_id
+                changed = True
+
+        if changed:
+            save_users(users)
+
+
         self.dialog.dismiss()
         self.refresh_list()
         self.show_message(f"Season {org} {year} created")
@@ -2624,7 +2640,7 @@ class UserManagementScreen(MDScreen):
 
         # Get most recent season
         recent_season = get_most_recent_season()
-        season_id = recent_season[1] if recent_season else "2024"
+        season_id = recent_season[1] if recent_season else "2013"
 
         # Create user record
         users[user_id] = {
@@ -2705,8 +2721,8 @@ class UserManagementScreen(MDScreen):
         users = load_users()
         user = users.get(user_id, {})
 
-        # Create a simple list using MDList
         list_container = MDList()
+        list_container.bind(minimum_height=list_container.setter('height'))
 
         user_projects = user.get('projects', [])
 
@@ -2717,7 +2733,6 @@ class UserManagementScreen(MDScreen):
                 project_name = project_data.get('name', '')
                 display_text = f"Project {project_id}: {project_name}" if project_name else f"Project {project_id}"
 
-                # Use TwoLineListItem with a remove button via a separate box
                 item = TwoLineListItem(
                     text=display_text,
                     secondary_text="Click to remove",
@@ -2725,50 +2740,50 @@ class UserManagementScreen(MDScreen):
                 )
                 list_container.add_widget(item)
         else:
-            item = OneLineListItem(
+            list_container.add_widget(OneLineListItem(
                 text="No projects assigned",
                 theme_text_color="Hint"
-            )
-            list_container.add_widget(item)
+            ))
 
-        # Wrap in ScrollView
-        scroll = ScrollView(
-            size_hint_y=None,
-            height="250dp"
-        )
-        scroll.add_widget(list_container)
-
-        # Add a button below
-        add_btn = MDRaisedButton(
+        self.add_btn = MDRaisedButton(
             text="ADD PROJECT",
             size_hint_y=None,
             height="45dp",
             on_release=partial(self.open_add_project_dropdown, user_id)
         )
 
-        # Combine in a BoxLayout
-        content = MDBoxLayout(
+        content_inner = MDBoxLayout(
             orientation="vertical",
             spacing="10dp",
             padding="10dp",
             size_hint_y=None,
-            height="350dp"
         )
-        content.add_widget(MDLabel(
+        content_inner.bind(minimum_height=content_inner.setter('height'))
+
+        content_inner.add_widget(MDLabel(
             text=f"Projects for {user_id}: {user.get('name')}",
             theme_text_color="Primary",
             font_style="H6",
             size_hint_y=None,
             height="50dp"
         ))
-        content.add_widget(scroll)
-        content.add_widget(add_btn)
+        content_inner.add_widget(list_container)
+        content_inner.add_widget(self.add_btn)
+
+        outer_scroll = ScrollView(
+            size_hint_y=None,
+            height="380dp",
+            do_scroll_x=False,
+            do_scroll_y=True,
+        )
+        outer_scroll.add_widget(content_inner)
 
         self.project_dialog = MDDialog(
             title="Manage Projects",
             type="custom",
-            content_cls=content,
+            content_cls=outer_scroll,
             size_hint=(0.9, None),
+            height="500dp",
             buttons=[
                 MDFlatButton(
                     text="DONE",
@@ -2777,7 +2792,7 @@ class UserManagementScreen(MDScreen):
             ]
         )
         self.project_dialog.open()
-
+        
     def open_add_project_dropdown(self, user_id, *args):
         """Open dropdown to select a project to add"""
         users = load_users()
