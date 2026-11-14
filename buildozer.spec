@@ -21,6 +21,7 @@ android.enable_androidx = True
 android.add_src = android/
 android.allow_backup = True
 android.logcat_filters = *:S python:D
+p4a.hook = hook.py
 p4a.bootstrap = sdl2
 p4a.branch = v2024.01.21
 p4a.python_version = 3.10.11
