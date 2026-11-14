@@ -2498,7 +2498,7 @@ class CollectScreen(MDScreen):
             data_dir = get_data_dir()
             photos_dir = data_dir / "photos"
             photos_dir.mkdir(parents=True, exist_ok=True)
-            filepath = photos_dir / filename
+            filepath = (photos_dir / filename).resolve()  # ← resolve makes the whole path absolute
 
             # Create java.io.File for the path
             file = File(str(filepath))
