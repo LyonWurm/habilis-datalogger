@@ -2482,6 +2482,7 @@ class CollectScreen(MDScreen):
 
         try:
             from jnius import autoclass
+            from jnius import cast
             from android import activity
 
             PythonActivity = autoclass('org.kivy.android.PythonActivity')
@@ -2513,6 +2514,11 @@ class CollectScreen(MDScreen):
 
             # Build content:// URI via FileProvider
             uri = FileProvider.getUriForFile(context, authority, file)
+            # Cast the android.net.Uri to android.os.Parcelable
+            parcelable_uri = cast('android.os.Parcelable', uri)
+
+            # Use the casted version in putExtra
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, parcelable_uri)
 
             # Create intent and attach output URI
             intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
