@@ -2733,6 +2733,37 @@ class CollectScreen(MDScreen):
         self.sync_dialog.open()
 
     def logout(self):
+        # Check for unsynced observations before logout
+        data_dir = get_data_dir()
+        obs_file = data_dir / "observations.json"
+        unsynced_count = 0
+        if obs_file.exists():
+            with open(obs_file) as f:
+                observations = json.load(f)
+            current_user = getattr(MDApp.get_running_app(), 'current_user', {})
+            user_season = current_user.get('season')
+            unsynced_count = sum(
+                1 for obs in observations.values()
+                if obs.get('season') == user_season and not obs.get('synced', False)
+            )
+
+        if unsynced_count > 0:
+            self.confirm_logout_with_unsynced(unsynced_count)
+        else:
+            self._do_logout()
+
+    def confirm_logout_with_unsynced(self, count):
+        dialog = MDDialog(
+            title="Unsynced Data",
+            text=f"You have {count} unsynced observation(s).\n\nLog out anyway? Data will stay on this device.",
+            buttons=[
+                MDFlatButton(text="CANCEL", on_release=lambda x: dialog.dismiss()),
+                MDRaisedButton(text="LOG OUT", on_release=lambda x: (dialog.dismiss(), self._do_logout())),
+            ]
+        )
+        dialog.open()
+
+    def _do_logout(self):
         data_dir = get_data_dir()
         cred_file = data_dir / "credentials.json"
         if cred_file.exists():

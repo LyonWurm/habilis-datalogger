@@ -185,27 +185,33 @@ class LoginScreen(MDScreen):
             self.show_qr_input_dialog()
 
     def decode_qr_file(self, filepath):
-        """Decode a QR code from an image file"""
         try:
             from PIL import Image, ImageOps
             from pyzbar.pyzbar import decode
 
             img = Image.open(str(filepath))
-            # Android camera can mirror the image — flip to correct
-            img_flipped = ImageOps.flip(img)
 
-            for attempt_img in (img_flipped, img):
-                results = decode(attempt_img)
+            # Try different transformations — Android camera orientation varies
+            transforms = [
+                img,  # original
+                ImageOps.flip(img),  # vertical flip (current)
+                ImageOps.mirror(img),  # horizontal flip (most likely fix)
+                img.rotate(90),  # rotate 90
+                img.rotate(270),  # rotate 270
+                ImageOps.flip(ImageOps.mirror(img)),  # both flips
+            ]
+
+            for i, attempt in enumerate(transforms):
+                results = decode(attempt)
                 if results:
+                    print(f"QR decoded on transform #{i}")
                     return results[0].data.decode('utf-8')
 
             return None
         except Exception as e:
-            import traceback
             print(f"QR decode failed: {e}")
-            traceback.print_exc()
             return None
-
+        
     @mainthread
     def _qr_permission_callback(self, permissions, results):
         """Called after QR camera permission request"""
