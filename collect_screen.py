@@ -2499,13 +2499,12 @@ class CollectScreen(MDScreen):
             data_dir = get_data_dir()
             photos_dir = data_dir / "photos"
             photos_dir.mkdir(parents=True, exist_ok=True)
-            filepath = (photos_dir / filename).resolve()  # ← resolve makes the whole path absolute
+            filepath = (photos_dir / filename).resolve()
 
             # Create java.io.File for the path
             file = File(str(filepath))
 
-            # Determine authority dynamically (must match the provider entry in AndroidManifest)
-            # Prefer plyer.camera.FILEPROVIDER_AUTHORITY if plyer set it, otherwise use package.fileprovider
+            # Determine authority dynamically
             try:
                 from plyer import camera as plyer_camera
                 authority = getattr(plyer_camera, 'FILEPROVIDER_AUTHORITY', f"{package_name}.fileprovider")
@@ -2514,27 +2513,27 @@ class CollectScreen(MDScreen):
 
             # Build content:// URI via FileProvider
             uri = FileProvider.getUriForFile(context, authority, file)
-            # Cast the android.net.Uri to android.os.Parcelable
+
+            # Cast android.net.Uri to android.os.Parcelable for putExtra
             parcelable_uri = cast('android.os.Parcelable', uri)
 
-            # Use the casted version in putExtra
+            # Create intent FIRST, then attach output URI
+            intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
             intent.putExtra(MediaStore.EXTRA_OUTPUT, parcelable_uri)
 
-            # Create intent and attach output URI
-            intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, uri)
-            # Grant both read and write for the camera app
+            # Grant read+write on the URI
             intent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION)
 
-            # Explicitly grant URI permissions to any activity that can handle the intent (works around provider restrictions)
+            # Explicitly grant URI permissions to every camera app that can handle the intent
             pm = context.getPackageManager()
             resolve_info_list = pm.queryIntentActivities(intent, 0)
-            # resolve_info_list is a Java List — iterate safely
             for i in range(resolve_info_list.size()):
                 ri = resolve_info_list.get(i)
                 pkg = ri.activityInfo.packageName
-                context.grantUriPermission(pkg, uri,
-                                           Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                context.grantUriPermission(
+                    pkg, uri,
+                    Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION
+                )
 
             # Save pending path for on_activity_result
             self.pending_photo_path = filepath
@@ -2552,7 +2551,7 @@ class CollectScreen(MDScreen):
             print(f"Native camera intent failed: {e}")
             traceback.print_exc()
             self.show_message(f"Camera error: {e}")
-
+            
     @mainthread
 
     def _camera_permission_callback(self, permissions, results):
