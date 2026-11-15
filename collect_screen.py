@@ -2540,8 +2540,10 @@ class CollectScreen(MDScreen):
             self.pending_photo_filename = filename
 
             # Launch camera
-            activity.startActivityForResult(intent, 1001)
-
+            PythonActivity = autoclass('org.kivy.android.PythonActivity')
+            currentActivity = cast('android.app.Activity', PythonActivity.mActivity)
+            currentActivity.startActivityForResult(intent, 1001)
+            
             # Add to photos list optimistically
             if filename not in self.photos:
                 self.photos.append(filename)
@@ -2551,7 +2553,7 @@ class CollectScreen(MDScreen):
             print(f"Native camera intent failed: {e}")
             traceback.print_exc()
             self.show_message(f"Camera error: {e}")
-            
+
     @mainthread
 
     def _camera_permission_callback(self, permissions, results):
