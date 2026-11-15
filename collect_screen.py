@@ -657,18 +657,14 @@ class CollectScreen(MDScreen):
             if response.status_code == 200:
                 result = response.json()
                 added = result.get('added', 0)
-
-                # Mark synced observations as synced
+                print(f"DEBUG: marking {len(unsynced)} observations as synced")
                 for field_id in unsynced.keys():
                     all_observations[field_id]['synced'] = True
-                    all_observations[field_id]['synced_at'] = datetime.now().isoformat()
-
+                    print(f"DEBUG: set synced=True for {field_id}")
                 with open(obs_file, 'w') as f:
                     json.dump(all_observations, f, indent=2)
-
+                print("DEBUG: wrote observations.json")
                 self.show_message(f"Sync complete!\nAdded {added} observations to base station")
-            else:
-                self.show_message(f"Sync failed: Server returned {response.status_code}\n{response.text}")
 
         except requests.exceptions.ConnectionError as e:
             self.progress_dialog.dismiss()
@@ -2543,11 +2539,8 @@ class CollectScreen(MDScreen):
             PythonActivity = autoclass('org.kivy.android.PythonActivity')
             currentActivity = cast('android.app.Activity', PythonActivity.mActivity)
             currentActivity.startActivityForResult(intent, 1001)
-            
-            # Add to photos list optimistically
-            if filename not in self.photos:
-                self.photos.append(filename)
-            self.show_message("Opening camera...")
+
+
         except Exception as e:
             import traceback
             print(f"Native camera intent failed: {e}")

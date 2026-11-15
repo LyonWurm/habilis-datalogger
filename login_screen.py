@@ -127,30 +127,84 @@ class LoginScreen(MDScreen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.menu = None
+        if ANDROID_AVAILABLE:
+            from android import activity
+            activity.bind(on_activity_result=self.on_activity_result)
 
     def scan_join_qr(self):
-        """Scan QR code to join a project"""
+        """Scan QR code to join a project — opens camera"""
         print("=== scan_join_qr called ===")
-        print(f"ANDROID_AVAILABLE: {ANDROID_AVAILABLE}")
-
-        if ANDROID_AVAILABLE:
-            try:
-                from android.permissions import check_permission, Permission
-                has_camera = check_permission(Permission.CAMERA)
-                print(f"Camera permission: {has_camera}")
-            except Exception as e:
-                print(f"Permission check error: {e}")
 
         if not ANDROID_AVAILABLE:
+            self.show_message("Camera only available on Android — falling back to manual entry")
             self.show_qr_input_dialog()
             return
 
-        if not check_permission(Permission.CAMERA):
+        try:
+            from android.permissions import check_permission, Permission
+            has_camera = check_permission(Permission.CAMERA)
+        except Exception as e:
+            print(f"Permission check error: {e}")
+            has_camera = False
+
+        if not has_camera:
             print("Requesting camera permission...")
+            from android.permissions import request_permissions, Permission
             request_permissions([Permission.CAMERA], self._qr_permission_callback)
             return
 
-        self._start_qr_scan()
+        self._launch_qr_camera()
+
+    def _qr_permission_callback(self, permissions, results):
+        """Called after QR camera permission request"""
+        if all(results):
+            self._launch_qr_camera()
+        else:
+            self.show_message("Camera permission denied — falling back to manual entry")
+            self.show_qr_input_dialog()
+
+    def on_activity_result(self, request_code, result_code, intent):
+        """Handle camera return — request code 1002 = QR scan"""
+        if request_code != 1002:
+            return
+
+        if result_code != -1:  # not RESULT_OK
+            self.show_message("QR scan cancelled")
+            return
+
+        if not hasattr(self, 'pending_qr_path') or not self.pending_qr_path.exists():
+            self.show_message("QR image not saved — try again")
+            return
+
+        decoded = self.decode_qr_file(self.pending_qr_path)
+        if decoded:
+            print(f"QR decoded: {decoded[:100]}...")  # truncate for log
+            self.process_join_qr(decoded)
+        else:
+            self.show_message("Could not read QR code — try again or enter manually")
+            self.show_qr_input_dialog()
+
+    def decode_qr_file(self, filepath):
+        """Decode a QR code from an image file"""
+        try:
+            from PIL import Image, ImageOps
+            from pyzbar.pyzbar import decode
+
+            img = Image.open(str(filepath))
+            # Android camera can mirror the image — flip to correct
+            img_flipped = ImageOps.flip(img)
+
+            for attempt_img in (img_flipped, img):
+                results = decode(attempt_img)
+                if results:
+                    return results[0].data.decode('utf-8')
+
+            return None
+        except Exception as e:
+            import traceback
+            print(f"QR decode failed: {e}")
+            traceback.print_exc()
+            return None
 
     @mainthread
     def _qr_permission_callback(self, permissions, results):
@@ -159,6 +213,67 @@ class LoginScreen(MDScreen):
             self.scan_join_qr()
         else:
             self.show_message("Camera permission denied. Please enter QR data manually.")
+            self.show_qr_input_dialog()
+
+    def _launch_qr_camera(self):
+        """Launch camera intent to capture a QR code image"""
+        from jnius import autoclass, cast
+        from android import activity as android_activity
+        from datetime import datetime
+        from pathlib import Path
+
+        try:
+            PythonActivity = autoclass('org.kivy.android.PythonActivity')
+            context = PythonActivity.mActivity
+            package_name = context.getPackageName()
+            Intent = autoclass('android.content.Intent')
+            MediaStore = autoclass('android.provider.MediaStore')
+            File = autoclass('java.io.File')
+            FileProvider = autoclass('androidx.core.content.FileProvider')
+
+            timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+            filename = f"qr_scan_{timestamp}.jpg"
+            data_dir = get_data_dir()
+            qr_dir = data_dir / "qr_scans"
+            qr_dir.mkdir(parents=True, exist_ok=True)
+            filepath = (qr_dir / filename).resolve()
+            filepath.touch()
+
+            file = File(str(filepath))
+
+            try:
+                from plyer import camera as plyer_camera
+                authority = getattr(plyer_camera, 'FILEPROVIDER_AUTHORITY', f"{package_name}.fileprovider")
+            except Exception:
+                authority = f"{package_name}.fileprovider"
+
+            uri = FileProvider.getUriForFile(context, authority, file)
+            parcelable_uri = cast('android.os.Parcelable', uri)
+
+            intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, parcelable_uri)
+            intent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION)
+
+            pm = context.getPackageManager()
+            resolve_info_list = pm.queryIntentActivities(intent, 0)
+            for i in range(resolve_info_list.size()):
+                ri = resolve_info_list.get(i)
+                pkg = ri.activityInfo.packageName
+                context.grantUriPermission(
+                    pkg, uri,
+                    Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION
+                )
+
+            self.pending_qr_path = filepath
+
+            currentActivity = cast('android.app.Activity', PythonActivity.mActivity)
+            currentActivity.startActivityForResult(intent, 1002)
+
+        except Exception as e:
+            import traceback
+            print(f"QR camera launch failed: {e}")
+            traceback.print_exc()
+            self.show_message(f"Camera error: {e}\n\nFalling back to manual entry.")
             self.show_qr_input_dialog()
 
     @mainthread
