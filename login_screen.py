@@ -185,33 +185,41 @@ class LoginScreen(MDScreen):
             self.show_qr_input_dialog()
 
     def decode_qr_file(self, filepath):
+        """Decode a QR code from an image file, trying multiple orientations"""
         try:
             from PIL import Image, ImageOps
             from pyzbar.pyzbar import decode
 
             img = Image.open(str(filepath))
 
-            # Try different transformations — Android camera orientation varies
+            # Android camera orientation varies by device and camera app.
+            # Try every likely transformation until one decodes.
             transforms = [
-                img,  # original
-                ImageOps.flip(img),  # vertical flip (current)
-                ImageOps.mirror(img),  # horizontal flip (most likely fix)
-                img.rotate(90),  # rotate 90
-                img.rotate(270),  # rotate 270
-                ImageOps.flip(ImageOps.mirror(img)),  # both flips
+                ("original", img),
+                ("flip (vertical)", ImageOps.flip(img)),
+                ("mirror (horizontal)", ImageOps.mirror(img)),
+                ("rotate 90", img.rotate(90, expand=True)),
+                ("rotate 270", img.rotate(270, expand=True)),
+                ("rotate 180", img.rotate(180, expand=True)),
+                ("flip + mirror", ImageOps.flip(ImageOps.mirror(img))),
+                ("rotate 90 + flip", ImageOps.flip(img.rotate(90, expand=True))),
+                ("rotate 270 + flip", ImageOps.flip(img.rotate(270, expand=True))),
             ]
 
-            for i, attempt in enumerate(transforms):
+            for name, attempt in transforms:
                 results = decode(attempt)
                 if results:
-                    print(f"QR decoded on transform #{i}")
+                    print(f"QR decoded on transform: {name}")
                     return results[0].data.decode('utf-8')
 
+            print("QR decode failed on all transformations")
             return None
         except Exception as e:
+            import traceback
             print(f"QR decode failed: {e}")
+            traceback.print_exc()
             return None
-        
+
     @mainthread
     def _qr_permission_callback(self, permissions, results):
         """Called after QR camera permission request"""
