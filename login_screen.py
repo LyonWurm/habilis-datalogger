@@ -191,6 +191,7 @@ class LoginScreen(MDScreen):
             from pyzbar.pyzbar import decode
 
             img = Image.open(str(filepath))
+            ("2x resize", img.resize((img.width * 2, img.height * 2), Image.LANCZOS)),
 
             # Android camera orientation varies by device and camera app.
             # Try every likely transformation until one decodes.
