@@ -184,33 +184,89 @@ class LoginScreen(MDScreen):
             self.show_message("Could not read QR code — try again or enter manually")
             self.show_qr_input_dialog()
 
-    def decode_qr_file(self, filepath):
+    def scan_join_qr(self):
+        """Join project — offer camera scan or manual paste"""
+        from kivymd.uix.dialog import MDDialog
+        from kivymd.uix.button import MDRaisedButton, MDFlatButton
+        from kivymd.uix.boxlayout import MDBoxLayout
+
+        button_box = MDBoxLayout(
+            orientation="vertical",
+            spacing="8dp",
+            size_hint_y=None,
+            height="180dp",
+        )
+
+        def do_camera(x):
+            dialog.dismiss()
+            self._qr_try_camera()
+
+        def do_text(x):
+            dialog.dismiss()
+            self.show_qr_input_dialog()
+
+        button_box.add_widget(MDRaisedButton(
+            text="SCAN WITH CAMERA",
+            size_hint_x=1,
+            on_release=do_camera,
+        ))
+        button_box.add_widget(MDRaisedButton(
+            text="PASTE TEXT",
+            size_hint_x=1,
+            on_release=do_text,
+        ))
+        button_box.add_widget(MDFlatButton(
+            text="CANCEL",
+            size_hint_x=1,
+            on_release=lambda x: dialog.dismiss(),
+        ))
+
+        dialog = MDDialog(
+            title="Join Project",
+            text="Scan a QR code or paste the text.",
+            type="custom",
+            content_cls=button_box,
+            buttons=[],
+        )
+        dialog.open()
+
+    def _qr_try_camera(self):
+        """Launch camera for QR scan (existing flow)"""
+        if not ANDROID_AVAILABLE:
+            self.show_message("Camera only available on Android")
+            self.show_qr_input_dialog()
+            return
+
         try:
-            from PIL import Image, ImageOps
-            from pyzbar.pyzbar import decode
-
-            img = Image.open(str(filepath))
-
-            # Android camera images are horizontally mirrored when returned via intent.
-            # Flip horizontally (mirror) before decoding.
-            img_mirrored = ImageOps.mirror(img)
-
-            results = decode(img_mirrored)
-            if results:
-                print("QR decoded after horizontal mirror fix")
-                return results[0].data.decode('utf-8')
-
-            # Fallback: try original just in case
-            results = decode(img)
-            if results:
-                return results[0].data.decode('utf-8')
-
-            print("QR decode failed")
-            return None
+            from android.permissions import check_permission, Permission
+            has_camera = check_permission(Permission.CAMERA)
         except Exception as e:
-            print(f"QR decode failed: {e}")
-            return None
-        
+            print(f"Permission check error: {e}")
+            has_camera = False
+
+        if not has_camera:
+            from android.permissions import request_permissions, Permission
+            request_permissions([Permission.CAMERA], self._qr_permission_callback)
+            return
+
+        self._launch_qr_camera()
+
+    def on_activity_result(self, request_code, result_code, intent):
+        if request_code != 1002:
+            return
+        if result_code != -1:
+            self.show_message("QR scan cancelled")
+            return
+        if not hasattr(self, 'pending_qr_path') or not self.pending_qr_path.exists():
+            self.show_message("QR image not saved")
+            return
+        decoded = self.decode_qr_file(self.pending_qr_path)
+        if decoded:
+            self.process_join_qr(decoded)
+        else:
+            self.show_message("Could not read QR code — enter manually")
+            self.show_qr_input_dialog()
+
     @mainthread
     def _qr_permission_callback(self, permissions, results):
         """Called after QR camera permission request"""
