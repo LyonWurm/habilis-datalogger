@@ -1574,11 +1574,7 @@ class CollectScreen(MDScreen):
                 "text": "Breadcrumb Trail",
                 "on_release": lambda x="breadcrumb": self.menu_callback("breadcrumb"),
             },
-            {
-                "viewclass": "OneLineListItem",
-                "text": "Join Project",
-                "on_release": lambda x="join_project": self.menu_callback("join_project"),
-            },
+
             {
                 "viewclass": "OneLineListItem",
                 "text": "Sync to Base",
@@ -1622,8 +1618,7 @@ class CollectScreen(MDScreen):
             self.show_my_observations()
         elif item == "breadcrumb":
             self.view_breadcrumbs()
-        elif item == "join_project":
-            self.scan_project_qr()
+
         elif item == "sync_to_base":
             self.sync_to_base()
         elif item == "save_my_data":
