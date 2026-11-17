@@ -18,6 +18,27 @@ from kivymd.app import MDApp
 from kivy.core.window import Window
 from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager
+
+# Dependency check for bag tag generation
+try:
+    from fpdf import FPDF
+    print("🔵 fpdf2: AVAILABLE")
+except ImportError as e:
+    print(f"🔴 fpdf2: NOT AVAILABLE ({e})")
+
+try:
+    import barcode
+    from barcode.writer import ImageWriter
+    print("🔵 python-barcode: AVAILABLE")
+except ImportError as e:
+    print(f"🔴 python-barcode: NOT AVAILABLE ({e})")
+
+try:
+    from PIL import Image
+    print("🔵 Pillow: AVAILABLE")
+except ImportError as e:
+    print(f"🔴 Pillow: NOT AVAILABLE ({e})")
+    
 # Android permission handling - built directly into main.py
 try:
     from android.permissions import request_permissions, check_permission, Permission
@@ -185,11 +206,35 @@ class FieldApp(MDApp):
         self._check_saved_credentials()
 
     def _check_saved_credentials(self):
-        """Check for saved login credentials"""
-        # FIXED: Use get_data_dir() with filename
-        cred_file = self.storage_path / "credentials.json"  # storage_path is already get_data_dir()
-        if cred_file.exists():
+        """Check for saved login credentials and restore user context"""
+        cred_file = self.storage_path / "credentials.json"
+        if not cred_file.exists():
+            return
+
+        try:
+            with open(cred_file) as f:
+                cred_data = json.load(f)
+
+            # Restore the current_user dict on the app
+            self.current_user = {
+                'user_id': cred_data.get('user_id'),
+                'user_name': cred_data.get('user_name'),
+                'season': cred_data.get('season'),
+                'project': cred_data.get('project'),
+                'year': cred_data.get('year'),
+            }
+
+            print(f"🔵 Restored user from credentials: {self.current_user}")
             self.root.current = "collect"
+        except Exception as e:
+            print(f"🔴 Failed to restore credentials: {e}")
+            import traceback
+            traceback.print_exc()
+            # Corrupted file — delete and go to login
+            try:
+                cred_file.unlink()
+            except Exception:
+                pass
 
 if __name__ == "__main__":
     FieldApp().run()
