@@ -599,9 +599,8 @@ class CollectScreen(MDScreen):
 
         print(f"🔵 Starting sync to {base_ip}")
 
-        # Load local observations - FIXED: add filename
         data_dir = get_data_dir()
-        obs_file = data_dir / "observations.json"  # ← Added filename
+        obs_file = data_dir / "observations.json"
         if not obs_file.exists():
             self.progress_dialog.dismiss()
             self.show_message("No observations to sync")
@@ -612,14 +611,12 @@ class CollectScreen(MDScreen):
 
         print(f"🔵 Loaded {len(all_observations)} total observations")
 
-        # Get current user info
         app = MDApp.get_running_app()
         current_user = getattr(app, 'current_user', None)
         device_id = current_user.get('user_id', 'unknown') if current_user else 'unknown'
 
         print(f"🔵 Device ID: {device_id}")
 
-        # Filter unsynced observations
         unsynced = {}
         for field_id, obs in all_observations.items():
             if not obs.get('synced', False):
@@ -632,22 +629,46 @@ class CollectScreen(MDScreen):
             self.show_message("All observations already synced")
             return
 
-        # Prepare payload
+        url = f"http://{base_ip}:5000/api/sync"  # ← RESTORED
+        print(f"🔵 Sending to URL: {url}")
+
         payload = {
             "device_id": device_id,
             "observations": unsynced
         }
 
-        url = f"http://{base_ip}:5000/api/sync"
-        print(f"🔵 Sending to URL: {url}")
+        files_payload = {}
+        photos_dir = data_dir / "photos"
+
+        for field_id, obs in unsynced.items():
+            photo_names = obs.get('photos', [])
+            for i, photo_name in enumerate(photo_names):
+                photo_path = photos_dir / photo_name
+                if photo_path.exists():
+                    key = f"image_{field_id}_{i}"
+                    files_payload[key] = (
+                        photo_name,
+                        open(str(photo_path), 'rb'),
+                        'image/jpeg'
+                    )
+                    print(f"🔵 Attaching {photo_name} as {key}")
+                else:
+                    print(f"🔵 Missing photo file: {photo_path}")
 
         try:
+            # Connection test
             print("🔵 Testing connection...")
             status_response = requests.get(f"http://{base_ip}:5000/api/status", timeout=5)
             print(f"🔵 Status response: {status_response.status_code}")
 
-            print("🔵 Sending sync request...")
-            response = requests.post(url, json=payload, timeout=30)
+            # Sync request
+            print(f"🔵 Sending sync request with {len(files_payload)} photo(s)...")
+            response = requests.post(
+                url,
+                data={'data': json.dumps(payload)},
+                files=files_payload,
+                timeout=60,
+            )
 
             self.progress_dialog.dismiss()
 
@@ -657,14 +678,17 @@ class CollectScreen(MDScreen):
             if response.status_code == 200:
                 result = response.json()
                 added = result.get('added', 0)
-                print(f"DEBUG: marking {len(unsynced)} observations as synced")
+
                 for field_id in unsynced.keys():
                     all_observations[field_id]['synced'] = True
-                    print(f"DEBUG: set synced=True for {field_id}")
+                    all_observations[field_id]['synced_at'] = datetime.now().isoformat()
+
                 with open(obs_file, 'w') as f:
                     json.dump(all_observations, f, indent=2)
-                print("DEBUG: wrote observations.json")
+
                 self.show_message(f"Sync complete!\nAdded {added} observations to base station")
+            else:
+                self.show_message(f"Sync failed: Server returned {response.status_code}\n{response.text}")
 
         except requests.exceptions.ConnectionError as e:
             self.progress_dialog.dismiss()
@@ -676,6 +700,15 @@ class CollectScreen(MDScreen):
             import traceback
             traceback.print_exc()
             self.show_message(f"Sync error: {str(e)}")
+
+        finally:
+            for _, (_, fh, _) in files_payload.items():
+                try:
+                    fh.close()
+                except Exception:
+                    pass
+
+
 
 #==== GPS and Breadcrumb Methods ====
 

@@ -131,29 +131,6 @@ class LoginScreen(MDScreen):
             from android import activity
             activity.bind(on_activity_result=self.on_activity_result)
 
-    def scan_join_qr(self):
-        """Scan QR code to join a project — opens camera"""
-        print("=== scan_join_qr called ===")
-
-        if not ANDROID_AVAILABLE:
-            self.show_message("Camera only available on Android — falling back to manual entry")
-            self.show_qr_input_dialog()
-            return
-
-        try:
-            from android.permissions import check_permission, Permission
-            has_camera = check_permission(Permission.CAMERA)
-        except Exception as e:
-            print(f"Permission check error: {e}")
-            has_camera = False
-
-        if not has_camera:
-            print("Requesting camera permission...")
-            from android.permissions import request_permissions, Permission
-            request_permissions([Permission.CAMERA], self._qr_permission_callback)
-            return
-
-        self._launch_qr_camera()
 
     def _qr_permission_callback(self, permissions, results):
         """Called after QR camera permission request"""
@@ -185,7 +162,13 @@ class LoginScreen(MDScreen):
             self.show_qr_input_dialog()
 
     def scan_join_qr(self):
-        """Join project — offer camera scan or manual paste"""
+        """Join project — prompt to scan via native camera and paste the text.
+
+        Camera QR scanning inside the app is currently not working reliably
+        (ACTION_IMAGE_CAPTURE returns mirrored/processed images that pyzbar
+        cannot decode). The manual paste flow is the working path until
+        Camera4Kivy integration replaces it.
+        """
         from kivymd.uix.dialog import MDDialog
         from kivymd.uix.button import MDRaisedButton, MDFlatButton
         from kivymd.uix.boxlayout import MDBoxLayout
@@ -197,21 +180,24 @@ class LoginScreen(MDScreen):
             height="180dp",
         )
 
-        def do_camera(x):
-            dialog.dismiss()
-            self._qr_try_camera()
+        # --- Camera scan button (disabled until Camera4Kivy or equivalent is wired in)
+        # def do_camera(x):
+        #     dialog.dismiss()
+        #     self._qr_try_camera()
+        #
+        # button_box.add_widget(MDRaisedButton(
+        #     text="SCAN WITH CAMERA",
+        #     size_hint_x=1,
+        #     on_release=do_camera,
+        # ))
+        # --- End disabled camera button
 
         def do_text(x):
             dialog.dismiss()
             self.show_qr_input_dialog()
 
         button_box.add_widget(MDRaisedButton(
-            text="SCAN WITH CAMERA",
-            size_hint_x=1,
-            on_release=do_camera,
-        ))
-        button_box.add_widget(MDRaisedButton(
-            text="PASTE TEXT",
+            text="ENTER QR DATA",
             size_hint_x=1,
             on_release=do_text,
         ))
@@ -223,7 +209,10 @@ class LoginScreen(MDScreen):
 
         dialog = MDDialog(
             title="Join Project",
-            text="Scan a QR code or paste the text.",
+            text=(
+                "Open your phone's camera app and scan the admin's project QR code.\n\n"
+                "Copy the text shown, then tap ENTER QR DATA and paste it."
+            ),
             type="custom",
             content_cls=button_box,
             buttons=[],
