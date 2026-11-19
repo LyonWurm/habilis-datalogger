@@ -3936,45 +3936,44 @@ class BagTagManagementScreen(MDScreen):
 
                 # === FIELD TABLE (3 rows x 2 cols) ===
                 table_y = y + 0.33
-                row_h = 0.13
+                row_h = 0.17
                 col_w = inner_w / 2
 
                 # Row 1: Date | Custom Field 1
-                pdf.set_font("Helvetica", "", 6)
+                pdf.set_font("Helvetica", "", 7.5)
                 pdf.set_xy(inner_x, table_y)
-                pdf.cell(col_w, row_h, "Date: __________", align="L")
+                pdf.cell(col_w, row_h, "Date: ______________", align="L")
                 pdf.set_xy(inner_x + col_w, table_y)
-                label0 = f"{field_labels[0]}: __________" if field_labels[0] else ""
+                label0 = f"{field_labels[0]}: ______________" if field_labels[0] else ""
                 pdf.cell(col_w, row_h, label0, align="L")
 
                 # Row 2: Custom Field 2 | Custom Field 3
                 pdf.set_xy(inner_x, table_y + row_h)
-                label1 = f"{field_labels[1]}: __________" if field_labels[1] else ""
+                label1 = f"{field_labels[1]}: ______________" if field_labels[1] else ""
                 pdf.cell(col_w, row_h, label1, align="L")
                 pdf.set_xy(inner_x + col_w, table_y + row_h)
-                label2 = f"{field_labels[2]}: __________" if field_labels[2] else ""
+                label2 = f"{field_labels[2]}: ______________" if field_labels[2] else ""
                 pdf.cell(col_w, row_h, label2, align="L")
 
                 # Row 3: Custom Field 4 | Custom Field 5
                 pdf.set_xy(inner_x, table_y + 2 * row_h)
-                label3 = f"{field_labels[3]}: __________" if field_labels[3] else ""
+                label3 = f"{field_labels[3]}: ______________" if field_labels[3] else ""
                 pdf.cell(col_w, row_h, label3, align="L")
                 pdf.set_xy(inner_x + col_w, table_y + 2 * row_h)
-                label4 = f"{field_labels[4]}: __________" if field_labels[4] else ""
+                label4 = f"{field_labels[4]}: ______________" if field_labels[4] else ""
                 pdf.cell(col_w, row_h, label4, align="L")
 
                 # === BARCODE ===
                 barcode_value = tag['barcode']
                 barcode_img_path = self._generate_barcode_image(barcode_value, barcode_dir)
                 if barcode_img_path and Path(barcode_img_path).exists():
-                    barcode_h = 0.28
-                    barcode_y = y + 0.75
-                    # Center the barcode image
-                    barcode_w = tag_width - 2 * pad - 0.1
+                    barcode_y = y + 0.85  # was 0.75 — pushed down for taller field table
+                    barcode_w = tag_width - 2 * pad - 0.4  # narrower target
                     try:
+                        # Pass only w, let h derive from aspect ratio
                         pdf.image(str(barcode_img_path),
-                                  x=inner_x + 0.05, y=barcode_y,
-                                  w=barcode_w, h=barcode_h)
+                                  x=inner_x + 0.2, y=barcode_y,
+                                  w=barcode_w)
                     except Exception as e:
                         print(f"Barcode embed failed: {e}")
 
@@ -3984,7 +3983,7 @@ class BagTagManagementScreen(MDScreen):
 
                 pdf.set_font("Helvetica", "", 6)
                 pdf.set_xy(inner_x, bottom_y)
-                pdf.cell(inner_w / 2, 0.14, "Note: ___________", align="L")
+                pdf.cell(inner_w / 2, 0.14, "Note: ______---_____", align="L")
 
                 pdf.set_font("Helvetica", "B", 9)
                 pdf.set_xy(inner_x + inner_w / 2, bottom_y)
@@ -4050,6 +4049,8 @@ class BagTagManagementScreen(MDScreen):
             File = autoclass('java.io.File')
             FileProvider = autoclass('androidx.core.content.FileProvider')
 
+            from pathlib import Path
+            filepath = Path(filepath).resolve()
             file = File(str(filepath))
 
             try:
