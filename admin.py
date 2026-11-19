@@ -3877,7 +3877,11 @@ class BagTagManagementScreen(MDScreen):
             field_labels.append('')
 
         # Output directory
-        bagtags_dir = get_data_dir() / "bag_tags"
+        # In generate_pdf, where bagtags_dir is set:
+        from jnius import autoclass
+        PythonActivity = autoclass('org.kivy.android.PythonActivity')
+        files_dir = Path(PythonActivity.mActivity.getFilesDir().getAbsolutePath())
+        bagtags_dir = files_dir / "app" / "field_data" / "bag_tags"
         bagtags_dir.mkdir(parents=True, exist_ok=True)
 
         filename = f"bag_tags_{self.current_project_id}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.pdf"
