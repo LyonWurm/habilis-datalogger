@@ -23,23 +23,13 @@ import hashlib
 import secrets
 import string
 from datetime import datetime
+
 try:
-    from reportlab.lib.enums import TA_CENTER, TA_LEFT, TA_RIGHT
-    from kivymd.uix.spinner import MDSpinner  # If you use it
-    from reportlab.lib import colors
-    from reportlab.lib.pagesizes import letter
-    from reportlab.lib.units import inch
-    from reportlab.graphics.barcode import createBarcodeDrawing
-    from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph, Spacer, PageBreak
-    from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
-    from reportlab.lib.enums import TA_CENTER
-    from reportlab.graphics.barcode import code128
-    from reportlab.graphics.shapes import Drawing
-    from reportlab.graphics import renderPDF
-    from reportlab.pdfgen import canvas as pdf_canvas
-    REPORTLAB_AVAILABLE = True
+    from fpdf import FPDF
+
+    FPDF_AVAILABLE = True
 except ImportError:
-    REPORTLAB_AVAILABLE = False
+    FPDF_AVAILABLE = False
 
 
 def get_data_dir():
@@ -3362,6 +3352,21 @@ class BagTagManagementScreen(MDScreen):
         self.tag_config = None
         self.custom_fields = []
 
+    print("🔵 Barcode test starting")
+    try:
+        import barcode
+        from barcode.writer import ImageWriter
+        from pathlib import Path
+        test_dir = get_data_dir() / "bag_tags" / "test"
+        test_dir.mkdir(parents=True, exist_ok=True)
+        ean = barcode.get('code128', '1234567890', writer=ImageWriter())
+        saved = ean.save(str(test_dir / "test_bc"))
+        print(f"🔵 Barcode saved: {saved}")
+    except Exception as e:
+        import traceback
+        print(f"🔴 Barcode test failed: {e}")
+        traceback.print_exc()
+
     def on_enter(self):
         """Called when screen is shown"""
         app = MDApp.get_running_app()
@@ -3831,26 +3836,16 @@ class BagTagManagementScreen(MDScreen):
         print(f"Updated master database at {json_path}")
 
     def generate_pdf(self, batch_id, tags):
-        if not REPORTLAB_AVAILABLE:
+        """Generate bag tag PDFs using fpdf2 + python-barcode"""
+        if not FPDF_AVAILABLE:
             self.show_message("PDF generation not available on this device")
             return
-
-        """Generate PDF with tags (two-column layout)"""
-        from reportlab.lib.pagesizes import letter
-        from reportlab.lib.units import inch
-        from reportlab.lib import colors
-        from reportlab.graphics import renderPDF
-        from reportlab.graphics.barcode import createBarcodeDrawing
-        from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph, Spacer, PageBreak
-        from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
-        from reportlab.lib.enums import TA_CENTER, TA_LEFT
-        from pathlib import Path
 
         if not tags:
             self.show_message("No tags to generate")
             return
 
-        print("=== Starting PDF Generation ===")
+        print("=== Starting PDF Generation (fpdf2) ===")
 
         # Get project info
         projects = load_projects()
@@ -3863,266 +3858,222 @@ class BagTagManagementScreen(MDScreen):
         seasons = load_seasons()
         season_id = project.get('season_id', '')
         season_data = seasons.get(season_id, {})
-        year = season_data.get('year', 'YYYY')  # Define year here
+        year = season_data.get('year', 'YYYY')
 
-        # Get the leader's last name from admin data
+        # Get leader's last name
         admins = load_admins()
         leader_data = admins.get(project_leader_username, {})
-        leader_last = leader_data.get('last_name', '')  # Define leader_last here
-
-        # If last name not found in admin, try parsing from leader_name
+        leader_last = leader_data.get('last_name', '')
         if not leader_last:
-            # Parse from "username (role)" format
             leader_clean = project_leader_name.split('(')[0].strip()
             leader_last = leader_clean.split()[-1] if leader_clean.split() else leader_clean
 
-        # Now use these in your tag content
         project_line = f"{leader_last} - {year} - {project_name}"
-
-        # Get season info
-        seasons = load_seasons()
-        season_id = project.get('season_id', '')
-        season_data = seasons.get(season_id, {})
-        year = season_data.get('year', 'YYYY')
 
         # Get custom fields from config
         custom_fields = self.tag_config.get('custom_fields', [])
+        field_labels = [f.get('label', '') for f in custom_fields[:5]]
+        while len(field_labels) < 5:
+            field_labels.append('')
 
-        # Save to Desktop
-        desktop = Path.home() / "Desktop"
-        bagtags_dir = desktop / "BagTags"
-        bagtags_dir.mkdir(exist_ok=True)
+        # Output directory
+        bagtags_dir = get_data_dir() / "bag_tags"
+        bagtags_dir.mkdir(parents=True, exist_ok=True)
 
         filename = f"bag_tags_{self.current_project_id}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.pdf"
         filepath = bagtags_dir / filename
         print(f"Saving to: {filepath}")
 
-        # Page dimensions
-        page_width = 8.5 * inch
-        page_height = 11 * inch
-        margin = 0.25 * inch
-
-        tag_width = (page_width - (2 * margin)) / 3
-        tag_height = (page_height - (2 * margin)) / 6
-
-        # Create PDF
-        doc = SimpleDocTemplate(
-            str(filepath),
-            pagesize=letter,
-            leftMargin=margin,
-            rightMargin=margin,
-            topMargin=margin,
-            bottomMargin=margin
-        )
-
-        story = []
-        styles = getSampleStyleSheet()
-
-        # Custom styles
-        header_style = ParagraphStyle(
-            'HeaderStyle',
-            parent=styles['Normal'],
-            fontSize=9,
-            alignment=TA_CENTER,
-            spaceAfter=2,
-            fontName='Helvetica-Bold'
-        )
-
-        subheader_style = ParagraphStyle(
-            'SubheaderStyle',
-            parent=styles['Normal'],
-            fontSize=8,
-            alignment=TA_CENTER,
-            spaceAfter=4,
-            fontName='Helvetica'
-        )
-
-        field_id_style_small = ParagraphStyle(
-            'FieldIDStyleSmall',
-            parent=styles['Normal'],
-            fontSize=10,
-            alignment=TA_CENTER,
-            fontName='Helvetica-Bold'
-        )
-
-        field_label_style = ParagraphStyle(
-            'FieldLabelStyle',
-            parent=styles['Normal'],
-            fontSize=7,
-            alignment=TA_LEFT,
-            fontName='Helvetica'
-        )
-
-        barcode_style = ParagraphStyle(
-            'BarcodeStyle',
-            parent=styles['Normal'],
-            fontSize=8,
-            alignment=TA_CENTER,
-            spaceAfter=4,
-            fontName='Courier'
-        )
-
+        # Page geometry (inches, letter size = 8.5 x 11)
+        page_width = 8.5
+        page_height = 11.0
+        margin = 0.25
+        tag_width = (page_width - 2 * margin) / 3
+        tag_height = (page_height - 2 * margin) / 6
         tags_per_page = 18
         total_tags = len(tags)
         project_num = int(self.current_project_id)
 
-        # Prepare custom fields for display (max 5)
-        field_labels = [f.get('label', '') for f in custom_fields[:5]]
-        # Pad to 5 fields
-        while len(field_labels) < 5:
-            field_labels.append('')
+        # Barcode temp dir
+        barcode_dir = get_data_dir() / "bag_tags" / "barcodes"
+        barcode_dir.mkdir(parents=True, exist_ok=True)
+
+        pdf = FPDF(unit="in", format="letter")
+        pdf.set_auto_page_break(False)
+        pdf.set_margins(margin, margin, margin)
 
         for page_start in range(0, total_tags, tags_per_page):
+            pdf.add_page()
             page_tags = tags[page_start:page_start + tags_per_page]
 
-            # Create grid
-            grid_data = []
-            row = []
-
             for i, tag in enumerate(page_tags):
-                # Build tag content
-                content = []
+                row = i // 3
+                col = i % 3
+                x = margin + col * tag_width
+                y = margin + row * tag_height
 
-                # Header
-                content.append(Paragraph("Koobi Fora Research and Training Program", header_style))
-                content.append(Spacer(1, 2))
+                # Draw tag outer border
+                pdf.set_draw_color(180, 180, 180)
+                pdf.set_line_width(0.01)
+                pdf.rect(x, y, tag_width, tag_height)
 
-                # Subheader
-                project_line = f"{leader_last} - {year} - {project_name}"
-                content.append(Paragraph(project_line, subheader_style))
-                content.append(Spacer(1, 4))
+                # Inner padding
+                pad = 0.06
+                inner_x = x + pad
+                inner_w = tag_width - 2 * pad
 
-                # Two-column grid for fields
-                field_table_data = []
+                # === HEADER ===
+                pdf.set_text_color(0, 0, 0)
+                pdf.set_font("Helvetica", "B", 9)
+                pdf.set_xy(inner_x, y + 0.03)
+                pdf.cell(inner_w, 0.15, "Koobi Fora Research and Training Program",
+                         align="C")
+
+                # === SUBHEADER ===
+                pdf.set_font("Helvetica", "", 7)
+                pdf.set_xy(inner_x, y + 0.18)
+                pdf.cell(inner_w, 0.12, project_line, align="C")
+
+                # === FIELD TABLE (3 rows x 2 cols) ===
+                table_y = y + 0.33
+                row_h = 0.13
+                col_w = inner_w / 2
 
                 # Row 1: Date | Custom Field 1
-                row1 = [
-                    Paragraph("Date: __________", field_label_style),
-                    Paragraph(f"{field_labels[0]}: __________" if field_labels[0] else "", field_label_style)
-                ]
-                field_table_data.append(row1)
+                pdf.set_font("Helvetica", "", 6)
+                pdf.set_xy(inner_x, table_y)
+                pdf.cell(col_w, row_h, "Date: __________", align="L")
+                pdf.set_xy(inner_x + col_w, table_y)
+                label0 = f"{field_labels[0]}: __________" if field_labels[0] else ""
+                pdf.cell(col_w, row_h, label0, align="L")
 
                 # Row 2: Custom Field 2 | Custom Field 3
-                row2 = [
-                    Paragraph(f"{field_labels[1]}: __________" if field_labels[1] else "", field_label_style),
-                    Paragraph(f"{field_labels[2]}: __________" if field_labels[2] else "", field_label_style)
-                ]
-                field_table_data.append(row2)
+                pdf.set_xy(inner_x, table_y + row_h)
+                label1 = f"{field_labels[1]}: __________" if field_labels[1] else ""
+                pdf.cell(col_w, row_h, label1, align="L")
+                pdf.set_xy(inner_x + col_w, table_y + row_h)
+                label2 = f"{field_labels[2]}: __________" if field_labels[2] else ""
+                pdf.cell(col_w, row_h, label2, align="L")
 
                 # Row 3: Custom Field 4 | Custom Field 5
-                row3 = [
-                    Paragraph(f"{field_labels[3]}: __________" if field_labels[3] else "", field_label_style),
-                    Paragraph(f"{field_labels[4]}: __________" if field_labels[4] else "", field_label_style)
-                ]
-                field_table_data.append(row3)
+                pdf.set_xy(inner_x, table_y + 2 * row_h)
+                label3 = f"{field_labels[3]}: __________" if field_labels[3] else ""
+                pdf.cell(col_w, row_h, label3, align="L")
+                pdf.set_xy(inner_x + col_w, table_y + 2 * row_h)
+                label4 = f"{field_labels[4]}: __________" if field_labels[4] else ""
+                pdf.cell(col_w, row_h, label4, align="L")
 
-                # Create the field table
-                field_table = Table(field_table_data, colWidths=[tag_width / 2 - 10, tag_width / 2 - 10])
-                field_table.setStyle(TableStyle([
-                    ('ALIGN', (0, 0), (-1, -1), 'LEFT'),
-                    ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
-                    ('LEFTPADDING', (0, 0), (-1, -1), 2),
-                    ('RIGHTPADDING', (0, 0), (-1, -1), 2),
-                    ('TOPPADDING', (0, 0), (-1, -1), 0),
-                    ('BOTTOMPADDING', (0, 0), (-1, -1), 0),
-                    ('FONTNAME', (0, 0), (-1, -1), 'Helvetica'),
-                    ('FONTSIZE', (0, 0), (-1, -1), 7),
-                ]))
-
-                content.append(field_table)
-                content.append(Spacer(1, 4))
-
-                # Bottom section: Note (left) and Barcode/Field ID (center)
-                left_cell = Paragraph("Note: ___________", field_label_style)
-
-                # Center content: Barcode image (no text)
-                center_content = []
-
+                # === BARCODE ===
                 barcode_value = tag['barcode']
-                barcode_drawing = createBarcodeDrawing(
-                    'Code128',
-                    value=barcode_value,
-                    barHeight=0.25 * inch,  # Reduced from 0.3
-                    barWidth=0.009 * inch,  # Reduced from 0.02
-                    humanReadable=False
-                )
+                barcode_img_path = self._generate_barcode_image(barcode_value, barcode_dir)
+                if barcode_img_path and Path(barcode_img_path).exists():
+                    barcode_h = 0.28
+                    barcode_y = y + 0.75
+                    # Center the barcode image
+                    barcode_w = tag_width - 2 * pad - 0.1
+                    try:
+                        pdf.image(str(barcode_img_path),
+                                  x=inner_x + 0.05, y=barcode_y,
+                                  w=barcode_w, h=barcode_h)
+                    except Exception as e:
+                        print(f"Barcode embed failed: {e}")
 
-                # Add the barcode drawing directly to content
-                content.append(barcode_drawing)
-                content.append(Spacer(1, 2))
-
-                # Field ID
+                # === BOTTOM ROW: Note + Field ID ===
                 field_id_display = f"{project_num:02d}{tag['sequential']:03d}"
-                field_id_style_small = ParagraphStyle(
-                    'FieldIDStyleSmall',
-                    parent=styles['Normal'],
-                    fontSize=10,
-                    alignment=TA_RIGHT,  # Right-aligned for the bottom row
-                    fontName='Helvetica-Bold'
-                )
-                center_content.append(Paragraph(field_id_display, field_id_style_small))
+                bottom_y = y + tag_height - 0.20
 
-                # After the field table, add barcode (centered)
-                barcode_text = tag['barcode']
-                formatted_barcode = barcode_text[:8] + " " + barcode_text[8:]
-                content.append(Spacer(1, 4))
+                pdf.set_font("Helvetica", "", 6)
+                pdf.set_xy(inner_x, bottom_y)
+                pdf.cell(inner_w / 2, 0.14, "Note: ___________", align="L")
 
-                # Bottom row: Note (left) and Field ID (right)
-                bottom_row = Table([[Paragraph("Note: ___________", field_label_style),
-                                     Paragraph(field_id_display, field_id_style_small)]],
-                                   colWidths=[tag_width / 2, tag_width / 2])
-                bottom_row.setStyle(TableStyle([
-                    ('ALIGN', (0, 0), (0, 0), 'LEFT'),
-                    ('ALIGN', (1, 0), (1, 0), 'RIGHT'),
-                    ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
-                    ('LEFTPADDING', (0, 0), (-1, -1), 5),
-                    ('RIGHTPADDING', (0, 0), (-1, -1), 5),
-                ]))
+                pdf.set_font("Helvetica", "B", 9)
+                pdf.set_xy(inner_x + inner_w / 2, bottom_y)
+                pdf.cell(inner_w / 2, 0.14, field_id_display, align="R")
 
-                content.append(bottom_row)
+        # Save PDF
+        try:
+            print("Building PDF...")
+            pdf.output(str(filepath))
+            print("PDF built successfully")
 
-                row.append(content)
+            if filepath.exists():
+                print(f"File created: {filepath}")
+                size = filepath.stat().st_size
+                print(f"File size: {size} bytes")
+                self._share_pdf(filepath)
+                self.show_message(f"PDF saved to: {filepath}")
+            else:
+                print("ERROR: File not created")
+                self.show_message("PDF generation failed")
+        except Exception as e:
+            import traceback
+            print(f"PDF build failed: {e}")
+            traceback.print_exc()
+            self.show_message(f"PDF error: {e}")
 
-                if (i + 1) % 3 == 0:
-                    grid_data.append(row)
-                    row = []
+    def _generate_barcode_image(self, value, barcode_dir):
+        """Generate a Code128 barcode PNG and return its path"""
+        try:
+            import barcode
+            from barcode.writer import ImageWriter
 
-            if row:
-                while len(row) < 3:
-                    row.append(Paragraph("", styles['Normal']))
-                grid_data.append(row)
+            # Sanitize filename
+            safe_value = "".join(c for c in value if c.isalnum())
+            out_path = barcode_dir / f"bc_{safe_value}"
 
-            # Create table
-            table = Table(grid_data, colWidths=tag_width, rowHeights=tag_height)
-            table.setStyle(TableStyle([
-                ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
-                ('VALIGN', (0, 0), (-1, -1), 'TOP'),
-                ('BOX', (0, 0), (-1, -1), 0.5, colors.grey),
-                ('INNERGRID', (0, 0), (-1, -1), 1.5, colors.lightgrey),
-                ('LEFTPADDING', (0, 0), (-1, -1), 3),
-                ('RIGHTPADDING', (0, 0), (-1, -1), 3),
-                ('TOPPADDING', (0, 0), (-1, -1), 3),
-                ('BOTTOMPADDING', (0, 0), (-1, -1), 3),
-            ]))
+            # Generate. python-barcode's save() adds '.png' automatically
+            code = barcode.get('code128', value, writer=ImageWriter())
+            result = code.save(str(out_path))
 
-            story.append(table)
+            if result and Path(result).exists():
+                return result
+            # Some versions return without extension
+            if Path(str(out_path) + ".png").exists():
+                return str(out_path) + ".png"
+            return None
+        except Exception as e:
+            import traceback
+            print(f"Barcode generation failed: {e}")
+            traceback.print_exc()
+            return None
 
-            if page_start + tags_per_page < total_tags:
-                story.append(PageBreak())
+    def _share_pdf(self, filepath):
+        """Open Android share sheet to send the PDF file"""
+        try:
+            from jnius import autoclass, cast
+            from android import activity
 
-        # Build PDF
-        print("Building PDF...")
-        doc.build(story)
-        print("PDF built successfully")
+            PythonActivity = autoclass('org.kivy.android.PythonActivity')
+            context = PythonActivity.mActivity
+            package_name = context.getPackageName()
+            Intent = autoclass('android.content.Intent')
+            File = autoclass('java.io.File')
+            FileProvider = autoclass('androidx.core.content.FileProvider')
 
-        # Check if file exists and open
-        if filepath.exists():
-            print(f"File created: {filepath}")
-            self.open_pdf(str(filepath))
-            self.show_message(f"PDF saved to: {filepath}")
-        else:
-            print(f"ERROR: File not created")
-            self.show_message("PDF generation failed")
+            file = File(str(filepath))
+
+            try:
+                from plyer import camera as plyer_camera
+                authority = getattr(plyer_camera, 'FILEPROVIDER_AUTHORITY', f"{package_name}.fileprovider")
+            except Exception:
+                authority = f"{package_name}.fileprovider"
+
+            uri = FileProvider.getUriForFile(context, authority, file)
+            parcelable_uri = cast('android.os.Parcelable', uri)
+
+            intent = Intent(Intent.ACTION_SEND)
+            intent.setType("application/pdf")
+            intent.putExtra(Intent.EXTRA_STREAM, parcelable_uri)
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+
+            currentActivity = cast('android.app.Activity', PythonActivity.mActivity)
+            chooser = Intent.createChooser(intent, "Share Bag Tags")
+            currentActivity.startActivity(chooser)
+        except Exception as e:
+            import traceback
+            print(f"PDF share failed: {e}")
+            traceback.print_exc()
+            # Not fatal — PDF is still saved locally
 
     def open_pdf(self, filepath):
         """Open PDF with default viewer"""
