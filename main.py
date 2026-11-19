@@ -38,7 +38,7 @@ try:
     print("🔵 Pillow: AVAILABLE")
 except ImportError as e:
     print(f"🔴 Pillow: NOT AVAILABLE ({e})")
-    
+
 # Android permission handling - built directly into main.py
 try:
     from android.permissions import request_permissions, check_permission, Permission
