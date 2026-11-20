@@ -3917,8 +3917,8 @@ class BagTagManagementScreen(MDScreen):
                 y = margin + row * tag_height
 
                 # Draw tag outer border
-                pdf.set_draw_color(180, 180, 180)
-                pdf.set_line_width(0.01)
+                pdf.set_draw_color(80, 80, 80)
+                pdf.set_line_width(0.015)
                 pdf.rect(x, y, tag_width, tag_height)
 
                 # Inner padding
@@ -4019,18 +4019,27 @@ class BagTagManagementScreen(MDScreen):
         try:
             import barcode
             from barcode.writer import ImageWriter
+            from pathlib import Path
 
-            # Sanitize filename
             safe_value = "".join(c for c in value if c.isalnum())
             out_path = barcode_dir / f"bc_{safe_value}"
 
-            # Generate. python-barcode's save() adds '.png' automatically
+            # Shrink the barcode height by 40%. Default module_height is 15.0,
+            # so 15.0 * 0.6 = 9.0 mm — roughly 40% shorter.
+            writer_options = {
+                'module_height': 9.0,  # default is 15.0 (mm)
+                'module_width': 0.2,  # default is 0.2 (mm per module) — keep
+                'quiet_zone': 2.0,  # default 6.5 — smaller is fine
+                'write_text': True,  # keep the alphanumeric below
+                'font_size': 6,  # text under barcode
+                'text_distance': 2.0,  # gap between barcode and text
+            }
+
             code = barcode.get('code128', value, writer=ImageWriter())
-            result = code.save(str(out_path))
+            result = code.save(str(out_path), options=writer_options)
 
             if result and Path(result).exists():
                 return result
-            # Some versions return without extension
             if Path(str(out_path) + ".png").exists():
                 return str(out_path) + ".png"
             return None
