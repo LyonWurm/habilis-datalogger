@@ -4071,8 +4071,8 @@ class BagTagManagementScreen(MDScreen):
             intent.putExtra(Intent.EXTRA_STREAM, parcelable_uri)
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
 
-            CharSequence = autoclass('java.lang.CharSequence')
-            title = cast('java.lang.CharSequence', 'Share Bag Tags')
+            JavaString = autoclass('java.lang.String')
+            title = cast('java.lang.CharSequence', JavaString("Share Bag Tags"))
 
             chooser = Intent.createChooser(intent, title)
             currentActivity = cast('android.app.Activity', PythonActivity.mActivity)
