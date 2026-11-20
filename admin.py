@@ -4071,9 +4071,13 @@ class BagTagManagementScreen(MDScreen):
             intent.putExtra(Intent.EXTRA_STREAM, parcelable_uri)
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
 
+            CharSequence = autoclass('java.lang.CharSequence')
+            title = cast('java.lang.CharSequence', 'Share Bag Tags')
+
+            chooser = Intent.createChooser(intent, title)
             currentActivity = cast('android.app.Activity', PythonActivity.mActivity)
-            chooser = Intent.createChooser(intent, "Share Bag Tags")
             currentActivity.startActivity(chooser)
+
         except Exception as e:
             import traceback
             print(f"PDF share failed: {e}")
